@@ -21,9 +21,9 @@
 |--|--|--|--|
 |US8| Membre | pouvoir me connecter/déconnecter. | d’accéder à l’espace utilisateur / me déconnecter de celui ci.|
 |US9| Membre | pouvoir accéder à mon compte utilisateur | retrouver mes informations et les modifier.|
-|US10| Membre | pouvoir supprimer mon compte | afin de me désinscrire de la plateforme.|
-|US11| Membre | pouvoir choisir mes préférences (mail, notifications etc) | afin de ne pas être flooder sans mon consentement ou être informé de toutes informations utile.|
-|US12| Membre | pouvoir ajouter d’autres membres à mon espace privé |  afin de pouvoir suivre leur activité.|
+|US10| Membre | pouvoir supprimer mon compte | me désinscrire de la plateforme.|
+|US11| Membre | pouvoir choisir mes préférences (mail, notifications etc) | ne pas être flooder sans mon consentement ou être informé de toutes informations utile.|
+|US12| Membre | pouvoir ajouter d’autres membres à mon espace privé | pouvoir suivre leur activité.|
 |US13| Membre | pouvoir réagir à événement | suivre un événement ou y participer, d’être mis au courant des éventuelles updates.|
 |US14| Membre | pouvoir retrouver les événements qui m’intéressent | les retrouver facilement dans mon espace.|
 |--|--|--|--|
