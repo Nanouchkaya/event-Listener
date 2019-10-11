@@ -27,6 +27,6 @@
 |US13| Membre | pouvoir réagir à événement | suivre un événement ou y participer, d’être mis au courant des éventuelles updates.|
 |US14| Membre | pouvoir retrouver les événements qui m’intéressent | les retrouver facilement dans mon espace.|
 |--|--|--|--|
-|US15| Admin | créer les événement | pour les utilisateurs membre et ajouter du contenu pour website|
+|US15| Admin | créer les événements | pour les utilisateurs membre et ajouter du contenu pour website|
 |US16| Admin | superviser les événements | supprimer des commentaires haineux-et plus-, ajouter/supprimer du contenu supplémentaire de mon événement.|
 
