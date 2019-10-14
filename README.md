@@ -21,25 +21,25 @@ Voici l'Arborescence de notre projet.
 
 ## MCD Mocodo 
 
-USER: ID, pseudo, firstname, lastname, url_avatar, email, notif_new_event, notif_new_update, created_date, updated_date
+USER: ID, pseudo, firstname, lastname, url_avatar, email, notif_new_event, notif_new_update, created_at, updated_at
 HAS_ROLE, NN USER_HAS_ROLE, NN USER
 USER_HAS_ROLE: ID, user_id, role_id
 HAS_USER, NN ROLE, NN USER_HAS_ROLE
-ROLE: ID, name, created_date, updated_date
+ROLE: ID, name, created_at, updated_at
 
 :
 HAS_TAG, NN EVENT, NN EVENT_HAS_TAG
 EVENT_HAS_TAG: ID, event_id, tag_id
 HAS_EVENT, NN EVENT_HAS_TAG, NN TAG
-TAG: ID, name, created_date, updated_date
+TAG: ID, name, created_at, updated_at
 
-POSSESS, 0N USER, 11 EVENT
-EVENT: ID, title, url_image, price, description, address, is_online, url_live, nbr_like, nbr_participant, date_start, date_finish, created_date, updated_date, user_id, status_id
+WATCHES, 0N USER, 11 EVENT
+EVENT: ID, title, url_image, price, description, address, is_online, url_live, nbr_like, nbr_participant, date_start, date_finish, created_at, updated_at, user_id, status_id
 HAS_ACTUALITY, 0N EVENT, 11 ACTUALITY
-ACTUALITY: ID, description, created_date, updated_date, event_id, user_id
+ACTUALITY: ID, description, created_at, updated_at, event_id, user_id
 
 HAS_STATUS, 11 EVENT, 0N STATUS
-STATUS: ID, name, created_date, updated_date
+STATUS: ID, name, created_date, updated_at
 
 <a href="medias/MCD--Teriyaki.png" target="_blank"><img src="medias/MCD--Teriyaki.png"></a>
 
