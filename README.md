@@ -19,7 +19,8 @@ Voici l'Arborescence de notre projet.
 <a href="medias/Arborescence.png" target="_blank"><img src="medias/Arborescence.png"></a>
 
 
-## Mocodo 
+## MCD Mocodo 
+
 USER: ID, pseudo, firstname, lastname, url_avatar, email, notif_new_event, notif_new_update, created_date, updated_date
 HAS_ROLE, NN USER_HAS_ROLE, NN USER
 USER_HAS_ROLE: ID, user_id, role_id
@@ -73,6 +74,10 @@ STATUS: ID, name, created_date, updated_date
     1. Non, ça ne va pas fonctionner tout de suite ! Eh oui, ta nouvelle branche n'existe pas sur le remote `origin`…
     2. mais **git** est intelligent et te donne la ligne de commande à exécuter pour créer la branche distante sur `origin` et faire un _push_ qui fonctionne !
 - `git merge nomDeLaBranche` : rattache ma branche au master de la branche principale (master) ==> nécessite de résoudre les conflits !
+
+- (Hors Terminal) Avec Git, lorsqu'une fonctionnalité est terminée, on peut vouloir que ses collègues viennent vérifier le code produit.
+Pour cela, il existe les _Pull Requests_ 
+-> https://github.com/O-clock-Alumni/fiches-recap/blob/master/ldc/git-pull-request.md
 
 
 <a href="medias/git-overview.png" target="_blank"><img src="medias/git-overview.png"></a>
