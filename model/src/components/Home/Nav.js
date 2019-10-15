@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 // == Composant
 const Nav = () => (
-  <nav>
+  <nav className="navigation-item">
     <NavLink
       to="/"
       exact
@@ -28,7 +28,7 @@ const Nav = () => (
         exact
         activeClassName="navigation-item--active"
       >
-        <button type="button" className="navigation-item--right">
+        <button type="button" className="navigation-item--right button">
           Inscription
         </button>
       </NavLink>
@@ -38,7 +38,7 @@ const Nav = () => (
         exact
         activeClassName="navigation-item--active"
       >
-        <button type="button" className="navigation-item--right">
+        <button type="button" className="navigation-item--right button">
           Connexion
         </button>
       </NavLink>

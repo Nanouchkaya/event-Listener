@@ -3,7 +3,10 @@ import React from 'react';
 // == Composant
 const SearchForm = () => (
   <div className="header-searchform">
-    <h1>A la recherche d'un événement ?</h1>
+    <h2 className="header-searchform-h2">
+      A la recherche d'un événement ?
+    </h2>
+
     <form className="header-searchform-form">
       <input
         type="text"
@@ -11,7 +14,7 @@ const SearchForm = () => (
         className="header-searchform-input"
       />
 
-      <select className="header-searchform-input">
+      <select className="header-searchform-input select">
         <option value="All">Toutes les catégories</option>
         <option value="Catégorie 1">Catégorie 1</option>
         <option value="Catégorie 2">Catégorie 2</option>
