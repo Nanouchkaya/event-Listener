@@ -1,11 +1,17 @@
 @import 'reset';
 @import 'vars';
-@import './fonts/HERO.OTF';
 
 /* IMPORT DES FONTS */
-@include font-face ('NHU', './fonts/NeueHaasUnica', null, null, otf ttf);
-@include font-face ('Hero', './fonts/hero', null, null, otf);
+// Built from https://css-tricks.com/snippets/css/using-font-face/
+// @mixin font-face( $font-name, $font-path, $font-format) {
+//   @font-face {
+//     font-family: $font-name;
+//     src: url($font-path) format($font-format);
+//   }
+// }
+// @include font-face ('NHU', '../fonts/NeueHaasUnica', otf);
+// @include font-face ('Hero', '../fonts/hero', otf);
 
 body {
-  font-family: sans-serif;
+  font-family: 'Hero', sans-serif,
 }
