@@ -1,0 +1,11 @@
+@import 'reset';
+@import 'vars';
+@import './fonts/HERO.OTF';
+
+/* IMPORT DES FONTS */
+@include font-face ('NHU', './fonts/NeueHaasUnica', null, null, otf ttf);
+@include font-face ('Hero', './fonts/hero', null, null, otf);
+
+body {
+  font-family: sans-serif;
+}
