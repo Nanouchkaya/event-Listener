@@ -1,0 +1,80 @@
+@import 'src/assets/styles/vars';
+
+body {
+    background-color: $backgroundDark;
+    color: $colorDarkTheme;
+}
+
+header {
+  background: $gradient;
+  height: 700px;
+  width: 100%;
+  position: relative;
+    
+    .header_background {
+      position: absolute;
+      display: block;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    nav {
+        background-color: rgba(black, .3);
+        padding: 2rem;
+        display: flex;
+        justify-content: space-between;
+        font-weight: 900;
+        z-index: 1;
+        position: relative;
+    
+        .navigation-item--left {
+            font-size: 2rem;
+        }
+    
+        .navigation-item--right {
+          font-size: 1rem;
+            margin: 0 2rem;
+            text-transform: uppercase;
+        }
+
+        button.navigation-item--right {
+          color: $colorLightTheme;
+          background-color: #FFFFFF;
+          padding: 0.6rem 1rem;
+          font-weight: 900;
+          box-shadow: 2px 1px 5px rgba(0,0,0,.5);
+          border-radius: 5px;
+        }
+
+        button.navigation-item--right:hover, .navigation-item--active button {
+          background-color: $turquoise;
+          color: $colorDarkTheme;
+        }
+
+        .navigation-item--active {
+          color: $turquoise;
+        }
+    }
+
+    .header-searchform {
+      background: rgba(black, .3);
+      padding: 3rem;
+      z-index:1;
+      position: absolute;
+      right: 20%;
+      bottom: 20%;
+      box-shadow: 2px 1px 5px rgba(0,0,0,.5);
+
+        &-input, &-submit {
+          font-size: 1rem;
+          display: block;
+          padding: 0.6rem 1rem;
+          margin: 0.7rem 0;
+          width: 100%;
+          border-radius: 5px;
+          border: none;
+          background-color: #FFFFFF;
+        }
+    }
+}

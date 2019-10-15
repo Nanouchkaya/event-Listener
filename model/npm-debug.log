@@ -1,0 +1,53 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node',
+1 verbose cli   '/usr/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'particlesjs',
+1 verbose cli   '—-save' ]
+2 info using npm@3.5.2
+3 info using node@v8.10.0
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly fetchPackageMetaData particlesjs
+8 silly fetchPackageMetaData —-save
+9 silly fetchNamedPackageData particlesjs
+10 silly mapToRegistry name particlesjs
+11 silly mapToRegistry using default registry
+12 silly mapToRegistry registry https://registry.npmjs.org/
+13 silly mapToRegistry uri https://registry.npmjs.org/particlesjs
+14 silly fetchOtherPackageData —-save
+15 silly cache add args [ '—-save', null ]
+16 verbose cache add spec —-save
+17 verbose request uri https://registry.npmjs.org/particlesjs
+18 verbose request no auth needed
+19 info attempt registry request try #1 at 16:56:41
+20 verbose request id c74303d9e1ee07b0
+21 http request GET https://registry.npmjs.org/particlesjs
+22 silly cache add parsed spec Result {
+22 silly cache add   raw: '—-save',
+22 silly cache add   scope: null,
+22 silly cache add   name: null,
+22 silly cache add   rawSpec: '—-save',
+22 silly cache add   spec: '/var/www/html/eventListener/projet-Event-Listener/model/—-save',
+22 silly cache add   type: 'local' }
+23 verbose stack TypeError: The header content contains invalid characters
+23 verbose stack     at validateHeader (_http_outgoing.js:494:11)
+23 verbose stack     at ClientRequest.setHeader (_http_outgoing.js:498:3)
+23 verbose stack     at new ClientRequest (_http_client.js:173:14)
+23 verbose stack     at Object.request (http.js:38:10)
+23 verbose stack     at Object.request (https.js:239:15)
+23 verbose stack     at Request.start (/usr/share/npm/node_modules/request/request.js:793:30)
+23 verbose stack     at Request.end (/usr/share/npm/node_modules/request/request.js:1400:10)
+23 verbose stack     at end (/usr/share/npm/node_modules/request/request.js:564:14)
+23 verbose stack     at Immediate._onImmediate (/usr/share/npm/node_modules/request/request.js:578:7)
+23 verbose stack     at runCallback (timers.js:794:20)
+24 verbose cwd /var/www/html/eventListener/projet-Event-Listener/model
+25 error Linux 4.15.0-65-generic
+26 error argv "/usr/bin/node" "/usr/bin/npm" "install" "particlesjs" "—-save"
+27 error node v8.10.0
+28 error npm  v3.5.2
+29 error The header content contains invalid characters
+30 error If you need help, you may report this error at:
+30 error     <https://github.com/npm/npm/issues>
+31 verbose exit [ 1, true ]

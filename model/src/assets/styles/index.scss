@@ -9,8 +9,8 @@
 //     src: url($font-path) format($font-format);
 //   }
 // }
-// @include font-face ('NHU', '../fonts/NeueHaasUnica', otf);
-// @include font-face ('Hero', '../fonts/hero', otf);
+// @include font-face ('NHU', 'src/assets/fonts/NeueHaasUnica', otf);
+// @include font-face ('Hero', 'src/assets/fonts/hero', otf);
 
 body {
   font-family: 'Hero', sans-serif,
