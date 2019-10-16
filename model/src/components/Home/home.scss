@@ -30,30 +30,6 @@ header {
         &--left {
           font-family: $fontFamilyTitle;
         }
-    
-        &--right {
-          font-size: 1rem;
-          margin: 0 2rem;
-          text-transform: uppercase;
-
-            &.button {
-              color: $colorLightTheme;
-              background: $lightGradient;
-              padding: 0.6rem 1rem;
-              font-weight: 900;
-              box-shadow: 2px 1px 5px rgba(0,0,0,.5);
-              border-radius: 5px;
-            }
-    
-            &.button:hover, &--active button {
-              background: $turquoiseGradient;
-              color: $colorDarkTheme;
-            }
-        }
-
-        &--active {
-          color: $turquoise;
-        }
     }
 
     .header-content-text {
@@ -88,14 +64,16 @@ header {
           background-color: #FFFFFF;
         }
 
-        
-
         &-submit {
           background: $turquoiseGradient;
           text-transform: uppercase;
           box-shadow: 2px 1px 5px rgba(0,0,0,.5);
           font-weight: 900;
           color: darken($colorLightTheme, 5% );
+
+          &:hover {
+            color: $colorDarkTheme;
+          }
         }
     }
 }
@@ -122,6 +100,38 @@ header {
     .navigation-item--left {
       font-size: 3rem;
     }
+
+    .menu {
+      .navigation-item {
+    
+        &--right {
+          font-size: 1rem;
+          margin: 0 2rem;
+          text-transform: uppercase;
+
+            &.button {
+              color: $colorLightTheme;
+              background: $lightGradient;
+              padding: 0.6rem 1rem;
+              font-weight: 900;
+              box-shadow: 2px 1px 5px rgba(0,0,0,.5);
+              border-radius: 5px;
+            }
+    
+            &.button:hover, &--active button {
+              background: $turquoiseGradient;
+              color: $colorDarkTheme;
+            }
+        }
+
+        &--active {
+          color: $turquoise;
+        }
+      }
+    }
+    .menu-burger {
+      display: none;
+    }
 }
 
 @media all and (max-device-width: 768px) {
@@ -145,4 +155,48 @@ header {
     .navigation-item--left {
       font-size: 2.5rem;
     }
+
+    .menu-burger {
+      display: block;
+      position: fixed;
+      right: 1rem;
+      top: 0.8rem;
+      font-size: 2rem;
+      color: $turquoise;
+      z-index:1;
+    }
+    
+    .menu {
+      display: none;
+    }
+    .menu-visible {
+      display: block;
+      position: fixed;
+      right: 0;
+      top: 0;
+      height: 250px;
+      width: 250px;
+      background: $colorDarkTheme;
+      padding: 2rem 1.8rem;
+      
+      & button {
+        background: none;
+        margin-left: -0.2rem;
+      }
+      
+      .navigation-item--right {
+        display: block;
+        width: 100%;
+        font-size: 1.3rem;
+        text-transform: uppercase;
+        text-align: left;
+        font-weight: 900;
+        color: $colorLightTheme;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        line-height: 1.8rem;
+
+      }
+    }
+
 }
