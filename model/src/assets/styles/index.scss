@@ -1,17 +1,26 @@
 @import 'reset';
 @import 'vars';
+@import 'mixins';
 
 /* IMPORT DES FONTS */
-// Built from https://css-tricks.com/snippets/css/using-font-face/
-// @mixin font-face( $font-name, $font-path, $font-format) {
-//   @font-face {
-//     font-family: $font-name;
-//     src: url($font-path) format($font-format);
-//   }
-// }
-// @include font-face ('NHU', 'src/assets/fonts/NeueHaasUnica', otf);
-// @include font-face ('Hero', 'src/assets/fonts/hero', otf);
+@font-face {
+  font-family: 'hero';
+  src: url('../fonts/Hero/hero-regular-webfont.woff2') format('woff2'),
+       url('../fonts/Hero/hero-regular-webfont.woff') format('woff'),
+       url('../fonts/Hero/Hero-Regular.otf') format('opentype'),
+       url('../fonts/Hero/Hero-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'univers';
+  src: url('../fonts/Univers/UniversLTStd.otf') format('opentype'),
+       url('../fonts/Univers/Univers-light-normal.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 
 body {
-  font-family: 'Hero', sans-serif,
+  font-family: 'univers', sans-serif;
 }

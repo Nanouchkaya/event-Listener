@@ -6,8 +6,7 @@ body {
 }
 
 header {
-  background: $gradient;
-  height: 700px;
+  background: $mainGradient;
   width: 100%;
   position: relative;
     
@@ -29,7 +28,7 @@ header {
         position: relative;
     
         &--left {
-            font-size: 2rem;
+          font-family: $fontFamilyTitle;
         }
     
         &--right {
@@ -39,7 +38,7 @@ header {
 
             &.button {
               color: $colorLightTheme;
-              background-color: #FFFFFF;
+              background: $lightGradient;
               padding: 0.6rem 1rem;
               font-weight: 900;
               box-shadow: 2px 1px 5px rgba(0,0,0,.5);
@@ -47,7 +46,7 @@ header {
             }
     
             &.button:hover, &--active button {
-              background-color: $turquoise;
+              background: $turquoiseGradient;
               color: $colorDarkTheme;
             }
         }
@@ -57,13 +56,18 @@ header {
         }
     }
 
+    .header-content-text {
+      max-width: 450px;
+      text-align: center;
+      text-transform: uppercase;
+      font-weight: 900;
+      letter-spacing: 5px;
+    }
+
     .header-searchform {
       background: rgba(black, .3);
       padding: 3rem 3rem;
       z-index:1;
-      position: absolute;
-      right: 20%;
-      bottom: 20%;
       box-shadow: 2px 1px 5px rgba(0,0,0,.5);
 
         &-h2 {
@@ -76,7 +80,7 @@ header {
         &-input, &-submit {
           font-size: 1rem;
           display: block;
-          padding: 0.6rem 1rem;
+          padding: $paddingButton;
           margin: 0.7rem 0;
           width: 100%;
           border-radius: 5px;
@@ -87,11 +91,58 @@ header {
         
 
         &-submit {
-          background-color: $turquoise;
+          background: $turquoiseGradient;
           text-transform: uppercase;
           box-shadow: 2px 1px 5px rgba(0,0,0,.5);
           font-weight: 900;
           color: darken($colorLightTheme, 5% );
         }
+    }
+}
+
+/* RULES FOR RESPONSIVE */
+
+@media all and (min-width: 768px) {
+    // rules for computer
+    header {
+      height: 620px;
+    }
+
+    .header-content {
+      display:flex;
+      justify-content: space-around;
+      align-items: center;
+      padding-top: 5rem;
+
+      &-text {
+        font-size: 2.5rem;
+      }
+    }
+
+    .navigation-item--left {
+      font-size: 3rem;
+    }
+}
+
+@media all and (max-device-width: 768px) {
+    // rules for mobile
+    header {
+      height: 800px;
+    }
+
+    .header-content-text {
+      font-size: 2rem;
+      margin: 2rem auto;
+      padding: 1rem;
+      position: relative;
+    }
+
+    .header-searchform {
+      margin: 1.8rem ;
+      position: relative;
+    }
+
+    .navigation-item--left {
+      font-size: 2.5rem;
     }
 }

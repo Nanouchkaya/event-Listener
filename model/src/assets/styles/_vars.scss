@@ -1,3 +1,4 @@
+/* COLORS */
 $backgroundDark : #38414a;
 $colorDarkTheme : #f6fafd;
 
@@ -8,5 +9,16 @@ $turquoise : rgba(14,179,207,1);
 $purple : #6942e4;
 $blue : #3a7bda;
 
-$gradient: linear-gradient(143deg, rgba(14,179,207,1) 0%, rgba(37,93,173,1) 54%, rgba(93,58,201,1) 100%);
+/* GRADIENTS */
+$mainGradient: linear-gradient(143deg, rgba(14,179,207,1) 0%, rgba(37,93,173,1) 54%, rgba(93,58,201,1) 100%);
+$lightGradient: linear-gradient(0deg, rgba(224,224,224,1) 5%, rgba(255,255,255,1) 54%, rgb(226, 226, 226) 100%);
+$turquoiseGradient: radial-gradient(circle, rgba(9,185,193,1) 0%, rgba(37,194,219,1) 49%, rgba(16,159,199,1) 100%);
+
+/* PADDING & MARGIN */
+$paddingButton: .6rem 1rem;
+
+/* FONTS STYLE */
+$fontSizeTitle : 2rem;
+$fontSizeSubTitle : 1.5rem;
+$fontFamilyTitle : 'hero';
 

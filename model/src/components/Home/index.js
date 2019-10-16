@@ -7,11 +7,16 @@ import './home.scss';
 // == Composant
 const Home = () => (
   <header>
-    <canvas
-      className="header_background">
-    </canvas>
+    <canvas className="header_background" />
+
     <Nav />
-    <SearchForm />
+
+    <div className="header-content">
+      <p className="header-content-text">
+        Accroche à définir qui sera trop mega cool (ou pas)
+      </p>
+      <SearchForm />
+    </div>
   </header>
 );
 
