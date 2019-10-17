@@ -6,3 +6,42 @@
 //     font-style: normal;
 //   }
 // }
+
+@mixin title {
+  font-family: $fontFamilyTitle;
+  font-size: 3rem;
+  width: 100%;
+  text-align: center;
+  margin: 1rem 0 3rem;
+  padding-bottom: .7rem;
+  width: 100%;
+}
+
+@mixin form-element {
+  font-size: 1rem;
+  color: $colorLightTheme;
+  display: block;
+  padding: $paddingButton;
+  margin: 1rem 0;
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+  background-color: #FFFFFF;
+
+  &::placeholder {
+    font-size: 1rem;
+    color: $colorLightTheme;
+  }
+}
+
+@mixin form-submit {
+  background: $turquoiseGradient;
+  text-transform: uppercase;
+  box-shadow: 2px 1px 5px rgba(0,0,0,.5);
+  font-weight: 900;
+  color: darken($colorLightTheme, 5% );
+
+  &:hover {
+    color: $colorDarkTheme;
+  }
+}

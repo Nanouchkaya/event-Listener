@@ -1,0 +1,12 @@
+@import 'src/assets/styles/vars';
+@import 'src/assets/styles/mixins';
+
+.events {
+  background: rgba(black, .3);
+    padding: $sectionPadding;
+
+      &-title {
+        @include title;
+        border-bottom: 2px solid $turquoise;
+      }
+}

@@ -1,4 +1,5 @@
 @import 'src/assets/styles/vars';
+@import 'src/assets/styles/mixins';
 
 body {
     background-color: $backgroundDark;
@@ -54,26 +55,47 @@ header {
         }
 
         &-input, &-submit {
-          font-size: 1rem;
-          display: block;
-          padding: $paddingButton;
-          margin: 0.7rem 0;
-          width: 100%;
-          border-radius: 5px;
-          border: none;
-          background-color: #FFFFFF;
+          @include form-element;
         }
 
         &-submit {
-          background: $turquoiseGradient;
-          text-transform: uppercase;
-          box-shadow: 2px 1px 5px rgba(0,0,0,.5);
-          font-weight: 900;
-          color: darken($colorLightTheme, 5% );
+          @include form-submit;
+        }
+    }
+}
 
-          &:hover {
-            color: $colorDarkTheme;
-          }
+main {
+    .contact {
+      background: rgba(black, .3);
+      padding: $sectionPadding;
+
+        &-title {
+         @include title;
+         border-bottom: 2px solid $blue;
+        }
+
+        &-form {
+            &-element {
+              @include form-element;
+            }
+
+            &-element.button {
+              @include form-submit;
+            }
+        }
+
+    }
+}
+
+footer {
+    .footer {
+      background: rgba(black, .3);
+      padding: $sectionPadding;
+
+        &-title {
+         @include title;
+         font-size: 0;
+         border-bottom: 2px solid $purple;
         }
     }
 }
@@ -131,6 +153,14 @@ header {
     }
     .menu-burger {
       display: none;
+    }
+
+    main, footer {
+      padding: $mainPadding;
+    }
+
+    .contact-form {
+      padding: 0 4rem;
     }
 }
 
@@ -199,4 +229,11 @@ header {
       }
     }
 
+    main, footer {
+      padding: 0;
+    }
+
+    .contact-form {
+      padding: 0;
+    }
 }
