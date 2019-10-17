@@ -24,3 +24,11 @@
 body {
   font-family: 'univers', sans-serif;
 }
+
+a:hover {
+  color: $turquoise;
+}
+
+a:active {
+  color: $blue;
+}
