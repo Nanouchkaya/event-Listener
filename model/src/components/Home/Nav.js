@@ -7,30 +7,45 @@ class Nav extends React.Component {
   state = {
     searchBar: false,
     menuBurger: false,
+    menuIcon: 'https://img.icons8.com/nolan/50/000000/xbox-menu.png',
   }
 
   activeMenu = () => {
     const bool = this.state.menuBurger ? false : true;
+    const icon = bool ? 'https://img.icons8.com/nolan/50/000000/cancel.png' : 'https://img.icons8.com/nolan/50/000000/xbox-menu.png';
     this.setState({
       menuBurger: bool,
+      menuIcon: icon,
     });
   }
 
   render() {
-    const { menuBurger, searchBar } = this.state;
-    // const searchBarClass = searchBar ? 'searchbar-visible' : 'searchbar';
+    const { menuBurger, menuIcon, searchBar } = this.state;
+    const searchBarClass = searchBar ? 'searchbar-visible' : 'searchbar';
     const menuBurgerClass = menuBurger ? 'menu-visible' : 'menu';
     return (
       <nav className="navigation-item">
-        <NavLink
-          to="/"
-          exact
-          className="navigation-item--left"
-        >
+        <div className="navigation-item--left">
+          <NavLink
+            to="/"
+            exact
+          >
           eventListener
-        </NavLink>
+          </NavLink>
+          <form className={searchBarClass}>
+            <input
+              type="search"
+              className="searchbar-input"
+              placeholder="Rechercher..."
+            / >
+          </form>
+        </div>
 
-        <FaBars className="menu-burger" onClick={this.activeMenu} />
+        <img
+          src={menuIcon}
+          className="menu-burger"
+          onClick={this.activeMenu}
+        />
 
         <div className={menuBurgerClass}>
           <NavLink

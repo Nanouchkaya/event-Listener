@@ -41,6 +41,10 @@ header {
       letter-spacing: 5px;
     }
 
+    .searchbar-input {
+      @include form-element;      
+    }
+
     .header-searchform {
       background: rgba(black, .3);
       padding: 3rem 3rem;
@@ -149,7 +153,7 @@ footer {
 
   .menu-burger {
     display: block;
-    position: fixed;
+    position: absolute;
     right: 1rem;
     top: 0.8rem;
     font-size: 2rem;
@@ -218,6 +222,12 @@ footer {
 
     .navigation-item--left {
       font-size: 3rem;
+      display: flex;
+      justify-content: space-between;
+
+      .searchbar {
+        margin: -0.7rem 3rem 0;
+      }
     }
 
     .menu {

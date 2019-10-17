@@ -15,7 +15,7 @@ const SearchForm = () => (
       />
 
       <select className="header-searchform-input select">
-        <option value="All">Toutes les catégories</option>
+        <option selected disabled value="All">Toutes les catégories</option>
         <option value="Catégorie 1">Catégorie 1</option>
         <option value="Catégorie 2">Catégorie 2</option>
         <option value="Catégorie 3">Catégorie 3</option>

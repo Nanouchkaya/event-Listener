@@ -18,7 +18,7 @@ const Contact = () => (
         placeholder="E-mail*"
       />
       <select className="contact-form-element topic">
-        <option>Sujet du message</option>
+        <option selected disabled value="default">Sujet du message</option>
         <option value="sujet 1">Sujet 1</option>
         <option value="sujet 2">Sujet 2</option>
         <option value="sujet 3">Sujet 3</option>
@@ -35,7 +35,7 @@ const Contact = () => (
       </button>
 
       <p className="contact-form--note">
-        Les champs marqués d'un astérix sont obligatoires.
+        Les champs marqués par un astérix sont obligatoires.
       </p>
       
     </form>

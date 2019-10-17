@@ -27,8 +27,8 @@ const Footer = () => (
       <h2 className="footer-subtitle">Liens utiles</h2>
         <ul>
           <li><a>Rechercher un événement</a></li>
+          <li><a>Politique de confidentialité</a></li>
           <li><a>Mentions légales</a></li>
-          <li><a>Inscription</a></li>
         </ul>
       </div>
     </div>
