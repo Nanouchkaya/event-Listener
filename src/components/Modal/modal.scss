@@ -1,0 +1,127 @@
+@import 'src/assets/styles/vars';
+
+.navigation-item {
+    background-color: rgba(black, .3);
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 900;
+    z-index: 1;
+    position: relative;
+  
+    &--left {
+      font-family: $fontFamilyTitle;
+    }
+  
+    &--right {
+      font-size: 1rem;
+      margin: 0 2rem;
+      text-transform: uppercase;
+  
+        &.button {
+          color: $colorLightTheme;
+          background: $lightGradient;
+          padding: 0.6rem 1rem;
+          font-weight: 900;
+          box-shadow: 2px 1px 5px rgba(0,0,0,.5);
+          border-radius: 5px;
+        }
+  
+        &.button:hover, &--active button {
+          background: $turquoiseGradient;
+          color: $colorDarkTheme;
+        }
+    }
+  
+    &--active {
+      color: $turquoise;
+    }
+  }
+
+.display-block {
+display: block;
+}
+
+.display-none {
+display: none;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width:100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    // font-family: $fontFamilyTitle;
+
+    &-h1 {
+        margin: 0.2em 0 0.5em 0;
+        font-size: 1.5em;
+    }
+
+    &-main {
+        position:fixed;
+        background: #C3CFD9;
+        width: auto;
+        height: auto;
+        top:50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        padding: 0.5em 3em;
+    }
+
+    &-cancel {
+        border: none;
+        background-color: #C3CFD9;
+        color: red;
+        text-decoration: underline;
+    }
+    
+    &-link {
+        border: none;
+        background-color: #C3CFD9;
+        color: #6558F5;
+        text-decoration: underline;
+        font-size: 0.8em;
+        margin-bottom: 0.5em;
+    }
+
+    &-submit {
+        background-color: #6558F5;
+        border-radius: 3px;
+        border: none;
+        padding: .5em .8em;
+        font-weight: 700;
+        cursor: pointer;
+        color: white;
+        margin: 1em 0;
+    }
+  
+    &-form {
+        margin: 0.5em 0;
+    
+        &--input {
+            margin: 1em 1em;
+            padding: .6em;
+            border: 2px solid rgb(175, 175, 175);
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    &-checkbox {
+        display: flex; 
+        justify-content: space-evenly;
+    }
+
+    &-button {
+        display: flex;
+        flex-direction: column;
+        padding: 0 2em;
+    }
+}

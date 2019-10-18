@@ -1,13 +1,30 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+
+/* imports locaux */
+import '../Modal/modal.scss';
 import QuickSearchBar from './QuickSearchBar';
+import LoginForm from '../Modal/LoginForm';
+import RegisterForm from '../Modal/RegisterForm';
 
 
 class Nav extends React.Component {
   state = {
     menuBurger: false,
     menuIcon: 'https://img.icons8.com/nolan/50/000000/xbox-menu.png',
+    showLogin: false,
+    showRegister: false,
   }
+
+  modalLogin = () => {
+    const modalState = this.state.showLogin ? false : true;
+    this.setState({ showLogin: modalState });
+  };
+
+  modalRegister = () => {
+    const modalState = this.state.showRegister ? false : true;
+    this.setState({ showLogin: modalState });
+  };
 
   activeMenu = () => {
     const bool = this.state.menuBurger ? false : true;
@@ -19,7 +36,12 @@ class Nav extends React.Component {
   }
 
   render() {
-    const { menuBurger, menuIcon, searchBar } = this.state;
+    const {
+      menuBurger,
+      menuIcon,
+      showLogin,
+      showRegister,
+    } = this.state;
     const menuBurgerClass = menuBurger ? 'menu-visible' : 'menu';
     return (
       <nav className="navigation-item">
@@ -35,6 +57,7 @@ class Nav extends React.Component {
 
         <img
           src={menuIcon}
+          alt="Menu"
           className="menu-burger"
           onClick={this.activeMenu}
         />
@@ -54,7 +77,15 @@ class Nav extends React.Component {
             exact
             activeClassName="navigation-item--active"
           >
-            <button type="button" className="navigation-item--right button">
+            <RegisterForm
+              show={showRegister}
+              handleclose={this.modalRegister}
+            />
+            <button
+              type="button"
+              className="navigation-item--right button"
+              handleclose={this.modalRegister}
+            >
               Inscription
             </button>
           </NavLink>
@@ -64,7 +95,15 @@ class Nav extends React.Component {
             exact
             activeClassName="navigation-item--active"
           >
-            <button type="button" className="navigation-item--right button">
+            <LoginForm
+              show={showLogin}
+              handleClose={this.modalLogin}
+            />
+            <button
+              type="button"
+              className="navigation-item--right button"
+              onClick={this.modalLogin}
+            >
               Connexion
             </button>
           </NavLink>

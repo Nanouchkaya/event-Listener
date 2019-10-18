@@ -14,6 +14,7 @@ const Contact = () => (
       />
       <input
         type="mail"
+        required
         className="contact-form-element input"
         placeholder="E-mail*"
       />
@@ -27,6 +28,7 @@ const Contact = () => (
 
       <textarea
         defaultValue="Votre message*"
+        required
         className="contact-form-element message"
       />
 
