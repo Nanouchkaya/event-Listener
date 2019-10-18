@@ -82,68 +82,12 @@
   
 }
 
-// Barre de navigation
-.nav {
-  height: 5rem;
-  display: flex;
-  justify-content: space-between;
-
-  @include xs {
-    height: 3rem;
-    &-form {
-      &-input {
-        display: none;
-      }
-      
-    }
-    &-btn {
-      display: none;
-    }
-  }
-  
-
-  &-left {
-    display: flex;
-    padding: 2em;
-  }
-
-  &-logo {
-    @include page-logo;
-  }
-
-  &-form {
-    display: flex;
-
-    &-input {
-      align-self: center;
-      padding: 0.5em;
-      border-radius: $lightBorderRadius;
-      border: none;
-      margin-left: 0.2em;
-
-      &:focus {
-        border: 1px solid $blue;
-        padding: 1em
-      }
-    }
-  }
-
-  &-btn {
-    @include nav-btn;
-  }
-
-  @include rwd(676) {
-    &-btn {
-      display: none;
-    }
-  }
-}
 
 // header affiche
 .header-event {
   @include xs {
     &-bg {
-      //background: url("images/event.png");
+      background-image: url("../EventDetails/images/event.png");
       height: 24vh;
       background-size: contain; 
       background-repeat: no-repeat;
@@ -175,7 +119,7 @@
     justify-content: center;
     margin-bottom: $marginBottom;
     &-bg {
-      //background: url("images/event.png"), no-repeat top center;
+      background: url("../EventDetails/images/event.png"), no-repeat top center;
       width: 576px;
       height: 30vh;
       background-size: cover;

@@ -1,10 +1,6 @@
+/* eslint-disable max-len */
+/* eslint-disable jsx-a11y/accessible-emoji */
 import React from 'react';
-
-import Datetime from './Datetime';
-import Address from './Address';
-import Speakers from './Speakers';
-import Tags from './Tags';
-import CheckButtons from './CheckButtons';
 
 const Description = () => (
   <div className="description">
@@ -27,21 +23,7 @@ const Description = () => (
           <p>Plus d'info: <a href="https://www.datajob.fr/">www.datajob.fr</a> </p>
         </span>
       </div>
-    {/* <div className="description-time">
-      <Datetime /> 
-      <Address />
-    </div> */}
     </div>
-
-    {/* <div className="speakers">
-      <Speakers />
-    </div>
-    <div className="tags">
-      <Tags />
-    </div>
-    <div className="check-buttons">
-      <CheckButtons />
-    </div> */}
   </div>
 );
 

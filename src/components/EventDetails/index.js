@@ -7,7 +7,6 @@ import Datetime from './Datetime';
 import Address from './Address';
 import Description from './Description';
 import Tags from './Tags';
-import Speakers from './Speakers';
 import CheckButtons from './CheckButtons';
 
 // import local
