@@ -5,6 +5,8 @@
 
 //Toute la page 
 .full-page {
+  margin-top: 7.2rem;
+  color: black;
   @include xs {
     background-size: 0%;
   }
