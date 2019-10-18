@@ -1,11 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { FaBars } from 'react-icons/fa';
+import QuickSearchBar from './QuickSearchBar';
 
 
 class Nav extends React.Component {
   state = {
-    searchBar: false,
     menuBurger: false,
     menuIcon: 'https://img.icons8.com/nolan/50/000000/xbox-menu.png',
   }
@@ -21,7 +20,6 @@ class Nav extends React.Component {
 
   render() {
     const { menuBurger, menuIcon, searchBar } = this.state;
-    const searchBarClass = searchBar ? 'searchbar-visible' : 'searchbar';
     const menuBurgerClass = menuBurger ? 'menu-visible' : 'menu';
     return (
       <nav className="navigation-item">
@@ -32,13 +30,7 @@ class Nav extends React.Component {
           >
           eventListener
           </NavLink>
-          <form className={searchBarClass}>
-            <input
-              type="search"
-              className="searchbar-input"
-              placeholder="Rechercher..."
-            / >
-          </form>
+          <QuickSearchBar />
         </div>
 
         <img

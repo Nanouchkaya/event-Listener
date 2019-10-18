@@ -3,7 +3,7 @@
 
 .events {
   background: rgba(black, .3);
-    padding: $sectionPadding;
+    padding: $sectionPaddingMobile;
 
       &-title {
         @include title;

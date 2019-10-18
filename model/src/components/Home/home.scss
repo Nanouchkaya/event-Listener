@@ -10,6 +10,7 @@ header {
   background: $mainGradient;
   width: 100%;
   position: relative;
+  padding-bottom: 1rem;
     
     .header_background {
       position: absolute;
@@ -20,16 +21,32 @@ header {
     }
 
     .navigation-item {
+        font-weight: 900;
+        width: 100%;
         background-color: rgba(black, .3);
         padding: 2rem;
         display: flex;
-        justify-content: space-between;
-        font-weight: 900;
+        justify-content: flex-end;
         z-index: 1;
         position: relative;
     
         &--left {
           font-family: $fontFamilyTitle;
+          font-size: 2.5rem;
+          margin-right: auto;
+        }
+
+        .searchbar {
+          display: none;
+        }
+    
+        .searchbar-visible {
+          display: inline;
+          margin-left: 2rem;
+    
+          .searchbar-input {
+            @include form-element;      
+          }
         }
     }
 
@@ -39,17 +56,20 @@ header {
       text-transform: uppercase;
       font-weight: 900;
       letter-spacing: 5px;
+      font-size: 2rem;
+      margin: 2rem auto;
+      padding: 1rem;
+      position: relative;
     }
 
-    .searchbar-input {
-      @include form-element;      
-    }
 
     .header-searchform {
       background: rgba(black, .3);
       padding: 3rem 3rem;
       z-index:1;
       box-shadow: 2px 1px 5px rgba(0,0,0,.5);
+      margin: 1.8rem ;
+      position: relative;
 
         &-h2 {
           text-transform: uppercase;
@@ -66,12 +86,56 @@ header {
           @include form-submit;
         }
     }
+
+    .menu-burger {
+      display: block;
+      position: absolute;
+      right: 1rem;
+      top: 0.8rem;
+      font-size: 2rem;
+      color: $turquoise;
+      z-index:1;
+    }
+    
+    .menu {
+      display: none;
+    }
+    .menu-visible {
+      display: block;
+      position: fixed;
+      right: 0;
+      top: 0;
+      height: 250px;
+      width: 250px;
+      background: $colorDarkTheme;
+      padding: 2rem 1.8rem;
+      
+      & button {
+        background: none;
+        margin-left: -0.2rem;
+      }
+      
+      .navigation-item--right {
+        display: block;
+        width: 100%;
+        font-size: 1.3rem;
+        text-transform: uppercase;
+        text-align: left;
+        font-weight: 900;
+        color: $colorLightTheme;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        line-height: 1.8rem;
+  
+      }
+    }
 }
 
 main {
+  padding: 0;
     .contact {
       background: rgba(black, .3);
-      padding: $sectionPadding;
+      padding: $sectionPaddingMobile;
 
         &-title {
          @include title;
@@ -98,7 +162,7 @@ main {
 footer {
     .footer {
       background: rgba(black, .3);
-      padding: $sectionPadding;
+      padding: $sectionPaddingMobile;
 
         &-title {
          @include title;
@@ -129,139 +193,74 @@ footer {
 }
 
 /* RULES FOR RESPONSIVE */
-@media all and (max-device-width: 768px) {
-  // rules for mobile
-  header {
-    height: 800px;
-  }
-
-  .header-content-text {
-    font-size: 2rem;
-    margin: 2rem auto;
-    padding: 1rem;
-    position: relative;
-  }
-
-  .header-searchform {
-    margin: 1.8rem ;
-    position: relative;
-  }
-
-  .navigation-item--left {
-    font-size: 2.5rem;
-  }
-
-  .menu-burger {
-    display: block;
-    position: absolute;
-    right: 1rem;
-    top: 0.8rem;
-    font-size: 2rem;
-    color: $turquoise;
-    z-index:1;
-  }
-  
-  .menu {
-    display: none;
-  }
-  .menu-visible {
-    display: block;
-    position: fixed;
-    right: 0;
-    top: 0;
-    height: 250px;
-    width: 250px;
-    background: $colorDarkTheme;
-    padding: 2rem 1.8rem;
-    
-    & button {
-      background: none;
-      margin-left: -0.2rem;
-    }
-    
-    .navigation-item--right {
-      display: block;
-      width: 100%;
-      font-size: 1.3rem;
-      text-transform: uppercase;
-      text-align: left;
-      font-weight: 900;
-      color: $colorLightTheme;
-      margin-top: 1rem;
-      margin-bottom: 1rem;
-      line-height: 1.8rem;
-
-    }
-  }
-
-  main, footer {
-    padding: 0;
-  }
-
-  .contact-form {
-    padding: 0;
-  }
-}
-
 @media all and (min-width: 768px) {
-    // rules for computer
-    header {
-      height: 620px;
-    }
-
-    .header-content {
-      display:flex;
-      justify-content: space-around;
-      align-items: center;
-      padding-top: 5rem;
-
-      &-text {
-        font-size: 2.5rem;
-      }
-    }
-
+  header {
     .navigation-item--left {
       font-size: 3rem;
       display: flex;
       justify-content: space-between;
+      align-items: center;
 
       .searchbar {
         margin: -0.7rem 3rem 0;
       }
     }
+  }
+}
 
-    .menu {
-      .navigation-item {
-    
-        &--right {
-          font-size: 1rem;
-          margin: 0 2rem;
-          text-transform: uppercase;
+@media all and (min-width: 980px) {
+    // rules for computer
+    header {
+      .header-content {
+        display:flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 3rem 0;
 
-            &.button {
-              color: $colorLightTheme;
-              background: $lightGradient;
-              padding: 0.6rem 1rem;
-              font-weight: 900;
-              box-shadow: 2px 1px 5px rgba(0,0,0,.5);
-              border-radius: 5px;
-            }
-    
-            &.button:hover, &--active button {
-              background: $turquoiseGradient;
-              color: $colorDarkTheme;
-            }
+        &-text {
+          font-size: 2.5rem;
+          margin: 0;
         }
+      }
 
-        &--active {
-          color: $turquoise;
+      .menu-burger {
+        display: none;
+      }
+      .menu {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        width: 40%;
+
+        .navigation-item {
+      
+          &--right {
+            font-size: 1rem;
+            margin: 0 2rem;
+            text-transform: uppercase;
+
+              &.button {
+                color: $colorLightTheme;
+                background: $lightGradient;
+                padding: $paddingButton;
+                font-weight: 900;
+                box-shadow: 2px 1px 5px rgba(0,0,0,.5);
+                border-radius: 5px;
+              }
+      
+              &.button:hover, &--active button {
+                background: $turquoiseGradient;
+                color: $colorDarkTheme;
+              }
+          }
+
+          &--active {
+            color: $turquoise;
+          }
         }
       }
     }
-    .menu-burger {
-      display: none;
-    }
-
+    
     main, footer {
       padding: $mainPadding;
     }
