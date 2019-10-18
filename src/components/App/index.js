@@ -6,6 +6,7 @@ import { Route } from 'react-router-dom';
 import './app.scss';
 import User from 'src/components/User';
 import Home from 'src/components/Home';
+import EventDetails from 'src/components/EventDetails';
 import Nav from './Nav';
 import Footer from './Footer';
 
@@ -15,6 +16,9 @@ const App = () => (
     <Nav />
     <Route exact path="/">
       <Home />
+    </Route>
+    <Route path="/event">
+      <EventDetails />
     </Route>
     <Route path="/profile">
       <User />

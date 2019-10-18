@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchForm from './SearchForm';
 import Contact from './Contact';
-import Events from '../Events/Event';
+import Events from '../Events';
 
 import './home.scss';
 

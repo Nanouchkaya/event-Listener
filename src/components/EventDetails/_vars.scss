@@ -1,0 +1,20 @@
+$lightBorderRadius: 5px;
+$textFontSize: 0.8em;
+$marginBottom: 2em;
+$boxShadow: 0 8px 16px 0 rgba(78, 84, 140,0.2);
+$lightColorBorderBottom: 1px solid lighten(#ccc, 15%);
+$linkColor: darken($blue, 25%);
+  
+
+/* Responsive */
+
+// Extra small phones
+$screen-xs-max: 576px;
+// Small phones
+$screen-sm-min: 576px ;
+// Small tablets
+$screen-md-min: 768px ;
+// Tablets and small desktops
+$screen-lg-min: 992px;
+// Large tablets and desktops
+$screen-xl-min: 1200px
