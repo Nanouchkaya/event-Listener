@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 /* imports locaux */
 import '../Modal/modal.scss';
-import QuickSearchBar from './QuickSearchBar';
+import QuickSearchBar from '../Home/QuickSearchBar';
 import LoginForm from '../Modal/LoginForm';
 import RegisterForm from '../Modal/RegisterForm';
 
@@ -17,17 +17,17 @@ class Nav extends React.Component {
   }
 
   modalLogin = () => {
-    const modalState = this.state.showLogin ? false : true;
+    const modalState = !this.state.showLogin;
     this.setState({ showLogin: modalState });
   };
 
   modalRegister = () => {
-    const modalState = this.state.showRegister ? false : true;
+    const modalState = !this.state.showRegister;
     this.setState({ showLogin: modalState });
   };
 
   activeMenu = () => {
-    const bool = this.state.menuBurger ? false : true;
+    const bool = !this.state.menuBurger;
     const icon = bool ? 'https://img.icons8.com/nolan/50/000000/cancel.png' : 'https://img.icons8.com/nolan/50/000000/xbox-menu.png';
     this.setState({
       menuBurger: bool,
@@ -64,7 +64,7 @@ class Nav extends React.Component {
 
         <div className={menuBurgerClass}>
           <NavLink
-            to="/events"
+            to="/profile"
             exact
             activeClassName="navigation-item--active"
             className="navigation-item--right"

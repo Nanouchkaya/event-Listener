@@ -1,4 +1,4 @@
 node_modules/
-README_perso.md
 .vscode
-yarn-error.log
+*.log
+README_perso.md

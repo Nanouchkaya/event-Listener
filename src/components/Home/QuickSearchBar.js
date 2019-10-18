@@ -2,14 +2,14 @@ import React from 'react';
 
 class QuickSearchBar extends React.Component {
   state = {
-    searchBar: true,
+    searchBar: false,
     value: '',
   }
 
   handleChange = (e) => {
     this.setState({
       value: e.target.value,
-    })
+    });
   }
 
   render() {
@@ -22,12 +22,12 @@ class QuickSearchBar extends React.Component {
           type="search"
           className="searchbar-input"
           placeholder="Rechercher..."
-          value= {value}
+          value={value}
           onChange={this.handleChange}
         />
       </form>
-    )
+    );
   }
-};
+}
 
 export default QuickSearchBar;

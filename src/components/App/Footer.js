@@ -3,7 +3,7 @@ import React from 'react';
 // == Composant
 const Footer = () => (
   <section className="footer">
-    <h1 className="footer-title"></h1>
+    <h1 className="footer-title">titre masqué</h1>
     <div>
       <div className="footer-events">
         <h2 className="footer-subtitle">Tous les événements</h2>
@@ -18,13 +18,13 @@ const Footer = () => (
       </div>
 
       <div className="footer-social">
-        <img src="https://img.icons8.com/nolan/64/000000/facebook-circled.png" />
-        <img src="https://img.icons8.com/nolan/64/000000/twitter.png" />
-        <img src="https://img.icons8.com/nolan/64/000000/share.png" />
+        <img alt="facebook" src="https://img.icons8.com/nolan/64/000000/facebook-circled.png" />
+        <img alt="twitter" src="https://img.icons8.com/nolan/64/000000/twitter.png" />
+        <img alt="share" src="https://img.icons8.com/nolan/64/000000/share.png" />
       </div>
 
       <div className="footer-links">
-      <h2 className="footer-subtitle">Liens utiles</h2>
+        <h2 className="footer-subtitle">Liens utiles</h2>
         <ul>
           <li><a>Rechercher un événement</a></li>
           <li><a>Politique de confidentialité</a></li>

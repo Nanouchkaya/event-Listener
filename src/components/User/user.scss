@@ -1,0 +1,319 @@
+@import 'src/assets/styles/vars';
+@import 'src/assets/styles/mixins';
+
+.user {
+  min-width: 320px;
+  font-family: 'Univers', sans-serif;
+  
+  .header {
+    position: relative;
+    background-color: #b8c4c4;
+    background-image: url('./../../assets/images/bgUser.jpg');
+    background-position: center bottom;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: $headerBgImageSize;
+
+    &-pseudo {
+      font-family: 'Hero', sans-serif;
+      text-align: center;
+      padding-top: calc(#{$headerBgImageSize} / 2);
+      font-size: 1.5em;
+      font-weight: bold;
+      color: $preferenceTextTitleColor;
+    }
+
+    &-avatar {
+      position: absolute;
+      width: $headerAvatarSize;
+      bottom: calc(#{$headerAvatarSize} / -2);
+      left: calc(50% - (#{$headerAvatarSize} / 2));
+      border-radius: 50%;
+      border: 1px #555 solid;
+    }
+  }
+
+  .preferences {
+    background-color: $preferenceBgColor;
+    text-align: left;
+    padding: 8rem 3rem 2rem;
+
+    &-title {
+      color: $preferenceTextContentColor;
+      width: 250px;
+      font-size: 1.3em;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid $preferenceTextContentColor;
+    }
+
+    &-infos {
+      margin: 2.5rem 1rem 1rem;
+
+      &-container {
+        display: flex;
+        flex-direction: column;
+        
+        .content {
+          display: flex;
+          flex-direction: column;
+            
+          &-input-label-field {
+            color: $preferenceTextLabelColor;
+            font-size: $preferenceLabelFontSize;
+            margin: 0.2rem 0;
+            width: max-content;
+          }
+  
+          &-input-field {
+            color: $preferenceTextContentColor;
+            font-size: $preferenceTextContentFontSize;
+            margin-bottom: 0.2rem;
+            width: max-content;
+            @include form-element;
+          }
+  
+          /* disabled input */
+          &-input-field[disabled] {
+            background: none;
+            border: none;
+            margin-bottom: 0.9rem;
+          }
+  
+          &-input-checkbox {
+            position: relative;
+            margin: 0.5rem 0;
+  
+            .checkbox {
+              margin: 0;
+            }
+  
+            .label {
+              font-size: $preferenceTextContentFontSize;
+              color: $preferenceTextContentColor;
+              padding-left: 0.2rem;
+            }
+  
+            /* disabled input */
+            .checkbox[disabled] {
+              display: none;
+            }
+  
+            /* disabled input */
+            .checkbox[disabled] + .label {
+              padding-left: 20px;
+            }
+  
+            /* disabled input */
+            .checkbox[disabled] + .label::before {
+              position: absolute;
+              content: "";
+              left: 4px;
+              @include checkCustom($preferenceUncheckedColor, 15px, 3px);
+            }
+  
+            /* disabled input */
+            .checkbox[disabled]:checked + .label::before {
+              @include checkCustom($preferenceCheckedColor, 15px, 3px);
+            }
+          }
+
+        }
+      }
+
+      &-buttons {
+        margin: 1rem 0;
+        display: flex;
+        flex-direction: column;
+
+        .button {
+          display: inline-block;
+          width: max-content;
+          background: none;
+          border: none;
+          font-size: $preferenceTextContentFontSize;
+          text-decoration: underline;
+          margin: 0.2rem 0;
+          padding: 0;
+
+          &--mode-editor {
+            color: $preferenceEditLinkColor;
+          }
+
+          &--validate-preferences {
+            color: $preferenceValidateLinkColor;
+          }
+          
+          &--delete-account {
+            color: $preferenceDeleteLinkColor;
+          }
+        }
+      }
+    }
+  }
+
+  .delete-account {
+    position: fixed;
+    background: rgba(34, 34, 34, 0.568);
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    &-modal {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: $preferenceBgColor;
+      max-width: $deleteModalSize;
+      margin: auto;
+      margin-top: 50vh;
+      transform: translateY(-50%);
+      border-radius: 3px;
+      padding: 1rem;
+
+      &-close-cross {
+        align-self: flex-end;
+        font-size: 3em;
+        padding-right: 1rem;
+        background: none;
+        border: none;
+      }
+
+      &-message {
+        text-align: center;
+        padding: 1rem;
+      }
+
+      &-buttons {
+        padding-bottom: 1rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-items: center;
+
+        .button {
+          margin: .5rem 1rem;
+          text-align: center;
+          font-size: $preferenceTextContentFontSize;
+          border: none;
+          width: max-content;
+          border-radius: 3px;
+          background: #6942e4;
+          color: #f6fafd;
+          padding: .5rem 1rem;
+          
+        }
+      }
+    }
+  }
+
+  .preferences-events {
+    background-color: #fff;
+    text-align: left;
+    padding: 2rem 3rem;
+
+    &-title {
+      color: $preferenceTextContentColor;
+      width: 250px;
+      font-size: 1.3em;
+      padding-bottom: 0.5rem;
+      margin: 1rem 0;
+      border-bottom: 2px solid $preferenceTextContentColor;
+    }
+
+    &-content {
+      color: $preferenceTextContentColor;
+      padding: 1rem 0;
+
+      &-subtitle {
+        font-size: 1.05em;
+        padding: 2rem;
+      }
+      
+    }
+  }
+} 
+
+// adjust the title for other devices
+@media (min-width: 768px) {
+  .user {
+    .preferences {
+      padding: 4rem 3rem 2rem;
+    }
+  }
+}
+
+// separate infos into 2 block & centered buttons
+@media (min-width: 1024px) {
+  .user {
+    .preferences {
+      &-infos {
+        &-container {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: space-between;
+
+          .content {
+            flex-direction: column;
+            width: max-content;
+            align-self: center;
+          }
+        }
+
+        &-buttons {
+          flex-direction: row;
+          justify-content: center;
+
+          .button {
+            margin: 0 1rem;
+            text-decoration: none;
+
+            &:hover,
+            &:focus {
+              text-decoration: none;
+            }
+
+            &--mode-editor:hover,
+            &--mode-editor:focus {
+              color: $preferenceEditLinkColorHover;
+            }
+
+            &--validate-preferences:hover,
+            &--validate-preferences:focus {
+              color: $preferenceValidateLinkColorHover;
+            }
+
+            &--delete-account:hover,
+            &--delete-account:focus {
+              color: $preferenceDeleteLinkColorHover;
+            }
+
+          }
+        }
+      }
+    }
+
+    .delete-account {
+      &-modal {
+        &-close-cross {
+          &:hover,
+          &:focus {
+            color: #636363;
+          }
+        }
+
+        &-buttons {
+          .button {
+            &:hover,
+            &:focus {
+              background: #4b2bb3;
+              color: #dadee0;
+            }
+          }
+        }
+      }
+    }
+  }
+}

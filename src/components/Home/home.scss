@@ -10,6 +10,8 @@ header {
   background: $mainGradient;
   width: 100%;
   position: relative;
+  top: 0;
+  padding-top: 112px;
   padding-bottom: 1rem;
     
     .header_background {
@@ -18,36 +20,6 @@ header {
       top: 0;
       left: 0;
       z-index: 0;
-    }
-
-    .navigation-item {
-        font-weight: 900;
-        width: 100%;
-        background-color: rgba(black, .3);
-        padding: 2rem;
-        display: flex;
-        justify-content: flex-end;
-        z-index: 1;
-        position: relative;
-    
-        &--left {
-          font-family: $fontFamilyTitle;
-          font-size: 2.5rem;
-          margin-right: auto;
-        }
-
-        .searchbar {
-          display: none;
-        }
-    
-        .searchbar-visible {
-          display: inline;
-          margin-left: 2rem;
-    
-          .searchbar-input {
-            @include form-element;      
-          }
-        }
     }
 
     .header-content-text {
@@ -86,48 +58,6 @@ header {
           @include form-submit;
         }
     }
-
-    .menu-burger {
-      display: block;
-      position: absolute;
-      right: 1rem;
-      top: 0.8rem;
-      font-size: 2rem;
-      color: $turquoise;
-      z-index:1;
-    }
-    
-    .menu {
-      display: none;
-    }
-    .menu-visible {
-      display: block;
-      position: fixed;
-      right: 0;
-      top: 0;
-      height: 250px;
-      width: 250px;
-      background: $colorDarkTheme;
-      padding: 2rem 1.8rem;
-      
-      & button {
-        background: none;
-        margin-left: -0.2rem;
-      }
-      
-      .navigation-item--right {
-        display: block;
-        width: 100%;
-        font-size: 1.3rem;
-        text-transform: uppercase;
-        text-align: left;
-        font-weight: 900;
-        color: $colorLightTheme;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-        line-height: 1.8rem;
-      }
-    }
 }
 
 main {
@@ -155,39 +85,6 @@ main {
               font-size: .8rem;
             }
         }       
-    }
-}
-
-footer {
-    .footer {
-      background: rgba(black, .3);
-      padding: $sectionPaddingMobile;
-
-        &-title {
-         @include title;
-         font-size: 0;
-         border-bottom: 2px solid $purple;
-        }
-
-      &-subtitle {
-        font-family: $fontFamilyTitle;
-        font-size: 1.5rem;
-        color: $blue;
-        display: inline-block;
-        margin: 0 0 1rem;
-        padding-bottom: .3rem;
-      }
-      & ul li {
-        padding: 0 1rem .2rem;
-      }
-      &-social {
-        text-align: center;
-        padding: 2rem 0;
-      }
-  
-      &-links {
-        text-align: right;
-      }
     }
 }
 
@@ -221,57 +118,11 @@ footer {
           margin: 0;
         }
       }
-
-      .menu-burger {
-        display: none;
-      }
-      .menu {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        width: 40%;
-
-        .navigation-item {
-      
-          &--right {
-            font-size: 1rem;
-            margin: 0 2rem;
-            text-transform: uppercase;
-
-              &.button {
-                color: $colorLightTheme;
-                background: $lightGradient;
-                padding: $paddingButton;
-                font-weight: 900;
-                box-shadow: 2px 1px 5px rgba(0,0,0,.5);
-                border-radius: 5px;
-              }
-      
-              &.button:hover, &--active button {
-                background: $turquoiseGradient;
-                color: $colorDarkTheme;
-              }
-          }
-
-          &--active {
-            color: $turquoise;
-          }
-        }
-      }
     }
-    
-    main, footer {
-      padding: $mainPadding;
-    }
-
+  
     .contact-form {
       max-width: 800px;
       margin: auto;
-    }
-
-    .footer > div {
-      display: flex;
-      justify-content: space-around;
     }
 }
 
