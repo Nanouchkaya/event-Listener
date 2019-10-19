@@ -23,7 +23,7 @@ class Nav extends React.Component {
 
   modalRegister = () => {
     const modalState = !this.state.showRegister;
-    this.setState({ showLogin: modalState });
+    this.setState({ showRegister: modalState });
   };
 
   activeMenu = () => {
@@ -32,6 +32,8 @@ class Nav extends React.Component {
     this.setState({
       menuBurger: bool,
       menuIcon: icon,
+      showLogin: false,
+      showRegister: false,
     });
   }
 
@@ -63,45 +65,47 @@ class Nav extends React.Component {
         />
 
         <div className={menuBurgerClass}>
-          <NavLink
-            to="/profile"
-            exact
-            activeClassName="navigation-item--active"
-            className="navigation-item--right"
-          >
-            Tous les événements
-          </NavLink>
-
-          <div
-            activeClassName="navigation-item--active"
-          >
-            <RegisterForm
-              show={showRegister}
-              handleclose={this.modalRegister}
-            />
-            <button
-              type="button"
-              className="navigation-item--right button"
-              handleclose={this.modalRegister}
+          <div className="menu-main">
+            <NavLink
+              to="/profile"
+              exact
+              activeClassName="navigation-item--active"
+              className="navigation-item--right"
             >
-              Inscription
-            </button>
-          </div>
+              Tous les événements
+            </NavLink>
 
-          <div
-            activeClassName="navigation-item--active"
-          >
-            <LoginForm
-              show={showLogin}
-              handleClose={this.modalLogin}
-            />
-            <button
-              type="button"
-              className="navigation-item--right button"
-              onClick={this.modalLogin}
+            <div
+              activeClassName="navigation-item--active"
             >
-              Connexion
-            </button>
+              <RegisterForm
+                show={showRegister}
+                handleclose={this.modalRegister}
+              />
+              <button
+                type="button"
+                className="navigation-item--right button"
+                onClick={this.modalRegister}
+              >
+                Inscription
+              </button>
+            </div>
+
+            <div
+              activeClassName="navigation-item--active"
+            >
+              <LoginForm
+                show={showLogin}
+                handleclose={this.modalLogin}
+              />
+              <button
+                type="button"
+                className="navigation-item--right button"
+                onClick={this.modalLogin}
+              >
+                Connexion
+              </button>
+            </div>
           </div>
         </div>
       </nav>

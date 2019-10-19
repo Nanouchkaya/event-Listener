@@ -10,11 +10,12 @@
 .navigation-item {
   font-weight: 900;
   width: 100%;
+  background-color: rgba(black, .3);
   background: linear-gradient(143deg, rgba(10,124,144,.3) 0%, rgba(20,88,130,.3) 49%, rgba(37,58,126,.3) 100%);
   padding: 2rem;
   display: flex;
   justify-content: flex-end;
-  position: absolute;
+  position: sticky;
   z-index: 1;
   margin-bottom: -112px;
 
@@ -50,22 +51,28 @@ z-index:1;
 
 .menu {
 display: none;
+  &-main {
+    background: darken($backgroundDark, 5%);
+    color: $colorDarkTheme;
+    width: 100%;
+    margin: auto;
+    min-height: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 1rem 2rem;
+  }
 }
 .menu-visible {
-  display: block;
   position: fixed;
-  right: 0;
   top: 0;
-  height: 250px;
-  width: 250px;
-  background: $colorDarkTheme;
-  padding: 2rem 1.8rem;
+  left: 0;
+  width:100%;
+  height: 100%;
+  background: $mainGradientOpacity;
+  padding: .5rem;
 
-  & button {
-    background: none;
-    margin-left: -0.2rem;
-  }
-
+  
   .navigation-item--right {
     display: block;
     width: 100%;
@@ -73,10 +80,16 @@ display: none;
     text-transform: uppercase;
     text-align: left;
     font-weight: 900;
-    color: $colorLightTheme;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    line-height: 1.8rem;
+    color: $colorDarkTheme;
+
+      &:hover {
+        color: $turquoise;
+      }
+
+      &.button {
+        background: none;
+        margin-left: -0.2rem;
+      }
   }
 }
 
@@ -95,9 +108,8 @@ footer {
     padding: $sectionPaddingMobile;
 
       &-title {
-      @include title;
+      @include title($purple);
       font-size: 0;
-      border-bottom: 2px solid $purple;
       }
 
     &-subtitle {
@@ -139,10 +151,18 @@ footer {
     display: none;
   }
   .menu {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    width: 40%;
+    display: initial;
+
+    &-main {
+      background: transparent;
+      margin: auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 0;
+  }
 
     .navigation-item {
 

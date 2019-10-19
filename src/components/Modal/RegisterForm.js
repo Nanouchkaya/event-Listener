@@ -1,4 +1,5 @@
 import React from 'react';
+import Proptypes from 'prop-types';
 
 const RegisterForm = ({ handleclose, show }) => {
   const showHideClassName = show ? 'modal display-block' : 'modal display-none';
@@ -6,54 +7,63 @@ const RegisterForm = ({ handleclose, show }) => {
   return (
     <div className={showHideClassName}>
       <section className="modal-main">
-        <h1 className="modal-h1">Inscription</h1>
+        <h2 className="modal-title">Inscription</h2>
         <form className="modal-form">
           <input
-            className="modal-form--input"
+            className="modal-form-element"
             required
-            placeholder="Pseudo *"
+            placeholder="Pseudo*"
             type=""
           />
           <input
-            className="modal-form--input"
+            className="modal-form-element"
             required
-            placeholder="Adresse email *"
-            type="email"
+            placeholder="Adresse email*"
+            type="mail"
           />
           <input
-            className="modal-form--input"
+            className="modal-form-element"
             required
-            placeholder="Mot de passe *"
+            placeholder="Mot de passe*"
             type="password"
           />
           <input
-            className="modal-form--input"
+            className="modal-form-element"
             required
             placeholder="Confirmer mot de passe *"
             type="password"
           />
-        </form>
-        <div className="modal-checkbox">
-          <input type="checkbox" />
-          <p>Recevoir des newsletters</p>
-        </div>
-        <div className="modal-button">
+          <label className="modal-form-label">
+            <input type="checkbox" className="modal-checkbox" />
+            Recevoir un email pour chaque nouvel événement
+          </label>
+  
+          <label className="modal-form-label">
+            <input type="checkbox" className="modal-checkbox" />
+            Recevoir un email à la modification d'un événement
+          </label>
+
           <button
-            className="modal-submit"
+            className="modal-form--submit"
             type="submit"
           >
-            S'inscrire
+            Créer le compte
           </button>
-          <button
-            type="button"
-            className="modal-cancel"
-            onClick={handleclose}
-          >
-            Annuler
-          </button>
-        </div>
+        </form>
+        <a
+          className="modal--back"
+          onClick={handleclose}
+        >
+          Retour
+        </a>
       </section>
     </div>
   );
 };
+
+RegisterForm.propTypes = {
+  handleclose: Proptypes.func.isRequired,
+  show: Proptypes.bool.isRequired,
+};
+
 export default RegisterForm;

@@ -1,12 +1,3 @@
-// @mixin font($font-family, $font-file) {
-//   @font-face {
-//     font-family: $font-family;
-//     src: url($font-file+'.ttf') format('truetype');
-//     font-weight: normal;
-//     font-style: normal;
-//   }
-// }
-
 @mixin checkCustom($color, $size, $weight) {
   width: calc(#{$size} / 2);
   height: $size;
@@ -15,7 +6,7 @@
   transform: rotate(40deg);
 }
 
-@mixin title {
+@mixin title($borderColor) {
   font-family: $fontFamilyTitle;
   font-size: 3rem;
   width: 100%;
@@ -23,6 +14,7 @@
   margin: 1rem 0 3rem;
   padding-bottom: .7rem;
   width: 100%;
+  border-bottom: 2px solid $borderColor;
 }
 
 @mixin subtitleType1 {
@@ -67,6 +59,7 @@
 }
 
 @mixin form-submit {
+  background-color: $turquoise;
   background: $turquoiseGradient;
   text-transform: uppercase;
   box-shadow: 2px 1px 5px rgba(0,0,0,.5);
@@ -76,6 +69,20 @@
   &:hover {
     color: $colorDarkTheme;
   }
+}
+
+@mixin checkbox {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid $turquoise;
+  position: relative;
+  top: 5px;
+  left: -1rem;
+}
+
+@mixin checkbox-checked {
+  background-color: $turquoise;
 }
 
 @mixin sectionPageAnnexe {

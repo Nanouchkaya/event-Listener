@@ -6,7 +6,6 @@
     padding: $sectionPaddingMobile;
 
       &-title {
-        @include title;
-        border-bottom: 2px solid $turquoise;
+        @include title($turquoise);
       }
 }

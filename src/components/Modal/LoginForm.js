@@ -1,54 +1,53 @@
 import React from 'react';
+import Proptypes from 'prop-types';
 
-const LoginForm = ({ handleClose, show }) => {
+const LoginForm = ({ handleclose, show }) => {
   const showHideClassName = show ? 'modal display-block' : 'modal display-none';
   return (
     <div className={showHideClassName}>
       <section className="modal-main">
-        <h1 className="modal-h1">Connexion</h1>
+        <h2 className="modal-title">Connexion</h2>
         <form className="modal-form">
           <input
-            className="modal-form--input"
+            className="modal-form-element"
             required
-            placeholder="Adresse email *"
+            placeholder="Adresse email*"
             type="mail"
             autoComplete="new-password"
           />
           <input
-            className="modal-form--input"
+            className="modal-form-element"
             required
-            placeholder="Mot de passe *"
+            placeholder="Mot de passe*"
             type="password"
             autoComplete="new-password"
           />
-        </form>
 
-        <div className="modal-checkbox">
-          <input type="checkbox" />
-          <p>Rester connecté</p>
-        </div>
-
-        <div className="modal-button">
           <button
-            className="modal-submit"
+            className="modal-form--submit"
             type="submit"
           >
-            Se connecter
+          Se connecter
           </button>
-          <label className="modal-link">
-            Mot de passe oublié ?
-          </label>
-          <button
-            type="button"
-            className="modal-cancel"
-            onClick={handleClose}
-          >
-            Annuler
-          </button>
-        </div>
+        </form>
+        <label className="modal--checkbox-label">
+          <input type="checkbox" className="modal-checkbox" />
+          Rester connecté
+        </label>
+        <a
+          className="modal--back"
+          onClick={handleclose}
+        >
+          Retour
+        </a>
       </section>
     </div>
   );
+};
+
+LoginForm.propTypes = {
+  handleclose: Proptypes.func.isRequired,
+  show: Proptypes.bool.isRequired,
 };
 
 export default LoginForm;

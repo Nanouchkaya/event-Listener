@@ -5,8 +5,7 @@
   @include sectionPageAnnexe;
 
   &-title {
-    @include title;
-    border-bottom: 2px solid $blue;
+    @include title($blue);
   }
 
   &-paragraph {
