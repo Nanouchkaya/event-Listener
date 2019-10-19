@@ -1,0 +1,32 @@
+@import 'src/assets/styles/vars';
+@import 'src/assets/styles/mixins';
+
+.legal-mentions {
+  @include sectionPageAnnexe;
+
+  &-title {
+    @include title;
+    border-bottom: 2px solid $blue;
+  }
+
+  &-paragraph {
+    padding: 1rem;
+  }
+
+  &-subtitle {
+    @include subtitleType2;
+  }
+
+  &-list {
+    padding: 1rem;
+  }
+
+  &-list {
+    padding: 0 2rem 1.5rem;
+
+    &-item {
+      padding: 0.2rem 0;
+      list-style-type: disc;
+    }
+  }
+}

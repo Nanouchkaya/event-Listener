@@ -72,9 +72,7 @@ class Nav extends React.Component {
             Tous les événements
           </NavLink>
 
-          <NavLink
-            to="/register"
-            exact
+          <div
             activeClassName="navigation-item--active"
           >
             <RegisterForm
@@ -88,11 +86,9 @@ class Nav extends React.Component {
             >
               Inscription
             </button>
-          </NavLink>
+          </div>
 
-          <NavLink
-            to="/login"
-            exact
+          <div
             activeClassName="navigation-item--active"
           >
             <LoginForm
@@ -106,7 +102,7 @@ class Nav extends React.Component {
             >
               Connexion
             </button>
-          </NavLink>
+          </div>
         </div>
       </nav>
     );

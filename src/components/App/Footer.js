@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // == Composant
 const Footer = () => (
@@ -27,8 +28,16 @@ const Footer = () => (
         <h2 className="footer-subtitle">Liens utiles</h2>
         <ul>
           <li><a>Rechercher un événement</a></li>
-          <li><a>Politique de confidentialité</a></li>
-          <li><a>Mentions légales</a></li>
+          <li>
+            <Link to="/private-policy">
+              Politique de confidentialité
+            </Link>
+          </li>
+          <li>
+            <Link to="/legal-mentions">
+              Mentions légales
+            </Link>
+          </li>
         </ul>
       </div>
     </div>

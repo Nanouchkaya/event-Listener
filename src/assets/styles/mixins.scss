@@ -25,6 +25,30 @@
   width: 100%;
 }
 
+@mixin subtitleType1 {
+  font-family: $fontFamilyTitle;
+  font-size: 1.5rem;
+  color: $blue;
+  background: $blueGradient;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  margin: .2rem 0 1rem;
+  padding-bottom: .3rem;
+}
+
+@mixin subtitleType2 {
+  font-family: $fontFamilyTitle;
+  font-size: 1.8rem;
+  color: $turquoise;
+  background: $turquoiseGradient;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  margin: .2rem 0 1rem;
+  padding-bottom: .3rem;
+}
+
 @mixin form-element {
   font-size: 1rem;
   color: $colorLightTheme;
@@ -51,5 +75,24 @@
 
   &:hover {
     color: $colorDarkTheme;
+  }
+}
+
+@mixin sectionPageAnnexe {
+  text-align: left;
+  color: #e7e7e7;
+  padding-top: 150px;
+  background: rgba(black, .3);
+  position: relative;
+  
+  &::before {
+    content: '';
+    height: 112px;
+    background: $mainGradient;
+    width: 100%;
+    max-width: 1400px;
+    position: absolute;
+    top: 0;
+    left:0;
   }
 }

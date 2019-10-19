@@ -1,0 +1,36 @@
+@import 'src/assets/styles/vars';
+@import 'src/assets/styles/mixins';
+
+.private-policy {
+  @include sectionPageAnnexe;
+
+  a {
+    color: $blue;
+    
+    &:hover {
+      color: $purple;
+    }
+  }
+
+  &-title {
+    @include title;
+    border-bottom: 2px solid $blue;
+  }
+
+  &-paragraph {
+    padding: 1rem;
+  }
+
+  &-subtitle {
+    @include subtitleType2;
+  }
+
+  &-list {
+    padding: 0 2rem;
+
+    &-item {
+      padding: 0.5rem 0;
+      list-style-type: disc;
+    }
+  }
+}
