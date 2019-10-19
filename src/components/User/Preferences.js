@@ -41,10 +41,11 @@ const Preferences = ({
   };
 
   return (
-    <div className="preferences">
+    <section className="preferences">
       <h2 className="preferences-title">
         Mes informations
       </h2>
+
       <form className="preferences-infos">
 
         <div className="preferences-infos-container">
@@ -202,7 +203,7 @@ const Preferences = ({
       { modalStatus && (
         <DeleteAccount changeModalStatus={handleChangeModalStatus} />
       ) }
-    </div>
+    </section>
   );
 };
 Preferences.propTypes = {

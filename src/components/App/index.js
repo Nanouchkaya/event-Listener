@@ -25,9 +25,6 @@ const App = () => (
     <Route path="/profile">
       <User />
     </Route>
-    <Route path="/profile">
-      <User />
-    </Route>
     <Route path="/legal-mentions">
       <LegalMentions />
     </Route>

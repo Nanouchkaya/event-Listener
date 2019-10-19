@@ -7,7 +7,7 @@ import './user.scss';
 
 // composant
 const UserEvents = () => (
-  <div className="preferences-events">
+  <section className="preferences-events">
     <h2 className="preferences-events-title">
       Mes événements
     </h2>
@@ -20,7 +20,7 @@ const UserEvents = () => (
         Suivis
       </h3>
     </div>
-  </div>
+  </section>
 );
 
 UserEvents.propTypes = {

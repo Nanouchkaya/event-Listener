@@ -1,14 +1,6 @@
-@mixin checkCustom($color, $size, $weight) {
-  width: calc(#{$size} / 2);
-  height: $size;
-  border: solid $color;
-  border-width: 0 $weight $weight 0;
-  transform: rotate(40deg);
-}
-
 @mixin title($borderColor) {
   font-family: $fontFamilyTitle;
-  font-size: 3rem;
+  font-size: 2.5rem;
   width: 100%;
   text-align: center;
   margin: 1rem 0 3rem;
@@ -24,7 +16,7 @@
   background: $blueGradient;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  display: inline-block;
+  display: block;
   margin: .2rem 0 1rem;
   padding-bottom: .3rem;
 }
@@ -36,7 +28,7 @@
   background: $turquoiseGradient;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  display: inline-block;
+  display: block;
   margin: .2rem 0 1rem;
   padding-bottom: .3rem;
 }
@@ -83,6 +75,14 @@
 
 @mixin checkbox-checked {
   background-color: $turquoise;
+}
+
+@mixin checked-disable($color, $size, $weight) {
+  width: calc(#{$size} / 2);
+  height: $size;
+  border: solid $color;
+  border-width: 0 $weight $weight 0;
+  transform: rotate(40deg);
 }
 
 @mixin sectionPageAnnexe {

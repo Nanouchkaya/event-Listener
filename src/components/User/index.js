@@ -50,24 +50,26 @@ class User extends React.Component {
       editorModeDisabled,
     } = this.state;
     return (
-      <div className="user">
+      <>
         <Header
           pseudo={pseudo}
         />
-        <Preferences
-          firstname={firstname}
-          lastname={lastname}
-          email={email}
-          password={password}
-          confirmePassword={confirmePassword}
-          notifNewEvent={notifNewEvent}
-          notifNewUpdate={notifNewUpdate}
-          editorModeDisabled={editorModeDisabled}
-          changeValue={this.changeValue}
-          changeCheckValue={this.changeCheckValue}
-        />
-        <UserEvents />
-      </div>
+        <section className="user">
+          <Preferences
+            firstname={firstname}
+            lastname={lastname}
+            email={email}
+            password={password}
+            confirmePassword={confirmePassword}
+            notifNewEvent={notifNewEvent}
+            notifNewUpdate={notifNewUpdate}
+            editorModeDisabled={editorModeDisabled}
+            changeValue={this.changeValue}
+            changeCheckValue={this.changeCheckValue}
+          />
+          <UserEvents />
+        </section>
+      </>
     );
   }
 }

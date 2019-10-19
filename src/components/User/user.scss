@@ -1,54 +1,42 @@
 @import 'src/assets/styles/vars';
 @import 'src/assets/styles/mixins';
 
-.user {
-  min-width: 320px;
-  font-family: 'Univers', sans-serif;
+
+.header {
+  background: $mainGradient;
   
-  .header {
+  &-pseudo {
+    font-family: 'Hero', sans-serif;
+    text-align: center;
+    padding-top: $headerSize;
+    font-size: 2.8em;
     position: relative;
-    background-color: #b8c4c4;
-    background-image: url('./../../assets/images/bgUser.jpg');
-    background-position: center bottom;
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: $headerBgImageSize;
-
-    &-pseudo {
-      font-family: 'Hero', sans-serif;
-      text-align: center;
-      padding-top: calc(#{$headerBgImageSize} / 2);
-      font-size: 1.5em;
-      font-weight: bold;
-      color: $preferenceTextTitleColor;
-    }
-
-    &-avatar {
-      position: absolute;
-      width: $headerAvatarSize;
-      bottom: calc(#{$headerAvatarSize} / -2);
-      left: calc(50% - (#{$headerAvatarSize} / 2));
-      border-radius: 50%;
-      border: 1px #555 solid;
-    }
+    top: -8rem;
+    text-transform: uppercase;
+    text-shadow: 8px 5px 5px rgba(0,0,0,.2);
   }
+  
+  &-avatar {
+    position: absolute;
+    width: $headerAvatarSize;
+    bottom: calc(#{$headerAvatarSize} / -2);
+    left: calc(50% - (#{$headerAvatarSize} / 2));
+    border-radius: 50%;
+  }
+}
+  
+.user {
+  text-align: left;
+  color: #e7e7e7;
+  padding-top: 5rem;
+  background: rgba(black, .3);
 
   .preferences {
-    background-color: $preferenceBgColor;
-    text-align: left;
-    padding: 8rem 3rem 2rem;
-
     &-title {
-      color: $preferenceTextContentColor;
-      width: 250px;
-      font-size: 1.3em;
-      padding-bottom: 0.5rem;
-      border-bottom: 2px solid $preferenceTextContentColor;
+      @include title(turquoise);
     }
 
     &-infos {
-      margin: 2.5rem 1rem 1rem;
-
       &-container {
         display: flex;
         flex-direction: column;
@@ -58,22 +46,17 @@
           flex-direction: column;
             
           &-input-label-field {
-            color: $preferenceTextLabelColor;
-            font-size: $preferenceLabelFontSize;
-            margin: 0.2rem 0;
-            width: max-content;
+            font-weight: 900;
           }
   
-          &-input-field {
-            color: $preferenceTextContentColor;
-            font-size: $preferenceTextContentFontSize;
-            margin-bottom: 0.2rem;
-            width: max-content;
+          &-input-field {     
             @include form-element;
+            margin: .5rem 0;
           }
-  
+          
           /* disabled input */
           &-input-field[disabled] {
+            color: white;
             background: none;
             border: none;
             margin-bottom: 0.9rem;
@@ -81,16 +64,23 @@
   
           &-input-checkbox {
             position: relative;
-            margin: 0.5rem 0;
+            margin: 0.5rem 1rem;
   
             .checkbox {
-              margin: 0;
-            }
+              @include checkbox;
+
+             }
+           
+             .checkbox:active,
+             .checkbox:checked:active,
+             .checkbox:checked {
+               @include checkbox-checked
+             }
   
             .label {
-              font-size: $preferenceTextContentFontSize;
-              color: $preferenceTextContentColor;
-              padding-left: 0.2rem;
+              text-align: left;
+              font-weight: normal;
+              margin: 1rem 0;
             }
   
             /* disabled input */
@@ -108,12 +98,12 @@
               position: absolute;
               content: "";
               left: 4px;
-              @include checkCustom($preferenceUncheckedColor, 15px, 3px);
+              @include checked-disable(rgba($colorDarkTheme, .2), 15px, 3px);
             }
   
             /* disabled input */
             .checkbox[disabled]:checked + .label::before {
-              @include checkCustom($preferenceCheckedColor, 15px, 3px);
+              @include checked-disable($turquoise, 15px, 3px);
             }
           }
 
@@ -124,24 +114,18 @@
         margin: 1rem 0;
         display: flex;
         flex-direction: column;
-
+        
         .button {
-          display: inline-block;
-          width: max-content;
+          display: block;
           background: none;
-          border: none;
-          font-size: $preferenceTextContentFontSize;
+          font-size: 1rem;
           text-decoration: underline;
           margin: 0.2rem 0;
           padding: 0;
 
-          &--mode-editor {
-            color: $preferenceEditLinkColor;
-          }
-
-          &--validate-preferences {
-            color: $preferenceValidateLinkColor;
-          }
+          &--mode-editor, &--validate-preferences {
+            color: $turquoise;
+          }          
           
           &--delete-account {
             color: $preferenceDeleteLinkColor;
@@ -153,35 +137,42 @@
 
   .delete-account {
     position: fixed;
-    background: rgba(34, 34, 34, 0.568);
     top: 0;
     left: 0;
-    bottom: 0;
-    right: 0;
+    width:100%;
+    height: 100%;
+    background: $mainGradientOpacity;
+    z-index: 1;
+    padding: .5rem;
 
     &-modal {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      background: $preferenceBgColor;
+      justify-content: space-around;
+      background: darken($backgroundDark, 5%);
       max-width: $deleteModalSize;
       margin: auto;
       margin-top: 50vh;
       transform: translateY(-50%);
-      border-radius: 3px;
-      padding: 1rem;
+      color: $colorDarkTheme;
+      min-height: 30vh;
+      padding: 1rem 2rem;
 
       &-close-cross {
-        align-self: flex-end;
-        font-size: 3em;
-        padding-right: 1rem;
-        background: none;
-        border: none;
+        font-size: 0;
+        background-color: transparent;
+        background-image: url('/src/assets/images/icons/icons8-delete-50.png');
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        cursor: pointer;
       }
 
       &-message {
         text-align: center;
-        padding: 1rem;
+        padding-top: 2rem;
       }
 
       &-buttons {
@@ -193,42 +184,34 @@
         align-items: center;
 
         .button {
-          margin: .5rem 1rem;
-          text-align: center;
-          font-size: $preferenceTextContentFontSize;
           border: none;
-          width: max-content;
-          border-radius: 3px;
-          background: #6942e4;
-          color: #f6fafd;
-          padding: .5rem 1rem;
+          font-size: 1rem;
+          margin: .5rem 1rem;
+          color: $colorDarkTheme;
+          background-color: transparent;
+          font-weight: 900;
           
+          &--delete {
+            text-transform: uppercase;
+            padding: $paddingButton;
+            border-radius: 5px;
+            background: $purple;
+          }
         }
       }
     }
   }
 
   .preferences-events {
-    background-color: #fff;
-    text-align: left;
-    padding: 2rem 3rem;
-
     &-title {
-      color: $preferenceTextContentColor;
-      width: 250px;
-      font-size: 1.3em;
-      padding-bottom: 0.5rem;
-      margin: 1rem 0;
-      border-bottom: 2px solid $preferenceTextContentColor;
+      @include title($blue);
     }
 
     &-content {
-      color: $preferenceTextContentColor;
       padding: 1rem 0;
 
       &-subtitle {
-        font-size: 1.05em;
-        padding: 2rem;
+        @include subtitleType1
       }
       
     }
@@ -237,17 +220,16 @@
 
 // adjust the title for other devices
 @media (min-width: 768px) {
-  .user {
-    .preferences {
-      padding: 4rem 3rem 2rem;
-    }
-  }
 }
 
 // separate infos into 2 block & centered buttons
 @media (min-width: 1024px) {
   .user {
     .preferences {
+      &-title {
+        margin-top: 4rem;
+      }
+
       &-infos {
         &-container {
           display: flex;
@@ -265,6 +247,7 @@
         &-buttons {
           flex-direction: row;
           justify-content: center;
+          margin: 1.5rem 0 3rem;
 
           .button {
             margin: 0 1rem;
@@ -277,12 +260,12 @@
 
             &--mode-editor:hover,
             &--mode-editor:focus {
-              color: $preferenceEditLinkColorHover;
+              color: $blue;
             }
 
             &--validate-preferences:hover,
             &--validate-preferences:focus {
-              color: $preferenceValidateLinkColorHover;
+              color: $blue;
             }
 
             &--delete-account:hover,
@@ -305,12 +288,16 @@
         }
 
         &-buttons {
-          .button {
+          .button--delete {
             &:hover,
             &:focus {
               background: #4b2bb3;
               color: #dadee0;
             }
+          }
+
+          .button--cancel:hover {
+            color: $purple;
           }
         }
       }
