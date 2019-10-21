@@ -24,13 +24,14 @@
     flex-direction: column;
     justify-content: space-around;
     margin-bottom: 2rem;
+    position: relative;
       &-banner {
         font-size: 0;
         min-height: 250px;
         margin: 0 -1rem;
       }
 
-      &-infos-status-date {
+      &-status-date {
         display: flex;
         justify-content: space-between;
         background: $mainGradient;
@@ -95,6 +96,11 @@
 
     &-header-banner {
       margin: 0 -2rem;
+    }
+
+    &-header-status-date {
+      margin: 0 -2.65rem;
+      width: calc(100% + 5.35rem);
     }
   }
 }

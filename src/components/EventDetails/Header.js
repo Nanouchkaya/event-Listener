@@ -51,9 +51,9 @@ render() {
       </div>
 
       <div className="event-header-infos">
-        <p className="event-header-infos-name">
+        <h1 className="event-header-infos-name">
         DataJob Paris 2019 <em>par DataJob</em>
-        </p>
+        </h1>
         <div className="event-header-bottom">
           <div className="event-header-bottom-icons">
             <button
@@ -73,10 +73,11 @@ render() {
 
           <span className="event-header-bottom-price">Evenement Payant</span>
         </div>
-        <p className="event-header-infos-status-date">
-          <span>A venir</span>
-          <time>Nov. 12</time>
-        </p>
+      </div>
+
+      <div className="event-header-status-date">
+        <span>A venir</span>
+        <time>Nov. 12</time>
       </div>
 
     </div>
