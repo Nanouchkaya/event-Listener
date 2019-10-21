@@ -1,30 +1,88 @@
 import React from 'react';
 
-const Header = () => (
-  <div className="header-event">
-    <div className="header-event-bg" />
-    <div className="header-event-infos">
-      <time className="header-event-infos-date">NOV.<br />12</time>
-      <br />
-      <p className="header-event-infos-name">
-            DataJob Paris 2019
-        <br />
-        <span>par DataJob</span>
-        <button type="button">Suivre</button>
-      </p>
-      <br />
-      <p className="header-event-infos-price">Payant</p>
-    </div>
-    <div className="header-event-bottom">
-      <div className="header-event-bottom-icons">
-        <img alt="share" src="https://img.icons8.com/nolan/24/000000/share.png" />
-        <img alt="like" src="https://img.icons8.com/nolan/24/000000/like.png" />
+import ShareLinks from 'src/components/Modal/ShareLinks';
+
+/* imports locaux images */
+import shareIcon from 'src/assets/images/icons/icons8-share-50.png';
+import heartIcon from 'src/assets/images/icons/icons8-heart-50.png';
+import heartCheckedIcon from 'src/assets/images/icons/icons8-heart-checked-50.png';
+import banner from 'src/assets/images/event.png';
+
+class Header extends React.Component {
+state = {
+  showModal: false,
+  likeIcon: heartIcon,
+};
+
+handleClickHeart = (event) => {
+  let currentIcon = event.target.src;
+  currentIcon = !heartIcon ? heartCheckedIcon : heartIcon;
+  this.setState({
+    likeIcon: currentIcon,
+  });
+};
+
+handleClickShare = () => {
+  this.setState({
+    showModal: true,
+  });
+};
+
+closeShareModal = () => {
+  this.setState({
+    showModal: false,
+  });
+};
+
+
+render() {
+  const { showModal, likeIcon } = this.state;
+  const bannerStyle = {
+    backgroundImage: `url(${banner})`,
+    backgroundPosition: 'center',
+    backgroundSize: 'contain',
+  };
+
+  return (
+    <div className="event-header">
+
+      <div className="event-header-banner" style={bannerStyle}>
+        Banniere-evenement
       </div>
-      <div className="header-event-bottom-status">
-        <p>A venir</p>
+
+      <div className="event-header-infos">
+        <p className="event-header-infos-name">
+        DataJob Paris 2019 <em>par DataJob</em>
+        </p>
+        <div className="event-header-bottom">
+          <div className="event-header-bottom-icons">
+            <button
+              type="button"
+              onClick={this.handleClickHeart}
+            >
+              <img alt="like" src={likeIcon} />
+            </button>
+            <button
+              type="button"
+              onClick={this.handleClickHeart}
+            >
+              <img alt="share" src={shareIcon} />
+            </button>
+            { showModal && <ShareLinks closeModal={this.closeShareModal} /> }
+          </div>
+
+          <span className="event-header-bottom-price">Evenement Payant</span>
+        </div>
+        <p className="event-header-infos-status-date">
+          <span>A venir</span>
+          <time>Nov. 12</time>
+        </p>
       </div>
+
     </div>
-  </div>
-);
+  );
+}
+} 
 
 export default Header;
+

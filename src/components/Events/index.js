@@ -10,7 +10,7 @@ const Events = () => (
       Prochains événements
     </h1>
     <NavLink
-      to="/event"
+      to="/evenement"
     >
       Voir le détail d'un événement
     </NavLink>

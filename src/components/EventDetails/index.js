@@ -15,19 +15,25 @@ import './eventdetails.scss';
 // Composant EventDetails
 const EventDetails = () => (
   <>
-    <div className="full-page">
-      <div className="flyer-container">
+    <div className="event">
+
+      <section className="event-flyer">
         <Header />
-        <div className="description-zone">
-          <div className="date-loc-display">
+
+        <article className="event-flyer-description">
+
+          <aside className="event-flyer-infos">
             <Datetime />
             <Address />
-          </div>
+          </aside>
+
           <Description />
-        </div>
+        </article>
+
         <Tags />
         <CheckButtons />
-      </div>
+      </section>
+
     </div>
   </>
 );

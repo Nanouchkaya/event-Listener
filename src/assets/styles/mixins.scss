@@ -103,3 +103,11 @@
     left:0;
   }
 }
+
+@mixin triangle($color) {
+  content: '';
+  position: absolute;
+  border-left: .5rem solid transparent;
+  border-right: .5rem solid transparent;
+  border-bottom: .5rem solid $color;
+}

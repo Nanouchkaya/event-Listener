@@ -128,7 +128,7 @@
           }          
           
           &--delete-account {
-            color: $preferenceDeleteLinkColor;
+            color: $red;
           }
         }
       }
@@ -218,11 +218,11 @@
   }
 } 
 
-// adjust the title for other devices
+// adjust for other devices
 @media (min-width: 768px) {
 }
 
-// separate infos into 2 block & centered buttons
+// for desktop
 @media (min-width: 1024px) {
   .user {
     .preferences {

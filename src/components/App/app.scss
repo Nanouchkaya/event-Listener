@@ -1,17 +1,17 @@
 @import 'src/assets/styles/vars';
 @import 'src/assets/styles/mixins';
 
-#wrapper {
-  max-width: 1400px;
-  margin: auto;
-}
+// #wrapper {
+//   max-width: 1400px;
+//   margin: auto;
+// }
 
 /* CSS NAVIGATION */
 .navigation-item {
   font-weight: 900;
   width: 100%;
   background-color: rgba(black, .3);
-  background: linear-gradient(143deg, rgba(10,124,144,.3) 0%, rgba(20,88,130,.3) 49%, rgba(37,58,126,.3) 100%);
+  //background: linear-gradient(143deg, rgba(10,124,144,.3) 0%, rgba(20,88,130,.3) 49%, rgba(37,58,126,.3) 100%);
   padding: 2rem;
   display: flex;
   justify-content: flex-end;

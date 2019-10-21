@@ -17,20 +17,6 @@
   font-family: $fontFamilyTitle;
 }
 
-@mixin nav-btn {
-  margin-top: 1.5rem;
-  margin-right: 2rem;
-  padding: 0.5rem;
-  border: 0;
-  border-radius: 5px;
-  background: -webkit-linear-gradient(140deg, $turquoise, $purple, $blue);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-size: 0.8em;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
 @mixin smallScreenCommon {
   font-size: $textFontSize;
   text-align: justify;
