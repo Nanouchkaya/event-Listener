@@ -11,6 +11,7 @@
     "build:dev:win": "set NODE_ENV=development && webpack",
     "build:prod:win": "set NODE_ENV=production && webpack",
     "start": "webpack-dev-server",
+    "server:start": "nodemon app/index.js",
     "cln:all": "rm -rf ./node_modules ./dist",
     "cln": "rm -rf ./node_modules",
     "save-deps": "node updateDeps.js",
