@@ -36,7 +36,7 @@ export default [
     id: 4,
     tag: 'Angular',
     image: 'src/assets/images/test_evt.png',
-    title: 'Titan Bluee',
+    title: 'Orion Red',
     date: '17/10',
     support: 'Twitch',
     location: 'Paris',

@@ -1,5 +1,6 @@
 @import 'src/assets/styles/vars';
 @import 'src/assets/styles/mixins';
+@import 'src/assets/styles/animations';
 
 // #wrapper {
 //   max-width: 1400px;
@@ -11,13 +12,13 @@
   font-weight: 900;
   width: 100%;
   background-color: rgba(black, .3);
-  //background: linear-gradient(143deg, rgba(10,124,144,.3) 0%, rgba(20,88,130,.3) 49%, rgba(37,58,126,.3) 100%);
   padding: 2rem;
   display: flex;
   justify-content: flex-end;
   position: sticky;
   z-index: 1;
   margin-bottom: -112px;
+  animation: fromTop 400ms ease; 
 
   &--left {
     font-family: $fontFamilyTitle;
