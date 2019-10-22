@@ -60,13 +60,13 @@ render() {
               type="button"
               onClick={this.handleClickHeart}
             >
-              <img alt="like" src={likeIcon} />
+              <img className="icon" alt="like" src={likeIcon} />
             </button>
             <button
               type="button"
               onClick={this.handleClickHeart}
             >
-              <img alt="share" src={shareIcon} />
+              <img className="icon" alt="share" src={shareIcon} />
             </button>
             { showModal && <ShareLinks closeModal={this.closeShareModal} /> }
           </div>
