@@ -19,8 +19,8 @@
 }
 
 .menu-item {
-  //user-select: none;
   margin: .5rem;
+  //user-select: none;
 
   &-top {
     font-size: 0;
@@ -76,6 +76,10 @@
 /* RESPONSIVE RULES */
   
   @media all and (min-width: 768px) {
+    .horizontal-menu {
+      margin: 0 1rem 2rem;
+    }
+
     .menu-item-top {
       height: 190px;
     }

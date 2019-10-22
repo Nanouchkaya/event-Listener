@@ -103,6 +103,7 @@ class ScrollEvents extends Component {
           onSelect={this.onSelect}
           translate="0"
           wheel={false}
+          transition="0.5"
         />
       </div>
     );
