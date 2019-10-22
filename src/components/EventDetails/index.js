@@ -21,17 +21,17 @@ const EventDetails = () => (
         <Header />
 
         <article className="event-flyer-description">
-
           <aside className="event-flyer-infos">
             <Datetime />
             <Address />
+            <CheckButtons />
           </aside>
-
-          <Description />
+          <div className="event-flyer-description description">
+            <Description />
+            <Tags />
+          </div>
         </article>
 
-        <Tags />
-        <CheckButtons />
       </section>
 
     </div>

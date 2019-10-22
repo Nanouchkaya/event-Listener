@@ -17,6 +17,13 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    & .subtitle {
+      font-weight: 900;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+    }
   }
 
   &-header {
@@ -91,26 +98,23 @@
       }
   }
 
-  
   &-flyer-description {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     padding: 1rem;
 
-    .icon {
-      transform: scale(.6);
+    & > div {//correctif padding
+      padding: 0;
     }
 
-    & .description-subtitle {
-      font-weight: 900;
-      display: flex;
-      align-items: center;
+    & .icon {
+      transform: scale(.6);
     }
 
     & .datetime, & .address {
       p {
-        margin: 0 2rem 1rem 1rem;
+        margin: 0 2rem 1rem 3rem;
       }
 
       time {
@@ -118,8 +122,62 @@
       }
     }
 
-  }
+    & .check-buttons {
+      text-align: center;
+        button {
+        font-size: 1rem;
+        color: $purple;
+        padding: $paddingButton;
+        margin: 1rem;
+        border-radius: 5px;
+        background-color: #FFFFFF;
+        border: 2px solid $purple;
 
+        &:hover {
+          border-color: $turquoise;
+          color: $turquoise;
+        }
+      }
+    }
+
+    & .description {
+      &-title {
+        font-style: italic;
+        text-align: center;
+        margin: .5rem 0 1rem; 
+        font-size: 1.1rem;
+      }
+
+      &-content {
+        padding: 1.5rem 0;
+
+        & span {
+          display: block;
+          text-decoration: underline;
+        }
+      }
+
+      &-list {
+        list-style-type: disc;
+        padding: 0 1rem;
+      }
+    }
+
+    & .tags p {
+      text-align: center;
+      
+      span {
+        font-size: 0.8rem;
+        display: inline-block;
+        padding: .4rem 1rem .2rem;
+        margin: 0.2rem;
+        border: 1px solid transparent;
+        border-image-source: $mainGradient;
+        border-image-slice: 1;
+        border-radius: 1rem;
+      }
+    }
+  }
 }
 
 
@@ -154,8 +212,13 @@
 
       &-status-date {
         margin: 0 -.7rem;
+        padding: .7rem 5rem;
         width: calc(100% + 5.35rem);
       }
+    }
+
+    &-flyer-infos {
+      margin-left: 1rem;
     }
 
     &-flyer-description {
@@ -163,9 +226,21 @@
       padding: 2rem;
 
       & .description {
+        flex-direction: column;
         width: 70%;
         padding-right:2rem;
         border-right: 1px solid rgb(204, 203, 203);
+
+        &-content {
+          & p, h4, ul {
+            margin: 1rem 2.5rem;
+          }
+        }
+      }
+
+      & .check-buttons {
+        text-align: center;
+        justify-self: flex-end;
       }
     }
   }
