@@ -40,7 +40,7 @@ render() {
   const bannerStyle = {
     backgroundImage: `url(${banner})`,
     backgroundPosition: 'center',
-    backgroundSize: 'contain',
+    backgroundSize: 'cover',
   };
 
   return (

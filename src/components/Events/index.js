@@ -1,7 +1,7 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 
 import './events.scss';
+import ScrollEvents from './ScrollEvents';
 
 // == Composant
 const Events = () => (
@@ -9,11 +9,8 @@ const Events = () => (
     <h1 className="events-title">
       Prochains événements
     </h1>
-    <NavLink
-      to="/evenement"
-    >
-      Voir le détail d'un événement
-    </NavLink>
+
+    <ScrollEvents />
   </section>
 );
 

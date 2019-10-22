@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 // import local
 import './user.scss';
+import ScrollEvents from 'src/components/Events/ScrollEvents';
 
 // composant
 const UserEvents = () => (
@@ -15,10 +16,11 @@ const UserEvents = () => (
       <h3 className="preferences-events-content-subtitle">
         Participations
       </h3>
-
+      <ScrollEvents />
       <h3 className="preferences-events-content-subtitle">
         Suivis
       </h3>
+      <ScrollEvents />
     </div>
   </section>
 );

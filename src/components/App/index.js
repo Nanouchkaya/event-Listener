@@ -19,7 +19,7 @@ const App = () => (
     <Route exact path="/">
       <Home />
     </Route>
-    <Route path="/evenement">
+    <Route path="/evenement/:id">
       <EventDetails />
     </Route>
     <Route path="/profil">
