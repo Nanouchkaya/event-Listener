@@ -1,6 +1,8 @@
-const UserController = require('./controllers/UserController');
+const EventController = require('./controllers/EventController');
 
 module.exports = (server, router) => {
+
+  // * //
 
   /**
    * Home page
@@ -9,10 +11,14 @@ module.exports = (server, router) => {
     response.send('Home page');
   });
 
+
+  // Event //
+
   /**
-   * Users page (Get all users)
+   * Get all events
    */
-  router.get('/users', (request, response) => {
-    UserController.getAll(request, response);
+  router.get('/events', (request, response) => {
+    EventController.getAll(request, response);
   });
+
 };
