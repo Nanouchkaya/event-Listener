@@ -62,9 +62,9 @@ header {
 }
 
 main {
-  padding: 0;
+  @include contentLayer;
     .contact {
-      background: rgba(black, .3);
+      //background: rgba(black, .3);
       padding: $sectionPaddingMobile;
 
         &-title {

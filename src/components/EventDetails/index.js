@@ -15,6 +15,7 @@ import './eventdetails.scss';
 // Composant EventDetails
 const EventDetails = () => (
   <>
+    <div className="blurred-banner"></div>
     <div className="event">
 
       <section className="event-flyer">

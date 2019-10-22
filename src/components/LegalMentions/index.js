@@ -3,6 +3,7 @@ import React from 'react';
 import './legalmentions.scss';
 
 const LegalMentions = () => (
+  
   <section className="legal-mentions">
     <h2 className="legal-mentions-title">Mentions légales</h2>
     <p className="legal-mentions-paragraph">
