@@ -2,7 +2,7 @@
 @import 'src/assets/styles/mixins';
 
 .private-policy {
-  @include sectionPageAnnexe;
+  @include contentLayer;
 
   a {
     color: $blue;

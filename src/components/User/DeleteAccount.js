@@ -9,7 +9,6 @@ import './user.scss';
 const DeleteAccount = ({ changeModalStatus }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('Account delete');
     changeModalStatus();
   };
 

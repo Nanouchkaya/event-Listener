@@ -19,12 +19,12 @@ $blueGradient: radial-gradient(circle, rgb(48, 149, 207) 0%, rgba(36,96,174,1) 7
 
 
 /* PADDING & MARGIN */
-$mainPadding: 0 8rem;
-$sectionPaddingMobile: 1rem;
+$mainPadding: 0 4rem;
+$sectionPaddingMobile: 2rem 1rem;
 $paddingButton: .7rem 1rem .5rem;
 
 /* FONTS STYLE */
-$fontSizeTitle : 2rem;
+$fontSizeTitle : 2.3rem;
 $fontSizeSubTitle : 1.5rem;
 $fontFamilyTitle : 'hero';
 
@@ -65,3 +65,17 @@ $preferenceValidateLinkColorHover: #227c22;
 $preferenceDeleteLinkColorHover: #9c2929;
 
 /** User | END **/ 
+
+/* Responsive */
+
+// Extra small phones
+$screen-xs-max: 576px;
+// Small phones
+$screen-sm-min: 576px ;
+// Small tablets
+$screen-md-min: 768px ;
+// Tablets and small desktops
+$screen-lg-min: 992px;
+// Large tablets and desktops
+$screen-xl-min: 1200px;
+

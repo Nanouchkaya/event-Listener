@@ -2,10 +2,9 @@
 @import 'src/assets/styles/mixins';
 @import 'src/assets/styles/animations';
 
-// #wrapper {
-//   max-width: 1400px;
-//   margin: auto;
-// }
+.header-gradient {
+  @include headerGradient;
+}
 
 /* CSS NAVIGATION */
 .navigation-item {
@@ -51,7 +50,8 @@ z-index:1;
 }
 
 .menu {
-display: none;
+  display: none;
+
   &-main {
     background: darken($backgroundDark, 5%);
     color: $colorDarkTheme;
@@ -62,6 +62,7 @@ display: none;
     flex-direction: column;
     justify-content: space-around;
     padding: 1rem 2rem;
+    animation: menuBurger .4s ease;
   }
 }
 .menu-visible {

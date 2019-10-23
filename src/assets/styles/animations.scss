@@ -31,6 +31,17 @@
   }
 }
 
+@keyframes menuBurger {
+  0% { 
+    opacity: 0;
+    transform: translateX(80%); 
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0); 
+  }
+}
+
 @keyframes fade {
   0% {
     opacity: 0;  

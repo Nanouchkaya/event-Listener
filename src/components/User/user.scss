@@ -97,7 +97,7 @@
               position: absolute;
               content: "";
               left: 4px;
-              @include checked-disable(rgba($colorDarkTheme, .2), 15px, 3px);
+              @include checked-disable(rgba($colorLightTheme, .2), 15px, 3px);
             }
   
             /* disabled input */
@@ -143,6 +143,7 @@
     background: $mainGradientOpacity;
     z-index: 1;
     padding: .5rem;
+    animation: fade .4s ease;
 
     &-modal {
       display: flex;
@@ -151,11 +152,12 @@
       background: darken($backgroundDark, 5%);
       max-width: $deleteModalSize;
       margin: auto;
-      margin-top: 50vh;
-      transform: translateY(-50%);
+      margin-top: 30vh;
       color: $colorDarkTheme;
-      min-height: 30vh;
-      padding: 1rem 2rem;
+      min-height: 33vh;
+      padding: 1rem 1.5rem;
+      position: relative;
+      animation: fromCenter .2s ease;
 
       &-close-cross {
         font-size: 0;
