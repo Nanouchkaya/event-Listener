@@ -1,4 +1,5 @@
 node_modules/
+dist/
 .vscode
 *.log
 README_perso.md
