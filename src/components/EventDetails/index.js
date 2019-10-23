@@ -2,7 +2,7 @@
 import React from 'react';
 
 // import sous-composants
-import Header from './Header';
+import Header from 'src/redux/containers/EventDetails/Header';
 import Datetime from './Datetime';
 import Address from './Address';
 import Description from './Description';
@@ -15,19 +15,26 @@ import './eventdetails.scss';
 // Composant EventDetails
 const EventDetails = () => (
   <>
-    <div className="full-page">
-      <div className="flyer-container">
+    <div className="blurred-banner" />
+    <div className="event">
+
+      <section className="event-flyer">
         <Header />
-        <div className="description-zone">
-          <div className="date-loc-display">
+
+        <article className="event-flyer-description">
+          <aside className="event-flyer-infos">
             <Datetime />
             <Address />
+            <CheckButtons />
+          </aside>
+          <div className="event-flyer-description description">
+            <Description />
+            <Tags />
           </div>
-          <Description />
-        </div>
-        <Tags />
-        <CheckButtons />
-      </div>
+        </article>
+
+      </section>
+
     </div>
   </>
 );

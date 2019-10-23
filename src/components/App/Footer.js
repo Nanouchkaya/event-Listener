@@ -29,12 +29,12 @@ const Footer = () => (
         <ul>
           <li><a>Rechercher un événement</a></li>
           <li>
-            <Link to="/private-policy">
+            <Link to="/politique-de-confidentialite">
               Politique de confidentialité
             </Link>
           </li>
           <li>
-            <Link to="/legal-mentions">
+            <Link to="/mentions-legales">
               Mentions légales
             </Link>
           </li>

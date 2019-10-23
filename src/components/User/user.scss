@@ -8,28 +8,28 @@
   &-pseudo {
     font-family: 'Hero', sans-serif;
     text-align: center;
-    padding-top: $headerSize;
+    padding-top: 15rem;
     font-size: 2.8em;
     position: relative;
-    top: -8rem;
+    top: -9rem;
     text-transform: uppercase;
     text-shadow: 8px 5px 5px rgba(0,0,0,.2);
   }
   
   &-avatar {
     position: absolute;
+    z-index: 1;
     width: $headerAvatarSize;
-    bottom: calc(#{$headerAvatarSize} / -2);
+    bottom: calc(#{$headerAvatarSize} / -2 + 2rem);
     left: calc(50% - (#{$headerAvatarSize} / 2));
     border-radius: 50%;
+    z-index:1;
   }
 }
   
 .user {
-  text-align: left;
-  color: #e7e7e7;
+  @include contentLayer;
   padding-top: 5rem;
-  background: rgba(black, .3);
 
   .preferences {
     &-title {
@@ -56,7 +56,6 @@
           
           /* disabled input */
           &-input-field[disabled] {
-            color: white;
             background: none;
             border: none;
             margin-bottom: 0.9rem;
@@ -98,7 +97,7 @@
               position: absolute;
               content: "";
               left: 4px;
-              @include checked-disable(rgba($colorDarkTheme, .2), 15px, 3px);
+              @include checked-disable(rgba($colorLightTheme, .2), 15px, 3px);
             }
   
             /* disabled input */
@@ -128,7 +127,7 @@
           }          
           
           &--delete-account {
-            color: $preferenceDeleteLinkColor;
+            color: $red;
           }
         }
       }
@@ -144,6 +143,7 @@
     background: $mainGradientOpacity;
     z-index: 1;
     padding: .5rem;
+    animation: fade .4s ease;
 
     &-modal {
       display: flex;
@@ -152,11 +152,12 @@
       background: darken($backgroundDark, 5%);
       max-width: $deleteModalSize;
       margin: auto;
-      margin-top: 50vh;
-      transform: translateY(-50%);
+      margin-top: 30vh;
       color: $colorDarkTheme;
-      min-height: 30vh;
-      padding: 1rem 2rem;
+      min-height: 33vh;
+      padding: 1rem 1.5rem;
+      position: relative;
+      animation: fromCenter .2s ease;
 
       &-close-cross {
         font-size: 0;
@@ -218,12 +219,16 @@
   }
 } 
 
-// adjust the title for other devices
+// adjust for other devices
 @media (min-width: 768px) {
 }
 
-// separate infos into 2 block & centered buttons
+// for desktop
 @media (min-width: 1024px) {
+
+  .header-pseudo {
+    padding-top: 20rem;
+  }
   .user {
     .preferences {
       &-title {

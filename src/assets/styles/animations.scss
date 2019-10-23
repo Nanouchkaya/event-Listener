@@ -1,0 +1,63 @@
+@keyframes fromTop {
+  0% { 
+    opacity: 0;
+    transform: translateY(-10%); 
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); 
+  }
+}
+
+@keyframes fromLeft {
+  0% { 
+    opacity: 0;
+    transform: translateX(-10%); 
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0); 
+  }
+}
+
+@keyframes fromRight {
+  0% { 
+    opacity: 0;
+    transform: translateX(10%); 
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0); 
+  }
+}
+
+@keyframes menuBurger {
+  0% { 
+    opacity: 0;
+    transform: translateX(80%); 
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0); 
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;  
+  }
+  100% {
+    opacity: 1;  
+  }
+}
+
+@keyframes fromCenter {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

@@ -1,5 +1,6 @@
 @import 'src/assets/styles/vars';
 @import 'src/assets/styles/mixins';
+@import 'src/assets/styles/animations';
 
 body {
     background-color: $backgroundDark;
@@ -33,6 +34,8 @@ header {
       margin: 2rem auto;
       padding: 1rem;
       position: relative;
+      animation: fromLeft .4s ease .1s;
+      animation-fill-mode: backwards; 
     }
 
 
@@ -43,6 +46,8 @@ header {
       box-shadow: 2px 1px 5px rgba(0,0,0,.5);
       margin: 1.8rem ;
       position: relative;
+      animation: fromRight .4s ease .3s;
+      animation-fill-mode: backwards; 
 
         &-h2 {
           text-transform: uppercase;
@@ -62,9 +67,11 @@ header {
 }
 
 main {
-  padding: 0;
+  @include contentLayer;
+  animation-delay: .5s;
+
     .contact {
-      background: rgba(black, .3);
+      //background: rgba(black, .3);
       padding: $sectionPaddingMobile;
 
         &-title {

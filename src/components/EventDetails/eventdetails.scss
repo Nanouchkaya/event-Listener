@@ -1,520 +1,261 @@
-@import "src/assets/styles/vars";
-@import "./vars";
-@import "./mixins.scss";
+@import 'src/assets/styles/vars';
+@import 'src/assets/styles/mixins';
 
-
-//Toute la page 
-.full-page {
-  margin-top: 7.2rem;
-  color: black;
-  @include xs {
-    background-size: 0%;
-  }
-
-  @include sm {
-    background-size: 0%;
-  }
-
-  @include md {
-    @include full-page;
-
-    .flyer-container {
-      width: 70%;
-      margin: auto;
-      box-shadow: $boxShadow;
-      background-color: #fff;
-    }
-  }
-
-  @include lg {
-    @include full-page;
-
-    .flyer-container {
-      width: 50%;
-      margin: auto;
-      box-shadow: $boxShadow;
-      background-color: #fff;
-    }
-  }
-
-  @include rwd(390) {
-    @include full-page;
-    .flyer-container {
-      width: 83%;
-      margin: auto;
-      box-shadow: $boxShadow;
-      background-color: #fff;
-    }
-  }
-
-  @include rwd(470) {
-    .flyer-container {
-      width: 60%;
-    }
-  }
-
-  @include rwd(578) {
-    .flyer-container {
-      width: 85%;
-    }
-  }
-
-  @include rwd(676) {
-    .flyer-container {
-      width: 75%;
-    }
-  }
-  @include rwd(771) {
-    .flyer-container {
-      width: 70%;
-    }
-  }
-  @include rwd(830) {
-    .flyer-container {
-      width: 60%;
-    }
-  }
-
-  @include rwd(960) {
-
-    .flyer-container {
-      width: 55%;
-    }
-  }
-  
+.blurred-banner {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 50vh;
+  background: $mainGradient;
+  background-size: 100% 50vh;
+  background-repeat: no-repeat;
+  background-color: rgba(255,255,255,.3);
+  background-image: url('/src/assets/images/event.png');
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(15px);
 }
 
+.event {
+  padding-top: 13rem;
+  
+  &-flyer {
+    @include contentLayer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
-// header affiche
-.header-event {
-  @include xs {
-    &-bg {
-      background-image: url("../EventDetails/images/event.png");
-      height: 24vh;
-      background-size: contain; 
-      background-repeat: no-repeat;
-    }
-    &-infos {
-      &-date, &-price {
-        display: none;
-      }
-      &-name {
-        margin-left: 1em;
-        padding-bottom: 1em;
-        border-bottom: 1px solid lighten(#ccc, 15%);
-          span {
-            font-size: 0.6rem;
-            padding-right: 1em;
-          }
-          button {
-            display: none;
-          }
-      }  
-    }
-    &-bottom {
-      &-icons, &-status {display: none}
+    & .subtitle {
+      font-weight: 900;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
     }
   }
-  @include sm {
+
+  &-header {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: $marginBottom;
-    &-bg {
-      background: url("../EventDetails/images/event.png"), no-repeat top center;
-      width: 576px;
-      height: 30vh;
-      background-size: cover;
-      background-color: black;    
-    }
+    flex-direction: column;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+    position: relative;
 
-    &-infos {
-      text-align: justify;
-      font-size: $textFontSize;
-
-      &-date, &-price {
-        display: none;
-      }
-
-      &-name {
-        margin-left: 1em;
-        padding-bottom: 1em;
-        border-bottom: $lightColorBorderBottom;
-        span {
-          font-size: 0.6em;
-          padding-right: 1em;
-        }
-        button {
-          display: none;
-        }
-      }
-    }
-
-    &-bottom {
-      &-icons, &-status {display: none}
-    } 
-
-    @include lg {
-      &-bg {
-        //background-image: url("images/event.png");
-        background-size: cover;
-        background-position: top center;
-        background-repeat: no-repeat;
-        height: 40vh;
-        width: 70%;
+      &-banner {
+        font-size: 0;
+        min-height: 250px;
       }
 
       &-infos {
+        padding: 0 1rem;
+
+        & img {
+          transform: scale(.8);
+        }
+      }
+
+      &-status-date {
         display: flex;
-        flex-direction: column;
         justify-content: space-between;
-        width: 30%;
-        text-align: justify;
-        background-color: #EBEBEE;
-        border-bottom: 1px solid #D3D3D3;
-        padding: 1.5rem;
-        border-radius: 0 5px 0 0;
-    
-        &-date {
-          font-size: 1em;
-          display: initial;
-        }
-        &-name {
-          font-weight: bold;
-          letter-spacing: 1px;
-          padding-bottom: 1em;;
-        }
-        span {
-          font-size: 0.7em;
-          color: 	#808080;
-          margin-right: 0.5em;
-        }
-        button {
-          border: 1px solid #4559FF;
-          border-radius: 5px;
-          padding: 0.2em;
-          background-color: #fff;
-          color: #4559FF;
-          letter-spacing: 1px;
-          display: initial;
+        background: $mainGradient;
+        padding: .7rem;
+        color: white;
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        margin: 0 -1.7rem;
+        position: relative;
 
-    
-          &:hover {
-            color: #fff;
-            background-color: #4559FF;
-          }
+        &::before {
+          @include triangle($turquoise);
+          transform: rotate(45deg);
+          bottom: -.35rem;
+          left: 0;
         }
-        &-price {
-          color: #808080;
-          font-size: 0.8rem;
-          display: initial;
 
+        &::after {
+          @include triangle($purple);
+          transform: rotate(-45deg);
+          bottom: -.35rem;
+          right: 0;
+        }
+      } 
+
+      &-infos-name {
+        font-family: 'hero', sans-serif;
+        font-size: 2rem;
+        text-align: center;
+        padding: 2.5rem 0;
+        font-weight: 900;
+
+        & em {
+          font-size: .9rem;
+          display: block;
+          font-style: italic;
         }
       }
 
       &-bottom {
         display: flex;
-        height: 5vh;
-        width: 100%;
-        padding: 1rem;
-        border-bottom: 1px solid #D3D3D3;
-        background-color: #fff;
-    
-        &-icons {
+        justify-content: space-between;
+        align-items: center;
+        color: $red;
+
+        &-icons button {
+          background-color: transparent;
+        }
+      }
+  }
+
+  &-flyer-description {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 1rem;
+
+    & > div {//correctif padding
+      padding: 0;
+    }
+
+    & .icon {
+      transform: scale(.6);
+    }
+
+    & .datetime, & .address {
+      p {
+        margin: 0 2rem 1rem 3rem;
+      }
+
+      time {
+        display: block;
+      }
+    }
+
+    & .check-buttons {
+      text-align: center;
+        button {
+        font-size: 1rem;
+        color: $purple;
+        padding: $paddingButton;
+        margin: 1rem;
+        border-radius: 5px;
+        background-color: #FFFFFF;
+        border: 2px solid $purple;
+
+        &:hover {
+          border-color: $turquoise;
+          color: $turquoise;
+        }
+      }
+    }
+
+    & .description {
+      &-title {
+        font-style: italic;
+        text-align: center;
+        margin: .5rem 0 1rem; 
+        font-size: 1.1rem;
+      }
+
+      &-content {
+        padding: 1.5rem 0;
+
+        & span {
+          display: block;
+          text-decoration: underline;
+        }
+      }
+
+      &-list {
+        list-style-type: disc;
+        padding: 0 1rem;
+      }
+    }
+
+    & .tags p {
+      text-align: center;
+      
+      span {
+        font-size: 0.8rem;
+        display: inline-block;
+        padding: .4rem 1rem .2rem;
+        margin: 0.2rem;
+        border: 1px solid transparent;
+        border-image-source: $mainGradient;
+        border-image-slice: 1;
+        border-radius: 1rem;
+      }
+    }
+  }
+}
+
+
+/* RESPONSIVE */
+@media (min-width: 768px) {
+  .event {
+    padding-top: 15rem;
+    &-header {
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      &-banner {
         width: 70%;
-        text-align: start;
-        display: initial;
+      }
 
-          img {
-            cursor: pointer;
-            margin-right: 0.7rem;
-    
-            &:hover {
-              height: 1.3em;
-            }
-          }
-        }
-    
-        &-status {
+      &-infos {
         width: 30%;
-          p {
-            color: red;
+        padding: .5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+        &-name {
+          flex-basis: 70%;
+        }
+      }
+
+      &-status-date {
+        margin: 0 -1.7rem;
+        padding: .7rem 5rem;
+        width: calc(100% + 5.35rem);
+      }
+    }
+
+    &-flyer-infos {
+      margin-left: 1rem;
+    }
+
+    &-flyer-description {
+      flex-direction: row-reverse;
+      padding: 2rem;
+
+      & .description {
+        flex-direction: column;
+        width: 70%;
+        padding-right:2rem;
+        border-right: 1px solid rgb(204, 203, 203);
+
+        &-content {
+          & p, h4, ul {
+            margin: 1rem 2.5rem;
           }
         }
       }
-    }
-  }
 
-  @include rwd(675) {
-    &-bg {
-      background-size: cover;
-      background-repeat: no-repeat;
-      height: 35vh;
-    }
-  }
-
-  @include md {
-    &-bg {
-      background-size: cover;
-      height: 30vh;
-    }
-  }
-}
-
-.date-loc-display {
-  @include sm {
-    display: flex;
-  }
-  @include lg {
-    display: initial;
-  }
-  @include rwd(676) {
-    border-bottom: $lightColorBorderBottom;
-  }
-}
-
-.description-zone {
-  @include lg {
-    display: flex;
-    flex-direction: row-reverse;
-  }
-}
-
-// Horaires affiche
-.datetime {
-  @include xs {
-    margin-bottom: $marginBottom;
-    border-bottom: $lightColorBorderBottom;
-    padding-bottom: 1.5em;
-
-    time, a {
-      font-size: 0.8rem;
-    }
-
-    a {
-      color: darken($blue, 25%);
-    }
-
-  }
-  @include sm {
-    @include smallScreenDateAndLocCommon(left);
-
-    h1 {
-      margin-bottom: 2rem;
-    }
-
-    time {
-      display: block;
-    }
-
-    a {
-      color: darken($blue, 25%);
-    }
-  }
-
-  @include lg {
-    text-align: justify;
-    border-bottom: 0;
-  }
-}
-
-
-// Adresse affiche
-.address {
-  @include xs {
-    margin-bottom: $marginBottom;
-    border-bottom: $lightColorBorderBottom;
-    padding-bottom: 1.5em;
-
-    h1 {
-      margin-bottom: 2em;
-    }
-
-    p, a {
-      font-size: 0.8rem;
-    }
-
-    p {
-      margin-bottom: 0.6em;
-    }
-
-    a {
-      color: darken($blue, 25%);
-    }
-  }
-
-  @include sm {
-    @include smallScreenDateAndLocCommon(right);
-    
-    h1 {
-      margin-bottom: 2rem;
-    }
-
-    p {
-      margin-bottom: 1rem;
-    }
-
-    a {
-      color: darken($blue, 25%);
-    }
-  }
-
-  @include lg {
-    margin-left: 1.5rem;
-    border-bottom: 0;
-  }
-}
-
-// Description affiche
-.description {
-  @include xs {
-    &-content {
-      font-size: $textFontSize;
-      margin-bottom: $marginBottom;
-      border-bottom: $lightColorBorderBottom;
-      padding-bottom: 2em;
-      h1 {
-        margin-bottom: $marginBottom;
-        font-size: 1.2rem;
-      } 
-      h3 {
-        margin-bottom: 1rem;
-        font-size: 0.9rem;
-      }
-
-      p, #more {
-        text-align: justify;
-        padding: 0.5em;
-
-        a {
-          color: $linkColor;
-        }
+      & .check-buttons {
+        text-align: center;
+        justify-self: flex-end;
       }
     }
   }
-  @include sm {
-    @include smallScreenCommon;
-
-    &-content {
-
-      h1 {
-        margin-bottom: $marginBottom;
-      }
-      h3 {
-        margin-bottom: 1rem;
-      }
-      a {
-        color: $linkColor;
-      }
-    }
-  }
-
-  @include rwd(676) {
-    border-bottom: $lightColorBorderBottom;
-  }
-  @include lg {
-    width: 82%;
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-bottom: 0;
-    border-bottom: 0;
-  }
-
-  
 }
 
-// tags affiche
-.tags {
-  @include xs {
-    margin-bottom: $marginBottom;
-    h1 {
-      margin-bottom: $marginBottom;
-    }
-
-    p {
-      display: inline-block;
-      font-size: 0.8rem;
-      margin: 0.5em;
-      color: darken($blue, 25%); 
-      border: 1px solid;     
-      padding: 0.5rem;
-      border-radius: $lightBorderRadius;
-
-    }
-
-    a {
-      padding-top: 1rem;
-      color: darken($blue, 25%);
-    }
-  }
-  @include sm {
-    @include smallScreenCommon;
-
-    h1 {
-      margin-bottom: $marginBottom;
-    }
-
-    p {
-      display: inline-block;
-      margin-right: 1rem;
-      color: darken($blue, 25%); 
-      border: 1px solid;     
-      padding: 0.5rem;
-      border-radius: $lightBorderRadius;
-
-    }
-
-    a {
-      padding-top: 1rem;
-      color: darken($blue, 25%);
-    }
-  }
-
-  @include lg {
-    margin-top: 0;
-    padding-top: 0;
-  }
-}
-
-// boutons affiche
-.check-buttons {
-
-  @include xs {
-
-    button:nth-of-type(odd) {
-      position: fixed;
-      bottom: 0;
-      right: 50%;
-      padding-right: 1rem;
-      width: 40%;
-      margin-bottom: 0.3rem;
-    }
-
-    button:nth-of-type(even) {
-      position: fixed;
-      bottom: 0;
-      left: 50%;
-      padding-right: 1rem;
-      width: 40%;
-      margin-bottom: 0.3rem;
-    }
-  }
-
-  margin: $marginBottom;
-  text-align: justify;
-
-  button {
-    border-radius: 5px;
-    border: 0;
-    padding: 0.5rem;
-    margin-right: 1rem;
-    background-color: $turquoise;
-    color: #fff;
-    font-weight: bold;
-    margin-bottom: $marginBottom;
-
-    &:hover {
-      background-color: darken($turquoise, 10%);
+// separate infos into 2 block & centered buttons
+@media (min-width: 1024px) {
+  .event {
+    &-header-banner {
+      height: 400px;
     }
   }
 }

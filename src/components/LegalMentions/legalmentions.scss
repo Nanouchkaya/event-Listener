@@ -2,7 +2,7 @@
 @import 'src/assets/styles/mixins';
 
 .legal-mentions {
-  @include sectionPageAnnexe;
+  @include contentLayer;
 
   &-title {
     @include title($blue);

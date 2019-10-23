@@ -6,7 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 // == Import : local
 import App from 'src/components/App';
-import store from 'src/store';
+import store from 'src/redux/store';
 
 // == Render
 const rootComponent = (
