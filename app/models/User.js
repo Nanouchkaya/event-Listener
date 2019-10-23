@@ -1,4 +1,4 @@
-const DBConnect = require('../config/DB');
+const DBConnect = require('../config/db');
 
 class User {
   
@@ -7,8 +7,9 @@ class User {
    * @param {callback} callback 
    */
   static getAll(callback) {
-    
-    DBConnect.query('SELECT * FROM user',
+    const sqlQuery = 'SELECT * FROM user';
+
+    DBConnect.query(sqlQuery,
 
       (error, result) => {
         // Return result with status
@@ -25,6 +26,65 @@ class User {
         });
       }
     );
+  }
+
+  /**
+   * Create an account
+   * @param {object} data 
+   * @param {callback} callback 
+   */
+  static create(data, callback) {
+    const {
+      pseudo,
+      firstname,
+      lastname,
+      email,
+      password,
+      notifNewEvent,
+      notifNewUpdate,
+    } = data;
+
+    const sqlQuery = 'INSERT INTO user(pseudo, firstname, lastname, email, password, notif_new_event, notif_new_update) VALUE(?, ?, ?, ?, ?, ?, ?)';
+
+    DBConnect.query(sqlQuery, [pseudo, firstname, lastname, email, password, notifNewEvent, notifNewUpdate],
+
+      (error, result) => {
+        if (error) {
+          return callback({
+            status: 'Error',
+            data: error,
+          });
+        };
+
+        return callback({
+          status: 'OK',
+          data: result,
+        });
+      }
+    );
+  }
+
+  /**
+   * Check if have user with same email
+   * @param {string} email 
+   * @param {callback} callback 
+   */
+  static checkUserByEmail(email, callback) {
+    const sqlQuery = 'SELECT * FROM user WHERE email = ?';
+
+    DBConnect.query(sqlQuery, [email], (error, result, field) => {
+      if (error) {
+        return callback({
+          status: 'Error',
+          error: error,
+        });
+      };
+      return callback({
+        status: 'OK',
+        rowMatch: result.length,
+        data: result,
+      });
+    });
   }
 
 };
