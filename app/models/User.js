@@ -31,9 +31,9 @@ class User {
   /**
    * Create an account
    * @param {object} data 
-   * @param {callback} callback 
+   * @param {callback} callbackToAdd 
    */
-  static create(data, callback) {
+  static create(data, callbackToAdd) {
     const {
       pseudo,
       firstname,
@@ -46,17 +46,18 @@ class User {
 
     const sqlQuery = 'INSERT INTO user(pseudo, firstname, lastname, email, password, notif_new_event, notif_new_update) VALUE(?, ?, ?, ?, ?, ?, ?)';
 
-    DBConnect.query(sqlQuery, [pseudo, firstname, lastname, email, password, notifNewEvent, notifNewUpdate],
-
+    DBConnect.query(
+      sqlQuery, 
+      [pseudo,firstname,lastname,email,password,notifNewEvent,notifNewUpdate],
       (error, result) => {
         if (error) {
-          return callback({
+          return callbackToAdd({
             status: 'Error',
             data: error,
           });
         };
 
-        return callback({
+        return callbackToAdd({
           status: 'OK',
           data: result,
         });
@@ -72,7 +73,7 @@ class User {
   static checkUserByEmail(email, callback) {
     const sqlQuery = 'SELECT * FROM user WHERE email = ?';
 
-    DBConnect.query(sqlQuery, [email], (error, result, field) => {
+    DBConnect.query(sqlQuery, [email], (error, result) => {
       if (error) {
         return callback({
           status: 'Error',
@@ -86,7 +87,6 @@ class User {
       });
     });
   }
-
 };
 
 module.exports = User;

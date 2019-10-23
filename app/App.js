@@ -28,11 +28,10 @@ module.exports = (server, router) => {
   // User //
 
   /**
-   * Connexion
+   * Create an account
    */
   router.post('/users/add', (request, response) => {
     response.type('application/json');
-    UserController.create(request, response);
+    UserController.add(request, response);
   });
-
 };
