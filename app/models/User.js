@@ -15,13 +15,14 @@ class User {
         // Return result with status
         if (error) {
           return callback({
-            status: 'Error',
-            data: result,
+            error: true,
+            errorMessage: error,
           });
         };
 
         return callback({
-          status: 'OK',
+          error: false,
+          errorMessage: null,
           data: result,
         });
       }
@@ -52,13 +53,14 @@ class User {
       (error, result) => {
         if (error) {
           return callbackToAdd({
-            status: 'Error',
-            data: error,
+            error: true,
+            errorMessage: error,
           });
         };
 
         return callbackToAdd({
-          status: 'OK',
+          error: false,
+          errorMessage: null,
           data: result,
         });
       }
@@ -76,14 +78,15 @@ class User {
     DBConnect.query(sqlQuery, [email], (error, result) => {
       if (error) {
         return callback({
-          status: 'Error',
-          error: error,
+          error: true,
+          errorMessage: error,
         });
       };
       return callback({
-        status: 'OK',
-        rowMatch: result.length,
-        data: result,
+        error: false,
+        errorMessage: null,
+        rowMatch: result.length > 0,
+        data: result[0],
       });
     });
   }

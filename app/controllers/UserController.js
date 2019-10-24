@@ -16,14 +16,6 @@ module.exports = {
    */
   getAll(request, response) {
     User.getAll((result) => {
-      response.type('application/json');
-
-      if (result.status === "Error") {
-        response.status(404);
-      } else {
-        response.status(200);
-      }
-
       response.json(result);
     });
   },
@@ -48,38 +40,83 @@ module.exports = {
       (typeof data.notifNewUpdate === 'boolean')) {
       
       User.checkUserByEmail(data.email, (result) => {
-        // Check if user exist
-        if (result.rowMatch < 1) {
+        // Check if user doesn't exist
+        if (!result.rowMatch) {
           // Hash the password (use dep bcrypt)
-          bcrypt.hash(data.password, 10, (error, hash) => {
-            if (error) throw error;
-    
-            data.password = hash;
-            
-            User.create(data, (result) => {
-              response.status(200);
-              response.json(result);
-            });
+          data.password = bcrypt.hashSync(data.password, 10);
+          
+          User.create(data, (result) => {
+            response.status(200);
+            response.json(result);
           });
         } else {
           response.status(200);
-          response.json(result);
+          response.json({
+            status: "Email already exists",
+          });
         }
       });
 
     } else {
       response.status(200);
       response.json({
-        status: "Error"
+        status: "Bad data received",
       });
     }
   },
 
   /**
-  * Disconnect
-  * @param {object} request
-  * @param {object} response
-  */
+   * Connection
+   * @param {object} request
+   * @param {object} response
+   */
+  connect(request, response) {
+    const data = request.body;
+
+    if ((data.email && data.email.trim().length > 8) &&
+      checkEmail(data.email) &&
+      data.password) {
+
+      User.checkUserByEmail(
+        data.email,
+        (result) => {
+
+        if (result.rowMatch) {
+          const { password: hashedPassword } = result.data;
+          const checkPassword = bcrypt.compareSync(data.password, hashedPassword);
+  
+          if (result.rowMatch && checkPassword) {
+            response.json({
+              status: "Connected",
+              result,
+            });
+          } else {
+            response.status(200);
+            response.json({
+              status: "Auth error"
+            });
+          }
+        } else {
+          response.status(200);
+          response.json({
+            status: "Auth error"
+          });
+        }
+      });
+
+    } else {
+      response.status(200);
+      response.json({
+        status: "Bad data received"
+      });
+    }
+  },
+
+  /**
+   * Disconnect
+   * @param {object} request
+   * @param {object} response
+   */
   disconnect(request, response) {
     const session = true; // request.session
 

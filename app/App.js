@@ -25,8 +25,8 @@ module.exports = (server, router) => {
   });
 
   /**
-  * Get specific event
-  */
+   * Get specific event
+   */
   router.get('/events/:eventId', (request, response) => {
     response.json;
     EventController.getEvent(request, response);
@@ -43,8 +43,15 @@ module.exports = (server, router) => {
   });
   
   /**
-  * Disconnect
-  */
+   * Connection
+   */
+  router.post('/connect', (request, response) => {
+    UserController.connect(request, response);
+  });
+
+  /**
+   * Disconnect
+   */
   router.post('/disconnect', (request, response) => {
     response.json;
     UserController.disconnect(request, response);
