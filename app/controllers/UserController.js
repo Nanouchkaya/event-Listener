@@ -30,8 +30,6 @@ module.exports = {
 
     // check if all fields are correct
     if ((data.pseudo && data.pseudo.trim().length > 2) &&
-      (data.firstname && data.firstname.trim().length > 2) &&
-      (data.lastname && data.lastname.trim().length > 2) &&
       (data.email && data.email.trim().length > 8) &&
       (checkEmail(data.email)) &&
       (data.password && data.password.trim().length > 6) &&

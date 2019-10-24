@@ -37,32 +37,57 @@ class User {
   static create(data, callbackToAdd) {
     const {
       pseudo,
-      firstname,
-      lastname,
       email,
       password,
       notifNewEvent,
       notifNewUpdate,
     } = data;
 
-    const sqlQuery = 'INSERT INTO user(pseudo, firstname, lastname, email, password, notif_new_event, notif_new_update) VALUE(?, ?, ?, ?, ?, ?, ?)';
+    const defaultUserRole = 1;
 
+    const sqlQueryInsertUser = 'INSERT INTO user(pseudo, email, password, notif_new_event, notif_new_update) VALUE(?, ?, ?, ?, ?)';
+
+    // Check if the role exist and get his id
     DBConnect.query(
-      sqlQuery, 
-      [pseudo,firstname,lastname,email,password,notifNewEvent,notifNewUpdate],
-      (error, result) => {
-        if (error) {
+      sqlQueryInsertUser, 
+      [pseudo, email, password, notifNewEvent, notifNewUpdate],
+      (errorInsertUser, resultInsertUser) => {
+
+        if (errorInsertUser) {
+
           callbackToAdd({
             error: true,
-            errorMessage: error,
+            errorMessage: errorInsertUser,
           });
-        };
+        } else {
 
-        callbackToAdd({
-          error: false,
-          errorMessage: null,
-          data: result,
-        });
+          const sqlQueryInsertRelation = 'INSERT INTO possesses(user_id, role_id) VALUE(?, ?)';
+          
+          // Insert the new user
+          DBConnect.query(
+            sqlQueryInsertRelation, 
+            [resultInsertUser.insertId, defaultUserRole],
+            (errorInsertRelation, resultInsertRelation) => {
+              if (errorInsertRelation) {
+
+                callbackToAdd({
+                  error: true,
+                  errorMessage: errorInsertRelation,
+                });
+              } else {
+
+                callbackToAdd({
+                  error: false,
+                  errorMessage: null,
+                  data: {
+                    newId: resultInsertUser.insertId,
+                  },
+                });
+              }
+      
+            }
+          );
+        }
       }
     );
   }
