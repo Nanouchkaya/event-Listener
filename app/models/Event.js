@@ -12,25 +12,29 @@ class Event {
     DBConnect.query(
       sqlQuery,
       (error, result) => {
-        // Return result with status
+        
         if (error) {
-          callback({
-            status: 'Error',
+
+          callbackGetAllEvents({
+            error: true,
+            errorMessage: error,
+          });
+        } else {
+          
+          callbackGetAllEvents({
+            error: false,
+            errorMessage: null,
+            rowMatch: result.length > 0,
             data: result,
           });
-        };
-
-        callback({
-          status: 'OK',
-          data: result,
-        });
+        }
       }
     );
   }
 
   /**
   * Find specific Event
-  * @param {number} number
+  * @param {integer} id
   * @param {callback} callbackGetEvent
   */
   static find(id, callbackGetEvent) {
@@ -40,17 +44,22 @@ class Event {
       sqlQuery,
       id,
       (error, result) => {
-        if (error) {
-         callbackGetEvent({
-            status: 'Error',
-            data: result,
-          });
-        };
 
-        callbackGetEvent({
-          status: 'OK',
-          data: result,
-        });
+        if (error) {
+
+          callbackGetEvent({
+            error: true,
+            errorMessage: error,
+          });
+        } else {
+          
+          callbackGetEvent({
+            error: false,
+            errorMessage: null,
+            rowMatch: result.length > 0,
+            data: result[0],
+          });
+        }
       }
     );
   }

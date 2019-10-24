@@ -30,6 +30,7 @@ module.exports = (server, router) => {
     EventController.getEvent(request, response);
   });
 
+
   // User //
 
   /**

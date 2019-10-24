@@ -1,33 +1,6 @@
 const DBConnect = require('../config/db');
 
 class User {
-  
-  /**
-   * Get all users
-   * @param {callback} callback 
-   */
-  static getAll(callbackFindAllUsers) {
-    const sqlQuery = 'SELECT * FROM user';
-
-    DBConnect.query(
-      sqlQuery,
-      (error, result) => {
-        // Return result with status
-        if (error) {
-          callbackFindAllUsers({
-            error: true,
-            errorMessage: error,
-          });
-        };
-
-        callbackFindAllUsers({
-          error: false,
-          errorMessage: null,
-          data: result,
-        });
-      }
-    );
-  }
 
   /**
    * Create an account
@@ -118,7 +91,7 @@ class User {
 
   /**
    * Find specific User
-   * @param {number} number
+   * @param {integer} id
    * @param {callback} callbackGetUser
    */
   static find(id, callbackGetUser) {
@@ -146,7 +119,7 @@ class User {
 
   /**
    * Delete specific User
-   * @param {number} number
+   * @param {integer} id
    * @param {callback} callbackDeleteAccount
    */
   static delete(id, callbackDeleteAccount) {

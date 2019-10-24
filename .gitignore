@@ -1,7 +1,7 @@
+.vscode
+
 node_modules/
 dist/
-.vscode
+
 *.log
-README_perso.md
-csstodo.md
 .env

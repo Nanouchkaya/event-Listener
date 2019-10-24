@@ -1,32 +1,32 @@
 const Event = require('../models/Event');
 
-const EventController = {
+class EventController {
 
   /**
    * Get all events
    * @param {object} request
    * @param {object} response
    */
-  getAll(request, response) {
+  static getAll(request, response) {
 
     Event.getAll((result) => {
       response.json(result);
     });
-  },
+  }
 
   /**
   * Find and get specific event
   * @param {object} request
-  * @param {objet} response
+  * @param {object} response
   */
-  getEvent(request, response) {
+  static getEvent(request, response) {
     const { eventId } = request.params;
 
     if (isNaN(eventId)) {
 
       response.status(200);
       response.json({
-        status: "Error"
+        status: "Bad data received"
       });
       
     } else {
@@ -34,10 +34,20 @@ const EventController = {
       Event.find(
         eventId,
         (result) => {
-          response.json(result);
+
+          if (result.rowMatch) {
+            response.json({
+              status: "success",
+              result,
+            });
+          } else {
+            response.json({
+              status: "Event doesn't exist",
+            });
+          }
         });
     }
-  },
+  }
 };
 
 module.exports = EventController;
