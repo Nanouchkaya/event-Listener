@@ -3,7 +3,6 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 // == Import : local
-import './events.scss';
 import image from 'src/assets/images/test_evt.png';
 import iconPlus from 'src/assets/images/icons/icons8-plus-50.png';
 

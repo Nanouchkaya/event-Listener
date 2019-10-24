@@ -2,7 +2,6 @@
 import React from 'react';
 
 // == Import : local
-import './events.scss';
 import Advanced from './Advanced';
 
 
