@@ -15,7 +15,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  changeHeartIcon: (src) => dispatch(changeHeartIcon(src)),
+  changeHeartIcon: () => dispatch(changeHeartIcon()),
   openShareModal: () => dispatch(openShareLinksModal()),
   closeShareModal: () => dispatch(closeShareLinksModal()),
 });
