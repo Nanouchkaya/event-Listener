@@ -8,15 +8,8 @@ const EventController = {
    * @param {object} response
    */
   getAll(request, response) {
-    Event.getAll((result) => {
-      response.type('application/json');
-      
-      if (result.status === "Error") {
-        response.status(404);
-      } else {
-        response.status(200);
-      }
 
+    Event.getAll((result) => {
       response.json(result);
     });
   },
@@ -41,14 +34,6 @@ const EventController = {
       Event.find(
         eventId,
         (result) => {
-          response.json;
-
-          if (result.status === "Error") {
-            response.status(404);
-          } else {
-            response.status(200);
-          }
-
           response.json(result);
         });
     }

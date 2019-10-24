@@ -9,8 +9,8 @@ class User {
   static getAll(callbackFindAllUsers) {
     const sqlQuery = 'SELECT * FROM user';
 
-    DBConnect.query(sqlQuery,
-
+    DBConnect.query(
+      sqlQuery,
       (error, result) => {
         // Return result with status
         if (error) {

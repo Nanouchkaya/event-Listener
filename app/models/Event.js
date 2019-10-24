@@ -1,24 +1,26 @@
 const DBConnect = require('../config/db');
 
 class Event {
+
   /**
    * Get all Events
-   * @param {callback} callback 
+   * @param {callback} callbackGetAllEvents 
    */
-  static getAll(callback) {
-    
-    DBConnect.query('SELECT * FROM event',
+  static getAll(callbackGetAllEvents) {
+    const sqlQuery = 'SELECT * FROM event';
 
+    DBConnect.query(
+      sqlQuery,
       (error, result) => {
         // Return result with status
         if (error) {
-          return callback({
+          callback({
             status: 'Error',
             data: result,
           });
         };
 
-        return callback({
+        callback({
           status: 'OK',
           data: result,
         });
@@ -29,22 +31,23 @@ class Event {
   /**
   * Find specific Event
   * @param {number} number
-  * @param {callback} callback
+  * @param {callback} callbackGetEvent
   */
   static find(id, callbackGetEvent) {
+    const sqlQuery = 'SELECT * FROM event where id = ?';
 
     DBConnect.query(
-      'SELECT * FROM event where id = ?',
+      sqlQuery,
       id,
       (error, result) => {
         if (error) {
-          return callbackGetEvent({
+         callbackGetEvent({
             status: 'Error',
             data: result,
           });
         };
 
-        return callbackGetEvent({
+        callbackGetEvent({
           status: 'OK',
           data: result,
         });
