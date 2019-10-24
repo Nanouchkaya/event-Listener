@@ -67,7 +67,7 @@ class Nav extends React.Component {
         <div className={menuBurgerClass}>
           <div className="menu-main">
             <NavLink
-              to="/profil"
+              to="/evenements"
               exact
               activeClassName="navigation-item--active"
               className="navigation-item--right"

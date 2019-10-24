@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchForm from './SearchForm';
 import Contact from './Contact';
-import Events from '../Events';
+import ScrollEvents from '../Events/ScrollEvents';
 
 import './home.scss';
 
@@ -19,7 +19,10 @@ const Home = () => (
     </header>
 
     <main>
-      <Events />
+      <h2 className="events-title">
+        Prochains événements
+      </h2>
+      <ScrollEvents />
       <Contact />
     </main>
   </>

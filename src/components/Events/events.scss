@@ -2,11 +2,24 @@
 @import 'src/assets/styles/mixins';
 
 .events {
-  padding: $sectionPaddingMobile;
+  @include contentLayer;
 
   &-title {
     @include title($turquoise);
   }
+}
+
+.advanced-filter div {
+  margin: 2rem;
+}
+
+h3 {
+  @include subtitleType2;
+  margin-top: 2rem;
+}
+
+.advanced-filter-name {
+  @include subtitleType1;
 }
 
 .horizontal-menu {
@@ -16,6 +29,10 @@
 .menu-item-wrapper {
   width: calc(100% / 50);
   height: 380px;
+}
+
+.menu-item.list {
+  width: 200px;
 }
 
 .menu-item {

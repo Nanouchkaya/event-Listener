@@ -19,7 +19,7 @@ const MenuItem = ({ location, date, content, title, id }) => {
     backgroundRepeat: 'no-repeat',
   };
 
-  const route = `/evenement/${id}`;
+  const route = `/evenements/${id}`;
   return (
     <div className="menu-item">
       <div className="menu-item-top" style={bannerStyle}>

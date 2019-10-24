@@ -1,17 +1,25 @@
 import React from 'react';
 
 import './events.scss';
-import ScrollEvents from './ScrollEvents';
+import HeaderGradient from 'src/components/App/HeaderGradient';
+import Event from './Event';
+import Form from './Form';
 
 // == Composant
 const Events = () => (
-  <section className="events">
-    <h1 className="events-title">
-      Prochains événements
-    </h1>
-
-    <ScrollEvents />
-  </section>
+  <>
+    <HeaderGradient />
+    <section className="events">
+      <h2 className="events-title">
+        Recherche
+      </h2>
+      <Form />
+      <h2 className="events-title">
+        Résultats
+      </h2>
+      <Event />
+    </section>
+  </>
 );
 
 // == Export
