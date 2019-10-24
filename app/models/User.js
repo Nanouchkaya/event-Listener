@@ -6,7 +6,7 @@ class User {
    * Get all users
    * @param {callback} callback 
    */
-  static getAll(callback) {
+  static getAll(callbackFindAllUsers) {
     const sqlQuery = 'SELECT * FROM user';
 
     DBConnect.query(sqlQuery,
@@ -14,13 +14,13 @@ class User {
       (error, result) => {
         // Return result with status
         if (error) {
-          return callback({
+          callbackFindAllUsers({
             error: true,
             errorMessage: error,
           });
         };
 
-        return callback({
+        callbackFindAllUsers({
           error: false,
           errorMessage: null,
           data: result,
@@ -52,13 +52,13 @@ class User {
       [pseudo,firstname,lastname,email,password,notifNewEvent,notifNewUpdate],
       (error, result) => {
         if (error) {
-          return callbackToAdd({
+          callbackToAdd({
             error: true,
             errorMessage: error,
           });
         };
 
-        return callbackToAdd({
+        callbackToAdd({
           error: false,
           errorMessage: null,
           data: result,
@@ -70,25 +70,53 @@ class User {
   /**
    * Check if have user with same email
    * @param {string} email 
-   * @param {callback} callback 
+   * @param {callback} callbackCheckEmail 
    */
-  static checkUserByEmail(email, callback) {
+  static checkUserByEmail(email, callbackCheckEmail) {
     const sqlQuery = 'SELECT * FROM user WHERE email = ?';
 
     DBConnect.query(sqlQuery, [email], (error, result) => {
       if (error) {
-        return callback({
+        callbackCheckEmail({
           error: true,
           errorMessage: error,
         });
       };
-      return callback({
+      callbackCheckEmail({
         error: false,
         errorMessage: null,
         rowMatch: result.length > 0,
         data: result[0],
       });
     });
+  }
+
+  /**
+   * Find specific User
+   * @param {number} number
+   * @param {callback} callbackGetUser
+   */
+  static find(id, callbackGetUser) {
+
+    DBConnect.query(
+      'SELECT * FROM user WHERE id = ?',
+      id,
+      (error, result) => {
+        if (error) {
+          callbackGetUser({
+            error: true,
+            errorMessage: error,
+          });
+        };
+
+        callbackGetUser({
+          error: false,
+          errorMessage: null,
+          rowMatch: result.length > 0,
+          data: result[0],
+        });
+      }
+    );
   }
 };
 

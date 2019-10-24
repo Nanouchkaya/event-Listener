@@ -128,4 +128,40 @@ module.exports = {
       response.json('error 404 / no session')
     }
   },
+
+  /**
+   * Find and get specific user
+   * @param {object} request
+   * @param {objet} response
+   */
+  getUser(request, response) {
+    const { userId } = request.params;
+
+    if (isNaN(userId)) {
+
+      response.status(200);
+      response.json({
+        status: "Bad data received"
+      });
+    } else {
+      
+      User.find(
+        userId,
+        (result) => {
+
+          response.status(200);
+          if (result.rowMatch) {
+            
+            response.json({
+              status: "Success",
+              result,
+            });
+          } else {
+            response.json({
+              status: "User not found",
+            });
+          }
+        });
+    }
+  },
 };

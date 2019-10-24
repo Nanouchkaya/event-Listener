@@ -41,7 +41,7 @@ module.exports = (server, router) => {
     response.type('application/json');
     UserController.add(request, response);
   });
-  
+
   /**
    * Connection
    */
@@ -55,5 +55,13 @@ module.exports = (server, router) => {
   router.post('/disconnect', (request, response) => {
     response.json;
     UserController.disconnect(request, response);
+  });
+
+  /**
+   * Get specific user
+   */
+  router.get('/users/:userId', (request, response) => {
+    response.json;
+    UserController.getUser(request, response);
   });
 };
