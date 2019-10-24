@@ -24,6 +24,13 @@ module.exports = (server, router) => {
     EventController.getAll(request, response);
   });
 
+  /**
+  * Get specific event
+  */
+  router.get('/events/:eventId', (request, response) => {
+    response.json;
+    EventController.getEvent(request, response);
+  });
 
   // User //
 
