@@ -34,7 +34,8 @@
     margin-left: 2rem;
 
     .searchbar-input {
-      @include form-element;      
+      @include form-element;
+      margin: 0;      
     }
   }
 }

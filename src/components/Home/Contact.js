@@ -1,6 +1,8 @@
+// == Import : npm
 import React from 'react';
 
-// == Composant
+
+// == Composant Contact
 const Contact = () => (
   <section className="contact">
     <h1 className="contact-title">
@@ -29,6 +31,7 @@ const Contact = () => (
       <textarea
         defaultValue="Votre message*"
         required
+        rows="6"
         className="contact-form-element message"
       />
 
@@ -39,10 +42,10 @@ const Contact = () => (
       <p className="contact-form--note">
         Les champs marqués par un astérix sont obligatoires.
       </p>
-      
     </form>
   </section>
 );
+
 
 // == Export
 export default Contact;

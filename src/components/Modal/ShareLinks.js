@@ -1,23 +1,38 @@
+// == Import : npm
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './modal.scss';
 
+// == Import : local
+import './modal.scss';
+import cancelIcon from 'src/assets/images/icons/icons8-cancel-50.png';
+import facebookIcon from 'src/assets/images/icons/icons8-facebook-50.png';
+import facebookMessenger from 'src/assets/images/icons//facebook-messenger.png';
+import twitterIcon from 'src/assets/images/icons/icons8-twitter-50.png';
+import mailIcon from 'src/assets/images/icons/mail.png';
+
+
+// == Composant ShareLinks
 const ShareLinks = ({ closeModal }) => (
   <div className="share-links-modal">
     <div>
-      <h3>Partager avec les amis</h3>
-      <img onClick={closeModal} className="share-links-modal-close" alt="close-icon" src="https://img.icons8.com/ios-filled/50/000000/close-window.png" />
-      <img alt="fb-icon" src="https://img.icons8.com/nolan/64/000000/facebook-new.png" />
-      <img alt="fb-mes-icon" src="https://img.icons8.com/nolan/64/000000/facebook-messenger.png" />
-      <img alt="twi-icon" src="https://img.icons8.com/nolan/64/000000/twitter.png" />
-      <img alt="mail-icon" src="https://img.icons8.com/nolan/64/000000/important-mail.png" />
+    {/* Fermeture de la modal au click */}
+      <img onClick={closeModal} className="share-links-modal-close" alt="close-icon" src={cancelIcon} />
+      <img alt="fb-icon" src={facebookIcon} />
+      <img alt="fb-mes-icon" src={facebookMessenger} />
+      <img alt="twi-icon" src={twitterIcon} />
+      <img alt="mail-icon" src={mailIcon} />
+      <h5>Partager avec les amis</h5>
     </div>
   </div>
 );
 
+
+// == PropTypes
 ShareLinks.propTypes = {
   closeModal: PropTypes.func.isRequired,
 };
 
+
+// == Export
 export default ShareLinks;

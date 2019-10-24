@@ -1,7 +1,11 @@
+// == Import : npm
 import React from 'react';
 import Proptypes from 'prop-types';
 
-const LoginForm = ({ handleclose, show }) => {
+
+// == Composant LoginForm
+const LoginForm = ({ handleclose, show, children }) => {
+  /* Affichade conditionnel de la modal */
   const showHideClassName = show ? 'modal display-block' : 'modal display-none';
   return (
     <div className={showHideClassName}>
@@ -34,8 +38,11 @@ const LoginForm = ({ handleclose, show }) => {
           <input type="checkbox" className="modal-checkbox" />
           Rester connecté
         </label>
+        { children }
+        {/* Fermeture de la modal au click */}
         <a
           className="modal--back"
+          name="login"
           onClick={handleclose}
         >
           Retour
@@ -45,9 +52,13 @@ const LoginForm = ({ handleclose, show }) => {
   );
 };
 
+
+// == PropTypes
 LoginForm.propTypes = {
   handleclose: Proptypes.func.isRequired,
   show: Proptypes.bool.isRequired,
 };
 
+
+// == Export
 export default LoginForm;
