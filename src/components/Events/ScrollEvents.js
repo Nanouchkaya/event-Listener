@@ -46,7 +46,7 @@ const MenuItem = ({
 
 // All items component
 // Important! add unique key
-export const Menu = (dataEvent) => dataEvent.map((evt) => {
+export const Menu = () => dataEvent.map((evt) => {
   const {
     title, content, location, date, id,
   } = evt;
@@ -85,7 +85,8 @@ class ScrollEvents extends Component {
   constructor(props) {
     super(props);
     // call it again if items count changes
-    this.menuItems = Menu(dataEvent, this.state.select);
+    const { select } = this.state;
+    this.menuItems = Menu(dataEvent, select);
   }
 
   state = {
@@ -126,6 +127,12 @@ MenuItem.propTypes = {
   date: Proptypes.string.isRequired,
   title: Proptypes.string.isRequired,
   id: Proptypes.number.isRequired,
+};
+
+Arrow.propTypes = {
+  name: Proptypes.string.isRequired,
+  src: Proptypes.string.isRequired,
+  className: Proptypes.string.isRequired,
 };
 
 // == Export
