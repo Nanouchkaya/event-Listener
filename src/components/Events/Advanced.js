@@ -6,43 +6,37 @@ import './events.scss';
 
 // == Composant
 class Advanced extends React.Component {
-  constructor(props) {
-    super(props) 
-    this.state = { search : '' };
-
-    this.buttonClick = this.buttonClick.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+ state = { 
+   search: '' 
+  };
 
   buttonClick = () => {
     event.preventDefault();
     console.log('bouton cliqué');
     this.setState({
-      clicked : !this.state.clicked
+      clicked: !this.state.clicked,
     });
     console.log(this);
     // effectuer ici une recherche par mot-clef
   }
 
-  handleChange(event) {
-    this.setState({search: event.target.search});
+  handleChange = (event) => {
+    this.setState({ search: event.target.search });
   }
 
-  handleSubmit(event) {
-    console.log('test : ' + this.state.search);
+  handleSubmit = (event) => {
+    console.log(`test : ${this.state.search}`);
   }
 
   render() {
-    let Form = this.props.Form;
+    const { Form } = this.props;
     return (
       <div className="advanced-filter">
-        <h3>Filtres avancés</h3>
+        <h3>Recherche avancée</h3>
         <div className="advanced-filter-tags">
           <h4 className="advanced-filter-name">
             Tags
           </h4>
-          METTRE EN PLACE LISTE DE CHOIX MULTIPLE
         </div>
 
         <div className="advanced-filter-price">

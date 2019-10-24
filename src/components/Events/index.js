@@ -11,11 +11,11 @@ const Events = () => (
     <HeaderGradient />
     <section className="events">
       <h2 className="events-title">
-        Recherche
+        Tous les événements
       </h2>
       <Form />
       <h2 className="events-title">
-        Résultats
+        Octobre
       </h2>
       <Event />
     </section>
