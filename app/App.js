@@ -41,4 +41,12 @@ module.exports = (server, router) => {
     response.type('application/json');
     UserController.add(request, response);
   });
+  
+  /**
+  * Disconnect
+  */
+  router.post('/disconnect', (request, response) => {
+    response.json;
+    UserController.disconnect(request, response);
+  });
 };

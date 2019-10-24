@@ -73,5 +73,22 @@ module.exports = {
         status: "Error"
       });
     }
-  }
+  },
+
+  /**
+  * Disconnect
+  * @param {object} request
+  * @param {object} response
+  */
+  disconnect(request, response) {
+    const session = true; // request.session
+
+    if (session) {
+      response.status(200);
+      response.json('stop session')
+    } else {
+      response.status(404);
+      response.json('error 404 / no session')
+    }
+  },
 };
