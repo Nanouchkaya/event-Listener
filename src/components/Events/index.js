@@ -2,8 +2,9 @@ import React from 'react';
 
 import './events.scss';
 import HeaderGradient from 'src/components/App/HeaderGradient';
+import Form from 'src/redux/containers/Events/Form';
 import Event from './Event';
-import Form from './Form';
+
 
 // == Composant
 const Events = () => (

@@ -10,6 +10,7 @@ import {
   OPEN_NAV_MODAL,
   ACTIVE_NAV_MENU,
   HANDLE_CHANGE,
+  HANDLE_SUBMIT,
 } from './types';
 
 // == Import : Action Creators
@@ -55,7 +56,14 @@ export const activeNavMenu = () => ({
 
 
 // Home : QuickSearchBar.js
+// Events : Form.js
 export const handleChange = (value) => ({
   type: HANDLE_CHANGE,
   value,
+});
+
+
+// == Events : Form.js
+export const handleSubmit = () => ({
+  type: HANDLE_SUBMIT,
 });
