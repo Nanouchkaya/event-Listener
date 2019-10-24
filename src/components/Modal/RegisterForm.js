@@ -4,7 +4,7 @@ import Proptypes from 'prop-types';
 
 
 // == Composant RegisterForm
-const RegisterForm = ({ handleclose, show }) => {
+const RegisterForm = ({ handleclose, show, switchModals }) => {
   /* Affichage conditionnel de la modal */
   const showHideClassName = show ? 'modal display-block' : 'modal display-none';
 
@@ -53,6 +53,7 @@ const RegisterForm = ({ handleclose, show }) => {
             Créer le compte
           </button>
         </form>
+        { switchModals && <a href="#">Déja inscrit-e ?</a>}
         {/* Fermeture de la modal au click */}
         <a
           className="modal--back"
@@ -69,6 +70,7 @@ const RegisterForm = ({ handleclose, show }) => {
 RegisterForm.propTypes = {
   handleclose: Proptypes.func.isRequired,
   show: Proptypes.bool.isRequired,
+  switchModals: Proptypes.bool.isRequired,
 };
 // == Export
 export default RegisterForm;

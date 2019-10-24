@@ -13,6 +13,7 @@ const mapStateToProps = (state) => ({
   showLogin: state.app.login,
   showRegister: state.app.register,
   cancelIcon: state.app.cancelIcon,
+  switchModals: state.switchModals.switch,
 });
 
 const mapDispatchToProps = (dispatch) => ({

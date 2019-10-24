@@ -2,12 +2,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+
 // == Import : local
 import image from 'src/assets/images/test_evt.png';
 import iconPlus from 'src/assets/images/icons/icons8-plus-50.png';
 
 
-// == Composant
+// == CSS
 const bannerStyle = {
   backgroundImage: `url(${image})`,
   backgroundPosition: 'center',
@@ -15,6 +16,8 @@ const bannerStyle = {
   backgroundRepeat: 'no-repeat',
 };
 
+
+// == Composant Event
 const Event = () => (
   <div className="menu-item list">
     <div className="menu-item-top" style={bannerStyle}>
@@ -35,6 +38,7 @@ const Event = () => (
     </div>
   </div>
 );
+
 
 // == Export
 export default Event;

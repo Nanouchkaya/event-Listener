@@ -11,8 +11,13 @@ export const CHANGE_MODAL_STATUS = 'CHANGE_MODAL_STATUS';
 export const CHANGE_CHECK_INPUT_VALUE = 'CHANGE_CHECK_INPUT_VALUE';
 export const CHANGE_EDITOR_MODE = 'CHANGE_EDITOR_MODE';
 
+
 // App : Nav.js
+// EventDetails : CheckButtons.js
 export const OPEN_NAV_MODAL = 'OPEN_NAV_MODAL';
+
+
+// App : Nav.js
 export const ACTIVE_NAV_MENU = 'ACTIVE_NAV_MENU';
 
 
@@ -23,3 +28,7 @@ export const HANDLE_CHANGE = 'HANDLE_CHANGE';
 
 // Events : Form.js
 export const HANDLE_SUBMIT = 'HANDLE_SUBMIT';
+
+
+// EventDetails : CheckButtons.js
+export const SWITCH_MODALS = 'SWITCH_MODALS';

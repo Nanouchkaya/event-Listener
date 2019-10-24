@@ -6,6 +6,7 @@ import React from 'react';
 import Inputs from './Inputs';
 
 
+// == Data
 const tagsValues = [
   'Tech',
   'Data',

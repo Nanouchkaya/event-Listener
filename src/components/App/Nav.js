@@ -20,6 +20,7 @@ const Nav = ({
   activeNavMenu,
   showLogin,
   showRegister,
+  switchModals,
 }) => {
   /* Fonction qui gère l'ouverture des deux modals Connexion et Inscription */
   const handleNavModals = (event) => {
@@ -68,6 +69,7 @@ const Nav = ({
             <RegisterForm
               show={showRegister}
               handleclose={handleNavModals}
+              switchModals={switchModals}
             />
             <button
               type="button"
@@ -85,6 +87,7 @@ const Nav = ({
             <LoginForm
               show={showLogin}
               handleclose={handleNavModals}
+              switchModals={switchModals}
             />
             <button
               type="button"
@@ -110,6 +113,7 @@ Nav.propTypes = {
   showRegister: PropTypes.bool.isRequired,
   openNavModal: PropTypes.func.isRequired,
   activeNavMenu: PropTypes.func.isRequired,
+  switchModals: PropTypes.bool.isRequired,
 };
 
 

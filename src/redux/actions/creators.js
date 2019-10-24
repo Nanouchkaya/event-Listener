@@ -11,6 +11,7 @@ import {
   ACTIVE_NAV_MENU,
   HANDLE_CHANGE,
   HANDLE_SUBMIT,
+  SWITCH_MODALS,
 } from './types';
 
 // == Import : Action Creators
@@ -66,4 +67,10 @@ export const handleChange = (value) => ({
 // == Events : Form.js
 export const handleSubmit = () => ({
   type: HANDLE_SUBMIT,
+});
+
+
+// == EventDetails : CheckButtons.js
+export const switchModals = () => ({
+  type: SWITCH_MODALS,
 });

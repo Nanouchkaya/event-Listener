@@ -1,12 +1,15 @@
+// == Import : npm
 import React from 'react';
 
+
+// == Import : local
 import './events.scss';
 import HeaderGradient from 'src/components/App/HeaderGradient';
 import Form from 'src/redux/containers/Events/Form';
 import Event from './Event';
 
 
-// == Composant
+// == Composant Events
 const Events = () => (
   <>
     <HeaderGradient />
@@ -22,6 +25,7 @@ const Events = () => (
     </section>
   </>
 );
+
 
 // == Export
 export default Events;
