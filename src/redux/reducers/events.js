@@ -1,7 +1,12 @@
-import { HANDLE_CHANGE, HANDLE_SUBMIT } from '../actions/types';
+import {
+  HANDLE_CHANGE,
+  HANDLE_SUBMIT,
+  SHOW_ADVANCED_FORM,
+} from '../actions/types';
 
 const initialState = {
   value: '',
+  advanced: false,
 };
 
 
@@ -11,6 +16,11 @@ export const form = (state = initialState, action = {}) => {
       return {
         ...state,
         value: action.value,
+      };
+    case SHOW_ADVANCED_FORM:
+      return {
+        ...state,
+        advanced: !state.advanced,
       };
     case HANDLE_SUBMIT:
       return {

@@ -28,6 +28,7 @@ export const HANDLE_CHANGE = 'HANDLE_CHANGE';
 
 // Events : Form.js
 export const HANDLE_SUBMIT = 'HANDLE_SUBMIT';
+export const SHOW_ADVANCED_FORM = 'SHOW_ADVANCED_FORM';
 
 
 // EventDetails : CheckButtons.js
