@@ -82,6 +82,41 @@ class EventController {
         });
     }
   }
+
+  /**
+   * Find and get Event by diffusion (live)
+   * @param {object} request
+   * @param {object} response
+   */
+
+   static getEventByDiffusion(request, response) {
+     const { live } = request.params;
+
+     if (isNaN(live)) {
+       response.status(200);
+       response.json({
+         status:"Bad data received"
+       });
+
+     } else {
+
+       Event.findLive(
+         live,
+         (result) => {
+
+          if(result.rowMatch) {
+            response.json({
+              status: "success",
+              result,
+            });
+          } else {
+            response.json({
+              status: "Event doesn't exist",
+            });
+          }
+         });
+     }
+   }
 };
 
 module.exports = EventController;

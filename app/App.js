@@ -37,6 +37,13 @@ module.exports = (server, router) => {
     EventController.getEventByPrice(request, response);
   });
 
+  /**
+   * Get event by diffusion
+   */
+  router.get('/events/diffusion/:live', (request, response) => {
+    EventController.getEventByDiffusion(request, response);
+  });
+
 
   // User //
 

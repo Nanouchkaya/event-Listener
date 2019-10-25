@@ -66,7 +66,7 @@ class Event {
 
   /**
    * Find Event by price (free/pricy)
-   * @param {string} free
+   * @param {integer} price
    * @param {callback} callbackGetEventByPrice
    */
 
@@ -87,6 +87,39 @@ class Event {
         } else {
 
           callbackGetEventByPrice({
+            error: false,
+            errorMessage: null,
+            rowMatch: result.length > 0,
+            data: result,
+          });
+        }
+       }
+     )
+   }
+
+   /**
+   * Find Event by diffusion (live)
+   * @param {integer} live
+   * @param {callback} callbackGetEventByDiffusion
+   */
+
+   static findLive(live, callbackGetEventByDiffusion) {
+     const sqlQuery = 'SELECT * from event where is_online = ?';
+
+     DBConnect.query(
+       sqlQuery,
+       live,
+       (error, result) => {
+
+        if(error) {
+
+          callbackGetEventByDiffusion({
+            error: true,
+            errorMessage: error,
+          });
+        } else {
+
+          callbackGetEventByDiffusion({
             error: false,
             errorMessage: null,
             rowMatch: result.length > 0,
