@@ -129,6 +129,40 @@ class Event {
        }
      )
    }
+
+   /**
+   * Find Event by localisation
+   * @param {string} loc
+   * @param {callback} callbackGetEventByLocalisation
+   */
+
+  static findLocalisation(loc, callbackGetEventByLocalisation) {
+    loc = '%' + loc + '%';
+    const sqlQuery = 'SELECT * from event where address like N?';
+
+    DBConnect.query(
+      sqlQuery,
+      loc,
+      (error, result) => {
+
+       if(error) {
+
+         callbackGetEventByLocalisation({
+           error: true,
+           errorMessage: error,
+         });
+       } else {
+
+         callbackGetEventByLocalisation({
+           error: false,
+           errorMessage: null,
+           rowMatch: result.length > 0,
+           data: result,
+         });
+       }
+      }
+    )
+  }
 };
 
 module.exports = Event;

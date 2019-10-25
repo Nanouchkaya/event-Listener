@@ -44,6 +44,13 @@ module.exports = (server, router) => {
     EventController.getEventByDiffusion(request, response);
   });
 
+  /**
+   * Get event by localisation
+   */
+  router.get('/events/localisation/:loc', (request, response) => {
+    EventController.getEventByLocalisation(request, response);
+  });
+
 
   // User //
 
