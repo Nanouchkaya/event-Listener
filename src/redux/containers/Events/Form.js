@@ -10,17 +10,20 @@ import Form from 'src/components/Events/Form';
 import {
   handleChange,
   handleSubmit,
+  showAdvancedForm,
 } from '../../actions/creators';
 
 
 const mapStateToProps = (state) => ({
   value: state.form.value,
+  advanced: state.form.advanced,
 });
 
 
 const mapDispatchToProps = (dispatch) => ({
   handleChange: (value) => dispatch(handleChange(value)),
   handleSubmit: () => dispatch(handleSubmit()),
+  showAdvancedForm: () => dispatch(showAdvancedForm()),
 });
 
 

@@ -8,7 +8,13 @@ import Advanced from './Advanced';
 
 
 // == Composant Form
-const Form = ({ handleChange, handleSubmit, value }) => {
+const Form = ({
+  handleChange,
+  handleSubmit,
+  showAdvancedForm,
+  value,
+  advanced,
+}) => {
   const _onSubmit = (event) => {
     event.preventDefault();
     handleSubmit();
@@ -25,14 +31,8 @@ const Form = ({ handleChange, handleSubmit, value }) => {
           value={value}
           onChange={(event) => handleChange(event.target.value)}
         />
-
-        { value.trim().length > 0 && <Advanced /> }
-
-        <input
-          type="submit"
-          className="form-button"
-          value="Rechercher"
-        />
+        <h3 onClick={showAdvancedForm}>Recherche avancée</h3>
+        { advanced && <Advanced /> }
       </form>
     </>
   );
@@ -43,6 +43,8 @@ const Form = ({ handleChange, handleSubmit, value }) => {
 Form.propTypes = {
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  showAdvancedForm: PropTypes.func.isRequired,
+  advanced: PropTypes.bool.isRequired,
   value: PropTypes.string,
 };
 Form.defaultProps = {

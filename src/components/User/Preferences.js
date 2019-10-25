@@ -207,6 +207,8 @@ const Preferences = ({
     </section>
   );
 };
+
+
 // == PropTypes
 Preferences.propTypes = {
   firstname: PropTypes.string.isRequired,
@@ -223,5 +225,7 @@ Preferences.propTypes = {
   editorModeDisabled: PropTypes.bool.isRequired,
   handleChangEditorMode: PropTypes.func.isRequired,
 };
+
+
 // == Export
 export default Preferences;

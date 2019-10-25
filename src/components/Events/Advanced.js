@@ -33,38 +33,45 @@ const timeValues = [
 
 // == Composant Advanced
 const Advanced = () => (
-  <div className="advanced-filter">
-    <h3>Recherche avancée</h3>
-    <div className="advanced-filter-tags">
-      <h4 className="advanced-filter-name">Tags</h4>
-      {tagsValues.map((tagValue) => <Inputs key={tagValue}>{tagValue}</Inputs>)}
+  <>
+    <div className="advanced-filter">
+      <div className="advanced-filter-tags">
+        <h4 className="advanced-filter-name">Tags</h4>
+        {tagsValues.map((tagValue) => <Inputs key={tagValue}>{tagValue}</Inputs>)}
+      </div>
+
+      <div className="advanced-filter-price">
+        <h4 className="advanced-filter-name">Prix</h4>
+        {priceValues.map((priceValue) => <Inputs key={priceValue}>{priceValue}</Inputs>)}
+
+      </div>
+
+      <div className="advanced-filter-online">
+        <h4 className="advanced-filter-name">Diffusion en ligne</h4>
+        {liveValues.map((liveValue) => <Inputs key={liveValue}>{liveValue}</Inputs>)}
+      </div>
+
+
+      <div className="advanced-filter-date">
+        {timeValues.map((timeValue) => (
+          <React.Fragment key={timeValue}><h4 className="advanced-filter-name">{timeValue}</h4>
+            <input type="date" name="date" min="2019-10-01" max="2020-02-29" />
+          </React.Fragment>
+        ))}
+      </div>
+
+      <div className="advanced-filter-location">
+        <h4 className="advanced-filter-name">Localisation</h4>
+        <input list="villes" id="advanced-filter-input" name="ville" />
+      </div>
     </div>
 
-    <div className="advanced-filter-price">
-      <h4 className="advanced-filter-name">Prix</h4>
-      {priceValues.map((priceValue) => <Inputs key={priceValue}>{priceValue}</Inputs>)}
-
-    </div>
-
-    <div className="advanced-filter-online">
-      <h4 className="advanced-filter-name">Diffusion en ligne</h4>
-      {liveValues.map((liveValue) => <Inputs key={liveValue}>{liveValue}</Inputs>)}
-    </div>
-
-
-    <div className="advanced-filter-date">
-      {timeValues.map((timeValue) => (
-        <React.Fragment key={timeValue}><h4 className="advanced-filter-name">{timeValue}</h4>
-          <input type="date" name="date" min="2019-10-01" max="2020-02-29" />
-        </React.Fragment>
-      ))}
-    </div>
-
-    <div className="advanced-filter-location">
-      <h4 className="advanced-filter-name">Localisation</h4>
-      <input list="villes" id="advanced-filter-input" name="ville" />
-    </div>
-  </div>
+    <input
+      type="submit"
+      className="form-button"
+      value="Rechercher"
+    />
+  </>
 );
 
 

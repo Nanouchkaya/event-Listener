@@ -40,7 +40,6 @@ const Description = () => (
         </li>
       </ul>
     </div>
-
     <p className="description-more">
       Plus d'info : <a href="https://www.datajob.fr/">www.datajob.fr</a>
     </p>

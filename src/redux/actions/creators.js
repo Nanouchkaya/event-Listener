@@ -12,6 +12,7 @@ import {
   HANDLE_CHANGE,
   HANDLE_SUBMIT,
   SWITCH_MODALS,
+  SHOW_ADVANCED_FORM,
 } from './types';
 
 // == Import : Action Creators
@@ -67,6 +68,9 @@ export const handleChange = (value) => ({
 // == Events : Form.js
 export const handleSubmit = () => ({
   type: HANDLE_SUBMIT,
+});
+export const showAdvancedForm = () => ({
+  type: SHOW_ADVANCED_FORM,
 });
 
 
