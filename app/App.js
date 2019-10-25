@@ -30,6 +30,13 @@ module.exports = (server, router) => {
     EventController.getEvent(request, response);
   });
 
+  /**
+   * Get event  by price
+   */
+  router.get('/events/price/:price', (request, response) => {
+    EventController.getEventByPrice(request, response);
+  });
+
 
   // User //
 

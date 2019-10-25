@@ -63,6 +63,39 @@ class Event {
       }
     );
   }
+
+  /**
+   * Find Event by price (free/pricy)
+   * @param {string} free
+   * @param {callback} callbackGetEventByPrice
+   */
+
+   static findPrice(price, callbackGetEventByPrice) {
+     const sqlQuery = 'SELECT * FROM event where price = ?';
+
+     DBConnect.query(
+       sqlQuery,
+       price,
+       (error, result) => {
+
+        if (error) {
+
+          callbackGetEventByPrice({
+            error: true,
+            errorMessage: error,
+          });
+        } else {
+
+          callbackGetEventByPrice({
+            error: false,
+            errorMessage: null,
+            rowMatch: result.length > 0,
+            data: result,
+          });
+        }
+       }
+     )
+   }
 };
 
 module.exports = Event;
