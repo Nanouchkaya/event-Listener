@@ -1,5 +1,6 @@
 // Dependances
 const bcrypt = require('bcrypt');
+const jwToken = require('jsonwebtoken');
 
 // Models
 const User = require('../models/User');
@@ -69,6 +70,7 @@ class UserController {
       checkEmail(data.email) &&
       data.password) {
 
+      // Check email and get this user if exist
       User.checkUserByEmail(
         data.email,
         (result) => {
@@ -76,13 +78,38 @@ class UserController {
         if (result.rowMatch) {
           const { password: hashedPassword } = result.data;
           const checkPassword = bcrypt.compareSync(data.password, hashedPassword);
-  
-          if (result.rowMatch && checkPassword) {
+          
+          if (checkPassword) {
+            if (request.session.token) {
 
-            response.json({
-              status: "Connected",
-              result,
-            });
+              jwToken.verify(
+                request.session.token,
+                process.env.APP_KEY,
+
+                (error, decoded) => {
+                  if (error) throw error;
+
+                  response.json({
+                    status: "Already connected",
+                    result,
+                  });
+                }
+              )
+            } else {
+              
+              let token = jwToken.sign(
+                { data: data.email },
+                process.env.APP_KEY,
+                { expiresIn: 60 },
+              );
+  
+              request.session.token = token;
+
+              response.json({
+                status: "Connected",
+                result,
+              });
+            }
           } else {
 
             response.status(200);

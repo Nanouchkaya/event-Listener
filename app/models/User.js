@@ -73,19 +73,25 @@ class User {
   static checkUserByEmail(email, callbackCheckEmail) {
     const sqlQuery = 'SELECT * FROM user WHERE email = ?';
 
-    DBConnect.query(sqlQuery, [email], (error, result) => {
+    DBConnect.query(
+      sqlQuery, 
+      [email], 
+      (error, result) => {
+
       if (error) {
         callbackCheckEmail({
           error: true,
           errorMessage: error,
         });
-      };
-      callbackCheckEmail({
-        error: false,
-        errorMessage: null,
-        rowMatch: result.length > 0,
-        data: result[0],
-      });
+      } else {
+        
+        callbackCheckEmail({
+          error: false,
+          errorMessage: null,
+          rowMatch: result.length > 0,
+          data: result[0],
+        });
+      }
     });
   }
 
@@ -95,9 +101,10 @@ class User {
    * @param {callback} callbackGetUser
    */
   static find(id, callbackGetUser) {
+    const sqlQuery = 'SELECT * FROM user WHERE id = ?';
 
     DBConnect.query(
-      'SELECT * FROM user WHERE id = ?',
+      sqlQuery,
       id,
       (error, result) => {
         if (error) {
@@ -105,14 +112,15 @@ class User {
             error: true,
             errorMessage: error,
           });
-        };
-
-        callbackGetUser({
-          error: false,
-          errorMessage: null,
-          rowMatch: result.length > 0,
-          data: result[0],
-        });
+        } else {
+          
+          callbackGetUser({
+            error: false,
+            errorMessage: null,
+            rowMatch: result.length > 0,
+            data: result[0],
+          });
+        }
       }
     );
   }
@@ -123,9 +131,10 @@ class User {
    * @param {callback} callbackDeleteAccount
    */
   static delete(id, callbackDeleteAccount) {
+    const sqlQuery = 'DELETE FROM user WHERE id = ?';
 
     DBConnect.query(
-      'DELETE FROM user WHERE id = ?',
+      sqlQuery,
       id,
       (error, result) => {
         if (error) {
@@ -133,14 +142,15 @@ class User {
             error: true,
             errorMessage: error,
           });
-        };
-
-        callbackDeleteAccount({
-          error: false,
-          errorMessage: null,
-          rowMatch: result.affectedRows > 0,
-          data: result,
-        });
+        } else {
+        
+          callbackDeleteAccount({
+            error: false,
+            errorMessage: null,
+            rowMatch: result.affectedRows > 0,
+            data: result,
+          });
+        }
       }
     );
   }

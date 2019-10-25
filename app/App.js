@@ -10,7 +10,7 @@ module.exports = (server, router) => {
    */
   router.get('/', (request, response) => {
     response.type('text/plain');
-    response.send('Home page');
+    response.send('API eventListener');
   });
 
 
