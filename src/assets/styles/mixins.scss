@@ -124,24 +124,6 @@
   transform: rotate(40deg);
 }
 
-@mixin sectionPageAnnexe {
-  text-align: left;
-  color: #e7e7e7;
-  padding-top: 150px;
-  position: relative;
-  
-  &::before {
-    content: '';
-    height: 112px;
-    background: $mainGradient;
-    width: 100%;
-    max-width: 1400px;
-    position: absolute;
-    top: 0;
-    left:0;
-  }
-}
-
 @mixin triangle($color) {
   content: '';
   position: absolute;

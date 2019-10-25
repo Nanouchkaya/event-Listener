@@ -34,7 +34,8 @@
     margin-left: 2rem;
 
     .searchbar-input {
-      @include form-element;      
+      @include form-element;
+      margin: 0;      
     }
   }
 }
@@ -42,8 +43,8 @@
 .menu-burger {
 display: block;
 position: fixed;
-right: 1rem;
-top: 0.8rem;
+right: .2rem;
+top: .2rem;
 font-size: 2rem;
 color: $turquoise;
 z-index:1;
@@ -166,6 +167,7 @@ footer {
       justify-content: flex-end;
       align-items: center;
       padding: 0;
+      animation: none;
   }
 
     .navigation-item {

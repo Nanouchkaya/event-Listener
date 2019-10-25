@@ -11,7 +11,9 @@ import dataEvent from './data';
 
 // One item component
 // selected prop will be passed
-const MenuItem = ({ location, date, content, title, id }) => {
+const MenuItem = ({
+  location, date, content, title, id,
+}) => {
   const bannerStyle = {
     backgroundImage: `url(${eventImage})`,
     backgroundPosition: 'center',
@@ -19,7 +21,7 @@ const MenuItem = ({ location, date, content, title, id }) => {
     backgroundRepeat: 'no-repeat',
   };
 
-  const route = `/evenement/${id}`;
+  const route = `/evenements/${id}`;
   return (
     <div className="menu-item">
       <div className="menu-item-top" style={bannerStyle}>
@@ -44,24 +46,32 @@ const MenuItem = ({ location, date, content, title, id }) => {
 
 // All items component
 // Important! add unique key
-export const Menu = (dataEvent) =>
-  dataEvent.map((evt) => {
-    const { title, content, location, date, id } = evt;
-    return <MenuItem date={date} location={location} content={content} title={title} key={id} id={id} />;
-  });
+export const Menu = () => dataEvent.map((evt) => {
+  const {
+    title, content, location, date, id,
+  } = evt;
+  return (
+    <MenuItem
+      date={date}
+      location={location}
+      content={content}
+      title={title}
+      key={id}
+      id={id}
+    />
+  );
+});
 
 /**
  * Fleche directionnel
  */
-const Arrow = ({ name, src, className }) => {
-  return (
-    <img
-      alt={name}
-      src={src}
-      className={className}
-    />
-  );
-};
+const Arrow = ({ name, src, className }) => (
+  <img
+    alt={name}
+    src={src}
+    className={className}
+  />
+);
 
 const ArrowLeft = Arrow({ name: '<', src: iconArrowLeft, className: 'arrow-prev icon' });
 const ArrowRight = Arrow({ name: '>', src: iconArrowRight, className: 'arrow-next icon' });
@@ -69,13 +79,14 @@ const ArrowRight = Arrow({ name: '>', src: iconArrowRight, className: 'arrow-nex
 /**
  * Class du Scroll
  */
-//const selectDefault = '';
+// const selectDefault = '';
 
 class ScrollEvents extends Component {
   constructor(props) {
     super(props);
     // call it again if items count changes
-    this.menuItems = Menu(dataEvent, this.state.select);
+    const { select } = this.state;
+    this.menuItems = Menu(dataEvent, select);
   }
 
   state = {
@@ -83,7 +94,7 @@ class ScrollEvents extends Component {
   };
 
   onSelect = (key) => {
-    this.setState({ 
+    this.setState({
       select: key,
     });
   };
@@ -116,6 +127,12 @@ MenuItem.propTypes = {
   date: Proptypes.string.isRequired,
   title: Proptypes.string.isRequired,
   id: Proptypes.number.isRequired,
+};
+
+Arrow.propTypes = {
+  name: Proptypes.string.isRequired,
+  src: Proptypes.string.isRequired,
+  className: Proptypes.string.isRequired,
 };
 
 // == Export

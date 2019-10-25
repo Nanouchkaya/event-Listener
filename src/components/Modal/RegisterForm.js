@@ -1,7 +1,11 @@
+// == Import : npm
 import React from 'react';
 import Proptypes from 'prop-types';
 
-const RegisterForm = ({ handleclose, show }) => {
+
+// == Composant RegisterForm
+const RegisterForm = ({ handleclose, show, switchModals }) => {
+  /* Affichage conditionnel de la modal */
   const showHideClassName = show ? 'modal display-block' : 'modal display-none';
 
   return (
@@ -37,12 +41,11 @@ const RegisterForm = ({ handleclose, show }) => {
             <input type="checkbox" className="modal-checkbox" />
             Recevoir un email pour chaque nouvel événement
           </label>
-  
+
           <label className="modal-form-label">
             <input type="checkbox" className="modal-checkbox" />
             Recevoir un email à la modification d'un événement
           </label>
-
           <button
             className="modal-form--submit"
             type="submit"
@@ -50,8 +53,11 @@ const RegisterForm = ({ handleclose, show }) => {
             Créer le compte
           </button>
         </form>
+        { switchModals && <a href="#">Déja inscrit-e ?</a>}
+        {/* Fermeture de la modal au click */}
         <a
           className="modal--back"
+          name="register"
           onClick={handleclose}
         >
           Retour
@@ -60,10 +66,11 @@ const RegisterForm = ({ handleclose, show }) => {
     </div>
   );
 };
-
+// == PropTypes
 RegisterForm.propTypes = {
   handleclose: Proptypes.func.isRequired,
   show: Proptypes.bool.isRequired,
+  switchModals: Proptypes.bool.isRequired,
 };
-
+// == Export
 export default RegisterForm;

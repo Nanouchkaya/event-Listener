@@ -10,8 +10,9 @@ import EventDetails from 'src/components/EventDetails';
 import LegalMentions from 'src/components/LegalMentions';
 import PrivatePolicy from 'src/components/PrivatePolicy';
 import Errors from 'src/components/Errors';
-import Nav from './Nav';
+import Nav from 'src/redux/containers/App/Nav';
 import Footer from './Footer';
+import Events from '../Events';
 
 // == Composant
 const App = () => (
@@ -21,7 +22,10 @@ const App = () => (
       <Route exact path="/">
         <Home />
       </Route>
-      <Route path="/evenement/:id">
+      <Route exact path="/evenements">
+        <Events />
+      </Route>
+      <Route path="/evenements/:id">
         <EventDetails />
       </Route>
       <Route path="/profil">
