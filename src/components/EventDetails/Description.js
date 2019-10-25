@@ -39,11 +39,11 @@ const Description = () => (
           2 meetups le soir : Paris Data Ladies et AI Engineering
         </li>
       </ul>
-
-      <p className="description-more">
-        Plus d'info : <a href="https://www.datajob.fr/">www.datajob.fr</a>
-      </p>
     </div>
+
+    <p className="description-more">
+      Plus d'info : <a href="https://www.datajob.fr/">www.datajob.fr</a>
+    </p>
   </div>
 );
 

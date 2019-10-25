@@ -123,8 +123,11 @@
     }
 
     & .datetime, & .address {
-      
-        margin: 0 2rem 1rem 3rem;
+    
+      margin: 0 2rem 1rem 0;
+      line-height: 1.3rem;
+      font-size: 1.1rem;
+      text-align: justify;
       
 
       time {
@@ -138,7 +141,7 @@
         font-size: 1rem;
         color: $purple;
         padding: $paddingButton;
-        margin: 1rem;
+        margin: 1rem .5rem;
         border-radius: 5px;
         background-color: #FFFFFF;
         border: 2px solid $purple;
@@ -228,7 +231,6 @@
 
     &-flyer-description {
       flex-direction: row-reverse;
-      padding: 2rem;
 
       & .description {
         flex-direction: column;
@@ -241,6 +243,10 @@
             margin: 1rem 2.5rem;
           }
         }
+      }
+
+      & .datetime, & .address {
+        margin: 0 2rem 1rem 3rem;
       }
 
       & .check-buttons {
