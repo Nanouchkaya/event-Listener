@@ -131,17 +131,17 @@ class EventController {
         loc,
         (result) => {
 
-         if(result.rowMatch) {
-           response.json({
-             status: "success",
-             result,
-           });
-         } else {
-           response.json({
-             status: "Event doesn't exist",
-           });
-         }
-        });
+          if(result.rowMatch) {
+            response.json({
+              status: "success",
+              result,
+            });
+          } else {
+            response.json({
+              status: "Event doesn't exist",
+            });
+          }
+          });
     
   }
 
@@ -158,17 +158,17 @@ class EventController {
         tag,
         (result) => {
 
-         if(result.rowMatch) {
-           response.json({
-             status: "success",
-             result,
-           });
-         } else {
-           response.json({
-             status: "Event doesn't exist",
-           });
-         }
-        });
+          if(result.rowMatch) {
+            response.json({
+              status: "success",
+              result,
+            });
+          } else {
+            response.json({
+              status: "Event doesn't exist",
+            });
+          }
+          });
     
   }
 
@@ -185,17 +185,17 @@ class EventController {
         name,
         (result) => {
 
-         if(result.rowMatch) {
-           response.json({
-             status: "success",
-             result,
-           });
-         } else {
-           response.json({
-             status: "Event doesn't exist",
-           });
-         }
-        });
+          if(result.rowMatch) {
+            response.json({
+              status: "success",
+              result,
+            });
+          } else {
+            response.json({
+              status: "Event doesn't exist",
+            });
+          }
+          });
     
   }
 
@@ -212,17 +212,44 @@ class EventController {
         start,
         (result) => {
 
-         if(result.rowMatch) {
-           response.json({
-             status: "success",
-             result,
-           });
-         } else {
-           response.json({
-             status: "Event doesn't exist",
-           });
-         }
-        });
+          if(result.rowMatch) {
+            response.json({
+              status: "success",
+              result,
+            });
+          } else {
+            response.json({
+              status: "Event doesn't exist",
+            });
+          }
+          });
+    
+  }
+
+   /**
+   * Find and get Event by Ending Date
+   * @param {object} request
+   * @param {object} response
+   */
+
+  static getEventByEndingDate(request, response) {
+    const { finish } = request.params;
+
+      Event.findFinish(
+        finish,
+        (result) => {
+
+          if(result.rowMatch) {
+            response.json({
+              status: "success",
+              result,
+            });
+          } else {
+            response.json({
+              status: "Event doesn't exist",
+            });
+          }
+          });
     
   }
 };

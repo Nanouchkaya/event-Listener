@@ -147,18 +147,18 @@ class Event {
 
        if(error) {
 
-         callbackGetEventByLocalisation({
-           error: true,
-           errorMessage: error,
-         });
+        callbackGetEventByLocalisation({
+          error: true,
+          errorMessage: error,
+        });
        } else {
 
-         callbackGetEventByLocalisation({
-           error: false,
-           errorMessage: null,
-           rowMatch: result.length > 0,
-           data: result,
-         });
+        callbackGetEventByLocalisation({
+          error: false,
+          errorMessage: null,
+          rowMatch: result.length > 0,
+          data: result,
+        });
        }
       }
     )
@@ -181,18 +181,18 @@ class Event {
 
        if(error) {
 
-         callbackGetEventByTags({
-           error: true,
-           errorMessage: error,
-         });
+        callbackGetEventByTags({
+          error: true,
+          errorMessage: error,
+        });
        } else {
 
-         callbackGetEventByTags({
-           error: false,
-           errorMessage: null,
-           rowMatch: result.length > 0,
-           data: result,
-         });
+        callbackGetEventByTags({
+          error: false,
+          errorMessage: null,
+          rowMatch: result.length > 0,
+          data: result,
+        });
        }
       }
     )
@@ -215,25 +215,25 @@ class Event {
 
        if(error) {
 
-         callbackGetEventByTitle({
-           error: true,
-           errorMessage: error,
-         });
+        callbackGetEventByTitle({
+          error: true,
+          errorMessage: error,
+        });
        } else {
 
-         callbackGetEventByTitle({
-           error: false,
-           errorMessage: null,
-           rowMatch: result.length > 0,
-           data: result,
-         });
+        callbackGetEventByTitle({
+          error: false,
+          errorMessage: null,
+          rowMatch: result.length > 0,
+          data: result,
+        });
        }
       }
     )
   }
 
   /**
-   * Find Event by title
+   * Find Event by starting date
    * @param {string} start
    * @param {callback} callbackGetEventByStartingDate
    */
@@ -248,18 +248,51 @@ class Event {
 
        if(error) {
 
-         callbackGetEventByStartingDate({
-           error: true,
-           errorMessage: error,
-         });
+        callbackGetEventByStartingDate({
+          error: true,
+          errorMessage: error,
+        });
        } else {
 
-         callbackGetEventByStartingDate({
-           error: false,
-           errorMessage: null,
-           rowMatch: result.length > 0,
-           data: result,
-         });
+        callbackGetEventByStartingDate({
+          error: false,
+          errorMessage: null,
+          rowMatch: result.length > 0,
+          data: result,
+        });
+       }
+      }
+    )
+  }
+
+  /**
+   * Find Event by ending date
+   * @param {string} finish
+   * @param {callback} callbackGetEventByEndingDate
+   */
+
+  static findFinish(finish, callbackGetEventByEndingDate) {
+    const sqlQuery = 'SELECT * FROM event WHERE date_end = ?';
+
+    DBConnect.query(
+      sqlQuery,
+      finish,
+      (error, result) => {
+
+       if(error) {
+
+        callbackGetEventByEndingDate({
+          error: true,
+          errorMessage: error,
+        });
+       } else {
+
+        callbackGetEventByEndingDate({
+          error: false,
+          errorMessage: null,
+          rowMatch: result.length > 0,
+          data: result,
+        });
        }
       }
     )
