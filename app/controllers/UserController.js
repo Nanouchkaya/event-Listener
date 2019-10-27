@@ -45,7 +45,8 @@ class UserController {
 
           response.status(200);
           response.json({
-            status: "Email already exists",
+            error: true,
+            errorMessage: "Email already exists",
           });
         }
       });
@@ -53,7 +54,8 @@ class UserController {
     } else {
       response.status(200);
       response.json({
-        status: "Bad data received",
+        error: true,
+        errorMessage: "Bad data received",
       });
     }
   }

@@ -15,6 +15,12 @@ server.use(session({
 }));
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({extended: true}));
+server.use((request, response, next) => {
+  response.header('Access-Control-Allow-Origin', '*');
+  response.header('Access-Control-Allow-Credentials', true);
+  response.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+})
 server.use(router);
 
 App(server, router);
