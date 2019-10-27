@@ -60,6 +60,7 @@ export const activeNavMenu = () => ({
 
 // Home : QuickSearchBar.js
 // Events : Form.js
+// Changer le nom de des fonctions et du type ne fonctionne pas, voir si je ne peux pas envoyer dynamiquement le type //
 export const handleChange = (value) => ({
   type: { HANDLE_CHANGE_QSB, HANDLE_CHANGE_FORM },
   value,
