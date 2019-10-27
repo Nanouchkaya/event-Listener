@@ -79,6 +79,13 @@ module.exports = (server, router) => {
     EventController.getEventByEndingDate(request, response);
   });
 
+  /**
+   * Get event by Date
+   */
+  router.get('/events/date/:date', (request, response) => {
+    EventController.getEventByDate(request, response);
+  });
+
   // User //
 
   /**

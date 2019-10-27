@@ -226,7 +226,7 @@ class EventController {
     
   }
 
-   /**
+  /**
    * Find and get Event by Ending Date
    * @param {object} request
    * @param {object} response
@@ -237,6 +237,33 @@ class EventController {
 
       Event.findFinish(
         finish,
+        (result) => {
+
+          if(result.rowMatch) {
+            response.json({
+              status: "success",
+              result,
+            });
+          } else {
+            response.json({
+              status: "Event doesn't exist",
+            });
+          }
+          });
+    
+  }
+
+  /**
+   * Find and get Event by Date
+   * @param {object} request
+   * @param {object} response
+   */
+
+  static getEventByDate(request, response) {
+    const { date } = request.params;
+
+      Event.findDate(
+        date,
         (result) => {
 
           if(result.rowMatch) {
