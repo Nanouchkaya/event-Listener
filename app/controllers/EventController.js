@@ -260,10 +260,11 @@ class EventController {
    */
 
   static getEventByDate(request, response) {
-    const { date } = request.params;
+    const { start, finish } = request.params;
 
       Event.findDate(
-        date,
+        start, 
+        finish,
         (result) => {
 
           if(result.rowMatch) {

@@ -300,16 +300,17 @@ class Event {
 
   /**
    * Find Event by date
-   * @param {string} date
+   * @param {string} start
+   * @param {string} finish 
    * @param {callback} callbackGetEventByDate
    */
 
-  static findDate(date, callbackGetEventByDate) {
+  static findDate(start, finish, callbackGetEventByDate) {
     const sqlQuery = 'SELECT * FROM event WHERE date_start = ? AND date_end = ?';
 
     DBConnect.query(
       sqlQuery,
-      [date, date],
+     [ start, finish],
       (error, result) => {
 
        if(error) {

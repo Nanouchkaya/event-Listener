@@ -82,7 +82,7 @@ module.exports = (server, router) => {
   /**
    * Get event by Date
    */
-  router.get('/events/date/:date', (request, response) => {
+  router.get('/events/date/:start/:finish', (request, response) => {
     EventController.getEventByDate(request, response);
   });
 
