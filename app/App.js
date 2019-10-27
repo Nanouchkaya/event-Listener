@@ -65,6 +65,12 @@ module.exports = (server, router) => {
     EventController.getEventByTags(request, response);
   });
 
+  /**
+   * Get event by Starting Date
+   */
+  router.get('/events/datestart/:start', (request, response) => {
+    EventController.getEventByStartingDate(request, response);
+  });
 
   // User //
 

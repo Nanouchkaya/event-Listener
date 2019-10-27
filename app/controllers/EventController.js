@@ -198,6 +198,33 @@ class EventController {
         });
     
   }
+
+  /**
+   * Find and get Event by Starting Date
+   * @param {object} request
+   * @param {object} response
+   */
+
+  static getEventByStartingDate(request, response) {
+    const { start } = request.params;
+
+      Event.findStart(
+        start,
+        (result) => {
+
+         if(result.rowMatch) {
+           response.json({
+             status: "success",
+             result,
+           });
+         } else {
+           response.json({
+             status: "Event doesn't exist",
+           });
+         }
+        });
+    
+  }
 };
 
 module.exports = EventController;

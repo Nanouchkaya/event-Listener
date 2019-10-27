@@ -231,6 +231,39 @@ class Event {
       }
     )
   }
+
+  /**
+   * Find Event by title
+   * @param {string} start
+   * @param {callback} callbackGetEventByStartingDate
+   */
+
+  static findStart(start, callbackGetEventByStartingDate) {
+    const sqlQuery = 'SELECT * FROM event WHERE date_start = ?';
+
+    DBConnect.query(
+      sqlQuery,
+      start,
+      (error, result) => {
+
+       if(error) {
+
+         callbackGetEventByStartingDate({
+           error: true,
+           errorMessage: error,
+         });
+       } else {
+
+         callbackGetEventByStartingDate({
+           error: false,
+           errorMessage: null,
+           rowMatch: result.length > 0,
+           data: result,
+         });
+       }
+      }
+    )
+  }
 };
 
 module.exports = Event;
