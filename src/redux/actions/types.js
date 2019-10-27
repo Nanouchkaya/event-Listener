@@ -27,8 +27,13 @@ export const HANDLE_CHANGE = 'HANDLE_CHANGE';
 
 
 // Events : Form.js
+// Modal : RegisterForm.js
 export const HANDLE_SUBMIT = 'HANDLE_SUBMIT';
 
 
 // EventDetails : CheckButtons.js
 export const SWITCH_MODALS = 'SWITCH_MODALS';
+
+// Modal : RegisterForm.js
+export const SUBMIT_REGISTER = 'SUBMIT_REGISTER';
+export const EMPTY_FIELDS = 'EMPTY_FIELDS';

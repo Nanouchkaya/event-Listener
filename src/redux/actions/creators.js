@@ -12,6 +12,8 @@ import {
   HANDLE_CHANGE,
   HANDLE_SUBMIT,
   SWITCH_MODALS,
+  SUBMIT_REGISTER,
+  EMPTY_FIELDS,
 } from './types';
 
 // == Import : Action Creators
@@ -65,6 +67,7 @@ export const handleChange = (value) => ({
 
 
 // == Events : Form.js
+// == Modal : RegisterForm.js
 export const handleSubmit = () => ({
   type: HANDLE_SUBMIT,
 });
@@ -73,4 +76,12 @@ export const handleSubmit = () => ({
 // == EventDetails : CheckButtons.js
 export const switchModals = () => ({
   type: SWITCH_MODALS,
+});
+
+// == Modal : RegisterForm.js
+export const submitRegister = () => ({
+  type: SUBMIT_REGISTER,
+});
+export const toEmptyFields = () => ({
+  type: EMPTY_FIELDS,
 });

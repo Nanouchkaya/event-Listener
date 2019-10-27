@@ -8,8 +8,8 @@ import { NavLink, Route } from 'react-router-dom';
 // == Import : local
 import '../Modal/modal.scss';
 import QuickSearchBar from 'src/redux/containers/Home/QuickSearchBar';
+import RegisterForm from 'src/redux/containers/Modal/RegisterForm';
 import LoginForm from '../Modal/LoginForm';
-import RegisterForm from '../Modal/RegisterForm';
 
 
 // == Composant Nav
@@ -44,7 +44,8 @@ const Nav = ({
         </Route>
       </div>
 
-      {/* Au click sur l'icon du menu burger, la props "menuBurger" passe à "true" et donc la propriété CSS change ET l'icone change également */}
+      {/* Au click sur l'icon du menu burger, la props "menuBurger" passe à "true" et
+          donc la propriété CSS change ET l'icone change également */}
       <img
         src={menuIcon}
         alt="Menu"
