@@ -12,7 +12,7 @@ const QuickSearchBar = ({
     <input
       type="search"
       className="searchbar-input"
-      placeholder="Search event..."
+      placeholder="Recherche..."
       value={value}
       /* Récupération de la valeur entrée dans l'input */
       onChange={(event) => handleChange(event.target.value)}

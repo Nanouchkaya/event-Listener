@@ -9,7 +9,8 @@ import {
   CHANGE_EDITOR_MODE,
   OPEN_NAV_MODAL,
   ACTIVE_NAV_MENU,
-  HANDLE_CHANGE,
+  HANDLE_CHANGE_QSB,
+  HANDLE_CHANGE_FORM,
   HANDLE_SUBMIT,
   SWITCH_MODALS,
   SHOW_ADVANCED_FORM,
@@ -60,7 +61,7 @@ export const activeNavMenu = () => ({
 // Home : QuickSearchBar.js
 // Events : Form.js
 export const handleChange = (value) => ({
-  type: HANDLE_CHANGE,
+  type: { HANDLE_CHANGE_QSB, HANDLE_CHANGE_FORM },
   value,
 });
 
