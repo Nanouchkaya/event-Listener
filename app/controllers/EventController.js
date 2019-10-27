@@ -144,6 +144,33 @@ class EventController {
         });
     
   }
+
+     /**
+   * Find and get Event by localisation
+   * @param {object} request
+   * @param {object} response
+   */
+
+  static getEventByTags(request, response) {
+    const { tag } = request.params;
+
+      Event.findTags(
+        tag,
+        (result) => {
+
+         if(result.rowMatch) {
+           response.json({
+             status: "success",
+             result,
+           });
+         } else {
+           response.json({
+             status: "Event doesn't exist",
+           });
+         }
+        });
+    
+  }
 };
 
 module.exports = EventController;

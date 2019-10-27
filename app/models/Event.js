@@ -163,6 +163,40 @@ class Event {
       }
     )
   }
+
+   /**
+   * Find Event by tags
+   * @param {string} tags
+   * @param {callback} callbackGetEventByTags
+   */
+
+  static findTags(tag, callbackGetEventByTags) {
+    tag = '%' + tag + '%';
+    const sqlQuery = 'SELECT * FROM event JOIN tag JOIN has ON tag.id = tag_id AND event.id = event_id WHERE tag.name LIKE N?';
+
+    DBConnect.query(
+      sqlQuery,
+      tag,
+      (error, result) => {
+
+       if(error) {
+
+         callbackGetEventByTags({
+           error: true,
+           errorMessage: error,
+         });
+       } else {
+
+         callbackGetEventByTags({
+           error: false,
+           errorMessage: null,
+           rowMatch: result.length > 0,
+           data: result,
+         });
+       }
+      }
+    )
+  }
 };
 
 module.exports = Event;

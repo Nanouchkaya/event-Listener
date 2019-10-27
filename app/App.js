@@ -51,6 +51,13 @@ module.exports = (server, router) => {
     EventController.getEventByLocalisation(request, response);
   });
 
+  /**
+   * Get event by tags
+   */
+  router.get('/events/tags/:tag', (request, response) => {
+    EventController.getEventByTags(request, response);
+  });
+
 
   // User //
 
