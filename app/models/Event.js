@@ -197,6 +197,40 @@ class Event {
       }
     )
   }
+
+     /**
+   * Find Event by title
+   * @param {string} name
+   * @param {callback} callbackGetEventByTitle
+   */
+
+  static findTitle(name, callbackGetEventByTitle) {
+    name = '%' + name + '%';
+    const sqlQuery = 'SELECT * FROM event WHERE event.title LIKE N?';
+
+    DBConnect.query(
+      sqlQuery,
+      name,
+      (error, result) => {
+
+       if(error) {
+
+         callbackGetEventByTitle({
+           error: true,
+           errorMessage: error,
+         });
+       } else {
+
+         callbackGetEventByTitle({
+           error: false,
+           errorMessage: null,
+           rowMatch: result.length > 0,
+           data: result,
+         });
+       }
+      }
+    )
+  }
 };
 
 module.exports = Event;

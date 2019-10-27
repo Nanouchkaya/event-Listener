@@ -30,6 +30,13 @@ module.exports = (server, router) => {
     EventController.getEvent(request, response);
   });
 
+   /**
+   * Get event by Title
+   */
+  router.get('/events/title/:name', (request, response) => {
+    EventController.getEventByTitle(request, response);
+  });
+
   /**
    * Get event  by price
    */

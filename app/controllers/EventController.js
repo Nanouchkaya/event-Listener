@@ -145,7 +145,7 @@ class EventController {
     
   }
 
-     /**
+  /**
    * Find and get Event by localisation
    * @param {object} request
    * @param {object} response
@@ -156,6 +156,33 @@ class EventController {
 
       Event.findTags(
         tag,
+        (result) => {
+
+         if(result.rowMatch) {
+           response.json({
+             status: "success",
+             result,
+           });
+         } else {
+           response.json({
+             status: "Event doesn't exist",
+           });
+         }
+        });
+    
+  }
+
+  /**
+   * Find and get Event by Title
+   * @param {object} request
+   * @param {object} response
+   */
+
+  static getEventByTitle(request, response) {
+    const { name } = request.params;
+
+      Event.findTitle(
+        name,
         (result) => {
 
          if(result.rowMatch) {
