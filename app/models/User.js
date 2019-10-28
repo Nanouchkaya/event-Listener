@@ -51,7 +51,7 @@ class User {
 
                 callbackToAdd({
                   error: false,
-                  errorMessage: null,
+                  successMessage: 'L\'inscription cest bien déroulé, vous pouvez désormais vous connecter.',
                   data: {
                     newId: resultInsertUser.insertId,
                   },

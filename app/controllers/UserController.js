@@ -18,48 +18,72 @@ class UserController {
   static add(request, response) {
     const data = request.body;
 
+    let errors = [];
+
     // check if all fields are correct
-    if ((data.pseudo && data.pseudo.trim().length > 2) &&
-      (data.email && data.email.trim().length > 8) &&
-      (checkEmail(data.email)) &&
-      (data.password && data.password.trim().length > 6) &&
-      (data.confirmPassword === data.password) &&
-      (typeof data.notifNewEvent === 'boolean') &&
-      (typeof data.notifNewUpdate === 'boolean')) {
+    if (!(data.pseudo.trim() < 1) &&
+        !(data.email.trim() < 1) &&
+        !(data.password.trim() < 1) &&
+        !(data.confirmPassword.trim() < 1) &&
+        !(typeof data.notifNewEvent === 'boolean') &&
+        !(typeof data.notifNewUpdate === 'boolean')) {
+
+      errors.push('Tous les champs ne sont pas remplis');
+    } else {
+
+      if (!(checkEmail(data.email))) {
+        
+        errors.push('L\'adresse email n\'est pas correct');
+      }
+
+      if (data.pseudo.trim().length < 4) {
+        errors.push('Le pseudo doit contenir au minimum 4 caractères');
+      }
+
+      if (data.password.trim().length < 6) {
+        errors.push('Le mot de passe doit contenir au minimum 6 caractères');
+      }
+      if (data.password.trim() !== data.confirmPassword.trim()) {
+        errors.push('Les mots de passe ne correspondent pas');
+      }
+    }
+
+    if (errors.length < 1) {
       
       User.checkUserByEmail(data.email, (result) => {
         // Check if user doesn't exist
         if (!result.rowMatch) {
-
+  
           // Hash the password (use dep bcrypt)
           data.password = bcrypt.hashSync(data.password, 10);
           
           User.create(
             data,
             (result) => {
-
+  
             response.status(200);
             response.json(result);
           });
         } else {
-
+  
+          errors.push('L\'email est déjà utilisé');
+        
           response.status(200);
           response.json({
             error: true,
-            errorMessage: "Email already exists",
+            errorMessages: errors,
           });
         }
       });
-
     } else {
+  
       response.status(200);
       response.json({
         error: true,
-        errorMessage: "Bad data received",
+        errorMessages: errors,
       });
     }
   }
-
   /**
    * Connection
    * @param {object} request
@@ -162,7 +186,7 @@ class UserController {
   /**
    * Find and get specific user
    * @param {object} request
-   * @param {objet} response
+   * @param {object} response
    */
   static getUser(request, response) {
     const { userId } = request.params;
@@ -199,7 +223,7 @@ class UserController {
   /**
     * Delete specific user
     * @param {object} request
-    * @param {objet} response
+    * @param {object} response
     */
    static deleteAccount(request, response) {
     const { userId } = request.params;
