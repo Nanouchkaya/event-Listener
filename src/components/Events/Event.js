@@ -1,14 +1,12 @@
 // == Import : npm
 import React from 'react';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
 
 // == Import : local
-import image from 'src/assets/images/test_evt.png';
 import iconPlus from 'src/assets/images/icons/icons8-plus-50.png';
 
-
-// == CSS
 
 // == Composant Event
 const Event = (props) => {
@@ -33,9 +31,6 @@ const Event = (props) => {
       </div>
       <div className="menu-item-middle">
         <h3 className="menu-item-middle-title">{title}</h3>
-        {/* <p className="menu-item-middle-content">
-          Petit texte de contenu
-        </p> */}
         <NavLink to="/evenements/1">
           <img src={iconPlus} alt="plus" className="icon" />
         </NavLink>
@@ -49,5 +44,11 @@ const Event = (props) => {
 };
 
 
+Event.propTypes = {
+  title: PropTypes.string.isRequired,
+  url_image: PropTypes.string.isRequired,
+  address: PropTypes.string.isRequired,
+  date_start: PropTypes.string.isRequired,
+};
 // == Export
 export default Event;
