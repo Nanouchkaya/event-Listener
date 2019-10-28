@@ -15,6 +15,8 @@ import {
   HANDLE_SUBMIT,
   SWITCH_MODALS,
   SHOW_ADVANCED_FORM,
+  TRIGGER_MIDDLEWARE,
+  FETCH_NAME_REQUEST_DATA,
 } from './types';
 
 // == Import : Action Creators
@@ -79,6 +81,13 @@ export const handleSubmit = () => ({
 });
 export const showAdvancedForm = () => ({
   type: SHOW_ADVANCED_FORM,
+});
+export const triggerMiddleware = () => ({
+  type: TRIGGER_MIDDLEWARE,
+});
+export const fetchNameRequestData = (data) => ({
+  type: FETCH_NAME_REQUEST_DATA,
+  data,
 });
 
 

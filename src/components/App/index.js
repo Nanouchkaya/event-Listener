@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 
 // == Import : local
 import './app.scss';
+import Events from 'src/redux/containers/Events';
 import User from 'src/components/User';
 import Home from 'src/components/Home';
 import EventDetails from 'src/components/EventDetails';
@@ -12,7 +13,6 @@ import PrivatePolicy from 'src/components/PrivatePolicy';
 import Errors from 'src/components/Errors';
 import Nav from 'src/redux/containers/App/Nav';
 import Footer from './Footer';
-import Events from '../Events';
 
 // == Composant
 const App = () => (

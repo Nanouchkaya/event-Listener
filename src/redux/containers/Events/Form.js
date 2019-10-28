@@ -11,12 +11,14 @@ import {
   handleFormChange,
   handleSubmit,
   showAdvancedForm,
+  triggerMiddleware,
 } from '../../actions/creators';
 
 
 const mapStateToProps = (state) => ({
   value: state.form.value,
   advanced: state.form.advanced,
+  data: state.form.data,
 });
 
 
@@ -24,6 +26,7 @@ const mapDispatchToProps = (dispatch) => ({
   handleFormChange: (value) => dispatch(handleFormChange(value)),
   handleSubmit: () => dispatch(handleSubmit()),
   showAdvancedForm: () => dispatch(showAdvancedForm()),
+  triggerMiddleware: () => dispatch(triggerMiddleware()),
 });
 
 

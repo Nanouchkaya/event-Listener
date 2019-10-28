@@ -14,10 +14,16 @@ const Form = ({
   showAdvancedForm,
   value,
   advanced,
+  triggerMiddleware,
+  data,
 }) => {
   const _onSubmit = (event) => {
     event.preventDefault();
     handleSubmit();
+  };
+  const _onChange = (event) => {
+    handleFormChange(event.target.value);
+    triggerMiddleware();
   };
 
   return (
@@ -29,7 +35,7 @@ const Form = ({
           className="form-input"
           placeholder="Que recherchez-vous ?"
           value={value}
-          onChange={(event) => handleFormChange(event.target.value)}
+          onChange={_onChange}
         />
         <h3 onClick={showAdvancedForm}>Recherche avancée</h3>
         { advanced && <Advanced /> }
@@ -46,6 +52,8 @@ Form.propTypes = {
   showAdvancedForm: PropTypes.func.isRequired,
   advanced: PropTypes.bool.isRequired,
   value: PropTypes.string,
+  triggerMiddleware: PropTypes.func.isRequired,
+  data: PropTypes.array.isRequired,
 };
 Form.defaultProps = {
   value: '',
