@@ -4,6 +4,7 @@ import axios from 'axios';
 // == Import :  Action Types
 import {
   TRIGGER_MIDDLEWARE,
+  ALL_EVENTS,
 } from '../actions/types';
 
 
@@ -25,6 +26,15 @@ const eventsMiddleware = (store) => (next) => (action) => {
         .catch((error) => {
           console.log('from middleware:', error);
         });
+      break;
+    }
+    case ALL_EVENTS: {
+      axios.get('http://localhost:3000/events')
+        .then((response) => {
+          const { data } = response.data;
+          store.dispatch(fetchNameRequestData(data));
+        })
+        .catch((error) => console.log('from middelware:', error));
       break;
     }
     default:

@@ -7,7 +7,9 @@ import Events from 'src/components/Events';
 
 
 // == Import : Action Creators
-import {} from '../../actions/creators';
+import {
+  allEvents,
+} from '../../actions/creators';
 
 
 const mapStateToProps = (state) => ({
@@ -16,7 +18,9 @@ const mapStateToProps = (state) => ({
 });
 
 
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch) => ({
+  showEvents: () => dispatch(allEvents()),
+});
 
 
 // == Export

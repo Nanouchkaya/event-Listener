@@ -17,6 +17,7 @@ import {
   SHOW_ADVANCED_FORM,
   TRIGGER_MIDDLEWARE,
   FETCH_NAME_REQUEST_DATA,
+  ALL_EVENTS,
 } from './types';
 
 // == Import : Action Creators
@@ -82,6 +83,7 @@ export const handleSubmit = () => ({
 export const showAdvancedForm = () => ({
   type: SHOW_ADVANCED_FORM,
 });
+// Events Middlewares
 export const triggerMiddleware = () => ({
   type: TRIGGER_MIDDLEWARE,
 });
@@ -89,7 +91,9 @@ export const fetchNameRequestData = (data) => ({
   type: FETCH_NAME_REQUEST_DATA,
   data,
 });
-
+export const allEvents = () => ({
+  type: ALL_EVENTS,
+});
 
 // == EventDetails : CheckButtons.js
 export const switchModals = () => ({
