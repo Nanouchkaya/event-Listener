@@ -28,9 +28,6 @@ const Events = ({
           Tous les événements
         </h2>
         <Form />
-        {/* <h2 className="events-title">
-          Octobre
-        </h2> */}
         {data.map((event) => <Event key={event.id} {...event} />)}
       </section>
     </>

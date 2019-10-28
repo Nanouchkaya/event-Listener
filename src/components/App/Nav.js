@@ -8,8 +8,8 @@ import { NavLink, Route } from 'react-router-dom';
 // == Import : local
 import '../Modal/modal.scss';
 import QuickSearchBar from 'src/redux/containers/Home/QuickSearchBar';
-import LoginForm from '../Modal/LoginForm';
 import RegisterForm from '../Modal/RegisterForm';
+import LoginForm from '../Modal/LoginForm';
 
 
 // == Composant Nav
