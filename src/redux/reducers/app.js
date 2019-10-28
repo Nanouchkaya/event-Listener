@@ -1,38 +1,100 @@
-// Gestion dde l'icon du menu Burger sur App > Nav.js
-import iconMenuBurger from 'src/assets/images/icons/icons8-xbox-menu-50.png';
-import cancelIcon from 'src/assets/images/icons/icons8-cancel-50.png';
-
 import {
   OPEN_NAV_MODAL,
   ACTIVE_NAV_MENU,
+  CHANGE_INPUT_VALUE_IN_MODAL,
+  CHANGE_CHECK_VALUE_IN_MODAL,
+  EMPTY_FIELDS_REGISTER,
+  SHOW_MESSAGE_REGISTER,
 } from '../actions/types';
 
 const initialState = {
   menuBurger: false,
-  menuIcon: iconMenuBurger,
   login: false,
   register: false,
-  cancelIcon,
+  loginContent: {
+    email: '',
+    password: '',
+    message: {
+      error: false,
+      content: null,
+    },
+  },
+  registerContent: {
+    pseudo: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    notifNewEvent: false,
+    notifNewUpdate: false,
+    message: {
+      error: false,
+      success: false,
+      content: null,
+    },
+  },
 };
 
 export const app = (state = initialState, action = {}) => {
   switch (action.type) {
-    case OPEN_NAV_MODAL:
+    case OPEN_NAV_MODAL: {
       return {
         ...state,
+        loginContent: {
+          ...initialState.loginContent,
+        },
+        registerContent: {
+          ...initialState.registerContent,
+        },
         [action.name]: !state[action.name],
       };
+    }
     case ACTIVE_NAV_MENU: {
-      const bool = !state.menuBurger;
-      const icon = bool ? cancelIcon : iconMenuBurger;
       return {
         ...state,
-        menuBurger: bool,
-        menuIcon: icon,
+        menuBurger: !state.menuBurger,
         login: false,
         register: false,
       };
     }
+    case CHANGE_INPUT_VALUE_IN_MODAL:
+      return {
+        ...state,
+        [`${action.modalName}Content`]: {
+          ...state[`${action.modalName}Content`],
+          [action.inputName]: action.value,
+        },
+      };
+    case CHANGE_CHECK_VALUE_IN_MODAL: {
+      return {
+        ...state,
+        [`${action.modalName}Content`]: {
+          ...state[`${action.modalName}Content`],
+          [action.checkName]: !state[`${action.modalName}Content`][action.checkName],
+        },
+      };
+    }
+    case EMPTY_FIELDS_REGISTER:
+      return {
+        ...state,
+        registerContent: {
+          ...state.registerContent,
+          message: {
+            ...initialState.registerContent.message,
+          },
+        },
+      };
+    case SHOW_MESSAGE_REGISTER:
+      return {
+        ...state,
+        registerContent: {
+          ...state.registerContent,
+          message: {
+            ...state.registerContent.message,
+            [action.messageType]: true,
+            content: action.messageContent,
+          },
+        },
+      };
     default:
       return state;
   }

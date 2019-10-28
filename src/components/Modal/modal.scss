@@ -39,6 +39,21 @@
   }
 
   &-form {
+    &-message {
+      padding: 1rem;
+      border-radius: 5px;
+      
+      &--success {
+        background: #59a858;
+      }
+      &--error {
+        background: #c05d5d;
+      }
+      & p {
+        text-align: left;
+      }
+    }
+    
     &-element, &--submit {
       @include form-element;
 

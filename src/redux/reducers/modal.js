@@ -2,6 +2,7 @@ import {
   CHANGE_INPUT_VALUE,
   CHANGE_CHECK_INPUT_VALUE,
   EMPTY_FIELDS,
+  SHOW_MESSAGE,
 } from '../actions/types';
 
 const initialState = {
@@ -11,6 +12,11 @@ const initialState = {
   confirmPassword: '',
   notifNewEvent: false,
   notifNewUpdate: false,
+  message: {
+    error: false,
+    success: false,
+    content: null,
+  },
 };
 
 export const registerForm = (state = initialState, action = {}) => {
@@ -28,6 +34,15 @@ export const registerForm = (state = initialState, action = {}) => {
     case EMPTY_FIELDS:
       return {
         ...initialState,
+      };
+    case SHOW_MESSAGE:
+      return {
+        ...state,
+        message: {
+          ...state.message,
+          [action.messageType]: true,
+          content: action.messageContent,
+        },
       };
     default:
       return state;

@@ -4,11 +4,9 @@ import Proptypes from 'prop-types';
 
 
 // == Composant LoginForm
-const LoginForm = ({ handleclose, show, switchModals }) => {
-  /* Affichade conditionnel de la modal */
-  const showHideClassName = show ? 'modal display-block' : 'modal display-none';
+const LoginForm = ({ handleclose, switchModals }) => {
   return (
-    <div className={showHideClassName}>
+    <div className="modal display-block">
       <section className="modal-main">
         <h2 className="modal-title">Connexion</h2>
         <form className="modal-form">
@@ -56,7 +54,6 @@ const LoginForm = ({ handleclose, show, switchModals }) => {
 // == PropTypes
 LoginForm.propTypes = {
   handleclose: Proptypes.func.isRequired,
-  show: Proptypes.bool.isRequired,
   switchModals: Proptypes.bool.isRequired,
 };
 

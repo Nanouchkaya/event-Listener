@@ -6,7 +6,6 @@ import { user } from './user';
 import { app } from './app';
 import { home } from './home';
 import { form } from './events';
-import { registerForm } from './modal';
 
 export default combineReducers({
   eventIcons,
@@ -15,6 +14,4 @@ export default combineReducers({
   home,
   form,
   switchModals,
-  registerForm,
-  // ...
 });

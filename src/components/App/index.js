@@ -17,6 +17,7 @@ import Events from '../Events';
 // == Composant
 const App = () => (
   <div id="wrapper">
+    
     <Nav />
     <Switch>
       <Route exact path="/">

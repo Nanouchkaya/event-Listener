@@ -12,8 +12,11 @@ import {
   HANDLE_CHANGE,
   HANDLE_SUBMIT,
   SWITCH_MODALS,
+  CHANGE_INPUT_VALUE_IN_MODAL,
+  CHANGE_CHECK_VALUE_IN_MODAL,
   SUBMIT_REGISTER,
-  EMPTY_FIELDS,
+  EMPTY_FIELDS_REGISTER,
+  SHOW_MESSAGE_REGISTER,
 } from './types';
 
 // == Import : Action Creators
@@ -56,6 +59,28 @@ export const openNavModal = (name) => ({
 export const activeNavMenu = () => ({
   type: ACTIVE_NAV_MENU,
 });
+export const submitRegister = () => ({
+  type: SUBMIT_REGISTER,
+});
+export const emptyFieldsRegister = () => ({
+  type: EMPTY_FIELDS_REGISTER,
+});
+export const showMessageRegister = (messageType, messageContent) => ({
+  type: SHOW_MESSAGE_REGISTER,
+  messageType,
+  messageContent,
+});
+export const changeInputValueInModal = (modalName, inputName, value) => ({
+  type: CHANGE_INPUT_VALUE_IN_MODAL,
+  modalName,
+  inputName,
+  value,
+});
+export const changeCheckValueInModal = (modalName, checkName) => ({
+  type: CHANGE_CHECK_VALUE_IN_MODAL,
+  modalName,
+  checkName,
+});
 
 
 // Home : QuickSearchBar.js
@@ -76,12 +101,4 @@ export const handleSubmit = () => ({
 // == EventDetails : CheckButtons.js
 export const switchModals = () => ({
   type: SWITCH_MODALS,
-});
-
-// == Modal : RegisterForm.js
-export const submitRegister = () => ({
-  type: SUBMIT_REGISTER,
-});
-export const toEmptyFields = () => ({
-  type: EMPTY_FIELDS,
 });

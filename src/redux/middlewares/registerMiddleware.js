@@ -5,7 +5,8 @@ import {
 } from '../actions/types';
 
 import {
-  toEmptyFields,
+  emptyFieldsRegister,
+  showMessageRegister,
 } from '../actions/creators';
 
 const registerMiddleware = (store) => (next) => (action) => {
@@ -16,13 +17,15 @@ const registerMiddleware = (store) => (next) => (action) => {
       const state = store.getState();
 
       const {
-        registerForm: {
-          pseudo,
-          email,
-          password,
-          confirmPassword,
-          notifNewEvent,
-          notifNewUpdate,
+        app: {
+          registerContent: {
+            pseudo,
+            email,
+            password,
+            confirmPassword,
+            notifNewEvent,
+            notifNewUpdate,
+          },
         },
       } = state;
 
@@ -36,8 +39,13 @@ const registerMiddleware = (store) => (next) => (action) => {
           notifNewUpdate,
         })
         .then((response) => {
+
           if (!response.data.error) {
-            store.dispatch(toEmptyFields());
+            store.dispatch(emptyFieldsRegister());
+            store.dispatch(showMessageRegister('success', response.data.successMessage));
+          }
+          else {
+            store.dispatch(showMessageRegister('error', response.data.errorMessages));
           }
         })
         .catch((error) => {

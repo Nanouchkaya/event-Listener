@@ -6,7 +6,6 @@ import Proptypes from 'prop-types';
 // == Composant RegisterForm
 const RegisterForm = ({
   handleclose,
-  show,
   switchModals,
   pseudo,
   email,
@@ -17,10 +16,8 @@ const RegisterForm = ({
   changeValue,
   changeCheckInputValue,
   submitRegister,
+  message,
 }) => {
-  /* Affichage conditionnel de la modal */
-  const showHideClassName = show ? 'modal display-block' : 'modal display-none';
-
   const handleChangeValue = (event) => {
     const { name, value } = event.target;
 
@@ -39,74 +36,88 @@ const RegisterForm = ({
   };
 
   return (
-    <div className={showHideClassName}>
+    <div className="modal display-block">
       <section className="modal-main">
         <h2 className="modal-title">Inscription</h2>
-        <form className="modal-form" onSubmit={handleSubmit}>
-          <input
-            className="modal-form-element"
-            required
-            name="pseudo"
-            value={pseudo}
-            onChange={handleChangeValue}
-            placeholder="Pseudo*"
-            type="text"
-          />
-          <input
-            className="modal-form-element"
-            required
-            name="email"
-            value={email}
-            onChange={handleChangeValue}
-            placeholder="Adresse email*"
-            type="email"
-          />
-          <input
-            className="modal-form-element"
-            required
-            name="password"
-            value={password}
-            onChange={handleChangeValue}
-            placeholder="Mot de passe*"
-            type="password"
-          />
-          <input
-            className="modal-form-element"
-            required
-            name="confirmPassword"
-            value={confirmPassword}
-            onChange={handleChangeValue}
-            placeholder="Confirmer mot de passe *"
-            type="password"
-          />
-          <label className="modal-form-label">
+        { !message.success && (
+          <form className="modal-form" onSubmit={handleSubmit}>
             <input
-              type="checkbox"
-              name="notifNewEvent"
-              checked={notifNewEvent}
-              onChange={handleCheckInputValue}
-              className="modal-checkbox"
+              className="modal-form-element"
+              required
+              name="pseudo"
+              value={pseudo}
+              onChange={handleChangeValue}
+              placeholder="Pseudo * (Minimum 4 caractères)"
+              type="text"
             />
-            Recevoir un email pour chaque nouveau événement
-          </label>
+            <input
+              className="modal-form-element"
+              required
+              name="email"
+              value={email}
+              onChange={handleChangeValue}
+              placeholder="Adresse email *"
+              type="email"
+            />
+            <input
+              className="modal-form-element"
+              required
+              name="password"
+              value={password}
+              onChange={handleChangeValue}
+              placeholder="Mot de passe * (Minimum 7 caractères)"
+              type="password"
+            />
+            <input
+              className="modal-form-element"
+              required
+              name="confirmPassword"
+              value={confirmPassword}
+              onChange={handleChangeValue}
+              placeholder="Confirmer mot de passe *"
+              type="password"
+            />
+            <label className="modal-form-label">
+              <input
+                type="checkbox"
+                name="notifNewEvent"
+                checked={notifNewEvent}
+                onChange={handleCheckInputValue}
+                className="modal-checkbox"
+              />
+              Recevoir un email pour chaque nouveau événement
+            </label>
 
-          <label className="modal-form-label">
-            <input
-              type="checkbox"
-              name="notifNewUpdate"
-              checked={notifNewUpdate}
-              onChange={handleCheckInputValue}
-              className="modal-checkbox"
-            />
-            Recevoir un email à la modification d'un événement
-          </label>
-          <button
-            className="modal-form--submit"
-            type="submit"
-          >
-            Créer le compte
-          </button>
-        </form>
+            <label className="modal-form-label">
+              <input
+                type="checkbox"
+                name="notifNewUpdate"
+                checked={notifNewUpdate}
+                onChange={handleCheckInputValue}
+                className="modal-checkbox"
+              />
+              Recevoir un email à la modification d'un événement
+            </label>
+            { message.error && (
+              <div className="modal-form-message modal-form-message--error">
+                { message.content.map((currentMessage) => (
+                  <p key={currentMessage}>{currentMessage}</p>
+                )) }
+              </div>
+            ) }
+            <button
+              className="modal-form--submit"
+              type="submit"
+            >
+              Créer le compte
+            </button>
+          </form>
+        ) }
+        { message.success && (
+          <div className="modal-form-message modal-form-message--success">
+            {message.content}
+          </div>
+        ) }
         { switchModals && <a href="#">Déja inscrit-e ?</a>}
         {/* Fermeture de la modal au click */}
         <a
@@ -120,10 +131,10 @@ const RegisterForm = ({
     </div>
   );
 };
+
 // == PropTypes
 RegisterForm.propTypes = {
   handleclose: Proptypes.func.isRequired,
-  show: Proptypes.bool.isRequired,
   switchModals: Proptypes.bool.isRequired,
   pseudo: Proptypes.string.isRequired,
   email: Proptypes.string.isRequired,
@@ -134,6 +145,20 @@ RegisterForm.propTypes = {
   changeValue: Proptypes.func.isRequired,
   changeCheckInputValue: Proptypes.func.isRequired,
   submitRegister: Proptypes.func.isRequired,
+  message: Proptypes.shape({
+    error: Proptypes.bool,
+    success: Proptypes.bool,
+    content: Proptypes.array,
+  }),
 };
+
+RegisterForm.defaultProps = {
+  message: {
+    error: false,
+    success: false,
+    content: null,
+  },
+};
+
 // == Export
 export default RegisterForm;
