@@ -11,6 +11,7 @@ import {
   ACTIVE_NAV_MENU,
   HANDLE_FORM_CHANGE,
   HANDLE_SEARCH_CHANGE,
+  HANDLE_SEARCH_SUBMIT,
   HANDLE_SUBMIT,
   SWITCH_MODALS,
   SHOW_ADVANCED_FORM,
@@ -63,6 +64,9 @@ export const handleSearchChange = (value) => ({
   type: HANDLE_SEARCH_CHANGE,
   value,
 });
+export const handleSearchSubmit = () => ({
+  type: HANDLE_SEARCH_SUBMIT,
+});
 
 
 // Events : Form.js
@@ -70,9 +74,6 @@ export const handleFormChange = (value) => ({
   type: HANDLE_FORM_CHANGE,
   value,
 });
-
-
-// == Events : Form.js
 export const handleSubmit = () => ({
   type: HANDLE_SUBMIT,
 });

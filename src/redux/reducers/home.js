@@ -1,5 +1,6 @@
 import {
   HANDLE_SEARCH_CHANGE,
+  HANDLE_SEARCH_SUBMIT,
 } from '../actions/types';
 
 const initialState = {
@@ -12,6 +13,11 @@ export const home = (state = initialState, action = {}) => {
       return {
         ...state,
         value: action.value,
+      };
+    case HANDLE_SEARCH_SUBMIT:
+      return {
+        ...state,
+        value: '',
       };
     default:
       return state;
