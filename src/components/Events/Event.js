@@ -9,15 +9,6 @@ import iconPlus from 'src/assets/images/icons/icons8-plus-50.png';
 
 
 // == CSS
-const style = (image) => {
-  const bannerStyle = {
-    backgroundImage: `url(${image})`,
-    backgroundPosition: 'center',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-  };
-};
-
 
 // == Composant Event
 const Event = (props) => {
@@ -29,7 +20,15 @@ const Event = (props) => {
   } = props;
   return (
     <div className="menu-item list">
-      <div className="menu-item-top" style={style(urlImage)}>
+      <div
+        className="menu-item-top"
+        style={{
+          backgroundImage: `url(${urlImage})`,
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
         {urlImage}
       </div>
       <div className="menu-item-middle">
