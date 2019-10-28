@@ -16,6 +16,8 @@ const Event = (props) => {
     address,
     date_start: dateStart,
   } = props;
+  const date = new Date(dateStart);
+  const eventDate = `${date.getDate()}/${(date.getMonth() + 1)}/${date.getFullYear()}`;
   return (
     <div className="menu-item list">
       <div
@@ -37,7 +39,7 @@ const Event = (props) => {
       </div>
       <div className="menu-item-bot">
         <p className="menu-item-bot-location">{address}</p>
-        <p className="menu-item-bot-date">{dateStart}</p>
+        <p className="menu-item-bot-date">{eventDate}</p>
       </div>
     </div>
   );
