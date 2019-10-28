@@ -9,7 +9,7 @@ import Advanced from './Advanced';
 
 // == Composant Form
 const Form = ({
-  handleChange,
+  handleFormChange,
   handleSubmit,
   showAdvancedForm,
   value,
@@ -29,7 +29,7 @@ const Form = ({
           className="form-input"
           placeholder="Que recherchez-vous ?"
           value={value}
-          onChange={(event) => handleChange(event.target.value)}
+          onChange={(event) => handleFormChange(event.target.value)}
         />
         <h3 onClick={showAdvancedForm}>Recherche avancée</h3>
         { advanced && <Advanced /> }
@@ -41,7 +41,7 @@ const Form = ({
 
 // == PropTypes
 Form.propTypes = {
-  handleChange: PropTypes.func.isRequired,
+  handleFormChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   showAdvancedForm: PropTypes.func.isRequired,
   advanced: PropTypes.bool.isRequired,

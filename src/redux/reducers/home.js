@@ -1,5 +1,5 @@
 import {
-  HANDLE_CHANGE_QSB,
+  HANDLE_SEARCH_CHANGE,
 } from '../actions/types';
 
 const initialState = {
@@ -8,7 +8,7 @@ const initialState = {
 
 export const home = (state = initialState, action = {}) => {
   switch (action.type) {
-    case HANDLE_CHANGE_QSB:
+    case HANDLE_SEARCH_CHANGE:
       return {
         ...state,
         value: action.value,

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 // == Composant QuickSearchBar
 const QuickSearchBar = ({
   value,
-  handleChange,
+  handleSearchChange,
 }) => (
   <form className="searchbar-visible">
     <input
@@ -15,7 +15,7 @@ const QuickSearchBar = ({
       placeholder="Recherche..."
       value={value}
       /* Récupération de la valeur entrée dans l'input */
-      onChange={(event) => handleChange(event.target.value)}
+      onChange={(event) => handleSearchChange(event.target.value)}
     />
   </form>
 );
@@ -24,7 +24,7 @@ const QuickSearchBar = ({
 // == PropTypes
 QuickSearchBar.propTypes = {
   value: PropTypes.string,
-  handleChange: PropTypes.func.isRequired,
+  handleSearchChange: PropTypes.func.isRequired,
 };
 QuickSearchBar.defaultProps = {
   value: '',

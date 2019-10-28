@@ -22,9 +22,11 @@ export const ACTIVE_NAV_MENU = 'ACTIVE_NAV_MENU';
 
 
 // Home : QuickSearchBar.js
+export const HANDLE_SEARCH_CHANGE = 'HANDLE_SEARCH_CHANGE';
+
+
 // Events : Form.js
-export const HANDLE_CHANGE_QSB = 'HANDLE_CHANGE_QSB';
-export const HANDLE_CHANGE_FORM = 'HANDLE_CHANGE_FORM';
+export const HANDLE_FORM_CHANGE = 'HANDLE_FORM_CHANGE';
 
 
 // Events : Form.js

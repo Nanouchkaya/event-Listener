@@ -1,5 +1,5 @@
 import {
-  HANDLE_CHANGE_FORM,
+  HANDLE_FORM_CHANGE,
   HANDLE_SUBMIT,
   SHOW_ADVANCED_FORM,
 } from '../actions/types';
@@ -12,7 +12,7 @@ const initialState = {
 
 export const form = (state = initialState, action = {}) => {
   switch (action.type) {
-    case action.type.HANDLE_CHANGE_FORM:
+    case HANDLE_FORM_CHANGE:
       return {
         ...state,
         value: action.value,

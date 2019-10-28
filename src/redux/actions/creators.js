@@ -9,8 +9,8 @@ import {
   CHANGE_EDITOR_MODE,
   OPEN_NAV_MODAL,
   ACTIVE_NAV_MENU,
-  HANDLE_CHANGE_QSB,
-  HANDLE_CHANGE_FORM,
+  HANDLE_FORM_CHANGE,
+  HANDLE_SEARCH_CHANGE,
   HANDLE_SUBMIT,
   SWITCH_MODALS,
   SHOW_ADVANCED_FORM,
@@ -59,10 +59,15 @@ export const activeNavMenu = () => ({
 
 
 // Home : QuickSearchBar.js
+export const handleSearchChange = (value) => ({
+  type: HANDLE_SEARCH_CHANGE,
+  value,
+});
+
+
 // Events : Form.js
-// Changer le nom de des fonctions et du type ne fonctionne pas, voir si je ne peux pas envoyer dynamiquement le type //
-export const handleChange = (value) => ({
-  type: { HANDLE_CHANGE_QSB, HANDLE_CHANGE_FORM },
+export const handleFormChange = (value) => ({
+  type: HANDLE_FORM_CHANGE,
   value,
 });
 
