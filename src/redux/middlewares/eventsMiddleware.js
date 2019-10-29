@@ -44,6 +44,7 @@ const eventsMiddleware = (store) => (next) => (action) => {
       axios.get(`http://localhost:3000/events/localisation/${action.location}`)
         .then((response) => {
           const { data } = response.data.result;
+          console.log(response.result);
           store.dispatch(sendLocationSearchData(data));
         })
         .catch((error) => console.log('from middleware:', error));

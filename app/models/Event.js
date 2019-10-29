@@ -336,15 +336,54 @@ class Event {
    * Find Event by date
    * @param {callback} callbackGetEventByFilter
    */
-  static findDate(filter, callbackGetEventByFilter) {
-    const filters = [
-      {title: 'test'},
-      {tags: 'test'},
-      {dateStart: 'test'},
-      {prix: 'test'},
-      {localisation: 'test'},
-    ];
-    
+  static findFilter(filters, callbackGetEventByFilter) {
+    let queryTest = '';
+
+    filters.forEach((value, index) => {
+      // On veux comparer les noms des propriétés de `filters` au valeur du tableau `handsomeTeriyaki`
+      const handsomeTeriyaki = [
+        'location',
+        'price',
+        // ...
+      ];
+      handsomeTeriyaki.filter((value) => {
+        value === Object.keys(value);
+      })
+
+      if (filters.length === (index + 1)) {
+        queryTest += `${Object.keys(value)} = ${value[Object.keys(value)]};`;  
+      } else {
+        queryTest += `${Object.keys(value)} = ${value[Object.keys(value)]} AND `;
+      }
+    });
+
+    console.log(queryTest);
+    // price = false AND location = Nantes;
+
+    const sqlQuery = `SELECT * FROM event WHERE ${queryTest}`;
+    // SELECT * FROM event WHERE price = false;
+
+    DBConnect.query(
+      sqlQuery,
+      queryTest,
+      (error, result) => {
+        if(error) {
+
+          callbackGetEventByFilter({
+            error: true,
+            errorMessage: error,
+          });
+         } else {
+  
+          callbackGetEventByFilter({
+            error: false,
+            errorMessage: null,
+            rowMatch: result.length > 0,
+            data: result,
+          });
+         }
+    })
+
     const sqlQuery = 'SELECT * FROM event WHERE date_start = ? AND date_end = ?';
 
     DBConnect.query(

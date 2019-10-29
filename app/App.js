@@ -89,7 +89,7 @@ module.exports = (server, router) => {
   /**
    * Test dynamic query
    */
-  router.get('/events/:filter', (request, response) => {
+  router.get('/events/filter/:filter', (request, response) => {
     EventController.getEventByFilter(request, response);
   });
 

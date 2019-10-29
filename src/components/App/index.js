@@ -22,9 +22,7 @@ const App = () => (
       <Route exact path="/">
         <Home />
       </Route>
-      <Route path="/(tous-les-evenements|tous-les-evenements/:slug)">
-        <Events />
-      </Route>
+      <Route path="/(tous-les-evenements|tous-les-evenements/:slug)" component={Events} />
       <Route path="/evenements/:id">
         <EventDetails />
       </Route>

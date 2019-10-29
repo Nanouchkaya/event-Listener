@@ -13,17 +13,19 @@ import Event from './Event';
 // == Composant Events
 class Events extends React.Component {
   componentDidMount() {
-    const { value, showEvents } = this.props;
+    const { value, showEvents, fetchEvents } = this.props;
+    const param = this.props.location.pathname.split('/');
     if (value.trim().length === 0) {
       showEvents();
+      fetchEvents(param[2]);
     }
   }
+
 
   render() {
     const {
       data,
       locationSearchData,
-      location,
     } = this.props;
 
     return (
@@ -33,14 +35,15 @@ class Events extends React.Component {
           <h2 className="events-title">
             Tous les événements
           </h2>
-          { console.log((location))}
           <Form />
           <Switch>
             <Route exact path="/tous-les-evenements">
               {data.map((event) => <Event key={event.id} {...event} />)}
             </Route>
-            <Route exact path="/tous-les-evenements/Paris">
-              {locationSearchData.map((event) => <Event key={event.id} {...event} />)}
+            <Route exact path={this.props.location.pathname}>
+              { locationSearchData.length === 0
+                ? <p>Aucuns événements trouvés</p>
+                : locationSearchData.map((event) => <Event key={event.id} {...event} />) }
             </Route>
           </Switch>
         </section>
@@ -54,6 +57,7 @@ Events.propTypes = {
   data: PropTypes.array.isRequired,
   value: PropTypes.string,
   showEvents: PropTypes.func.isRequired,
+  fetchEvents: PropTypes.func.isRequired,
   locationSearchData: PropTypes.array.isRequired,
 };
 Events.defaultProps = {

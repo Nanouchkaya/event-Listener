@@ -7,6 +7,39 @@ class EventController {
    * @param {object} request
    * @param {object} response
    */
+  static test(request, response) {
+    const filters = request.body 
+    /*
+    filters = {
+      price: false,
+      location: 'Nantes',
+    }
+    */
+
+    // transformer un objet en tableau d'objet
+    /*
+    DE =>
+    filter = {
+      price: false,
+      location: 'Nantes',
+    }
+    VERS =>
+    filter = [
+      {price: false},
+      {location: 'Nantes'},
+    ]
+    */
+    Event.findFilter(filters, (result) => {
+      response.json(result)
+    })
+
+  }
+
+  /**
+   * Get all events
+   * @param {object} request
+   * @param {object} response
+   */
   static getAll(request, response) {
     Event.getAll((result) => {
       response.json(result);
@@ -139,6 +172,7 @@ class EventController {
           } else {
             response.json({
               status: "Event doesn't exist",
+              result,
             });
           }
           });

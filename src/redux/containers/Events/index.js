@@ -9,6 +9,7 @@ import Events from 'src/components/Events';
 // == Import : Action Creators
 import {
   allEvents,
+  fetchEventsByLocation,
 } from '../../actions/creators';
 
 
@@ -21,6 +22,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   showEvents: () => dispatch(allEvents()),
+  fetchEvents: (location) => dispatch(fetchEventsByLocation(location)),
 });
 
 
