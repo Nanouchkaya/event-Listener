@@ -10,8 +10,6 @@ import {
 } from '../actions/creators';
 
 const registerMiddleware = (store) => (next) => (action) => {
-  console.log('Je suis le middleware, et je laisse passer cette action: ', action);
-
   switch (action.type) {
     case SUBMIT_REGISTER: {
       const state = store.getState();

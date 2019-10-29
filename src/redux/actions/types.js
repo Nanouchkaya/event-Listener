@@ -27,6 +27,9 @@ export const SUBMIT_REGISTER = 'SUBMIT_REGISTER';
 export const EMPTY_FIELDS_REGISTER = 'EMPTY_FIELDS_REGISTER';
 export const SHOW_MESSAGE_REGISTER = 'SHOW_MESSAGE_REGISTER';
 
+export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
+export const CONNECT = 'CONNECT';
+
 
 // Home : QuickSearchBar.js
 // Events : Form.js

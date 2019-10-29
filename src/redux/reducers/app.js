@@ -5,15 +5,18 @@ import {
   CHANGE_CHECK_VALUE_IN_MODAL,
   EMPTY_FIELDS_REGISTER,
   SHOW_MESSAGE_REGISTER,
+  CONNECT,
 } from '../actions/types';
 
 const initialState = {
+  isLogged: false,
   menuBurger: false,
   login: false,
   register: false,
   loginContent: {
     email: '',
     password: '',
+    stayLoggedIn: false,
     message: {
       error: false,
       content: null,
@@ -93,6 +96,15 @@ export const app = (state = initialState, action = {}) => {
             [action.messageType]: true,
             content: action.messageContent,
           },
+        },
+      };
+    case CONNECT:
+      return {
+        ...state,
+        isLogged: true,
+        loginContent: {
+          ...state.loginContent,
+          token: action.token,
         },
       };
     default:

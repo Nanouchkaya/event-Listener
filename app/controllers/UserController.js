@@ -90,11 +90,9 @@ class UserController {
    * @param {object} response
    */
   static connect(request, response) {
-    const data = request.body;
+    const data = request.body.data;
 
-    if ((data.email && data.email.trim().length > 8) &&
-      checkEmail(data.email) &&
-      data.password) {
+    if (checkEmail(data.email) && data.password) {
 
       // Check email and get this user if exist
       User.checkUserByEmail(
@@ -106,55 +104,35 @@ class UserController {
           const checkPassword = bcrypt.compareSync(data.password, hashedPassword);
           
           if (checkPassword) {
-            if (request.session.token) {
+            const payload = { userId: result.data.id };
+            const options = { expiresIn: '2d' };
+            const token = jwToken.sign(payload, process.env.APP_KEY, options);
 
-              jwToken.verify(
-                request.session.token,
-                process.env.APP_KEY,
-
-                (error, decoded) => {
-                  if (error) throw error;
-
-                  response.json({
-                    status: "Already connected",
-                    result,
-                  });
-                }
-              )
-            } else {
-              
-              let token = jwToken.sign(
-                { data: data.email },
-                process.env.APP_KEY,
-                { expiresIn: 60 },
-              );
-  
-              request.session.token = token;
-
-              response.json({
-                status: "Connected",
-                result,
-              });
-            }
+            response.json({
+              status: "Connected",
+              result,
+              token,
+            });
+            
           } else {
 
-            response.status(200);
+            response.status(401);
             response.json({
-              status: "Auth error"
+              status: "Le mot de passe ou l'email est incorrect"
             });
           }
         } else {
 
-          response.status(200);
+          response.status(401);
           response.json({
-            status: "Auth error"
+            status: "Le mot de passe ou l'email est incorrect"
           });
         }
       });
 
     } else {
 
-      response.status(200);
+      response.status(401);
       response.json({
         status: "Bad data received"
       });

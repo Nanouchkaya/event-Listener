@@ -4,25 +4,54 @@ import Proptypes from 'prop-types';
 
 
 // == Composant LoginForm
-const LoginForm = ({ handleclose, switchModals }) => {
+const LoginForm = ({
+  email,
+  password,
+  stayLoggedIn,
+  handleclose,
+  changeValue,
+  changeCheckInputValue,
+  submitLogin,
+  switchModals,
+}) => {
+  const handleChangeValue = (event) => {
+    const { name, value } = event.target;
+
+    changeValue(name, value);
+  };
+
+  const handleCheckInputValue = (event) => {
+    const { name } = event.target;
+
+    changeCheckInputValue(name);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    submitLogin();
+  };
   return (
     <div className="modal display-block">
       <section className="modal-main">
         <h2 className="modal-title">Connexion</h2>
-        <form className="modal-form">
+        <form className="modal-form" onSubmit={handleSubmit}>
           <input
             className="modal-form-element"
             required
             placeholder="Adresse email*"
-            type="mail"
-            autoComplete="new-password"
+            type="email"
+            name="email"
+            value={email}
+            onChange={handleChangeValue}
           />
           <input
             className="modal-form-element"
             required
             placeholder="Mot de passe*"
             type="password"
-            autoComplete="new-password"
+            name="password"
+            value={password}
+            onChange={handleChangeValue}
           />
 
           <button
@@ -33,7 +62,13 @@ const LoginForm = ({ handleclose, switchModals }) => {
           </button>
         </form>
         <label className="modal--checkbox-label">
-          <input type="checkbox" className="modal-checkbox" />
+          <input
+            type="checkbox"
+            className="modal-checkbox"
+            name="stayLoggedIn"
+            checked={stayLoggedIn}
+            onChange={handleCheckInputValue}
+          />
           Rester connecté
         </label>
         { switchModals && <a href="#">Pas encore inscrit-e?</a> }
@@ -53,7 +88,13 @@ const LoginForm = ({ handleclose, switchModals }) => {
 
 // == PropTypes
 LoginForm.propTypes = {
+  email: Proptypes.string.isRequired,
+  password: Proptypes.string.isRequired,
+  stayLoggedIn: Proptypes.bool.isRequired,
   handleclose: Proptypes.func.isRequired,
+  changeValue: Proptypes.func.isRequired,
+  changeCheckInputValue: Proptypes.func.isRequired,
+  submitLogin: Proptypes.func.isRequired,
   switchModals: Proptypes.bool.isRequired,
 };
 

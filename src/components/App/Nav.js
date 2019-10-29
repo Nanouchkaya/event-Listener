@@ -11,7 +11,7 @@ import menuBurgerOpenIcon from 'src/assets/images/icons/icons8-xbox-menu-50.png'
 import menuBurgerCloseIcon from 'src/assets/images/icons/icons8-cancel-50.png';
 import QuickSearchBar from 'src/redux/containers/Home/QuickSearchBar';
 import RegisterForm from 'src/redux/containers/Modal/RegisterForm';
-import LoginForm from '../Modal/LoginForm';
+import LoginForm from 'src/redux/containers/Modal/LoginForm';
 
 
 // == Composant Nav

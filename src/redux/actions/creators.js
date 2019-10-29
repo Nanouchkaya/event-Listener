@@ -15,6 +15,8 @@ import {
   CHANGE_INPUT_VALUE_IN_MODAL,
   CHANGE_CHECK_VALUE_IN_MODAL,
   SUBMIT_REGISTER,
+  SUBMIT_LOGIN,
+  CONNECT,
   EMPTY_FIELDS_REGISTER,
   SHOW_MESSAGE_REGISTER,
 } from './types';
@@ -61,6 +63,13 @@ export const activeNavMenu = () => ({
 });
 export const submitRegister = () => ({
   type: SUBMIT_REGISTER,
+});
+export const submitLogin = () => ({
+  type: SUBMIT_LOGIN,
+});
+export const connect = (token) => ({
+  type: CONNECT,
+  token,
 });
 export const emptyFieldsRegister = () => ({
   type: EMPTY_FIELDS_REGISTER,
