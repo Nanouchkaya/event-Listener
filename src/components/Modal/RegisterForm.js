@@ -108,6 +108,7 @@ const RegisterForm = ({
             <button
               className="modal-form--submit"
               type="submit"
+              onSubmit={handleSubmit}
             >
               Créer le compte
             </button>

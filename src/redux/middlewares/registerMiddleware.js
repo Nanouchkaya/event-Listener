@@ -31,15 +31,16 @@ const registerMiddleware = (store) => (next) => (action) => {
 
       axios.post('http://localhost:3000/users/add',
         {
-          pseudo,
-          email,
-          password,
-          confirmPassword,
-          notifNewEvent,
-          notifNewUpdate,
+          data: {
+            pseudo,
+            email,
+            password,
+            confirmPassword,
+            notifNewEvent,
+            notifNewUpdate,
+          },
         })
         .then((response) => {
-
           if (!response.data.error) {
             store.dispatch(emptyFieldsRegister());
             store.dispatch(showMessageRegister('success', response.data.successMessage));

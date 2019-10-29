@@ -16,7 +16,7 @@ class UserController {
    * @param {object} response
    */
   static add(request, response) {
-    const data = request.body;
+    const data = request.body.data;
 
     let errors = [];
 
