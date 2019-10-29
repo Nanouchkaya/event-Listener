@@ -18,6 +18,8 @@ import {
   TRIGGER_MIDDLEWARE,
   FETCH_NAME_REQUEST_DATA,
   ALL_EVENTS,
+  FETCH_EVENTS_BY_LOCATION,
+  SEND_LOCATION_SEARCH_DATA,
 } from './types';
 
 // == Import : Action Creators
@@ -59,6 +61,17 @@ export const openNavModal = (name) => ({
 });
 export const activeNavMenu = () => ({
   type: ACTIVE_NAV_MENU,
+});
+
+
+// == App : Footer.js
+export const fetchEventsByLocation = (location) => ({
+  type: FETCH_EVENTS_BY_LOCATION,
+  location,
+});
+export const sendLocationSearchData = (data) => ({
+  type: SEND_LOCATION_SEARCH_DATA,
+  data,
 });
 
 

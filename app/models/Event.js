@@ -331,6 +331,45 @@ class Event {
       }
     )
   }
+
+  /**
+   * Find Event by date
+   * @param {callback} callbackGetEventByFilter
+   */
+  static findDate(filter, callbackGetEventByFilter) {
+    const filters = [
+      {title: 'test'},
+      {tags: 'test'},
+      {dateStart: 'test'},
+      {prix: 'test'},
+      {localisation: 'test'},
+    ];
+    
+    const sqlQuery = 'SELECT * FROM event WHERE date_start = ? AND date_end = ?';
+
+    DBConnect.query(
+      sqlQuery,
+     [ start, finish],
+      (error, result) => {
+
+       if(error) {
+
+        callbackGetEventByDate({
+          error: true,
+          errorMessage: error,
+        });
+       } else {
+
+        callbackGetEventByDate({
+          error: false,
+          errorMessage: null,
+          rowMatch: result.length > 0,
+          data: result,
+        });
+       }
+      }
+    )
+  }
 };
 
 module.exports = Event;

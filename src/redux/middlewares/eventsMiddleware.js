@@ -5,12 +5,14 @@ import axios from 'axios';
 import {
   TRIGGER_MIDDLEWARE,
   ALL_EVENTS,
+  FETCH_EVENTS_BY_LOCATION,
 } from '../actions/types';
 
 
 // == Import :  Action Creators
 import {
   fetchNameRequestData,
+  sendLocationSearchData,
 } from '../actions/creators';
 
 // == Middleware : eventsMiddleware
@@ -35,6 +37,16 @@ const eventsMiddleware = (store) => (next) => (action) => {
           store.dispatch(fetchNameRequestData(data));
         })
         .catch((error) => console.log('from middelware:', error));
+      break;
+    }
+    case FETCH_EVENTS_BY_LOCATION: {
+      console.log(action.location);
+      axios.get(`http://localhost:3000/events/localisation/${action.location}`)
+        .then((response) => {
+          const { data } = response.data.result;
+          store.dispatch(sendLocationSearchData(data));
+        })
+        .catch((error) => console.log('from middleware:', error));
       break;
     }
     default:

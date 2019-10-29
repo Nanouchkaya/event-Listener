@@ -5,6 +5,7 @@ import cancelIcon from 'src/assets/images/icons/icons8-cancel-50.png';
 import {
   OPEN_NAV_MODAL,
   ACTIVE_NAV_MENU,
+  SEND_LOCATION_SEARCH_DATA,
 } from '../actions/types';
 
 const initialState = {
@@ -13,6 +14,7 @@ const initialState = {
   login: false,
   register: false,
   cancelIcon,
+  data: [],
 };
 
 export const app = (state = initialState, action = {}) => {
@@ -33,6 +35,11 @@ export const app = (state = initialState, action = {}) => {
         register: false,
       };
     }
+    case SEND_LOCATION_SEARCH_DATA:
+      return {
+        ...state,
+        data: action.data,
+      };
     default:
       return state;
   }

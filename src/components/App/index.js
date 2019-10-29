@@ -12,7 +12,7 @@ import LegalMentions from 'src/components/LegalMentions';
 import PrivatePolicy from 'src/components/PrivatePolicy';
 import Errors from 'src/components/Errors';
 import Nav from 'src/redux/containers/App/Nav';
-import Footer from './Footer';
+import Footer from 'src/redux/containers/App/Footer';
 
 // == Composant
 const App = () => (
@@ -22,7 +22,7 @@ const App = () => (
       <Route exact path="/">
         <Home />
       </Route>
-      <Route exact path="/evenements">
+      <Route path="/(tous-les-evenements|tous-les-evenements/:slug)">
         <Events />
       </Route>
       <Route path="/evenements/:id">

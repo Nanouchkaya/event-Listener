@@ -15,6 +15,7 @@ import {
 const mapStateToProps = (state) => ({
   data: state.form.data,
   value: state.form.value,
+  locationSearchData: state.app.data,
 });
 
 
