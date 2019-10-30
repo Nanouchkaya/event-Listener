@@ -25,6 +25,9 @@ import {
   ADD_ADDRESS_VALUE,
   EMPTY_FORM_VALUE,
   FILL_FILTER_LIST,
+  CHANGE_SEARCH_FORM_VALUE,
+  EMPTY_SEARCH_FORM_VALUE,
+  HANDLE_SEARCH_FORM_CHANGE,
 } from './types';
 
 // == Import : Action Creators
@@ -135,4 +138,18 @@ export const addAddressValue = (value) => ({
 // == EventDetails : CheckButtons.js
 export const switchModals = () => ({
   type: SWITCH_MODALS,
+});
+
+// == Home : SearchForm.js
+export const changeSearchFormValue = (value, name) => ({
+  type: CHANGE_SEARCH_FORM_VALUE,
+  value,
+  name,
+});
+export const emptySearchFormValue = () => ({
+  type: EMPTY_SEARCH_FORM_VALUE,
+});
+export const handleSearchFormChange = (value) => ({
+  type: HANDLE_SEARCH_FORM_CHANGE,
+  value,
 });
