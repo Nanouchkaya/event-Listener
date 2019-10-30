@@ -9,7 +9,7 @@ class Inputs extends React.Component {
     const { addFilters } = this.props;
     const { name, checked } = event.target;
     const filter = {
-      [name]: false,
+      [name]: event.target.value,
     };
     addFilters(filter);
   };
@@ -18,10 +18,11 @@ class Inputs extends React.Component {
     const {
       children,
       name,
+      status,
     } = this.props;
     return (
       <>
-        <input onChange={this.handleChange} type="checkbox" id={children} className="advanced-filter-input" name={name} data-test={children} value={children} />
+        <input onChange={this.handleChange} type="checkbox" id={children} className="advanced-filter-input" name={name} data-test={children} value={status} />
         <label htmlFor={children}>{children}</label>
       </>
     );
@@ -32,6 +33,7 @@ class Inputs extends React.Component {
 Inputs.propTypes = {
   children: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  status: PropTypes.bool.isRequired,
 };
 
 
