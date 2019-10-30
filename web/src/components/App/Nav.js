@@ -110,10 +110,7 @@ const Nav = ({
                 className="navigation-item--active"
               >
                 { showRegister && (
-                  <RegisterForm
-                    show={showRegister}
-                    handleclose={handleNavModals}
-                  />
+                  <RegisterForm handleclose={handleNavModals} />
                 )}
                 <button
                   type="button"
@@ -129,9 +126,7 @@ const Nav = ({
                 className="navigation-item--active"
               >
                 { showLogin && (
-                  <LoginForm
-                    handleclose={handleNavModals}
-                  />
+                  <LoginForm handleclose={handleNavModals} />
                 )}
                 <button
                   type="button"

@@ -12,7 +12,6 @@ const LoginForm = ({
   changeValue,
   changeCheckInputValue,
   submitLogin,
-  switchModals,
   message,
 }) => {
   const handleChangeValue = (event) => {
@@ -76,7 +75,6 @@ const LoginForm = ({
           />
           Rester connecté
         </label>
-        { switchModals && <a href="#">Pas encore inscrit-e?</a> }
         {/* Fermeture de la modal au click */}
         <a
           className="modal--back"
@@ -100,7 +98,6 @@ LoginForm.propTypes = {
   changeValue: Proptypes.func.isRequired,
   changeCheckInputValue: Proptypes.func.isRequired,
   submitLogin: Proptypes.func.isRequired,
-  switchModals: Proptypes.bool.isRequired,
   message: Proptypes.shape({
     error: Proptypes.bool,
     content: Proptypes.string,

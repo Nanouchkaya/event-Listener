@@ -6,7 +6,6 @@ import Proptypes from 'prop-types';
 // == Composant RegisterForm
 const RegisterForm = ({
   handleclose,
-  switchModals,
   pseudo,
   email,
   password,
@@ -119,7 +118,6 @@ const RegisterForm = ({
             {message.content}
           </div>
         ) }
-        { switchModals && <a href="#">Déja inscrit-e ?</a>}
         {/* Fermeture de la modal au click */}
         <a
           className="modal--back"
@@ -136,7 +134,6 @@ const RegisterForm = ({
 // == PropTypes
 RegisterForm.propTypes = {
   handleclose: Proptypes.func.isRequired,
-  switchModals: Proptypes.bool.isRequired,
   pseudo: Proptypes.string.isRequired,
   email: Proptypes.string.isRequired,
   password: Proptypes.string.isRequired,

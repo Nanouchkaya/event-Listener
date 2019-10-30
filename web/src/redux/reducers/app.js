@@ -8,6 +8,7 @@ import {
   SHOW_MESSAGE_LOGIN,
   DO_CONNECT,
   DECONNECT,
+  SEND_LOCATION_SEARCH_DATA,
 } from '../actions/types';
 
 const initialState = {
@@ -37,6 +38,7 @@ const initialState = {
       content: null,
     },
   },
+  data: [],
 };
 
 export const app = (state = initialState, action = {}) => {
@@ -130,6 +132,12 @@ export const app = (state = initialState, action = {}) => {
       return {
         ...state,
         isConnected: false,
+      };
+
+    case SEND_LOCATION_SEARCH_DATA:
+      return {
+        ...state,
+        data: action.data,
       };
 
     default:

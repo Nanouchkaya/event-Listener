@@ -34,9 +34,15 @@ import {
   ALL_EVENTS,
   NEXT_EVENTS,
   FETCH_NEXT_EVENTS,
+  FETCH_EVENTS_BY_LOCATION,
+  SEND_LOCATION_SEARCH_DATA,
+  ADD_FILTERS,
+  TEST_FILTERS_MID,
+  ADD_ADDRESS_VALUE,
+  EMPTY_FORM_VALUE,
+  FILL_FILTER_LIST,
 } from './types';
 
-// == Import : Action Creators
 
 // EventDetails : Header.js
 export const changeHeartIcon = () => ({
@@ -141,21 +147,16 @@ export const handleSubmit = () => ({
 export const showAdvancedForm = () => ({
   type: SHOW_ADVANCED_FORM,
 });
+
 // EVENTS : Home.js
 export const fetchNextEvents = (data) => ({
   type: FETCH_NEXT_EVENTS,
   data,
 });
+
 // Events Middlewares
 export const triggerMiddleware = () => ({
   type: TRIGGER_MIDDLEWARE,
-});
-export const fetchNameRequestData = (data) => ({
-  type: FETCH_NAME_REQUEST_DATA,
-  data,
-});
-export const allEvents = () => ({
-  type: ALL_EVENTS,
 });
 export const nextEvents = () => ({
   type: NEXT_EVENTS,
@@ -180,4 +181,44 @@ export const fetchEventDetails = (data) => ({
 export const changeUpdateUser = (user) => ({
   type: CHANGE_UPDATE_USER,
   user,
+});
+
+// == App : Footer.js
+export const fetchEventsByLocation = (location) => ({
+  type: FETCH_EVENTS_BY_LOCATION,
+  location,
+});
+export const sendLocationSearchData = (data) => ({
+  type: SEND_LOCATION_SEARCH_DATA,
+  data,
+});
+
+
+// Events Middlewares
+export const fetchNameRequestData = (data) => ({
+  type: FETCH_NAME_REQUEST_DATA,
+  data,
+});
+export const allEvents = () => ({
+  type: ALL_EVENTS,
+});
+export const addFilters = (filters) => ({
+  type: ADD_FILTERS,
+  filters,
+});
+export const testFiltersMid = () => ({
+  type: TEST_FILTERS_MID,
+});
+export const addAddressValue = (value) => ({
+  type: ADD_ADDRESS_VALUE,
+  value,
+});
+
+// Events : Form.js
+export const emptyFormValue = () => ({
+  type: EMPTY_FORM_VALUE,
+});
+export const fillFilterList = (filterList) => ({
+  type: FILL_FILTER_LIST,
+  filterList,
 });
