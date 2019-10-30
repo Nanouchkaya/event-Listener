@@ -1,3 +1,0 @@
-- idée animation accroche sur line height
-- page profile : headerGradient
-- bug slider coupé

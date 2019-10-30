@@ -1,7 +1,10 @@
 .vscode
 
-node_modules/
-dist/
+api/node_modules/
+.env
+
+web/node_modules/
+web/dist/
 
 *.log
-.env
+node_modulescd

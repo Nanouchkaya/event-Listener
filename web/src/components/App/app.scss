@@ -1,0 +1,251 @@
+@import 'src/assets/styles/vars';
+@import 'src/assets/styles/mixins';
+@import 'src/assets/styles/animations';
+
+.header-gradient {
+  @include headerGradient;
+}
+
+/* CSS NAVIGATION */
+.navigation-item {
+  font-weight: 900;
+  width: 100%;
+  background-color: rgba(black, .3);
+  padding: 2rem;
+  display: flex;
+  justify-content: flex-end;
+  position: sticky;
+  z-index: 1;
+  margin-bottom: -112px;
+  animation: fromTop 400ms ease; 
+
+  &--left {
+    font-family: $fontFamilyTitle;
+    font-size: 2.5rem;
+    margin-right: auto;
+  }
+
+  .searchbar {
+    display: none;
+  }
+
+  .searchbar-visible {
+    display: inline-block;
+    position: absolute;
+    right: calc(50% - 150px);
+    bottom: -2.5rem;
+    
+
+    .searchbar-input {
+      width: 280px;
+      padding: .5rem .8rem;
+      border-radius: 5px;
+      background-color: rgba(255,255,255,.2);
+      color: white;
+      border: 1px solid rgba(255,255,255,.2);
+      margin: 0;
+      
+      &::placeholder {
+        color: white;
+      }
+    }
+  }
+}
+
+.menu-burger {
+display: block;
+position: fixed;
+right: .4rem;
+top: .4rem;
+font-size: 2rem;
+color: $turquoise;
+z-index:1;
+}
+
+.menu {
+  display: none;
+
+  &-main {
+    background: darken($backgroundDark, 5%);
+    color: $colorDarkTheme;
+    width: 100%;
+    min-height: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 1rem 2rem;
+    animation: menuBurger .4s ease;
+  }
+}
+.menu-visible {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width:100%;
+  height: 100%;
+  background: $mainGradientOpacity;
+  padding: .5rem;
+
+  
+  .navigation-item--right {
+    display: block;
+    width: 100%;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    text-align: left;
+    font-weight: 900;
+    color: $colorDarkTheme;
+
+      &:hover {
+        color: $turquoise;
+      }
+
+      &.button {
+        background: none;
+        margin-left: -0.2rem;
+      }
+
+      &.online {
+        display: flex;
+        align-items: center;
+      }
+  }
+}
+
+section {
+  padding: $sectionPaddingMobile;
+  font-family: 'univers', sans-serif;
+}
+
+/* CSS POUR FOOTER */ 
+footer {
+  margin-top:-2rem;
+  
+  a {
+    color : $colorDarkTheme;
+  }
+  .footer {
+    background: rgba(black, .3);
+    padding: $sectionPaddingMobile;
+
+      &-title {
+      @include title($purple);
+      font-size: 0;
+      }
+
+    &-subtitle {
+      @include subtitleType1;
+    }
+    & ul li {
+      padding: 0 1rem .2rem;
+    }
+    &-social {
+      text-align: center;
+      padding: 2rem 0;
+    }
+
+    &-links {
+      text-align: right;
+    }
+  }
+}
+
+/* RULES FOR RESPONSIVE */
+@media all and (min-width: 768px) {
+  /* NAVIGATION */
+  .navigation-item--left {
+    font-size: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .searchbar {
+      margin: -0.7rem 3rem 0;
+    }
+    .searchbar-visible {
+      right: 2rem;
+    }
+  }
+}
+
+
+@media all and (min-width: 980px) {
+  /* NAVIGATION */
+
+  .menu-burger {
+    display: none;
+  }
+  .menu {
+    display: flex;
+
+    &-main {
+      background: transparent;
+      margin: auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 0;
+      animation: none;
+  }
+
+    .navigation-item {
+
+      &--right {
+        font-size: 1rem;
+        margin: 0 2rem;
+        text-transform: uppercase;
+
+          &.button {
+            color: $colorLightTheme;
+            background: $lightGradient;
+            padding: $paddingButton;
+            font-weight: 900;
+            box-shadow: 2px 1px 5px rgba(0,0,0,.5);
+            border-radius: 5px;
+          }
+
+          &.button:hover, &--active button {
+            background: $turquoiseGradient;
+            color: $colorDarkTheme;
+          }
+
+          &.online {
+            display: flex;
+            align-items: center;
+            margin: -.5rem;
+          }
+
+          & .pseudo:before {
+            content: 'Bienvenue';
+            margin-right: .5rem;
+          }
+
+        }
+
+      &--active {
+        color: $turquoise;
+      }
+    }
+  }
+
+  section {
+    padding: $mainPadding;
+  }
+
+  .footer > div {
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+@media all and (min-width: 1430px) {
+  .navigation-item--left .searchbar-visible {
+    position: relative;
+    bottom: .5rem;
+    right:0;
+    margin-left: 1.5rem;
+    width: 150px;
+  }
+}

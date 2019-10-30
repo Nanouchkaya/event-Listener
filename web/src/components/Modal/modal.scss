@@ -1,0 +1,117 @@
+@import 'src/assets/styles/vars';
+@import 'src/assets/styles/mixins';
+@import 'src/assets/styles/animations';
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width:100%;
+  height: 100%;
+  background: $mainGradientOpacity;
+  z-index: 3;
+  padding: .5rem;
+  animation: fade .4s ease;
+
+  &.display-block {
+    display: block;
+  }
+  
+  &.display-none {
+    display: none;
+  }
+
+  &-main {
+      background: darken($backgroundDark, 5%);
+      color: $colorDarkTheme;
+      width: 100%;
+      margin: auto;
+      min-height: 50vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      padding: 1rem 2rem;
+      animation: fromCenter .2s ease;
+  }
+
+  &-title {
+    @include subtitleType2;
+  }
+
+  &-form {
+    &-message {
+      padding: 1rem;
+      border-radius: 5px;
+      
+      &--success {
+        background: #59a858;
+      }
+      &--error {
+        background: #c05d5d;
+      }
+      & p {
+        text-align: left;
+      }
+    }
+    
+    &-element, &--submit {
+      @include form-element;
+
+    }
+    &--submit {
+      @include form-submit;
+    }
+
+    &-label {
+      font-weight: normal;
+      display: block;
+      margin: 0 1rem .5rem;
+    }
+  }
+
+  &--checkbox-label {
+    display: block;
+    text-align: center;
+    font-weight: normal;
+    margin: 1rem 0;
+    text-transform: uppercase;
+  }
+
+  &--back {
+    display: block;
+    text-align: right;
+    font-weight: 900;
+  }
+
+  .modal-checkbox {
+   @include checkbox
+  }
+
+  .modal-checkbox:active,
+  .modal-checkbox:checked:active,
+  .modal-checkbox:checked {
+    @include checkbox-checked
+  }
+}
+
+/* REGLES POUR LE RESPONSIVE */
+@media all and (min-width: 980px) {
+
+  .modal-main {
+    width: 600px;
+    height: auto;
+    margin-top: 20vh;
+    position: relative;
+  }
+
+  .modal--back {
+    font-size: 0;
+    background-image: url('/src/assets/images/icons/icons8-delete-50.png');
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+  }
+}
