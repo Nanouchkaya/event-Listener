@@ -10,6 +10,7 @@ import Advanced from 'src/components/Events/Advanced';
 import {
   addFilters,
   addAddressValue,
+  fillFilterList,
 } from '../../actions/creators';
 
 
@@ -22,6 +23,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   addFilters: (filters) => dispatch(addFilters(filters)),
   addAddressValue: (value) => dispatch(addAddressValue(value)),
+  fillFilterList: (filterList) => dispatch(fillFilterList(filterList)),
 });
 
 

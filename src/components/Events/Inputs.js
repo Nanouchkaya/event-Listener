@@ -6,12 +6,12 @@ import PropTypes from 'prop-types';
 // == Composant Inputs
 class Inputs extends React.Component {
   handleChange = (event) => {
-    const { addFilters } = this.props;
+    const { fillFilterList } = this.props;
     const { name } = event.target;
     const filter = {
       [name]: event.target.value,
     };
-    addFilters(filter);
+    fillFilterList(filter);
   };
 
   render() {
@@ -34,7 +34,7 @@ Inputs.propTypes = {
   children: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   status: PropTypes.bool.isRequired,
-  addFilters: PropTypes.func.isRequired,
+  fillFilterList: PropTypes.func.isRequired,
 };
 
 

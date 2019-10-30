@@ -15,6 +15,7 @@ import {
   testFiltersMid,
   addFilters,
   emptyFormValue,
+  fillFilterList,
 } from '../../actions/creators';
 
 
@@ -22,6 +23,7 @@ const mapStateToProps = (state) => ({
   formValue: state.form.value,
   advanced: state.form.advanced,
   data: state.form.data,
+  filterList: state.form.filterList,
 });
 
 
@@ -33,6 +35,7 @@ const mapDispatchToProps = (dispatch) => ({
   testFiltersMid: () => dispatch(testFiltersMid()),
   addFilters: (filters) => dispatch(addFilters(filters)),
   emptyFormValue: () => dispatch(emptyFormValue()),
+  fillFilterList: (filterList) => dispatch(fillFilterList(filterList)),
 });
 
 

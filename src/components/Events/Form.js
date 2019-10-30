@@ -16,12 +16,13 @@ const Form = ({
   advanced,
   triggerMiddleware,
   addFilters,
-  emptyFormValue,
+  fillFilterList,
+  filterList,
 }) => {
   const _onSubmit = (event) => {
     event.preventDefault();
     event.target.reset();
-    emptyFormValue();
+    addFilters(filterList);
     handleSubmit();
   };
   const _onChange = (event) => {
@@ -34,9 +35,8 @@ const Form = ({
     const filter = {
       [name]: `'%${formValue}%'`,
     };
-    addFilters(filter);
+    fillFilterList(filter);
   };
-
   return (
     <>
       <h3>Formulaire</h3>
@@ -67,10 +67,13 @@ Form.propTypes = {
   formValue: PropTypes.string,
   triggerMiddleware: PropTypes.func.isRequired,
   addFilters: PropTypes.func,
+  fillFilterList: PropTypes.func,
+  filterList: PropTypes.array.isRequired,
 };
 Form.defaultProps = {
   formValue: '',
   addFilters: undefined,
+  fillFilterList: undefined,
 };
 
 

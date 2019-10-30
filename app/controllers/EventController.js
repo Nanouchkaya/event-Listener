@@ -8,32 +8,10 @@ class EventController {
    * @param {object} response
    */
   static getEventByFilter(request, response) {
-    const filters = request.body 
-
-    /*
-    filters = {
-      price: false,
-      location: 'Nantes',
-    }
-    */
-
-    // transformer un objet en tableau d'objet
-    /*
-    DE =>
-    filter = {
-      price: false,
-      location: 'Nantes',
-    }
-    VERS =>
-    filter = [
-      {price: false},
-      {location: 'Nantes'},
-    ]
-    */
+    const filters = request.body;
     Event.findFilter(filters, (result) => {
       response.json(result)
     })
-
   }
 
   /**

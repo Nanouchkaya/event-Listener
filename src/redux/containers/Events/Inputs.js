@@ -9,6 +9,7 @@ import Inputs from 'src/components/Events/Inputs';
 // == Import : Action Creators
 import {
   addFilters,
+  fillFilterList,
 } from '../../actions/creators';
 
 
@@ -19,6 +20,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   addFilters: (filters) => dispatch(addFilters(filters)),
+  fillFilterList: (filterList) => dispatch(fillFilterList(filterList)),
 });
 
 

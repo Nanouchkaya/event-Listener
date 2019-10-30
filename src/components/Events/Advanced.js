@@ -34,16 +34,16 @@ const timeValues = [
 
 // == Composant Advanced
 const Advanced = ({
-  addFilters,
   addressValue,
   addAddressValue,
+  fillFilterList,
 }) => {
   const handleChange = (event) => {
     const { value, name } = event.target;
     const filter = {
       [name]: `'${value}'`,
     };
-    addFilters(filter);
+    fillFilterList(filter);
   };
   const _onChange = (event) => {
     const { value } = event.target;
@@ -56,7 +56,7 @@ const Advanced = ({
     const filter = {
       [name]: `'%${addressValue}%'`,
     };
-    addFilters(filter);
+    fillFilterList(filter);
   };
 
 
@@ -121,7 +121,7 @@ const Advanced = ({
 
 // == PropTypes
 Advanced.propTypes = {
-  addFilters: PropTypes.func.isRequired,
+  fillFilterList: PropTypes.func.isRequired,
   addAddressValue: PropTypes.func.isRequired,
   addressValue: PropTypes.string,
 };

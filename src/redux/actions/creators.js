@@ -24,6 +24,7 @@ import {
   TEST_FILTERS_MID,
   ADD_ADDRESS_VALUE,
   EMPTY_FORM_VALUE,
+  FILL_FILTER_LIST,
 } from './types';
 
 // == Import : Action Creators
@@ -103,7 +104,10 @@ export const showAdvancedForm = () => ({
 export const emptyFormValue = () => ({
   type: EMPTY_FORM_VALUE,
 });
-
+export const fillFilterList = (filterList) => ({
+  type: FILL_FILTER_LIST,
+  filterList,
+});
 
 // Events Middlewares
 export const triggerMiddleware = () => ({

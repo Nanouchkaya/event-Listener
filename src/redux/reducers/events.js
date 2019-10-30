@@ -6,6 +6,7 @@ import {
   ADD_FILTERS,
   ADD_ADDRESS_VALUE,
   EMPTY_FORM_VALUE,
+  FILL_FILTER_LIST,
 
 } from '../actions/types';
 
@@ -15,6 +16,7 @@ const initialState = {
   data: [],
   dataFilter: [],
   addressValue: '',
+  filterList: [],
 };
 
 
@@ -43,10 +45,7 @@ export const form = (state = initialState, action = {}) => {
     case ADD_FILTERS:
       return {
         ...state,
-        dataFilter: [
-          ...state.dataFilter,
-          action.filters,
-        ],
+        dataFilter: action.filters,
       };
     case ADD_ADDRESS_VALUE:
       return {
@@ -58,6 +57,15 @@ export const form = (state = initialState, action = {}) => {
         ...state,
         value: '',
         addressValue: '',
+        filterList: [],
+      };
+    case FILL_FILTER_LIST:
+      return {
+        ...state,
+        filterList: [
+          ...state.filterList,
+          action.filterList,
+        ],
       };
     default:
       return state;

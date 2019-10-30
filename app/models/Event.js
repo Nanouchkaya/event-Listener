@@ -339,7 +339,7 @@ class Event {
   static findFilter(filters, callbackGetEventByFilter) {
     let queryTest = '';
 
-    filters.forEach((value, index) => {
+    filters.map((value, index) => {
       // On veux comparer les noms des propriétés de `filters` au valeur du tableau `handsomeTeriyaki`
       // const handsomeTeriyaki = [
       //   'location',
@@ -365,11 +365,7 @@ class Event {
       }
     });
 
-    console.log(queryTest);
-    // price = false AND location = Nantes;
-
     const sqlQuery = `SELECT * FROM event WHERE ${queryTest}`;
-    // SELECT * FROM event WHERE price = false;
 
     DBConnect.query(
       sqlQuery,
