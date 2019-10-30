@@ -301,6 +301,18 @@ class EventController {
         });
     }    
   }
+
+   /**
+   * Get all events
+   * @param {object} request
+   * @param {object} response
+   */
+  static getEventByFilter(request, response) {
+    const filters = request.body;
+    Event.findFilter(filters, (result) => {
+      response.json(result)
+    })
+  }
 };
 
 module.exports = EventController;

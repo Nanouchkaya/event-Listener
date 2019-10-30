@@ -355,6 +355,54 @@ class Event {
      }
    )
   }
+
+  /**
+   * Find Event by filter
+   * @param {callback} callbackGetEventByFilter
+   */
+  static findFilter(filters, callbackGetEventByFilter) {
+    let query = '';
+
+    filters.map((value, index) => {
+      if (filters.length === (index + 1)) {
+        if ((Object.keys(value) == 'address' || Object.keys(value) == 'title')) {
+            query += `${Object.keys(value)} LIKE ${value[Object.keys(value)]};` 
+        } else {
+            query += `${Object.keys(value)} = ${value[Object.keys(value)]};`;  
+        }
+      } else {
+          if ((Object.keys(value) == 'address' || Object.keys(value) == 'title')) {
+              query += `${Object.keys(value)} LIKE ${value[Object.keys(value)]} AND ` 
+          } else {
+              query += `${Object.keys(value)} = ${value[Object.keys(value)]} AND `;  
+          }
+      }
+    });
+
+    const sqlQuery = `SELECT * FROM event WHERE ${query}`;
+
+    DBConnect.query(
+      sqlQuery,
+      (error, result) => {
+        if(error) {
+
+          callbackGetEventByFilter({
+            error: true,
+            errorMessage: error,
+          });
+         } else {
+  
+          callbackGetEventByFilter({
+            error: false,
+            errorMessage: null,
+            rowMatch: result.length > 0,
+            data: result,
+            query: sqlQuery,
+          });
+         }
+    })
+
+  }
 };
 
 module.exports = Event;
