@@ -54,7 +54,7 @@ class Events extends React.Component {
 
 
 Events.propTypes = {
-  data: PropTypes.array.isRequired,
+  data: PropTypes.array,
   value: PropTypes.string,
   showEvents: PropTypes.func.isRequired,
   fetchEvents: PropTypes.func.isRequired,
@@ -62,6 +62,7 @@ Events.propTypes = {
 };
 Events.defaultProps = {
   value: '',
+  data: undefined,
 };
 
 

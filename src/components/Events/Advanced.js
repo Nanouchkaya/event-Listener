@@ -1,5 +1,6 @@
 // == Import : npm
 import React from 'react';
+import PropTypes from 'prop-types';
 
 
 // == Import : local
@@ -32,7 +33,11 @@ const timeValues = [
 
 
 // == Composant Advanced
-const Advanced = ({ addFilters, stateTest, addressValue, addAddressValue }) => {
+const Advanced = ({
+  addFilters,
+  addressValue,
+  addAddressValue,
+}) => {
   const handleChange = (event) => {
     const { value, name } = event.target;
     const filter = {
@@ -58,19 +63,35 @@ const Advanced = ({ addFilters, stateTest, addressValue, addAddressValue }) => {
   return (
     <>
       <div className="advanced-filter">
-        <div className="advanced-filter-tags">
+        {/* <div className="advanced-filter-tags">
           <h4 className="advanced-filter-name">Tags</h4>
           {tagsValues.map((tagValue) => <Inputs name="tag" status={tagValue.status} key={tagValue.title}>{tagValue.title}</Inputs>)}
-        </div>
+        </div> */}
 
         <div className="advanced-filter-price">
           <h4 className="advanced-filter-name">Prix</h4>
-          {priceValues.map((priceValue) => <Inputs name="price" status={priceValue.status} key={priceValue.title}>{priceValue.title}</Inputs>)}
+          {priceValues.map((priceValue) => (
+            <Inputs
+              name="price"
+              status={priceValue.status}
+              key={priceValue.title}
+            >
+              {priceValue.title}
+            </Inputs>
+          ))}
         </div>
 
         <div className="advanced-filter-online">
           <h4 className="advanced-filter-name">Diffusion en ligne</h4>
-          {liveValues.map((liveValue) => <Inputs name="is_online" status={liveValue.status} key={liveValue.title}>{liveValue.title}</Inputs>)}
+          {liveValues.map((liveValue) => (
+            <Inputs
+              name="is_online"
+              status={liveValue.status}
+              key={liveValue.title}
+            >
+              {liveValue.title}
+            </Inputs>
+          ))}
         </div>
 
 
@@ -95,6 +116,17 @@ const Advanced = ({ addFilters, stateTest, addressValue, addAddressValue }) => {
       />
     </>
   );
+};
+
+
+// == PropTypes
+Advanced.propTypes = {
+  addFilters: PropTypes.func.isRequired,
+  addAddressValue: PropTypes.func.isRequired,
+  addressValue: PropTypes.string,
+};
+Advanced.defaultProps = {
+  addressValue: '',
 };
 
 

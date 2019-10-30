@@ -23,6 +23,7 @@ import {
   ADD_FILTERS,
   TEST_FILTERS_MID,
   ADD_ADDRESS_VALUE,
+  EMPTY_FORM_VALUE,
 } from './types';
 
 // == Import : Action Creators
@@ -98,6 +99,9 @@ export const handleSubmit = () => ({
 });
 export const showAdvancedForm = () => ({
   type: SHOW_ADVANCED_FORM,
+});
+export const emptyFormValue = () => ({
+  type: EMPTY_FORM_VALUE,
 });
 
 

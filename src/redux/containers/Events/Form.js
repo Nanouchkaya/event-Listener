@@ -14,6 +14,7 @@ import {
   triggerMiddleware,
   testFiltersMid,
   addFilters,
+  emptyFormValue,
 } from '../../actions/creators';
 
 
@@ -31,6 +32,7 @@ const mapDispatchToProps = (dispatch) => ({
   triggerMiddleware: () => dispatch(triggerMiddleware()),
   testFiltersMid: () => dispatch(testFiltersMid()),
   addFilters: (filters) => dispatch(addFilters(filters)),
+  emptyFormValue: () => dispatch(emptyFormValue()),
 });
 
 

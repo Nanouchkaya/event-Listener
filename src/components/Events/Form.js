@@ -16,9 +16,12 @@ const Form = ({
   advanced,
   triggerMiddleware,
   addFilters,
+  emptyFormValue,
 }) => {
   const _onSubmit = (event) => {
     event.preventDefault();
+    event.target.reset();
+    emptyFormValue();
     handleSubmit();
   };
   const _onChange = (event) => {
@@ -63,9 +66,11 @@ Form.propTypes = {
   advanced: PropTypes.bool.isRequired,
   formValue: PropTypes.string,
   triggerMiddleware: PropTypes.func.isRequired,
+  addFilters: PropTypes.func,
 };
 Form.defaultProps = {
   formValue: '',
+  addFilters: undefined,
 };
 
 

@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 class Inputs extends React.Component {
   handleChange = (event) => {
     const { addFilters } = this.props;
-    const { name, checked } = event.target;
+    const { name } = event.target;
     const filter = {
       [name]: event.target.value,
     };
@@ -22,7 +22,7 @@ class Inputs extends React.Component {
     } = this.props;
     return (
       <>
-        <input onChange={this.handleChange} type="checkbox" id={children} className="advanced-filter-input" name={name} data-test={children} value={status} />
+        <input onChange={this.handleChange} type="checkbox" id={children} className="advanced-filter-input" name={name} value={status} />
         <label htmlFor={children}>{children}</label>
       </>
     );

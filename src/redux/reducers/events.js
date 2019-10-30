@@ -5,6 +5,8 @@ import {
   FETCH_NAME_REQUEST_DATA,
   ADD_FILTERS,
   ADD_ADDRESS_VALUE,
+  EMPTY_FORM_VALUE,
+
 } from '../actions/types';
 
 const initialState = {
@@ -50,6 +52,12 @@ export const form = (state = initialState, action = {}) => {
       return {
         ...state,
         addressValue: action.value,
+      };
+    case EMPTY_FORM_VALUE:
+      return {
+        ...state,
+        value: '',
+        addressValue: '',
       };
     default:
       return state;
