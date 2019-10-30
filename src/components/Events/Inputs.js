@@ -34,6 +34,7 @@ Inputs.propTypes = {
   children: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   status: PropTypes.bool.isRequired,
+  addFilters: PropTypes.func.isRequired,
 };
 
 

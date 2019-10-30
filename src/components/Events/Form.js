@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 
 // == Import : local
-import Advanced from './Advanced';
+import Advanced from 'src/redux/containers/Events/Advanced';
 
 
 // == Composant Form
@@ -15,7 +15,6 @@ const Form = ({
   value,
   advanced,
   triggerMiddleware,
-  testFiltersMid,
 }) => {
   const _onSubmit = (event) => {
     event.preventDefault();

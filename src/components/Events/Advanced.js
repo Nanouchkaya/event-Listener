@@ -16,8 +16,8 @@ const tagsValues = [
 ];
 
 const priceValues = [
-  { title: 'Gratuit', status: true },
-  { title: 'Payant', status: false },
+  { title: 'Gratuit', status: false },
+  { title: 'Payant', status: true },
 ];
 
 const liveValues = [
@@ -26,52 +26,63 @@ const liveValues = [
 ];
 
 const timeValues = [
-  { title: 'Date de début', status: true },
-  { title: 'Date de fin', status: true },
+  { title: 'Date de début', status: 'date_start' },
+  { title: 'Date de fin', status: 'date_end' },
 ];
 
 
 // == Composant Advanced
-const Advanced = () => (
-  <>
-    <div className="advanced-filter">
-      <div className="advanced-filter-tags">
-        <h4 className="advanced-filter-name">Tags</h4>
-        {tagsValues.map((tagValue) => <Inputs name="tag" status={tagValue.status} key={tagValue.title}>{tagValue.title}</Inputs>)}
+const Advanced = ({ addFilters, stateTest }) => {
+  const handleChange = (event) => {
+    console.log(event.target.value);
+    const { value, name } = event.target;
+    const filter = {
+      [name]: `'${value}'`,
+    };
+    addFilters(filter);
+  };
+  console.log(stateTest);
+  return (
+    <>
+      <div className="advanced-filter">
+        <div className="advanced-filter-tags">
+          <h4 className="advanced-filter-name">Tags</h4>
+          {tagsValues.map((tagValue) => <Inputs name="tag" status={tagValue.status} key={tagValue.title}>{tagValue.title}</Inputs>)}
+        </div>
+
+        <div className="advanced-filter-price">
+          <h4 className="advanced-filter-name">Prix</h4>
+          {priceValues.map((priceValue) => <Inputs name="price" status={priceValue.status} key={priceValue.title}>{priceValue.title}</Inputs>)}
+        </div>
+
+        <div className="advanced-filter-online">
+          <h4 className="advanced-filter-name">Diffusion en ligne</h4>
+          {liveValues.map((liveValue) => <Inputs name="is_online" status={liveValue.status} key={liveValue.title}>{liveValue.title}</Inputs>)}
+        </div>
+
+
+        <div className="advanced-filter-date">
+          {timeValues.map((timeValue) => (
+            <React.Fragment key={timeValue.title}><h4 className="advanced-filter-name">{timeValue.title}</h4>
+              <input onChange={handleChange} type="date" name={timeValue.status} min="2019-10-01" max="2020-02-29" />
+            </React.Fragment>
+          ))}
+        </div>
+
+        <div className="advanced-filter-location">
+          <h4 className="advanced-filter-name">Localisation</h4>
+          <input list="villes" id="advanced-filter-input" name="ville" />
+        </div>
       </div>
 
-      <div className="advanced-filter-price">
-        <h4 className="advanced-filter-name">Prix</h4>
-        {priceValues.map((priceValue) => <Inputs name="price" status={priceValue.status} key={priceValue.title}>{priceValue.title}</Inputs>)}
-      </div>
-
-      <div className="advanced-filter-online">
-        <h4 className="advanced-filter-name">Diffusion en ligne</h4>
-        {liveValues.map((liveValue) => <Inputs name="is_online" status={liveValue.status} key={liveValue.title}>{liveValue.title}</Inputs>)}
-      </div>
-
-
-      <div className="advanced-filter-date">
-        {timeValues.map((timeValue) => (
-          <React.Fragment key={timeValue.title}><h4 className="advanced-filter-name">{timeValue.title}</h4>
-            <input type="date" name="date" min="2019-10-01" max="2020-02-29" />
-          </React.Fragment>
-        ))}
-      </div>
-
-      <div className="advanced-filter-location">
-        <h4 className="advanced-filter-name">Localisation</h4>
-        <input list="villes" id="advanced-filter-input" name="ville" />
-      </div>
-    </div>
-
-    <input
-      type="submit"
-      className="form-button"
-      value="Rechercher"
-    />
-  </>
-);
+      <input
+        type="submit"
+        className="form-button"
+        value="Rechercher"
+      />
+    </>
+  );
+};
 
 
 // == Export
