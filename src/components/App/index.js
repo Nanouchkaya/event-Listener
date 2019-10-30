@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import './app.scss';
 import User from 'src/components/User';
 import Home from 'src/components/Home';
-import EventDetails from 'src/components/EventDetails';
+import EventDetails from 'src/redux/containers/EventDetails';
 import LegalMentions from 'src/components/LegalMentions';
 import PrivatePolicy from 'src/components/PrivatePolicy';
 import Errors from 'src/components/Errors';

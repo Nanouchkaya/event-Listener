@@ -21,7 +21,7 @@ const Contact = () => (
         placeholder="E-mail*"
       />
       <select className="contact-form-element topic">
-        <option selected disabled value="default">Sujet du message</option>
+        <option disabled value="default">Sujet du message</option>
         <option value="sujet 1">Sujet 1</option>
         <option value="sujet 2">Sujet 2</option>
         <option value="sujet 3">Sujet 3</option>

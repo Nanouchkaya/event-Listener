@@ -1,5 +1,6 @@
 // import npm
 import React from 'react';
+import PropTypes from 'prop-types';
 
 // import sous-composants
 import Header from 'src/redux/containers/EventDetails/Header';
@@ -13,7 +14,7 @@ import Tags from './Tags';
 import './eventdetails.scss';
 
 // Composant EventDetails
-const EventDetails = () => (
+const EventDetails = ({ isConnected }) => (
   <>
     <div className="blurred-banner" />
     <div className="event">
@@ -25,7 +26,9 @@ const EventDetails = () => (
           <aside className="event-flyer-infos">
             <Datetime />
             <Address />
-            <CheckButtons />
+            { isConnected && (
+              <CheckButtons />
+            ) }
           </aside>
           <div className="event-flyer-description description">
             <Description />
@@ -38,5 +41,9 @@ const EventDetails = () => (
     </div>
   </>
 );
+
+EventDetails.propTypes = {
+  isConnected: PropTypes.bool.isRequired,
+};
 
 export default EventDetails;
