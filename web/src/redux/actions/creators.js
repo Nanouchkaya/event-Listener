@@ -13,7 +13,6 @@ import {
   HANDLE_SEARCH_CHANGE,
   HANDLE_SEARCH_SUBMIT,
   HANDLE_SUBMIT,
-  SWITCH_MODALS,
   CHANGE_INPUT_VALUE_IN_MODAL,
   CHANGE_CHECK_VALUE_IN_MODAL,
   FETCH_USER_INFOS,
@@ -41,6 +40,9 @@ import {
   ADD_ADDRESS_VALUE,
   EMPTY_FORM_VALUE,
   FILL_FILTER_LIST,
+  CHANGE_SEARCH_FORM_VALUE,
+  EMPTY_SEARCH_FORM_VALUE,
+  HANDLE_SEARCH_FORM_CHANGE,
 } from './types';
 
 
@@ -127,6 +129,7 @@ export const deconnect = () => ({
 });
 
 
+
 // Home : QuickSearchBar.js
 export const handleSearchChange = (value) => ({
   type: HANDLE_SEARCH_CHANGE,
@@ -147,6 +150,14 @@ export const handleSubmit = () => ({
 export const showAdvancedForm = () => ({
   type: SHOW_ADVANCED_FORM,
 });
+export const emptyFormValue = () => ({
+  type: EMPTY_FORM_VALUE,
+});
+export const fillFilterList = (filterList) => ({
+  type: FILL_FILTER_LIST,
+  filterList,
+});
+
 
 // EVENTS : Home.js
 export const fetchNextEvents = (data) => ({
@@ -154,18 +165,6 @@ export const fetchNextEvents = (data) => ({
   data,
 });
 
-// Events Middlewares
-export const triggerMiddleware = () => ({
-  type: TRIGGER_MIDDLEWARE,
-});
-export const nextEvents = () => ({
-  type: NEXT_EVENTS,
-});
-
-// == EventDetails : CheckButtons.js
-export const switchModals = () => ({
-  type: SWITCH_MODALS,
-});
 
 // == EventDetails : middleware
 export const getEventDetails = (id = 10) => ({
@@ -195,6 +194,13 @@ export const sendLocationSearchData = (data) => ({
 
 
 // Events Middlewares
+export const triggerMiddleware = () => ({
+  type: TRIGGER_MIDDLEWARE,
+});
+export const nextEvents = () => ({
+  type: NEXT_EVENTS,
+});
+
 export const fetchNameRequestData = (data) => ({
   type: FETCH_NAME_REQUEST_DATA,
   data,
@@ -214,11 +220,17 @@ export const addAddressValue = (value) => ({
   value,
 });
 
-// Events : Form.js
-export const emptyFormValue = () => ({
-  type: EMPTY_FORM_VALUE,
+
+// == Home : SearchForm.js
+export const changeSearchFormValue = (value, name) => ({
+  type: CHANGE_SEARCH_FORM_VALUE,
+  value,
+  name,
 });
-export const fillFilterList = (filterList) => ({
-  type: FILL_FILTER_LIST,
-  filterList,
+export const emptySearchFormValue = () => ({
+  type: EMPTY_SEARCH_FORM_VALUE,
+});
+export const handleSearchFormChange = (value) => ({
+  type: HANDLE_SEARCH_FORM_CHANGE,
+  value,
 });

@@ -65,6 +65,12 @@ export const app = (state = initialState, action = {}) => {
       };
     }
 
+    case SEND_LOCATION_SEARCH_DATA:
+      return {
+        ...state,
+        data: action.data,
+      };
+
     case CHANGE_INPUT_VALUE_IN_MODAL:
       return {
         ...state,

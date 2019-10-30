@@ -14,7 +14,6 @@ import {
 import {
   fetchNameRequestData,
   sendLocationSearchData,
-  emptyFormValue,
 } from '../actions/creators';
 
 // == Middleware : eventsMiddleware

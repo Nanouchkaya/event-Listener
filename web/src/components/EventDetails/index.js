@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 // import sous-composants
 import Header from 'src/redux/containers/EventDetails/Header';
-import CheckButtons from 'src/redux/containers/EventDetails/CheckButtons';
+import CheckButtons from 'src/components/EventDetails/CheckButtons';
 import Datetime from 'src/redux/containers/EventDetails/Datetime';
 import Address from 'src/redux/containers/EventDetails/Address';
 import Description from 'src/redux/containers/EventDetails/Description';

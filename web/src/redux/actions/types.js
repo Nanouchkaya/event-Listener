@@ -63,8 +63,11 @@ export const ALL_EVENTS = 'ALL_EVENTS';
 export const NEXT_EVENTS = 'NEXT_EVENTS';
 
 
-// EventDetails : CheckButtons.js
-export const SWITCH_MODALS = 'SWITCH_MODALS';
+// == Home : SearchForm.js
+export const CHANGE_SEARCH_FORM_VALUE = 'CHANGE_SEARCH_FORM_VALUE';
+export const EMPTY_SEARCH_FORM_VALUE = 'EMPTY_SEARCH_FORM_VALUE';
+export const HANDLE_SEARCH_FORM_CHANGE = 'HANDLE_SEARCH_FORM_CHANGE';
+
 
 // EventsDetails
 export const GET_EVENT_DETAILS = 'GET_EVENT_DETAILS';

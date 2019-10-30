@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import Nav from 'src/components/App/Nav';
+import Nav from '../../../components/App/Nav';
 
 import {
   openNavModal,

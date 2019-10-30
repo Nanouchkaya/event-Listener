@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import Footer from 'src/components/App/Footer';
+import Footer from '../../../components/App/Footer';
 
 import {
   fetchEventsByLocation,
