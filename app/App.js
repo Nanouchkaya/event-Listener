@@ -30,6 +30,68 @@ module.exports = (server, router) => {
     EventController.getEvent(request, response);
   });
 
+  /**
+   * Get event by Title
+   */
+  router.get('/events/title/:name', (request, response) => {
+    EventController.getEventByTitle(request, response);
+  });
+
+  /**
+   * Get event  by price
+   */
+  router.get('/events/price/:price', (request, response) => {
+    EventController.getEventByPrice(request, response);
+  });
+
+  /**
+   * Get event by diffusion
+   */
+  router.get('/events/diffusion/:live', (request, response) => {
+    EventController.getEventByDiffusion(request, response);
+  });
+
+  /**
+   * Get event by localisation
+   */
+  router.get('/events/localisation/:loc', (request, response) => {
+    EventController.getEventByLocalisation(request, response);
+  });
+
+  /**
+   * Get event by tags
+   */
+  router.get('/events/tags/:tag', (request, response) => {
+    EventController.getEventByTags(request, response);
+  });
+
+  /**
+   * Get event by Starting Date
+   */
+  router.get('/events/datestart/:start', (request, response) => {
+    EventController.getEventByStartingDate(request, response);
+  });
+
+  /**
+   * Get event by Ending Date
+   */
+  router.get('/events/dateend/:finish', (request, response) => {
+    EventController.getEventByEndingDate(request, response);
+  });
+
+  /**
+   * Get event by Date
+   */
+  router.get('/events/date/:start/:finish', (request, response) => {
+    EventController.getEventByDate(request, response);
+  });
+
+  /**
+   * Get next events (sort by start_date and reduce to :number first results)
+   */
+   router.post('/events/next-events/:number', (request, response) => {
+    EventController.getNextEvents(request, response);
+  });
 
   // User //
 
