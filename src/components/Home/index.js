@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchForm from './SearchForm';
+import SearchForm from 'src/redux/containers/Home/SearchForm';
 import Contact from './Contact';
 import ScrollEvents from '../Events/ScrollEvents';
 
