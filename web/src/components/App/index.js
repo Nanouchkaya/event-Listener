@@ -6,14 +6,14 @@ import PropTypes from 'prop-types';
 // == Import : local
 import './app.scss';
 import User from 'src/components/User';
-import Home from 'src/components/Home';
+import Home from 'src/redux/containers/Home';
+import Events from 'src/redux/containers/Events';
 import EventDetails from 'src/redux/containers/EventDetails';
 import LegalMentions from 'src/components/LegalMentions';
 import PrivatePolicy from 'src/components/PrivatePolicy';
 import Errors from 'src/components/Errors';
 import Nav from 'src/redux/containers/App/Nav';
 import Footer from './Footer';
-import Events from '../Events';
 
 // == Composant
 class App extends React.Component {
@@ -33,9 +33,7 @@ class App extends React.Component {
           <Route exact path="/evenements">
             <Events />
           </Route>
-          <Route path="/evenements/:id">
-            <EventDetails />
-          </Route>
+          <Route path="/evenements/:eventId" component={EventDetails} />
           { isConnected && (
             <Route path="/profil">
               <User />

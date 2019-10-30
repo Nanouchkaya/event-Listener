@@ -8,21 +8,28 @@ import Form from 'src/components/Events/Form';
 
 // == Import : Action Creators
 import {
-  handleChange,
+  handleFormChange,
   handleSubmit,
+  showAdvancedForm,
+  triggerMiddleware,
 } from '../../actions/creators';
 
 
 const mapStateToProps = (state) => ({
   value: state.form.value,
+  advanced: state.form.advanced,
+  data: state.form.data,
 });
 
 
 const mapDispatchToProps = (dispatch) => ({
-  handleChange: (value) => dispatch(handleChange(value)),
+  handleFormChange: (value) => dispatch(handleFormChange(value)),
   handleSubmit: () => dispatch(handleSubmit()),
+  showAdvancedForm: () => dispatch(showAdvancedForm()),
+  triggerMiddleware: () => dispatch(triggerMiddleware()),
 });
 
 
 // == Export
 export default connect(mapStateToProps, mapDispatchToProps)(Form);
+

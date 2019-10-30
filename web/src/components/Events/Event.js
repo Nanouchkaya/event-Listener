@@ -1,44 +1,59 @@
+/* eslint-disable react/no-danger */
 // == Import : npm
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import DOMPurify from 'dompurify';
+import moment from 'moment';
 
 
 // == Import : local
-import image from 'src/assets/images/test_evt.png';
 import iconPlus from 'src/assets/images/icons/icons8-plus-50.png';
 
 
-// == CSS
-const bannerStyle = {
-  backgroundImage: `url(${image})`,
-  backgroundPosition: 'center',
-  backgroundSize: 'cover',
-  backgroundRepeat: 'no-repeat',
+// == Composant Event
+const Event = ({
+  id,
+  title,
+  url_image: urlImage,
+  address,
+  date_start: dateStart,
+}) => {
+  const eventDate = moment(dateStart).format('DD MMM YYYY');
+  const pureAddress = <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(address) }} />;
+
+  return (
+    <div
+      className="event"
+      style={{
+        backgroundImage: `url(${urlImage})`,
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
+      <Link to={`/evenements/${id}`} className="event-link">
+        <div className="event-gradient">
+          <div className="event-title">
+            {title}
+          </div>
+          <div className="event-address">
+            {pureAddress}
+          </div>
+          <div className="event-date">
+            {eventDate}
+          </div>
+        </div>
+      </Link>
+    </div>
+  );
 };
 
 
-// == Composant Event
-const Event = () => (
-  <div className="menu-item list">
-    <div className="menu-item-top" style={bannerStyle}>
-        Image événement
-    </div>
-    <div className="menu-item-middle">
-      <h3 className="menu-item-middle-title">Titre</h3>
-      <p className="menu-item-middle-content">
-        Petit texte de contenu
-      </p>
-      <NavLink to="/evenements/1">
-        <img src={iconPlus} alt="plus" className="icon" />
-      </NavLink>
-    </div>
-    <div className="menu-item-bot">
-      <p className="menu-item-bot-location">Lieu</p>
-      <p className="menu-item-bot-date">Date</p>
-    </div>
-  </div>
-);
-
-
+Event.propTypes = {
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  url_image: PropTypes.string.isRequired,
+  address: PropTypes.string.isRequired,
+  date_start: PropTypes.string.isRequired,
+};
 // == Export
 export default Event;

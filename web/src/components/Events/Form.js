@@ -8,31 +8,37 @@ import Advanced from './Advanced';
 
 
 // == Composant Form
-const Form = ({ handleChange, handleSubmit, value }) => {
+const Form = ({
+  handleFormChange,
+  handleSubmit,
+  showAdvancedForm,
+  value,
+  advanced,
+  triggerMiddleware,
+}) => {
   const _onSubmit = (event) => {
     event.preventDefault();
     handleSubmit();
   };
+  const _onChange = (event) => {
+    handleFormChange(event.target.value);
+    triggerMiddleware();
+  };
 
   return (
     <>
-      <h3>Formulaire</h3>
       <form onSubmit={_onSubmit} className="form">
         <input
           type="text"
           className="form-input"
           placeholder="Que recherchez-vous ?"
           value={value}
-          onChange={(event) => handleChange(event.target.value)}
+          onChange={_onChange}
         />
-
-        { value.trim().length > 0 && <Advanced /> }
-
-        <input
-          type="submit"
-          className="form-button"
-          value="Rechercher"
-        />
+        <button type="button" onClick={showAdvancedForm} className="form-button">
+          Voir plus de filtres
+        </button>
+        { advanced && <Advanced /> }
       </form>
     </>
   );
@@ -41,9 +47,12 @@ const Form = ({ handleChange, handleSubmit, value }) => {
 
 // == PropTypes
 Form.propTypes = {
-  handleChange: PropTypes.func.isRequired,
+  handleFormChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  showAdvancedForm: PropTypes.func.isRequired,
+  advanced: PropTypes.bool.isRequired,
   value: PropTypes.string,
+  triggerMiddleware: PropTypes.func.isRequired,
 };
 Form.defaultProps = {
   value: '',

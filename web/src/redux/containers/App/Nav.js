@@ -14,7 +14,6 @@ const mapStateToProps = (state) => ({
   showLogin: state.app.login,
   showRegister: state.app.register,
   cancelIcon: state.app.cancelIcon,
-  switchModals: state.switchModals.switch,
   isConnected: state.app.isConnected,
   pseudo: state.user.pseudo,
 });

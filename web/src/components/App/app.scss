@@ -30,12 +30,24 @@
   }
 
   .searchbar-visible {
-    display: inline;
-    margin-left: 2rem;
+    display: inline-block;
+    position: absolute;
+    right: calc(50% - 150px);
+    bottom: -2.5rem;
+    
 
     .searchbar-input {
-      @include form-element;
-      margin: 0;      
+      width: 280px;
+      padding: .5rem .8rem;
+      border-radius: 5px;
+      background-color: rgba(255,255,255,.2);
+      color: white;
+      border: 1px solid rgba(255,255,255,.2);
+      margin: 0;
+      
+      &::placeholder {
+        color: white;
+      }
     }
   }
 }
@@ -43,8 +55,8 @@
 .menu-burger {
 display: block;
 position: fixed;
-right: .2rem;
-top: .2rem;
+right: .4rem;
+top: .4rem;
 font-size: 2rem;
 color: $turquoise;
 z-index:1;
@@ -57,7 +69,6 @@ z-index:1;
     background: darken($backgroundDark, 5%);
     color: $colorDarkTheme;
     width: 100%;
-    margin: auto;
     min-height: 30vh;
     display: flex;
     flex-direction: column;
@@ -92,6 +103,11 @@ z-index:1;
       &.button {
         background: none;
         margin-left: -0.2rem;
+      }
+
+      &.online {
+        display: flex;
+        align-items: center;
       }
   }
 }
@@ -146,17 +162,21 @@ footer {
     .searchbar {
       margin: -0.7rem 3rem 0;
     }
+    .searchbar-visible {
+      right: 2rem;
+    }
   }
 }
 
 
 @media all and (min-width: 980px) {
   /* NAVIGATION */
+
   .menu-burger {
     display: none;
   }
   .menu {
-    display: initial;
+    display: flex;
 
     &-main {
       background: transparent;
@@ -190,7 +210,19 @@ footer {
             background: $turquoiseGradient;
             color: $colorDarkTheme;
           }
-      }
+
+          &.online {
+            display: flex;
+            align-items: center;
+            margin: -.5rem;
+          }
+
+          & .pseudo:before {
+            content: 'Bienvenue';
+            margin-right: .5rem;
+          }
+
+        }
 
       &--active {
         color: $turquoise;
@@ -205,5 +237,15 @@ footer {
   .footer > div {
     display: flex;
     justify-content: space-around;
+  }
+}
+
+@media all and (min-width: 1430px) {
+  .navigation-item--left .searchbar-visible {
+    position: relative;
+    bottom: .5rem;
+    right:0;
+    margin-left: 1.5rem;
+    width: 150px;
   }
 }

@@ -37,16 +37,29 @@ export const CHECK_CONNECT = 'CHECK_CONNECT';
 
 // Home : QuickSearchBar.js
 // Events : Form.js
-export const HANDLE_CHANGE = 'HANDLE_CHANGE';
+export const HANDLE_SEARCH_CHANGE = 'HANDLE_SEARCH_CHANGE';
+export const HANDLE_SEARCH_SUBMIT = 'HANDLE_SEARCH_SUBMIT';
 
 
 // Events : Form.js
-// Modal : RegisterForm.js
+export const HANDLE_FORM_CHANGE = 'HANDLE_FORM_CHANGE';
 export const HANDLE_SUBMIT = 'HANDLE_SUBMIT';
+export const SHOW_ADVANCED_FORM = 'SHOW_ADVANCED_FORM';
+// Events : Home.js
+export const FETCH_NEXT_EVENTS = 'FETCH NEXT EVENTS';
+// == Events Middlewares
+export const TRIGGER_MIDDLEWARE = 'TRIGGER_MIDDLEWARE';
+export const FETCH_NAME_REQUEST_DATA = 'FETCH_NAME_REQUEST_DATA';
+export const ALL_EVENTS = 'ALL_EVENTS';
+export const NEXT_EVENTS = 'NEXT_EVENTS';
 
 
 // EventDetails : CheckButtons.js
 export const SWITCH_MODALS = 'SWITCH_MODALS';
+
+// EventsDetails
+export const GET_EVENT_DETAILS = 'GET_EVENT_DETAILS';
+export const FETCH_EVENT_DETAILS = 'FETCH_EVENT_DETAILS';
 
 
 // User : Update

@@ -12,7 +12,7 @@ $red: rgb(185, 36, 73);
 
 /* GRADIENTS */
 $mainGradient: linear-gradient(143deg, rgba(14,179,207,1) 0%, rgba(37,93,173,1) 54%, rgba(93,58,201,1) 100%);
-$mainGradientOpacity: linear-gradient(143deg, rgba(14,179,207,.8) 0%, rgba(37,93,173,.8) 54%, rgba(93,58,201,.8) 100%);
+$mainGradientOpacity: linear-gradient(143deg, rgba(14,179,207,.5) 0%, rgba(37,93,173,.5) 54%, rgba(93,58,201,.5) 100%);
 $lightGradient: linear-gradient(0deg, rgba(224,224,224,1) 5%, rgba(255,255,255,1) 54%, rgb(226, 226, 226) 100%);
 $turquoiseGradient: radial-gradient(circle, rgba(9,185,193,1) 0%, rgba(37,194,219,1) 49%, rgba(16,159,199,1) 100%);
 $blueGradient: radial-gradient(circle, rgb(48, 149, 207) 0%, rgba(36,96,174,1) 70%, rgb(40, 107, 146) 100%);
@@ -78,4 +78,3 @@ $screen-md-min: 768px ;
 $screen-lg-min: 992px;
 // Large tablets and desktops
 $screen-xl-min: 1200px;
-

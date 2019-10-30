@@ -6,6 +6,7 @@ import {
   OPEN_SHARE_LINKS_MODAL,
   CLOSE_SHARE_LINKS_MODAL,
   SWITCH_MODALS,
+  FETCH_EVENT_DETAILS,
 } from '../actions/types';
 
 const initialState = {
@@ -48,6 +49,23 @@ export const switchModals = (state = modalState, action = {}) => {
       return {
         ...state,
         switch: !state.switch,
+      };
+    default:
+      return state;
+  }
+};
+
+
+const detailsState = {
+  data: {},
+  eventStatut: 'A venir55',
+};
+export const eventDetails = (state = detailsState, action = {}) => {
+  switch (action.type) {
+    case FETCH_EVENT_DETAILS:
+      return {
+        ...state,
+        data: action.data,
       };
     default:
       return state;

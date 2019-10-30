@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 // == Import : local
 import ShareLinks from 'src/components/Modal/ShareLinks';
 import shareIcon from 'src/assets/images/icons/icons8-share-50.png';
-import banner from 'src/assets/images/event.png';
 import heartIcon from 'src/assets/images/icons/icons8-heart-50.png';
 import heartCheckedIcon from 'src/assets/images/icons/icons8-heart-checked-50.png';
 
@@ -15,26 +14,37 @@ const Header = ({
   changeHeartIcon,
   openShareModal,
   closeShareModal,
+  banner,
+  title,
+  price,
+  dateStart,
+  dateEnd,
+  getEventStatus,
+  urlLive,
+  isOnline,
 }) => {
-  /* CSS permettant d'avoir l'image d'un évènement en bannière */
-  const bannerStyle = {
-    backgroundImage: `url(${banner})`,
-    backgroundPosition: 'center',
-    backgroundSize: 'cover',
-  };
-
   /* Si la props likeIcon vaut "true" je change d'icon */
   const iconHeart = likeIcon ? heartCheckedIcon : heartIcon;
+  const payant = price ? 'Payant' : 'Gratuit';
+  const eventStatut = getEventStatus(dateStart, dateEnd);
+  const onlineClass = isOnline ? 'event-link-online' : 'event-link-offline';
 
   return (
     <div className="event-header">
-      <div className="event-header-banner" style={bannerStyle}>
+      <div
+        className="event-header-banner"
+        style={{
+          backgroundImage: `url(${banner})`,
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
+        }}
+      >
         Banniere-evenement
       </div>
 
       <div className="event-header-infos">
         <h1 className="event-header-infos-name">
-        DataJob Paris 2019 <em>par DataJob</em>
+          {title}
         </h1>
         <div className="event-header-bottom">
           <div className="event-header-bottom-icons">
@@ -58,13 +68,13 @@ const Header = ({
             {/* Affichage de la modal que si showModal vaut "true" */}
             { showModal && <ShareLinks closeModal={closeShareModal} /> }
           </div>
-          <span className="event-header-bottom-price">Evenement Payant</span>
+          <span className="event-header-bottom-price">{payant}</span>
         </div>
       </div>
 
-      <div className="event-header-status-date">
-        <span>A venir</span>
-        <time>Nov. 12</time>
+      <div className="event-header-status">
+        <span>{eventStatut}</span>
+        <a href={urlLive} className={onlineClass}>Diffusion online</a>
       </div>
     </div>
   );
@@ -78,6 +88,23 @@ Header.propTypes = {
   changeHeartIcon: PropTypes.func.isRequired,
   openShareModal: PropTypes.func.isRequired,
   closeShareModal: PropTypes.func.isRequired,
+  getEventStatus: PropTypes.func.isRequired,
+  price: PropTypes.number,
+  banner: PropTypes.string,
+  title: PropTypes.string,
+  dateStart: PropTypes.string,
+  dateEnd: PropTypes.string,
+  urlLive: PropTypes.string,
+  isOnline: PropTypes.number,
+};
+Header.defaultProps = {
+  price: 0,
+  banner: '',
+  title: '',
+  dateStart: '',
+  dateEnd: '',
+  urlLive: '',
+  isOnline: 0,
 };
 
 

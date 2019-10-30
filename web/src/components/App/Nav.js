@@ -9,11 +9,12 @@ import { NavLink, Route } from 'react-router-dom';
 import '../Modal/modal.scss';
 import menuBurgerOpenIcon from 'src/assets/images/icons/icons8-xbox-menu-50.png';
 import menuBurgerCloseIcon from 'src/assets/images/icons/icons8-cancel-50.png';
+import profileIcon from 'src/assets/images/icons/icons8-settings-50.png';
+import logoutIcon from 'src/assets/images/icons/icons8-exit-50.png';
+
 import QuickSearchBar from 'src/redux/containers/Home/QuickSearchBar';
 import RegisterForm from 'src/redux/containers/Modal/RegisterForm';
 import LoginForm from 'src/redux/containers/Modal/LoginForm';
-import profileIcon from 'src/assets/images/icons/icons8-settings-50.png';
-import logoutIcon from 'src/assets/images/icons/icons8-exit-50.png';
 
 
 // == Composant Nav
@@ -23,7 +24,6 @@ const Nav = ({
   activeNavMenu,
   showLogin,
   showRegister,
-  switchModals,
   isConnected,
   pseudo,
   deconnect,
@@ -113,7 +113,6 @@ const Nav = ({
                   <RegisterForm
                     show={showRegister}
                     handleclose={handleNavModals}
-                    switchModals={switchModals}
                   />
                 )}
                 <button
@@ -132,7 +131,6 @@ const Nav = ({
                 { showLogin && (
                   <LoginForm
                     handleclose={handleNavModals}
-                    switchModals={switchModals}
                   />
                 )}
                 <button
@@ -160,7 +158,6 @@ Nav.propTypes = {
   showRegister: PropTypes.bool.isRequired,
   openNavModal: PropTypes.func.isRequired,
   activeNavMenu: PropTypes.func.isRequired,
-  switchModals: PropTypes.bool.isRequired,
   isConnected: PropTypes.bool.isRequired,
   pseudo: PropTypes.string.isRequired,
   deconnect: PropTypes.func.isRequired,

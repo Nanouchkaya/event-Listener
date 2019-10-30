@@ -9,7 +9,9 @@ import {
   CHANGE_EDITOR_MODE,
   OPEN_NAV_MODAL,
   ACTIVE_NAV_MENU,
-  HANDLE_CHANGE,
+  HANDLE_FORM_CHANGE,
+  HANDLE_SEARCH_CHANGE,
+  HANDLE_SEARCH_SUBMIT,
   HANDLE_SUBMIT,
   SWITCH_MODALS,
   CHANGE_INPUT_VALUE_IN_MODAL,
@@ -24,6 +26,14 @@ import {
   SHOW_MESSAGE_LOGIN,
   DECONNECT,
   CHANGE_UPDATE_USER,
+  FETCH_EVENT_DETAILS,
+  GET_EVENT_DETAILS,
+  SHOW_ADVANCED_FORM,
+  TRIGGER_MIDDLEWARE,
+  FETCH_NAME_REQUEST_DATA,
+  ALL_EVENTS,
+  NEXT_EVENTS,
+  FETCH_NEXT_EVENTS,
 } from './types';
 
 // == Import : Action Creators
@@ -112,23 +122,58 @@ export const deconnect = () => ({
 
 
 // Home : QuickSearchBar.js
-// Events : Form.js
-export const handleChange = (value) => ({
-  type: HANDLE_CHANGE,
+export const handleSearchChange = (value) => ({
+  type: HANDLE_SEARCH_CHANGE,
   value,
 });
+export const handleSearchSubmit = () => ({
+  type: HANDLE_SEARCH_SUBMIT,
+});
 
-
-// == Events : Form.js
-// == Modal : RegisterForm.js
+// Events : Form.js
+export const handleFormChange = (value) => ({
+  type: HANDLE_FORM_CHANGE,
+  value,
+});
 export const handleSubmit = () => ({
   type: HANDLE_SUBMIT,
 });
-
+export const showAdvancedForm = () => ({
+  type: SHOW_ADVANCED_FORM,
+});
+// EVENTS : Home.js
+export const fetchNextEvents = (data) => ({
+  type: FETCH_NEXT_EVENTS,
+  data,
+});
+// Events Middlewares
+export const triggerMiddleware = () => ({
+  type: TRIGGER_MIDDLEWARE,
+});
+export const fetchNameRequestData = (data) => ({
+  type: FETCH_NAME_REQUEST_DATA,
+  data,
+});
+export const allEvents = () => ({
+  type: ALL_EVENTS,
+});
+export const nextEvents = () => ({
+  type: NEXT_EVENTS,
+});
 
 // == EventDetails : CheckButtons.js
 export const switchModals = () => ({
   type: SWITCH_MODALS,
+});
+
+// == EventDetails : middleware
+export const getEventDetails = (id = 10) => ({
+  type: GET_EVENT_DETAILS,
+  id,
+});
+export const fetchEventDetails = (data) => ({
+  type: FETCH_EVENT_DETAILS,
+  data,
 });
 
 // User : Update

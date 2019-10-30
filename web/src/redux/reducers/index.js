@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
 // import des reducers
-import { eventIcons, switchModals } from './eventdetails';
+import { eventIcons, eventDetails } from './eventdetails';
 import { user } from './user';
 import { app } from './app';
 import { home } from './home';
@@ -13,5 +13,6 @@ export default combineReducers({
   app,
   home,
   form,
-  switchModals,
+  eventDetails,
+  // ...
 });
