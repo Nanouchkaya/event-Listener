@@ -22,6 +22,7 @@ import {
   SEND_LOCATION_SEARCH_DATA,
   ADD_FILTERS,
   TEST_FILTERS_MID,
+  ADD_ADDRESS_VALUE,
 } from './types';
 
 // == Import : Action Creators
@@ -117,6 +118,10 @@ export const addFilters = (filters) => ({
 });
 export const testFiltersMid = () => ({
   type: TEST_FILTERS_MID,
+});
+export const addAddressValue = (value) => ({
+  type: ADD_ADDRESS_VALUE,
+  value,
 });
 
 // == EventDetails : CheckButtons.js

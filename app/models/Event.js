@@ -351,9 +351,17 @@ class Event {
       // })
 
       if (filters.length === (index + 1)) {
-        queryTest += `${Object.keys(value)} = ${value[Object.keys(value)]};`;  
+        if ((Object.keys(value) == 'address' || Object.keys(value) == 'title')) {
+            queryTest += `${Object.keys(value)} LIKE ${value[Object.keys(value)]};` 
+        } else {
+            queryTest += `${Object.keys(value)} = ${value[Object.keys(value)]};`;  
+        }
       } else {
-        queryTest += `${Object.keys(value)} = ${value[Object.keys(value)]} AND `;
+          if ((Object.keys(value) == 'address' || Object.keys(value) == 'title')) {
+              queryTest += `${Object.keys(value)} LIKE ${value[Object.keys(value)]} AND` 
+          } else {
+              queryTest += `${Object.keys(value)} = ${value[Object.keys(value)]} AND `;  
+          }
       }
     });
 

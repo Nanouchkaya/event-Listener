@@ -32,15 +32,31 @@ const timeValues = [
 
 
 // == Composant Advanced
-const Advanced = ({ addFilters, stateTest }) => {
+const Advanced = ({ addFilters, stateTest, addressValue, addAddressValue }) => {
   const handleChange = (event) => {
-    console.log(event.target.value);
     const { value, name } = event.target;
     const filter = {
       [name]: `'${value}'`,
     };
     addFilters(filter);
   };
+  const _onChange = (event) => {
+    const { value } = event.target;
+    addAddressValue(value);
+    //console.log(addressValue);
+  };
+
+  const _onBlur = (event) => {
+    const { value, name } = event.target;
+    addAddressValue(value);
+    //console.log(addressValue);
+    const filter = {
+      [name]: `'%${addressValue}%'`,
+    };
+    addFilters(filter);
+  };
+
+
   console.log(stateTest);
   return (
     <>
@@ -71,7 +87,7 @@ const Advanced = ({ addFilters, stateTest }) => {
 
         <div className="advanced-filter-location">
           <h4 className="advanced-filter-name">Localisation</h4>
-          <input list="villes" id="advanced-filter-input" name="ville" />
+          <input onChange={_onChange} onBlur={_onBlur} list="villes" id="advanced-filter-input" name="address" value={addressValue} />
         </div>
       </div>
 

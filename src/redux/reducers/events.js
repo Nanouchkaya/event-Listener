@@ -4,6 +4,7 @@ import {
   SHOW_ADVANCED_FORM,
   FETCH_NAME_REQUEST_DATA,
   ADD_FILTERS,
+  ADD_ADDRESS_VALUE,
 } from '../actions/types';
 
 const initialState = {
@@ -11,6 +12,7 @@ const initialState = {
   advanced: false,
   data: [],
   dataFilter: [],
+  addressValue: '',
 };
 
 
@@ -43,6 +45,11 @@ export const form = (state = initialState, action = {}) => {
           ...state.dataFilter,
           action.filters,
         ],
+      };
+    case ADD_ADDRESS_VALUE:
+      return {
+        ...state,
+        addressValue: action.value,
       };
     default:
       return state;
