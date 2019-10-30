@@ -13,7 +13,7 @@ const Header = ({ pseudo, urlAvatar }) => (
     <div className="header-pseudo">
       {pseudo}
     </div>
-    <img className="header-avatar" src={urlAvatar} alt="avatar" />
+    <img className="header-avatar" src={(urlAvatar) ? urlAvatar : avatarImg} alt="avatar" />
   </header>
 );
 

@@ -65,6 +65,7 @@ const Preferences = ({
               id="lastnameInput"
               name="lastname"
               type="text"
+              placeholder="À modifier"
               value={lastname}
               disabled={editorModeDisabled}
               onChange={handleChangeValue}
@@ -81,6 +82,7 @@ const Preferences = ({
               id="firstnameInput"
               name="firstname"
               type="text"
+              placeholder="À modifier"
               value={firstname}
               disabled={editorModeDisabled}
               onChange={handleChangeValue}
@@ -207,13 +209,14 @@ const Preferences = ({
     </section>
   );
 };
+
 // == PropTypes
 Preferences.propTypes = {
   firstname: PropTypes.string.isRequired,
   lastname: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
-  password: PropTypes.string.isRequired,
-  confirmePassword: PropTypes.string.isRequired,
+  password: PropTypes.string,
+  confirmePassword: PropTypes.string,
   notifNewEvent: PropTypes.bool.isRequired,
   notifNewUpdate: PropTypes.bool.isRequired,
   changeValue: PropTypes.func.isRequired,
@@ -223,5 +226,11 @@ Preferences.propTypes = {
   editorModeDisabled: PropTypes.bool.isRequired,
   handleChangEditorMode: PropTypes.func.isRequired,
 };
+
+Preferences.defaultProps = {
+  password: '',
+  confirmePassword: '',
+};
+
 // == Export
 export default Preferences;

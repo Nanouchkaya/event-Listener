@@ -12,6 +12,8 @@ import menuBurgerCloseIcon from 'src/assets/images/icons/icons8-cancel-50.png';
 import QuickSearchBar from 'src/redux/containers/Home/QuickSearchBar';
 import RegisterForm from 'src/redux/containers/Modal/RegisterForm';
 import LoginForm from 'src/redux/containers/Modal/LoginForm';
+import profileIcon from 'src/assets/images/icons/icons8-settings-50.png';
+import logoutIcon from 'src/assets/images/icons/icons8-exit-50.png';
 
 
 // == Composant Nav
@@ -22,6 +24,9 @@ const Nav = ({
   showLogin,
   showRegister,
   switchModals,
+  isConnected,
+  pseudo,
+  deconnect,
 }) => {
   /* Fonction qui gère l'ouverture des deux modals Connexion et Inscription */
   const handleNavModals = (event) => {
@@ -42,22 +47,19 @@ const Nav = ({
         >
         eventListener
         </NavLink>
-        <Route path="/(evenements|profil)">
+        <Route path="/(evenements|profil|mentions-legales|politique-de-confidentialite)">
           <QuickSearchBar />
         </Route>
       </div>
 
-      {/*
-        Au click sur l'icon du menu burger, la props "menuBurger" passe à "true" et
-        donc la propriété CSS change ET l'icone change également
-      */}
-
+      {/* Au click sur l'icon du menu burger, la props "menuBurger" passe à "true" et donc la propriété CSS change ET l'icone change également */}
       <img
         src={menuburgerIcon}
         alt="Menu"
         className="menu-burger"
         onClick={activeNavMenu}
       />
+
       <div className={menuBurgerClass}>
         <div className="menu-main">
           <NavLink
@@ -69,43 +71,81 @@ const Nav = ({
             Tous les événements
           </NavLink>
 
-          <div
-            className="navigation-item--active"
-          >
-            { showRegister && (
-              <RegisterForm
-                handleclose={handleNavModals}
-                switchModals={switchModals}
-              />
-            )}
-            <button
-              type="button"
-              className="navigation-item--right button"
-              name="register"
-              onClick={handleNavModals}
-            >
-              Inscription
-            </button>
-          </div>
+          {/* Gestion de l'affichage de la nav si l'utilisateur est connecté ou non */}
+          { isConnected && (
+            <>
+              <div className="navigation-item--right">
+                <NavLink
+                  to="/profil"
+                  exact
+                  activeClassName="navigation-item--active"
+                  className="navigation-item--right online"
+                >
+                  <span className="pseudo">{pseudo}</span>
+                  <span>
+                    <img src={profileIcon} alt="modifier profil" className="icon" />
+                  </span>
+                </NavLink>
+              </div>
 
-          <div
-            className="navigation-item--active"
-          >
-            { showLogin && (
-              <LoginForm
-                handleclose={handleNavModals}
-                switchModals={switchModals}
-              />
-            ) }
-            <button
-              type="button"
-              className="navigation-item--right button"
-              name="login"
-              onClick={handleNavModals}
-            >
-              Connexion
-            </button>
-          </div>
+              <div className="navigation-item--right">
+                <NavLink
+                  to="/"
+                  exact
+                  className="navigation-item--right online"
+                  onClick={deconnect}
+                >
+                  <span>Déconnexion</span>
+                  <span>
+                    <img src={logoutIcon} alt="deconnexion" className="icon" />
+                  </span>
+                </NavLink>
+              </div>
+            </>
+          )}
+
+          { !isConnected && (
+            <>
+              <div
+                className="navigation-item--active"
+              >
+                { showRegister && (
+                  <RegisterForm
+                    show={showRegister}
+                    handleclose={handleNavModals}
+                    switchModals={switchModals}
+                  />
+                )}
+                <button
+                  type="button"
+                  className="navigation-item--right button"
+                  name="register"
+                  onClick={handleNavModals}
+                >
+                  Inscription
+                </button>
+              </div>
+
+              <div
+                className="navigation-item--active"
+              >
+                { showLogin && (
+                  <LoginForm
+                    handleclose={handleNavModals}
+                    switchModals={switchModals}
+                  />
+                )}
+                <button
+                  type="button"
+                  className="navigation-item--right button"
+                  name="login"
+                  onClick={handleNavModals}
+                >
+                  Connexion
+                </button>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </nav>
@@ -121,6 +161,9 @@ Nav.propTypes = {
   openNavModal: PropTypes.func.isRequired,
   activeNavMenu: PropTypes.func.isRequired,
   switchModals: PropTypes.bool.isRequired,
+  isConnected: PropTypes.bool.isRequired,
+  pseudo: PropTypes.string.isRequired,
+  deconnect: PropTypes.func.isRequired,
 };
 
 

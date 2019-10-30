@@ -14,11 +14,15 @@ import {
   SWITCH_MODALS,
   CHANGE_INPUT_VALUE_IN_MODAL,
   CHANGE_CHECK_VALUE_IN_MODAL,
+  FETCH_USER_INFOS,
   SUBMIT_REGISTER,
   SUBMIT_LOGIN,
-  CONNECT,
+  DO_CONNECT,
+  CHECK_CONNECT,
   EMPTY_FIELDS_REGISTER,
   SHOW_MESSAGE_REGISTER,
+  SHOW_MESSAGE_LOGIN,
+  DECONNECT,
 } from './types';
 
 // == Import : Action Creators
@@ -36,6 +40,10 @@ export const closeShareLinksModal = () => ({
 
 
 // User : Preferences.js
+export const fetchUserInfos = (user) => ({
+  type: FETCH_USER_INFOS,
+  user,
+});
 export const changeInputValue = (name, value) => ({
   type: CHANGE_INPUT_VALUE,
   name,
@@ -67,15 +75,22 @@ export const submitRegister = () => ({
 export const submitLogin = () => ({
   type: SUBMIT_LOGIN,
 });
-export const connect = (token) => ({
-  type: CONNECT,
-  token,
+export const connect = () => ({
+  type: DO_CONNECT,
+});
+export const checkConnect = () => ({
+  type: CHECK_CONNECT,
 });
 export const emptyFieldsRegister = () => ({
   type: EMPTY_FIELDS_REGISTER,
 });
 export const showMessageRegister = (messageType, messageContent) => ({
   type: SHOW_MESSAGE_REGISTER,
+  messageType,
+  messageContent,
+});
+export const showMessageLogin = (messageType, messageContent) => ({
+  type: SHOW_MESSAGE_LOGIN,
   messageType,
   messageContent,
 });
@@ -89,6 +104,9 @@ export const changeCheckValueInModal = (modalName, checkName) => ({
   type: CHANGE_CHECK_VALUE_IN_MODAL,
   modalName,
   checkName,
+});
+export const deconnect = () => ({
+  type: DECONNECT,
 });
 
 

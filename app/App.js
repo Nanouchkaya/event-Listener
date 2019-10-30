@@ -34,6 +34,13 @@ module.exports = (server, router) => {
   // User //
 
   /**
+   * Check authentication
+   */
+  router.get('/check-auth', (request, response) => {
+    UserController.checkAuth(request, response);
+  });
+
+  /**
    * Create an account
    */
   router.post('/users/add', (request, response) => {

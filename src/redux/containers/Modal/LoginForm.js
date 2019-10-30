@@ -13,6 +13,7 @@ const mapStateToProps = (state) => ({
   email: state.app.loginContent.email,
   password: state.app.loginContent.password,
   stayLoggedIn: state.app.loginContent.stayLoggedIn,
+  message: state.app.loginContent.message,
 });
 
 const mapDispatchToProps = (dispatch) => ({

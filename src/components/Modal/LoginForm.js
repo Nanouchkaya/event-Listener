@@ -13,6 +13,7 @@ const LoginForm = ({
   changeCheckInputValue,
   submitLogin,
   switchModals,
+  message,
 }) => {
   const handleChangeValue = (event) => {
     const { name, value } = event.target;
@@ -53,7 +54,11 @@ const LoginForm = ({
             value={password}
             onChange={handleChangeValue}
           />
-
+          { message.error && (
+            <div className="modal-form-message modal-form-message--error">
+              {message.content}
+            </div>
+          ) }
           <button
             className="modal-form--submit"
             type="submit"
@@ -96,8 +101,18 @@ LoginForm.propTypes = {
   changeCheckInputValue: Proptypes.func.isRequired,
   submitLogin: Proptypes.func.isRequired,
   switchModals: Proptypes.bool.isRequired,
+  message: Proptypes.shape({
+    error: Proptypes.bool,
+    content: Proptypes.string,
+  }),
 };
 
+LoginForm.defaultProps = {
+  message: {
+    error: false,
+    content: null,
+  },
+};
 
 // == Export
 export default LoginForm;

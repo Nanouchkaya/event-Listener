@@ -10,6 +10,53 @@ const checkEmail = require('../utils/functions').checkEmail;
 
 class UserController {
 
+
+  /**
+   * Check authentication
+   * @param {object} request
+   * @param {object} response
+   */
+  static checkAuth(request, response) {
+    let result;
+    
+    if (request.headers.authorization) {
+      const token = request.headers.authorization.split(' ')[1];
+
+      try {
+        result = jwToken.verify(
+          token,
+          process.env.APP_KEY,
+          { expiresIn: '2d' },
+        );
+
+        User.find(
+          result.userId,
+          (result) => {
+  
+            response.status(200);
+            if (result.rowMatch) {
+              
+              response.json(result);
+            } else {
+  
+              response.json({
+                status: "User not found",
+              });
+            }
+          });
+      } catch (error) {
+
+        throw new Error(error);
+      }
+    } else {
+      
+      response.status(401).send({ 
+        error: true,
+        errorMessage: 'Erreur d\'authentification. Token manquant.',
+      });
+    }
+  }
+
   /**
    * Create an account
    * @param {object} request
@@ -109,23 +156,25 @@ class UserController {
             const token = jwToken.sign(payload, process.env.APP_KEY, options);
 
             response.json({
-              status: "Connected",
+              error: false,
               result,
               token,
             });
             
           } else {
 
-            response.status(401);
+            response.status(200);
             response.json({
-              status: "Le mot de passe ou l'email est incorrect"
+              error: true,
+              errorMessage: "Le mot de passe ou l'email est incorrect"
             });
           }
         } else {
 
-          response.status(401);
+          response.status(200);
           response.json({
-            status: "Le mot de passe ou l'email est incorrect"
+            error: true,
+            errorMessage: "Le mot de passe ou l'email est incorrect"
           });
         }
       });
@@ -134,6 +183,7 @@ class UserController {
 
       response.status(401);
       response.json({
+        error: true,
         status: "Bad data received"
       });
     }

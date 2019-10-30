@@ -5,11 +5,13 @@ import {
   CHANGE_CHECK_VALUE_IN_MODAL,
   EMPTY_FIELDS_REGISTER,
   SHOW_MESSAGE_REGISTER,
-  CONNECT,
+  SHOW_MESSAGE_LOGIN,
+  DO_CONNECT,
+  DECONNECT,
 } from '../actions/types';
 
 const initialState = {
-  isLogged: false,
+  isConnected: false,
   menuBurger: false,
   login: false,
   register: false,
@@ -51,6 +53,7 @@ export const app = (state = initialState, action = {}) => {
         [action.name]: !state[action.name],
       };
     }
+
     case ACTIVE_NAV_MENU: {
       return {
         ...state,
@@ -59,6 +62,7 @@ export const app = (state = initialState, action = {}) => {
         register: false,
       };
     }
+
     case CHANGE_INPUT_VALUE_IN_MODAL:
       return {
         ...state,
@@ -67,6 +71,7 @@ export const app = (state = initialState, action = {}) => {
           [action.inputName]: action.value,
         },
       };
+
     case CHANGE_CHECK_VALUE_IN_MODAL: {
       return {
         ...state,
@@ -76,6 +81,7 @@ export const app = (state = initialState, action = {}) => {
         },
       };
     }
+
     case EMPTY_FIELDS_REGISTER:
       return {
         ...state,
@@ -86,6 +92,7 @@ export const app = (state = initialState, action = {}) => {
           },
         },
       };
+
     case SHOW_MESSAGE_REGISTER:
       return {
         ...state,
@@ -98,15 +105,33 @@ export const app = (state = initialState, action = {}) => {
           },
         },
       };
-    case CONNECT:
+
+    case SHOW_MESSAGE_LOGIN:
       return {
         ...state,
-        isLogged: true,
         loginContent: {
           ...state.loginContent,
-          token: action.token,
+          message: {
+            ...state.loginContent.message,
+            [action.messageType]: true,
+            content: action.messageContent,
+          },
         },
       };
+
+    case DO_CONNECT:
+      return {
+        ...state,
+        isConnected: true,
+      };
+
+    case DECONNECT:
+      window.localStorage.removeItem('token');
+      return {
+        ...state,
+        isConnected: false,
+      };
+
     default:
       return state;
   }

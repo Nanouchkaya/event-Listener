@@ -3,14 +3,15 @@ import {
   CHANGE_MODAL_STATUS,
   CHANGE_CHECK_INPUT_VALUE,
   CHANGE_EDITOR_MODE,
+  FETCH_USER_INFOS,
 } from '../actions/types';
 
 const initialState = {
-  pseudo: 'Teriyaki',
+  pseudo: '',
   urlAvatar: undefined,
-  firstname: 'Guillaume',
-  lastname: 'Terrien',
-  email: 'guillaume.terrien.gt@gmail.com',
+  firstname: '',
+  lastname: '',
+  email: '',
   password: '',
   confirmePassword: '',
   notifNewEvent: false,
@@ -41,6 +42,27 @@ export const user = (state = initialState, action = {}) => {
         ...state,
         editorModeDisabled: !state.editorModeDisabled,
       };
+    case FETCH_USER_INFOS: {
+      const {
+        pseudo,
+        email,
+        url_avatar: urlAvatar,
+        firstname,
+        lastname,
+        notif_new_event: notifNewEvent,
+        notif_new_update: notifNewUpdate,
+      } = action.user;
+      return {
+        ...state,
+        pseudo,
+        email,
+        urlAvatar,
+        firstname: (firstname !== null) ? firstname : '',
+        lastname: (lastname !== null) ? lastname : '',
+        notifNewEvent: !!notifNewEvent, // convert to bool
+        notifNewUpdate: !!notifNewUpdate, // convert to bool
+      };
+    }
     default:
       return state;
   }
