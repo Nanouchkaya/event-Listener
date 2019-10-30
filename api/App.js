@@ -136,4 +136,11 @@ module.exports = (server, router) => {
   router.post('/users/:userId/delete', (request, response) => {
     UserController.deleteAccount(request, response);
   });
+
+  /**
+   * Update an account
+   */
+  router.post('/users/:userId/update', (request, response) => {
+    UserController.updateAccount(request, response);
+  });
 };

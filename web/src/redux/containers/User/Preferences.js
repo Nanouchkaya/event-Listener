@@ -8,16 +8,18 @@ import {
   changeModalStatus,
   changeCheckInputValue,
   handleChangEditorModeDisabled,
+  changeUpdateUser,
 } from '../../actions/creators';
 
 const mapStateToProps = (state) => ({
+  user: state.user,
   pseudo: state.user.pseudo,
   urlAvatar: state.user.urlAvatar,
   firstname: state.user.firstname,
   lastname: state.user.lastname,
   email: state.user.email,
   password: state.user.password,
-  confirmePassword: state.user.confirmePassword,
+  confirmPassword: state.user.confirmPassword,
   notifNewEvent: state.user.notifNewEvent,
   notifNewUpdate: state.user.notifNewUpdate,
   editorModeDisabled: state.user.editorModeDisabled,
@@ -29,6 +31,7 @@ const mapDispatchToProps = (dispatch) => ({
   changeModalStatus: () => dispatch(changeModalStatus()),
   changeCheckInputValue: (name) => dispatch(changeCheckInputValue(name)),
   handleChangEditorMode: () => dispatch(handleChangEditorModeDisabled()),
+  updateValueUser: (user) => dispatch(changeUpdateUser(user)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Preferences);

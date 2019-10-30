@@ -48,3 +48,6 @@ export const HANDLE_SUBMIT = 'HANDLE_SUBMIT';
 // EventDetails : CheckButtons.js
 export const SWITCH_MODALS = 'SWITCH_MODALS';
 
+
+// User : Update
+export const CHANGE_UPDATE_USER = 'CHANGE_UPDATE_USER';

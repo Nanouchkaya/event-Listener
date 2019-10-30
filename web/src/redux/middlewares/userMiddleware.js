@@ -4,6 +4,7 @@ import {
   SUBMIT_REGISTER,
   SUBMIT_LOGIN,
   CHECK_CONNECT,
+  CHANGE_UPDATE_USER,
 } from '../actions/types';
 
 import {
@@ -13,6 +14,7 @@ import {
   connect,
   fetchUserInfos,
   openNavModal,
+  handleChangEditorModeDisabled,
 } from '../actions/creators';
 
 const server = 'localhost';
@@ -114,6 +116,22 @@ const userMiddleware = (store) => (next) => (action) => {
             console.log(error);
           });
       }
+      break;
+    }
+
+    case CHANGE_UPDATE_USER: {
+      const token = window.localStorage.getItem('token');
+      const { user } = store.getState();
+      axios.post(`http://${server}:3000/users/${user.id}/update`, {
+        headers: {
+          Authorization: `token ${token}`,
+        },
+        data: { ...user },
+      })
+        .then((response) => {
+          store.dispatch(handleChangEditorModeDisabled());
+        })
+        .catch((error) => console.log('from middleware:', error));
       break;
     }
     default:

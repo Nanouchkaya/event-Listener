@@ -68,10 +68,10 @@ class UserController {
     let errors = [];
 
     // check if all fields are correct
-    if (!(data.pseudo.trim() < 1) &&
-        !(data.email.trim() < 1) &&
-        !(data.password.trim() < 1) &&
-        !(data.confirmPassword.trim() < 1) &&
+    if (!(data.pseudo && data.pseudo.trim() < 1) &&
+        !(data.email && data.email.trim() < 1) &&
+        !(data.password && data.password.trim() < 1) &&
+        !(data.confirmPassword && data.confirmPassword.trim() < 1) &&
         !(typeof data.notifNewEvent === 'boolean') &&
         !(typeof data.notifNewUpdate === 'boolean')) {
 
@@ -280,6 +280,83 @@ class UserController {
             });
           }
         });
+    }
+  }
+
+  /**
+    * Update specific user
+    * @param {object} request
+    * @param {object} response
+    */
+  static updateAccount(request, response) {
+    const data = request.body.data;
+    const { userId } = request.params;
+
+    // check if all fields are correct
+    if ((data.pseudo && data.pseudo.trim().length > 2) &&
+    (checkEmail(data.email)) &&
+    (typeof data.notifNewEvent === 'boolean') &&
+    (typeof data.notifNewUpdate === 'boolean')) {
+      
+      let editPassword = false;
+      if ((data.password && data.password.trim().length > 5) &&
+      (data.confirmPassword === data.password)) {
+
+        // Hash the password (use dep bcrypt)
+        data.password = bcrypt.hashSync(data.password, 10);
+        editPassword = true
+      }
+
+      if (request.body.headers.Authorization) {
+        const token = request.body.headers.Authorization.split(' ')[1];
+        
+        try {
+          jwToken.verify(
+            token,
+            process.env.APP_KEY,
+            { expiresIn: '2d' },
+            (error) => {
+              if (error) {
+                response.status(200).json({
+                  error: true,
+                  errorMessage: error,
+                });
+              } else {
+
+                User.update(
+                  data,
+                  userId,
+                  editPassword,
+                  (result) => {
+                    
+                    response.status(200);
+                    response.json({
+                      error: false,
+                      errorMessage: null,
+                    });
+                  })
+              }
+
+            }
+          )
+        } catch (error) {
+          response.status(401);
+          response.json({
+            status: "Unauthorization",
+          });
+        }
+      } else {
+
+        response.status(401);
+        response.json({
+          status: "Bad data received",
+        });
+      }
+    } else {
+      response.status(401);
+      response.json({
+        status: "Bad data received",
+      });
     }
   }
 };

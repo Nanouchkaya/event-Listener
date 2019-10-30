@@ -9,11 +9,12 @@ import DeleteAccount from 'src/components/User/DeleteAccount';
 
 // == Composant Preferences
 const Preferences = ({
+  user,
   firstname,
   lastname,
   email,
   password,
-  confirmePassword,
+  confirmPassword,
   notifNewEvent,
   notifNewUpdate,
   changeCheckInputValue,
@@ -22,6 +23,7 @@ const Preferences = ({
   changeModalStatus,
   editorModeDisabled,
   handleChangEditorMode,
+  updateValueUser,
 }) => {
   /* Passade de true/false pour affichage des modals */
   const handleChangeModalStatus = () => {
@@ -44,13 +46,18 @@ const Preferences = ({
     const { name } = event.target;
     changeCheckInputValue(name);
   };
+  /* Update User*/
+  const handleUpdateUser = (event) => {
+    event.preventDefault();
+    updateValueUser(user);
+  };
 
   return (
     <section className="preferences">
       <h2 className="preferences-title">
         Mes informations
       </h2>
-      <form className="preferences-infos">
+      <form className="preferences-infos" onSubmit={handleUpdateUser}>
         <div className="preferences-infos-container">
           <div className="content content--left">
 
@@ -121,16 +128,16 @@ const Preferences = ({
                 />
                 <label
                   className="content-input-label-field"
-                  htmlFor="confirmePasswordInput"
+                  htmlFor="confirmPasswordInput"
                 >
                   Confirmer :
                 </label>
                 <input
                   className="content-input-field"
-                  id="confirmePasswordInput"
-                  name="confirmePassword"
+                  id="confirmPasswordInput"
+                  name="confirmPassword"
                   type="password"
-                  value={confirmePassword}
+                  value={confirmPassword}
                   onChange={handleChangeValue}
                 />
               </>
@@ -189,7 +196,6 @@ const Preferences = ({
             <button
               className="button button--validate-preferences"
               type="submit"
-              onClick={handleChangEditorModeDisabled}
             >
               Valider mes modifications
             </button>
@@ -216,7 +222,7 @@ Preferences.propTypes = {
   lastname: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   password: PropTypes.string,
-  confirmePassword: PropTypes.string,
+  confirmPassword: PropTypes.string,
   notifNewEvent: PropTypes.bool.isRequired,
   notifNewUpdate: PropTypes.bool.isRequired,
   changeValue: PropTypes.func.isRequired,
@@ -225,11 +231,13 @@ Preferences.propTypes = {
   changeModalStatus: PropTypes.func.isRequired,
   editorModeDisabled: PropTypes.bool.isRequired,
   handleChangEditorMode: PropTypes.func.isRequired,
+  updateValueUser: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
 };
 
 Preferences.defaultProps = {
   password: '',
-  confirmePassword: '',
+  confirmPassword: '',
 };
 
 // == Export

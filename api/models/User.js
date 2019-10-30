@@ -154,6 +154,57 @@ class User {
       }
     );
   }
+
+  /**
+   * Update an account
+   * @param {object} data
+   * @param {integer} id 
+   * @param {boolean} editPassword 
+   * @param {callback} callbackToUpdate
+   */
+  static update(data, id, editPassword, callbackToUpdate) {
+    const {
+      firstname,
+      lastname,
+      pseudo,
+      email,
+      password,
+      notifNewEvent,
+      notifNewUpdate,
+    } = data;
+
+    let dataUpdate = [firstname, lastname, pseudo, email, notifNewEvent, notifNewUpdate, id];
+    let sqlQueryUpdateUser = 'UPDATE user SET firstname = ?, lastname = ?, pseudo = ?, email = ?, notif_new_event = ?, notif_new_update = ?, updated_at = NOW() WHERE id = ?';
+
+    if (editPassword) {
+
+      dataUpdate = [firstname, lastname, pseudo, email, password, notifNewEvent, notifNewUpdate, id];
+      sqlQueryUpdateUser = 'UPDATE user SET firstname = ?, lastname = ?, pseudo = ?, email = ?, password = ?, notif_new_event = ?, notif_new_update = ?, updated_at = NOW() WHERE id = ?';
+    }
+
+    // Check if the role exist and get his id
+    DBConnect.query(
+      sqlQueryUpdateUser,
+      dataUpdate,
+      (errorUpdateUser, resultUpdateUser) => {
+
+        if (errorUpdateUser) {
+
+          callbackToUpdate({
+            error: true,
+            errorMessage: errorUpdateUser,
+          });
+        } else {
+
+          callbackToUpdate({
+            error: false,
+            errorMessage: null,
+            data: resultUpdateUser,
+          });
+        }
+      }
+    );
+  }
 };
 
 module.exports = User;

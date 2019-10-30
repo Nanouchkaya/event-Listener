@@ -7,13 +7,14 @@ import {
 } from '../actions/types';
 
 const initialState = {
+  id: 0,
   pseudo: '',
   urlAvatar: undefined,
   firstname: '',
   lastname: '',
   email: '',
   password: '',
-  confirmePassword: '',
+  confirmPassword: '',
   notifNewEvent: false,
   notifNewUpdate: true,
   editorModeDisabled: true,
@@ -44,6 +45,7 @@ export const user = (state = initialState, action = {}) => {
       };
     case FETCH_USER_INFOS: {
       const {
+        id,
         pseudo,
         email,
         url_avatar: urlAvatar,
@@ -54,6 +56,7 @@ export const user = (state = initialState, action = {}) => {
       } = action.user;
       return {
         ...state,
+        id,
         pseudo,
         email,
         urlAvatar,

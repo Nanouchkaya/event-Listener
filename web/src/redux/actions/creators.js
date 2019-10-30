@@ -23,6 +23,7 @@ import {
   SHOW_MESSAGE_REGISTER,
   SHOW_MESSAGE_LOGIN,
   DECONNECT,
+  CHANGE_UPDATE_USER,
 } from './types';
 
 // == Import : Action Creators
@@ -128,4 +129,10 @@ export const handleSubmit = () => ({
 // == EventDetails : CheckButtons.js
 export const switchModals = () => ({
   type: SWITCH_MODALS,
+});
+
+// User : Update
+export const changeUpdateUser = (user) => ({
+  type: CHANGE_UPDATE_USER,
+  user,
 });
