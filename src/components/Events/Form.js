@@ -18,10 +18,12 @@ const Form = ({
   addFilters,
   fillFilterList,
   filterList,
+  emptyFormValue,
 }) => {
   const _onSubmit = (event) => {
     event.preventDefault();
     event.target.reset();
+    emptyFormValue();
     addFilters(filterList);
     handleSubmit();
   };

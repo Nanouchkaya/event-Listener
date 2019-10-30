@@ -38,7 +38,7 @@ class Events extends React.Component {
           <Form />
           <Switch>
             <Route exact path="/tous-les-evenements">
-              {data.map((event) => <Event key={event.id} {...event} />)}
+              { data.map((event) => <Event key={event.id} {...event} />)}
             </Route>
             <Route exact path={this.props.location.pathname}>
               { locationSearchData.length === 0
