@@ -6,6 +6,7 @@ import {
   TRIGGER_MIDDLEWARE,
   ALL_EVENTS,
   FETCH_EVENTS_BY_LOCATION,
+  HANDLE_SUBMIT,
 } from '../actions/types';
 
 
@@ -26,7 +27,7 @@ const eventsMiddleware = (store) => (next) => (action) => {
           store.dispatch(fetchNameRequestData(data));
         })
         .catch((error) => {
-          console.log('from middleware:', error);
+          console.error('from middleware:', error);
         });
       break;
     }
@@ -36,18 +37,23 @@ const eventsMiddleware = (store) => (next) => (action) => {
           const { data } = response.data;
           store.dispatch(fetchNameRequestData(data));
         })
-        .catch((error) => console.log('from middelware:', error));
+        .catch((error) => console.error('from middelware:', error));
       break;
     }
     case FETCH_EVENTS_BY_LOCATION: {
-      console.log(action.location);
       axios.get(`http://localhost:3000/events/localisation/${action.location}`)
         .then((response) => {
           const { data } = response.data.result;
-          console.log(response.result);
           store.dispatch(sendLocationSearchData(data));
         })
-        .catch((error) => console.log('from middleware:', error));
+        .catch((error) => console.error('from middleware:', error));
+      break;
+    }
+    case HANDLE_SUBMIT: {
+      const { dataFilter } = store.getState().form;
+      axios.post('http://localhost:3000/events/filter', dataFilter)
+        .then((response) => console.log(response))
+        .catch((error) => console.error(error));
       break;
     }
     default:

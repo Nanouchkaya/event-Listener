@@ -12,6 +12,7 @@ import {
   handleSubmit,
   showAdvancedForm,
   triggerMiddleware,
+  testFiltersMid,
 } from '../../actions/creators';
 
 
@@ -27,6 +28,7 @@ const mapDispatchToProps = (dispatch) => ({
   handleSubmit: () => dispatch(handleSubmit()),
   showAdvancedForm: () => dispatch(showAdvancedForm()),
   triggerMiddleware: () => dispatch(triggerMiddleware()),
+  testFiltersMid: () => dispatch(testFiltersMid()),
 });
 
 

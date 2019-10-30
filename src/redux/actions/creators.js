@@ -20,6 +20,8 @@ import {
   ALL_EVENTS,
   FETCH_EVENTS_BY_LOCATION,
   SEND_LOCATION_SEARCH_DATA,
+  ADD_FILTERS,
+  TEST_FILTERS_MID,
 } from './types';
 
 // == Import : Action Creators
@@ -96,6 +98,8 @@ export const handleSubmit = () => ({
 export const showAdvancedForm = () => ({
   type: SHOW_ADVANCED_FORM,
 });
+
+
 // Events Middlewares
 export const triggerMiddleware = () => ({
   type: TRIGGER_MIDDLEWARE,
@@ -106,6 +110,13 @@ export const fetchNameRequestData = (data) => ({
 });
 export const allEvents = () => ({
   type: ALL_EVENTS,
+});
+export const addFilters = (filters) => ({
+  type: ADD_FILTERS,
+  filters,
+});
+export const testFiltersMid = () => ({
+  type: TEST_FILTERS_MID,
 });
 
 // == EventDetails : CheckButtons.js

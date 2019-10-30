@@ -13,6 +13,10 @@ const QuickSearchBar = ({
     event.preventDefault();
     handleSearchSubmit();
   };
+  const _onChange = (event) => {
+    handleSearchChange(event.target.value);
+  };
+
   return (
     <form onSubmit={handleSubmit} className="searchbar-visible">
       <input
@@ -21,7 +25,7 @@ const QuickSearchBar = ({
         placeholder="Recherche..."
         value={value}
         /* Récupération de la valeur entrée dans l'input */
-        onChange={(event) => handleSearchChange(event.target.value)}
+        onChange={_onChange}
       />
     </form>
   );

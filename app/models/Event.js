@@ -333,7 +333,7 @@ class Event {
   }
 
   /**
-   * Find Event by date
+   * Find Event by filter
    * @param {callback} callbackGetEventByFilter
    */
   static findFilter(filters, callbackGetEventByFilter) {
@@ -341,14 +341,14 @@ class Event {
 
     filters.forEach((value, index) => {
       // On veux comparer les noms des propriétés de `filters` au valeur du tableau `handsomeTeriyaki`
-      const handsomeTeriyaki = [
-        'location',
-        'price',
-        // ...
-      ];
-      handsomeTeriyaki.filter((value) => {
-        value === Object.keys(value);
-      })
+      // const handsomeTeriyaki = [
+      //   'location',
+      //   'price',
+      //   // ...
+      // ];
+      // handsomeTeriyaki.filter((value) => {
+      //   value === Object.keys(value);
+      // })
 
       if (filters.length === (index + 1)) {
         queryTest += `${Object.keys(value)} = ${value[Object.keys(value)]};`;  
@@ -384,30 +384,6 @@ class Event {
          }
     })
 
-    const sqlQuery = 'SELECT * FROM event WHERE date_start = ? AND date_end = ?';
-
-    DBConnect.query(
-      sqlQuery,
-     [ start, finish],
-      (error, result) => {
-
-       if(error) {
-
-        callbackGetEventByDate({
-          error: true,
-          errorMessage: error,
-        });
-       } else {
-
-        callbackGetEventByDate({
-          error: false,
-          errorMessage: null,
-          rowMatch: result.length > 0,
-          data: result,
-        });
-       }
-      }
-    )
   }
 };
 

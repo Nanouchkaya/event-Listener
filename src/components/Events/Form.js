@@ -15,7 +15,7 @@ const Form = ({
   value,
   advanced,
   triggerMiddleware,
-  data,
+  testFiltersMid,
 }) => {
   const _onSubmit = (event) => {
     event.preventDefault();
@@ -29,7 +29,7 @@ const Form = ({
   return (
     <>
       <h3>Formulaire</h3>
-      <form onSubmit={_onSubmit} className="form">
+      <form onSubmit={_onSubmit} className="form" method="POST">
         <input
           type="text"
           className="form-input"
@@ -53,7 +53,6 @@ Form.propTypes = {
   advanced: PropTypes.bool.isRequired,
   value: PropTypes.string,
   triggerMiddleware: PropTypes.func.isRequired,
-  data: PropTypes.array.isRequired,
 };
 Form.defaultProps = {
   value: '',

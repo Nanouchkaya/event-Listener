@@ -3,12 +3,14 @@ import {
   HANDLE_SUBMIT,
   SHOW_ADVANCED_FORM,
   FETCH_NAME_REQUEST_DATA,
+  ADD_FILTERS,
 } from '../actions/types';
 
 const initialState = {
   value: '',
   advanced: false,
   data: [],
+  dataFilter: [],
 };
 
 
@@ -33,6 +35,14 @@ export const form = (state = initialState, action = {}) => {
       return {
         ...state,
         data: action.data,
+      };
+    case ADD_FILTERS:
+      return {
+        ...state,
+        dataFilter: [
+          ...state.dataFilter,
+          action.filters,
+        ],
       };
     default:
       return state;

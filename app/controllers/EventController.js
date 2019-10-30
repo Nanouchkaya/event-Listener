@@ -7,8 +7,9 @@ class EventController {
    * @param {object} request
    * @param {object} response
    */
-  static test(request, response) {
+  static getEventByFilter(request, response) {
     const filters = request.body 
+
     /*
     filters = {
       price: false,

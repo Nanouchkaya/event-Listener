@@ -3,7 +3,7 @@ import React from 'react';
 
 
 // == Import : local
-import Inputs from './Inputs';
+import Inputs from 'src/redux/containers/Events/Inputs';
 
 
 // == Data
@@ -37,18 +37,18 @@ const Advanced = () => (
     <div className="advanced-filter">
       <div className="advanced-filter-tags">
         <h4 className="advanced-filter-name">Tags</h4>
-        {tagsValues.map((tagValue) => <Inputs key={tagValue}>{tagValue}</Inputs>)}
+        {tagsValues.map((tagValue) => <Inputs name="tag" key={tagValue}>{tagValue}</Inputs>)}
       </div>
 
       <div className="advanced-filter-price">
         <h4 className="advanced-filter-name">Prix</h4>
-        {priceValues.map((priceValue) => <Inputs key={priceValue}>{priceValue}</Inputs>)}
+        {priceValues.map((priceValue) => <Inputs name="price" key={priceValue}>{priceValue}</Inputs>)}
 
       </div>
 
       <div className="advanced-filter-online">
         <h4 className="advanced-filter-name">Diffusion en ligne</h4>
-        {liveValues.map((liveValue) => <Inputs key={liveValue}>{liveValue}</Inputs>)}
+        {liveValues.map((liveValue) => <Inputs name="is_online" key={liveValue}>{liveValue}</Inputs>)}
       </div>
 
 
