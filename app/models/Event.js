@@ -358,7 +358,7 @@ class Event {
         }
       } else {
           if ((Object.keys(value) == 'address' || Object.keys(value) == 'title')) {
-              queryTest += `${Object.keys(value)} LIKE ${value[Object.keys(value)]} AND` 
+              queryTest += `${Object.keys(value)} LIKE ${value[Object.keys(value)]} AND ` 
           } else {
               queryTest += `${Object.keys(value)} = ${value[Object.keys(value)]} AND `;  
           }

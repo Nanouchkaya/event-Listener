@@ -43,13 +43,11 @@ const Advanced = ({ addFilters, stateTest, addressValue, addAddressValue }) => {
   const _onChange = (event) => {
     const { value } = event.target;
     addAddressValue(value);
-    //console.log(addressValue);
   };
 
   const _onBlur = (event) => {
     const { value, name } = event.target;
     addAddressValue(value);
-    //console.log(addressValue);
     const filter = {
       [name]: `'%${addressValue}%'`,
     };
@@ -57,7 +55,6 @@ const Advanced = ({ addFilters, stateTest, addressValue, addAddressValue }) => {
   };
 
 
-  console.log(stateTest);
   return (
     <>
       <div className="advanced-filter">

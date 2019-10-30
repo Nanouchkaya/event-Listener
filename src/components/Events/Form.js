@@ -12,9 +12,10 @@ const Form = ({
   handleFormChange,
   handleSubmit,
   showAdvancedForm,
-  value,
+  formValue,
   advanced,
   triggerMiddleware,
+  addFilters,
 }) => {
   const _onSubmit = (event) => {
     event.preventDefault();
@@ -23,6 +24,14 @@ const Form = ({
   const _onChange = (event) => {
     handleFormChange(event.target.value);
     triggerMiddleware();
+  };
+  const _onBlur = (event) => {
+    const { value, name } = event.target;
+    handleFormChange(value);
+    const filter = {
+      [name]: `'%${formValue}%'`,
+    };
+    addFilters(filter);
   };
 
   return (
@@ -33,8 +42,10 @@ const Form = ({
           type="text"
           className="form-input"
           placeholder="Que recherchez-vous ?"
-          value={value}
+          value={formValue}
+          name="title"
           onChange={_onChange}
+          onBlur={_onBlur}
         />
         <h3 onClick={showAdvancedForm}>Recherche avancée</h3>
         { advanced && <Advanced /> }
@@ -50,11 +61,11 @@ Form.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   showAdvancedForm: PropTypes.func.isRequired,
   advanced: PropTypes.bool.isRequired,
-  value: PropTypes.string,
+  formValue: PropTypes.string,
   triggerMiddleware: PropTypes.func.isRequired,
 };
 Form.defaultProps = {
-  value: '',
+  formValue: '',
 };
 
 

@@ -13,11 +13,12 @@ import {
   showAdvancedForm,
   triggerMiddleware,
   testFiltersMid,
+  addFilters,
 } from '../../actions/creators';
 
 
 const mapStateToProps = (state) => ({
-  value: state.form.value,
+  formValue: state.form.value,
   advanced: state.form.advanced,
   data: state.form.data,
 });
@@ -29,6 +30,7 @@ const mapDispatchToProps = (dispatch) => ({
   showAdvancedForm: () => dispatch(showAdvancedForm()),
   triggerMiddleware: () => dispatch(triggerMiddleware()),
   testFiltersMid: () => dispatch(testFiltersMid()),
+  addFilters: (filters) => dispatch(addFilters(filters)),
 });
 
 
