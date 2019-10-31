@@ -131,28 +131,44 @@ class User {
    * @param {callback} callbackDeleteAccount
    */
   static delete(id, callbackDeleteAccount) {
-    const sqlQuery = 'DELETE FROM user WHERE id = ?';
+    const sqlQueryDeleteRelation = 'DELETE FROM possesses WHERE user_id = ?';
 
     DBConnect.query(
-      sqlQuery,
+      sqlQueryDeleteRelation,
       id,
-      (error, result) => {
-        if (error) {
+      (errorDeleteRelation, resultDeleteRelation) => {
+        if (errorDeleteRelation) {
           callbackDeleteAccount({
             error: true,
-            errorMessage: error,
+            errorMessage: errorDeleteRelation,
           });
         } else {
         
-          callbackDeleteAccount({
-            error: false,
-            errorMessage: null,
-            rowMatch: result.affectedRows > 0,
-            data: result,
-          });
+          const sqlQueryDeleteUser = 'DELETE FROM user WHERE id = ?';
+
+          DBConnect.query(
+            sqlQueryDeleteUser,
+            id,
+            (errorDeleteUser, resultDeleteUser) => {
+              if (errorDeleteUser) {
+                callbackDeleteAccount({
+                  error: true,
+                  errorMessage: errorDeleteUser,
+                });
+              } else {
+              
+                callbackDeleteAccount({
+                  error: false,
+                  errorMessage: null,
+                  rowMatch: resultDeleteUser.affectedRows > 0,
+                });
+              }
+            }
+          );
         }
       }
-    );
+    )
+
   }
 
   /**
