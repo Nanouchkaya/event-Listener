@@ -193,20 +193,11 @@ class UserController {
    * @param {object} response
    */
   static disconnect(request, response) {
-    const session = true; // request.session
 
-    response.status(200);
-    if (session) {
-
-      response.json({
-        status: "Success",
-      })
-    } else {
-
-      response.json({
-        status: "No session started",
-      })
-    }
+    response.status(200).json({
+      error: false,
+      successMessage: 'Déconnecter avec success',
+    })
   }
 
   /**
