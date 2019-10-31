@@ -16,42 +16,46 @@ class UserController {
    * @param {object} response
    */
   static checkAuth(request, response) {
-    let result;
     
     if (request.headers.authorization) {
       const token = request.headers.authorization.split(' ')[1];
 
-      try {
-        result = jwToken.verify(
-          token,
-          process.env.APP_KEY,
-          { expiresIn: '2d' },
-        );
+      jwToken.verify(
+        token,
+        process.env.APP_KEY,
+        { expiresIn: '2d' },
+        (error, decode) => {
+          if (error) {
 
-        User.find(
-          result.userId,
-          (result) => {
-  
-            response.status(200);
-            if (result.rowMatch) {
-              
-              response.json(result);
-            } else {
-  
-              response.json({
-                status: "User not found",
+            response.status(401).send({ 
+              error: true,
+              errorMessage: 'Erreur d\'authentification.',
+            });
+          } else {
+
+            User.find(
+              decode.userId,
+              (result) => {
+      
+                if (result.rowMatch) {
+                  
+                  response.status(200).json(result);
+                } else {
+      
+                  response.status(401).json({
+                    error: true,
+                    errorMessage: 'Erreur d\'authentification.',
+                  });
+                }
               });
-            }
-          });
-      } catch (error) {
+          }
+        });
 
-        throw new Error(error);
-      }
     } else {
       
       response.status(401).send({ 
         error: true,
-        errorMessage: 'Erreur d\'authentification. Token manquant.',
+        errorMessage: 'Token manquant.',
       });
     }
   }
