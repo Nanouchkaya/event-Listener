@@ -10,7 +10,6 @@ const checkEmail = require('../utils/functions').checkEmail;
 
 class UserController {
 
-
   /**
    * Check authentication
    * @param {object} request
@@ -309,7 +308,7 @@ class UserController {
     }
 
     let editPassword = false;
-    // if password is send, check correspondence between password/confirmPassword, and hash the password
+    
     if ((data.password && data.password.trim().length > 6)) {
       if ((data.confirmPassword && (data.password === data.confirmPassword))) {
         // Hash the password (use dep bcrypt)
@@ -318,8 +317,6 @@ class UserController {
       } else {
         errors.push('Les mots de passe ne correspondent pas');
       }
-    } else {
-      errors.push('Le mot de passe doit contenir au minimum 6 caractères');
     }
 
     let token;
