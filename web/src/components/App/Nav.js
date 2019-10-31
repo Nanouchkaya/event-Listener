@@ -106,9 +106,7 @@ const Nav = ({
 
           { !isConnected && (
             <>
-              <div
-                className="navigation-item--active"
-              >
+              <div className="navigation-item--active">
                 { showRegister && (
                   <RegisterForm handleclose={handleNavModals} />
                 )}
@@ -122,9 +120,7 @@ const Nav = ({
                 </button>
               </div>
 
-              <div
-                className="navigation-item--active"
-              >
+              <div className="navigation-item--active">
                 { showLogin && (
                   <LoginForm handleclose={handleNavModals} />
                 )}
