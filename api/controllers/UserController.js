@@ -68,10 +68,10 @@ class UserController {
     let errors = [];
 
     // check if all fields are correct
-    if (!(data.pseudo && data.pseudo.trim() < 1) &&
-        !(data.email && data.email.trim() < 1) &&
-        !(data.password && data.password.trim() < 1) &&
-        !(data.confirmPassword && data.confirmPassword.trim() < 1) &&
+    if (!(data.pseudo && data.pseudo.trim().length < 1) &&
+        !(data.email && data.email.trim().length < 1) &&
+        !(data.password && data.password.trim().length < 1) &&
+        !(data.confirmPassword && data.confirmPassword.trim().length < 1) &&
         !(typeof data.notifNewEvent === 'boolean') &&
         !(typeof data.notifNewUpdate === 'boolean')) {
 
@@ -79,7 +79,6 @@ class UserController {
     } else {
 
       if (!(checkEmail(data.email))) {
-        
         errors.push('L\'adresse email n\'est pas correct');
       }
 
@@ -292,71 +291,80 @@ class UserController {
     const data = request.body.data;
     const { userId } = request.params;
 
-    // check if all fields are correct
-    if ((data.pseudo && data.pseudo.trim().length > 2) &&
-    (checkEmail(data.email)) &&
-    (typeof data.notifNewEvent === 'boolean') &&
-    (typeof data.notifNewUpdate === 'boolean')) {
-      
-      let editPassword = false;
-      if ((data.password && data.password.trim().length > 5) &&
-      (data.confirmPassword === data.password)) {
+    let errors = [];
 
+    // check if all fields are correct
+    if (!(data.fistname && data.fistname.trim().length < 1) &&
+        !(data.lastname && data.lastname.trim().length < 1) &&
+        !(data.email && data.email.trim().length < 1) &&
+        !(typeof data.notifNewEvent === 'boolean') &&
+        !(typeof data.notifNewUpdate === 'boolean')) {
+
+      errors.push('Tous les champs ne sont pas remplis');
+    } else {
+
+      if (!(checkEmail(data.email))) {
+        errors.push('L\'adresse email n\'est pas correct');
+      }
+    }
+
+    let editPassword = false;
+    // if password is send, check correspondence between password/confirmPassword, and hash the password
+    if ((data.password && data.password.trim().length > 6)) {
+      if ((data.confirmPassword && (data.password === data.confirmPassword))) {
         // Hash the password (use dep bcrypt)
         data.password = bcrypt.hashSync(data.password, 10);
-        editPassword = true
-      }
-
-      if (request.body.headers.Authorization) {
-        const token = request.body.headers.Authorization.split(' ')[1];
-        
-        try {
-          jwToken.verify(
-            token,
-            process.env.APP_KEY,
-            { expiresIn: '2d' },
-            (error) => {
-              if (error) {
-                response.status(200).json({
-                  error: true,
-                  errorMessage: error,
-                });
-              } else {
-
-                User.update(
-                  data,
-                  userId,
-                  editPassword,
-                  (result) => {
-                    
-                    response.status(200);
-                    response.json({
-                      error: false,
-                      errorMessage: null,
-                    });
-                  })
-              }
-
-            }
-          )
-        } catch (error) {
-          response.status(401);
-          response.json({
-            status: "Unauthorization",
-          });
-        }
+        editPassword = true;
       } else {
-
-        response.status(401);
-        response.json({
-          status: "Bad data received",
-        });
+        errors.push('Les mots de passe ne correspondent pas');
       }
     } else {
-      response.status(401);
-      response.json({
-        status: "Bad data received",
-      });
+      errors.push('Le mot de passe doit contenir au minimum 6 caractères');
+    }
+
+    let token;
+    if (request.body.headers && request.body.headers.Authorization) {
+      token = request.body.headers.Authorization.split(' ')[1];
+    } else {
+      errors.push('Vous n\'ête pas autorisé à effectuer cette action');
+    }
+
+    if (errors.length < 1) {
+
+      jwToken.verify(
+        token,
+        process.env.APP_KEY,
+        { expiresIn: '2d' },
+
+        (error) => {
+          if (error) {
+            response.status(401).json({
+              error: true,
+              errorMessage: 'Vous n\'ête pas autorisé à effectuer cette action',
+            });
+          } else {
+
+            User.update(
+              data,
+              userId,
+              editPassword,
+              (result) => {
+                
+                response.status(200);
+                response.json({
+                  error: false,
+                  successMessage: 'Vos informations ont bien été modifié',
+                });
+              })
+          }
+
+        }
+      )
+    } else {
+      response.status(401).json({
+        error: true,
+        errorMessage: errors,
+      })
     }
   }
 };
