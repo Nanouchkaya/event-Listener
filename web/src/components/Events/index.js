@@ -37,6 +37,8 @@ class Events extends React.Component {
             Tous les événements
           </h2>
           <Form />
+          <div className="events-view-list">
+            <div className="events-container">
           <Switch>
             <Route exact path="/tous-les-evenements">
               { data.map((event) => <Event key={event.id} {...event} />)}
@@ -47,6 +49,8 @@ class Events extends React.Component {
                 : locationSearchData.map((event) => <Event key={event.id} {...event} />) }
             </Route>
           </Switch>
+          </div>
+          </div>
         </section>
       </>
     );

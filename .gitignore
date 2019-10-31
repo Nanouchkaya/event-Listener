@@ -1,15 +1,5 @@
 .vscode
-
-api/node_modules/
 .env
-
-web/node_modules/
-web/dist/
-
 *.log
-node_modulescd
-
-
 node_modules
-model
-app
+dist
