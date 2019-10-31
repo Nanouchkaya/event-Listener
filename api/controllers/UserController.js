@@ -67,12 +67,10 @@ class UserController {
     let errors = [];
 
     // check if all fields are correct
-    if (!(data.pseudo && data.pseudo.trim().length < 1) &&
-        !(data.email && data.email.trim().length < 1) &&
-        !(data.password && data.password.trim().length < 1) &&
-        !(data.confirmPassword && data.confirmPassword.trim().length < 1) &&
-        !(typeof data.notifNewEvent === 'boolean') &&
-        !(typeof data.notifNewUpdate === 'boolean')) {
+    if (!(data.pseudo && data.email &&
+          data.password && data.confirmPassword &&
+          (typeof data.notifNewEvent === 'boolean') &&
+          (typeof data.notifNewUpdate === 'boolean'))) {
 
       errors.push('Tous les champs ne sont pas remplis');
     } else {
@@ -106,15 +104,13 @@ class UserController {
             data,
             (result) => {
   
-            response.status(200);
-            response.json(result);
+            response.status(200).json(result);
           });
         } else {
   
           errors.push('L\'email est déjà utilisé');
         
-          response.status(200);
-          response.json({
+          response.status(401).json({
             error: true,
             errorMessages: errors,
           });
@@ -122,8 +118,7 @@ class UserController {
       });
     } else {
   
-      response.status(200);
-      response.json({
+      response.status(401).json({
         error: true,
         errorMessages: errors,
       });
