@@ -137,52 +137,53 @@ class UserController {
   static connect(request, response) {
     const data = request.body.data;
 
-    if (checkEmail(data.email) && data.password) {
+    let errors = [];
+    if (!(data.email && (data.email.length > 0) && data.password && (data.password.length > 0))) {
+      errors.push('Tous les champs ne sont pas rempli')
+    }
 
-      // Check email and get this user if exist
+    if (errors < 1) {
+      
       User.checkUserByEmail(
         data.email,
         (result) => {
-
+  
         if (result.rowMatch) {
           const { password: hashedPassword } = result.data;
           const checkPassword = bcrypt.compareSync(data.password, hashedPassword);
           
           if (checkPassword) {
-            const payload = { userId: result.data.id };
-            const options = { expiresIn: '2d' };
-            const token = jwToken.sign(payload, process.env.APP_KEY, options);
-
-            response.json({
+            const token = jwToken.sign(
+              { userId: result.data.id }, 
+              process.env.APP_KEY,
+              { expiresIn: '2d' });
+  
+            response.status(200).json({
               error: false,
               result,
               token,
             });
             
           } else {
-
-            response.status(200);
-            response.json({
+  
+            response.status(401).json({
               error: true,
-              errorMessage: "Le mot de passe ou l'email est incorrect"
+              errorMessage: "Le mot de passe ou l'email est incorrect",
             });
           }
         } else {
-
-          response.status(200);
-          response.json({
+  
+          response.status(401).json({
             error: true,
-            errorMessage: "Le mot de passe ou l'email est incorrect"
+            errorMessage: "Le mot de passe ou l'email est incorrect",
           });
         }
       });
-
     } else {
 
-      response.status(401);
-      response.json({
+      response.status(401).json({
         error: true,
-        status: "Bad data received"
+        errorMessage: errors,
       });
     }
   }
@@ -238,10 +239,10 @@ class UserController {
   }
 
   /**
-    * Delete specific user
-    * @param {object} request
-    * @param {object} response
-    */
+   * Delete specific user
+   * @param {object} request
+   * @param {object} response
+   */
    static deleteAccount(request, response) {
     const { userId } = request.params;
 
@@ -273,10 +274,10 @@ class UserController {
   }
 
   /**
-    * Update specific user
-    * @param {object} request
-    * @param {object} response
-    */
+   * Update specific user
+   * @param {object} request
+   * @param {object} response
+   */
   static updateAccount(request, response) {
     const data = request.body.data;
     const { userId } = request.params;
