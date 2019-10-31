@@ -53,13 +53,13 @@
 }
 
 .menu-burger {
-display: block;
-position: fixed;
-right: .4rem;
-top: .4rem;
-font-size: 2rem;
-color: $turquoise;
-z-index:1;
+  display: block;
+  position: fixed;
+  right: .4rem;
+  top: .4rem;
+  font-size: 2rem;
+  color: $turquoise;
+  z-index:1;
 }
 
 .menu {
@@ -73,7 +73,8 @@ z-index:1;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    padding: 1rem 2rem;
+    align-items: flex-end;
+    padding: 1rem 4.5rem 1rem 1rem;
     animation: menuBurger .4s ease;
   }
 }
@@ -84,17 +85,20 @@ z-index:1;
   width:100%;
   height: 100%;
   background: $mainGradientOpacity;
-  //padding: .5rem;
 
-  
-  .navigation-item--right {
-    display: block;
+  .navigation-item--active {
     width: 100%;
+  }
+
+  .navigation-item--right {
     font-size: 1.3rem;
     text-transform: uppercase;
-    text-align: left;
+    text-align: right;
     font-weight: 900;
     color: $colorDarkTheme;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    width: 100%;
+    padding-bottom: 1rem;
 
       &:hover {
         color: $turquoise;
