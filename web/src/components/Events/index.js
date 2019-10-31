@@ -27,6 +27,7 @@ class Events extends React.Component {
       data,
       locationSearchData,
     } = this.props;
+    console.log('locationSearchData: ', locationSearchData)
 
     return (
       <>

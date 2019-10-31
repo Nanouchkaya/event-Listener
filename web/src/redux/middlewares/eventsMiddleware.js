@@ -53,7 +53,6 @@ const eventsMiddleware = (store) => (next) => (action) => {
     }
     case HANDLE_SUBMIT: {
       const { dataFilter } = store.getState().form;
-      console.log(dataFilter);
       axios.post('http://localhost:3000/events/filter', dataFilter)
         .then((response) => {
           console.log(response);
