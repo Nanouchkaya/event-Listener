@@ -63,7 +63,7 @@ const Nav = ({
       <div className={menuBurgerClass}>
         <div className="menu-main">
           <NavLink
-            to="/evenements"
+            to="/tous-les-evenements"
             exact
             activeClassName="navigation-item--active"
             className="navigation-item--right"

@@ -1,6 +1,7 @@
 // == Import : npm
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { Route, Switch } from 'react-router-dom';
 
 // == Import : local
 import './events.scss';
@@ -11,18 +12,20 @@ import Event from 'src/redux/containers/Events/Event';
 
 // == Composant Events
 class Events extends React.Component {
-  state = {}
-
   componentDidMount() {
-    const { value, showEvents } = this.props;
+    const { value, showEvents, fetchEvents } = this.props;
+    const param = this.props.location.pathname.split('/');
     if (value.trim().length === 0) {
       showEvents();
+      fetchEvents(param[2]);
     }
   }
+
 
   render() {
     const {
       data,
+      locationSearchData,
     } = this.props;
 
     return (
@@ -33,12 +36,16 @@ class Events extends React.Component {
             Tous les événements
           </h2>
           <Form />
-
-          <div className="events-view-list">
-            <div className="events-container">
-              {data.map((event) => <Event key={event.id} {...event} />)}
-            </div>
-          </div>
+          <Switch>
+            <Route exact path="/tous-les-evenements">
+              { data.map((event) => <Event key={event.id} {...event} />)}
+            </Route>
+            <Route exact path={this.props.location.pathname}>
+              { locationSearchData.length === 0
+                ? <p>Aucuns événements trouvés</p>
+                : locationSearchData.map((event) => <Event key={event.id} {...event} />) }
+            </Route>
+          </Switch>
         </section>
       </>
     );
@@ -47,12 +54,15 @@ class Events extends React.Component {
 
 
 Events.propTypes = {
-  data: PropTypes.array.isRequired,
+  data: PropTypes.array,
   value: PropTypes.string,
   showEvents: PropTypes.func.isRequired,
+  fetchEvents: PropTypes.func.isRequired,
+  locationSearchData: PropTypes.array.isRequired,
 };
 Events.defaultProps = {
   value: '',
+  data: undefined,
 };
 
 

@@ -93,6 +93,13 @@ module.exports = (server, router) => {
     EventController.getNextEvents(request, response);
   });
 
+  /**
+   * Test dynamic query
+   */
+  router.post('/events/filter', (request, response) => {
+    EventController.getEventByFilter(request, response);
+  });
+
   // User //
 
   /**

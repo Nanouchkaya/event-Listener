@@ -216,10 +216,7 @@ const Preferences = ({
   );
 };
 
-<<<<<<< HEAD:src/components/User/Preferences.js
 
-=======
->>>>>>> 394ba5dda0f515c9edc902e1156b3c35ed73175e:web/src/components/User/Preferences.js
 // == PropTypes
 Preferences.propTypes = {
   firstname: PropTypes.string.isRequired,
@@ -239,13 +236,10 @@ Preferences.propTypes = {
   user: PropTypes.object.isRequired,
 };
 
-<<<<<<< HEAD:src/components/User/Preferences.js
-=======
 Preferences.defaultProps = {
   password: '',
   confirmPassword: '',
 };
->>>>>>> 394ba5dda0f515c9edc902e1156b3c35ed73175e:web/src/components/User/Preferences.js
 
 // == Export
 export default Preferences;

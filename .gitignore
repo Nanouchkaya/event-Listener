@@ -8,3 +8,8 @@ web/dist/
 
 *.log
 node_modulescd
+
+src
+node_modules
+model
+app

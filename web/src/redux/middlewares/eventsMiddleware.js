@@ -7,6 +7,7 @@ import {
   ALL_EVENTS,
   FETCH_EVENTS_BY_LOCATION,
   HANDLE_SUBMIT,
+  NEXT_EVENTS,
 } from '../actions/types';
 
 
@@ -14,6 +15,7 @@ import {
 import {
   fetchNameRequestData,
   sendLocationSearchData,
+  fetchNextEvents,
 } from '../actions/creators';
 
 // == Middleware : eventsMiddleware
@@ -61,11 +63,22 @@ const eventsMiddleware = (store) => (next) => (action) => {
         .catch((error) => console.error(error));
       break;
     }
+    /**
+      * requête pour récupérer les prochains événements à afficher sur l'accueil
+      * next-events/:number => nombre d'evt à afficher
+      */
+     case NEXT_EVENTS: {
+      axios.post('http://localhost:3000/events/next-events/5')
+        .then((response) => {
+          store.dispatch(fetchNextEvents(response.data.result.data));
+        })
+        .catch((error) => console.log('from middelware:', error));
+      break;
+    }
     default:
       next(action);
   }
 };
-
 
 // == Export
 export default eventsMiddleware;
