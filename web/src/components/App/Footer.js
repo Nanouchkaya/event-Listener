@@ -35,7 +35,9 @@ const Footer = ({ fetchEvents }) => {
         <div className="footer-links">
           <h2 className="footer-subtitle">Liens utiles</h2>
           <ul>
-            <li><a>Rechercher un événement</a></li>
+            <li><Link to="/tous-les-evenements">
+            Rechercher un événement
+          </Link></li>
             <li>
               <Link to="/politique-de-confidentialite">
                 Politique de confidentialité

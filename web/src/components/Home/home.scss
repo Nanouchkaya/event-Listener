@@ -62,6 +62,7 @@ header {
 
         &-submit {
           @include form-submit;
+          text-align: center;
         }
     }
 }
