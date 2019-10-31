@@ -241,30 +241,67 @@ class UserController {
    static deleteAccount(request, response) {
     const { userId } = request.params;
 
+    let errors = [];
+
     if (isNaN(userId)) {
 
-      response.status(200);
-      response.json({
-        status: "Bad data received"
+      response.status(404).json({
+        error: true,
+        errorMessage: 'Erreur de requête',
       });
     } else {
-    
-      User.delete(
-        userId,
-        (result) => {
+      
+      let token;
+      if (request.body.headers && request.body.headers.Authorization) {
+        token = request.body.headers.Authorization.split(' ')[1];
+      } else {
+        errors.push('Vous n\'ête pas autorisé à effectuer cette action');
+      }
 
-          response.status(200);
-          if (result.rowMatch) {
-            response.json({
-              status: "Success",
-            });
-          } else {
-            
-            response.json({
-              status: "User not found",
-            });
-          }
-        });
+      if (errors < 1) {
+
+        jwToken.verify(
+          token,
+          process.env.APP_KEY,
+          { expiresIn: '2d' },
+  
+          (error, decode) => {
+            if (error) {
+              response.status(401).json({
+                error: true,
+                errorMessage: 'Un erreur interne c\'est produit',
+              });
+            } else {
+              if (decode.userId === Number(userId)) {
+
+                User.delete(
+                  userId,
+                  (result) => {
+          
+                    if (result.rowMatch) {
+                      response.status(200).json({
+                        error: false,
+                        successMessage: 'Votre compte a bien été supprimer du site',
+                      });
+                    } else {
+                      
+                      response.status(404).json({
+                        error: true,
+                        errorMessage: 'Cet utilisateur n\'existe pas',
+                        result,
+                      });
+                    }
+                  });
+              } else {
+
+                response.status(401).json({
+                  error: true,
+                  errorMessage: 'Vous n\'ête pas autorisé à effectuer cette action',
+                });
+              }
+            }
+          });
+      }
     }
   }
 
