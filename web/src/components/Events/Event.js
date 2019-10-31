@@ -30,7 +30,7 @@ const Event = ({
         backgroundRepeat: 'no-repeat',
       }}
     >
-      <Link to={`/evenements/${id}`} className="event-link">
+      <Link to={`/evenement/${id}`} className="event-link">
         <div className="event-gradient">
           <div className="event-title">
             {title}

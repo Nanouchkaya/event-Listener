@@ -32,16 +32,16 @@ class App extends React.Component {
             <Home />
           </Route>
           <Route path="/(tous-les-evenements|tous-les-evenements/:slug)" component={Events} />
-          <Route path="/evenements/:eventId" component={EventDetails} />
+          <Route path="/evenement/:eventId" component={EventDetails} />
           { isConnected && (
             <Route path="/profil">
               <User />
             </Route>
           ) }
-          <Route path="/mentions-legales">
+          <Route exact path="/mentions-legales">
             <LegalMentions />
           </Route>
-          <Route path="/politique-de-confidentialite">
+          <Route exact path="/politique-de-confidentialite">
             <PrivatePolicy />
           </Route>
           <Route path="*">

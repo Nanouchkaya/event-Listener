@@ -3,7 +3,9 @@ import moment from 'moment';
 
 // fonction pour définir si l'evt est en cours, à venir ou terminé (dans eventDetails)
 export const getEventStatus = (dateStart, dateEnd) => {
-  const now = moment().format('DD MMM YYYY');
+  const now = moment().format("YYYY-MM-DD");
+  dateStart = moment(dateStart, "YYYY-MM-DD");
+  dateEnd = moment(dateEnd, "YYYY-MM-DD");
   let eventState = 'A venir';
 
   if (moment(dateStart).isBefore(now) && moment(dateEnd).isAfter(now)) {
@@ -17,11 +19,11 @@ export const getEventStatus = (dateStart, dateEnd) => {
 
 // fonction pour afficher la date de fin d'un evt s'il dure plus d'un jour (dans eventDetails)
 export const getEventDate = (dateStart, dateEnd) => {
-  const start = moment(dateStart).format('DD MMM YYYY');
-  const end = moment(dateEnd).format('DD MMM YYYY');
+  dateStart = moment(dateStart, "YYYY-MM-DD").format('DD MMM YYYY');
+  dateEnd = moment(dateEnd, "YYYY-MM-DD").format('DD MMM YYYY');
 
-  if (end !== start) {
-    return `Du ${start} au ${end}`;
+  if (dateEnd !== dateStart) {
+    return `Du ${dateStart} au ${dateEnd}`;
   }
-  return moment(start).format('ddd DD MMM YYYY');
+  return moment(dateStart, "YYYY-MM-DD").format('ddd DD MMM YYYY');
 };
