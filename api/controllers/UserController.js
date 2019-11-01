@@ -232,6 +232,7 @@ class UserController {
 
             response.json({
               status: "User not found",
+              result,
             });
           }
         });
@@ -486,11 +487,11 @@ class UserController {
   }
 
   /**
-   * User adds his participation to the event
+   * User adds his interest for the event
    * @param {object} request
    * @param {object} response
    */
-  static addParticipateToEvent(request,response) {
+  static addInterestToEvent(request,response) {
     const { userId, eventId } = request.params;
     
     let errors = [];
@@ -524,7 +525,7 @@ class UserController {
                 } else {
                   if (decode.userId === Number(userId)) {
 
-                    User.addParticipateToEvent(
+                    User.addInterestToEvent(
                       userId,
                       eventId,
                       (result) => {

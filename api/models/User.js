@@ -101,25 +101,72 @@ class User {
    * @param {callback} callbackGetUser
    */
   static find(id, callbackGetUser) {
-    const sqlQuery = 'SELECT * FROM user WHERE id = ?';
+    const sqlQueryUserWithRole = 'SELECT user.id, user.pseudo, user.email, user.lastname, user.firstname, user.url_avatar, user.notif_new_event, user.notif_new_update, user.created_at, role.name AS role FROM user LEFT JOIN possesses ON possesses.user_id = user.id LEFT JOIN role ON role.id = possesses.role_id WHERE user.id = ?';
 
     DBConnect.query(
-      sqlQuery,
+      sqlQueryUserWithRole,
       id,
-      (error, result) => {
-        if (error) {
+      (errorUserWithRole, resultUserWithRole) => {
+        if (errorUserWithRole) {
           callbackGetUser({
             error: true,
-            errorMessage: error,
+            errorMessage: errorUserWithRole,
           });
         } else {
-          
-          callbackGetUser({
-            error: false,
-            errorMessage: null,
-            rowMatch: result.length > 0,
-            data: result[0],
-          });
+
+          if (resultUserWithRole.length > 0) {
+            const sqlQueryWatcheEvents = 'SELECT event.* FROM event LEFT JOIN watches ON watches.event_id = event.id WHERE watches.user_id = ?';
+
+            DBConnect.query(
+              sqlQueryWatcheEvents,
+              id,
+              (errorWatcheEvents, resultWatcheEvents) => {
+                if (errorWatcheEvents) {
+                  callbackGetUser({
+                    error: true,
+                    errorMessage: errorWatcheEvents,
+                  });
+                } else {
+
+                  const sqlQueryLikeEvents = 'SELECT event.* FROM event LEFT JOIN likes ON likes.event_id = event.id WHERE likes.user_id = ?';
+
+                  DBConnect.query(
+                    sqlQueryLikeEvents,
+                    id,
+                    (errorLikeEvents, resultLikeEvents) => {
+
+                      if (errorLikeEvents) {
+                        callbackGetUser({
+                          error: true,
+                          errorMessage: errorLikeEvents,
+                        });
+                      } else {
+
+                        callbackGetUser({
+                          error: false,
+                          errorMessage: null,
+                          rowMatch: resultUserWithRole.length > 0,
+                          data: {
+                            ...resultUserWithRole[0],
+                            events_likes: resultLikeEvents,
+                            events_interest: resultWatcheEvents,
+                          },
+                        });
+                      }
+                    }
+                  );
+                }
+              }
+            );
+
+          } else {
+            callbackGetUser({
+              error: false,
+              errorMessage: null,
+              rowMatch: result.length > 0,
+              data: result[0],
+            });
+          }
         }
       }
     );
@@ -307,12 +354,12 @@ class User {
   }
 
   /**
-   * User adds his participate to the event
+   * User adds his interest for the event
    * @param {integer} userId 
    * @param {integer} eventId 
-   * @param {callback} callbackToAddParticipateToEvent
+   * @param {callback} callbackToAddInterestToEvent
    */
-  static addParticipateToEvent(userId, eventId, callbackToAddParticipateToEvent) {
+  static addInterestToEvent(userId, eventId, callbackToAddInterestToEvent) {
     const sqlQueryCheckAlreadyExist = 'SELECT * FROM watches WHERE user_id = ? AND event_id = ?';
 
     DBConnect.query(
@@ -321,7 +368,7 @@ class User {
       (errorCheckAlreadyExist, resultCheckAlreadyExist) => {
 
         if (errorCheckAlreadyExist) {
-          callbackToAddParticipateToEvent({
+          callbackToAddInterestToEvent({
             error: true,
             errorMessage: errorCheckAlreadyExist,
           })
@@ -337,12 +384,12 @@ class User {
               (errorInsertRelation, resultInsertRelation) => {
 
                 if (errorInsertRelation) {
-                  callbackToAddParticipateToEvent({
+                  callbackToAddInterestToEvent({
                     error: true,
                     errorMessage: errorInsertRelation,
                   });
                 } else {
-                  callbackToAddParticipateToEvent({
+                  callbackToAddInterestToEvent({
                     error: false,
                     successMessage: 'Action effectué',
                   });
@@ -350,9 +397,9 @@ class User {
               });
           } else {
 
-            callbackToAddParticipateToEvent({
+            callbackToAddInterestToEvent({
               error: true,
-              errorMessage: 'Already participate',
+              errorMessage: 'Already interesed',
             });
           }
         }
