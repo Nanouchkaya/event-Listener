@@ -1,7 +1,7 @@
 @keyframes fromTop {
   0% { 
     opacity: 0;
-    transform: translateY(-10%); 
+    transform: translateY(-20%); 
   }
   100% {
     opacity: 1;
@@ -12,7 +12,7 @@
 @keyframes fromLeft {
   0% { 
     opacity: 0;
-    transform: translateX(-10%); 
+    transform: translateX(-30%);
   }
   100% {
     opacity: 1;
@@ -23,11 +23,24 @@
 @keyframes fromRight {
   0% { 
     opacity: 0;
-    transform: translateX(10%); 
+    transform: translateX(30%); 
   }
   100% {
     opacity: 1;
     transform: translateX(0); 
+  }
+}
+
+@keyframes textEffect {
+  0% { 
+    opacity: 0;
+    transform: translateX(-20%);
+    line-height: 1rem;
+    letter-spacing: 1px; 
+  }
+  100% {
+    transform: translateX(0); 
+    opacity: 1;  
   }
 }
 
@@ -59,5 +72,14 @@
   100% {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+@keyframes gradientBG {
+	from { 
+    background-position: 200%;
+  }
+	to {
+    background-position: 100%,
   }
 }

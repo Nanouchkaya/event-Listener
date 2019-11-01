@@ -26,6 +26,7 @@ class App extends React.Component {
     const { isConnected } = this.props;
     return (
       <div id="wrapper">
+        <canvas className="header_background" />
         <Nav />
         <Switch>
           <Route exact path="/">

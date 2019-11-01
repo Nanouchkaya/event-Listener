@@ -4,11 +4,11 @@
 .blurred-banner {
   position: absolute;
   left: 0;
-  right: 0;
+  top: 100px;
   width: 100%;
-  height: 50vh;
+  height: 60vh;
   background: $mainGradient;
-  background-size: 100% 50vh;
+  background-size: 100% 60vh;
   background-repeat: no-repeat;
   background-color: rgba(255,255,255,.3);
   -webkit-filter: blur(5px);
@@ -16,16 +16,17 @@
   -o-filter: blur(5px);
   -ms-filter: blur(5px);
   filter: blur(15px);
+  opacity: 0;
 }
 
 .event {
-  padding-top: 13rem;
+  @include contentLayer;
   
   &-flyer {
-    @include contentLayer;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding: 0;
 
     & .subtitle {
       font-weight: 900;
@@ -39,16 +40,19 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    margin-bottom: 1rem;
+    margin: -2rem -1rem;
     position: relative;
 
       &-banner {
         font-size: 0;
         min-height: 250px;
+        border-radius: 5px 5px 0 0;
       }
 
       &-infos {
-        padding: 0 1rem;
+        padding: 0 2rem 0 1rem;
+        background-color: $colorDarkTheme;
+        color: $colorLightTheme;
 
         & img {
           transform: scale(.8);
@@ -63,7 +67,7 @@
         color: white;
         font-size: 1.2rem;
         text-transform: uppercase;
-        margin: 0 -1.7rem;
+        margin: 0 -.7rem;
         position: relative;
 
         &::before {
@@ -107,7 +111,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        color: $red;
+        color: $turquoise;
 
         &-icons button {
           background-color: transparent;
@@ -209,8 +213,11 @@
 
 /* RESPONSIVE */
 @media (min-width: 768px) {
+  .blurred-banner {
+    opacity: .6;
+  }
   .event {
-    padding-top: 15rem;
+    //padding-top: 4rem;
     &-header {
       flex-direction: row;
       flex-wrap: wrap;
@@ -221,7 +228,8 @@
 
       &-infos {
         width: 30%;
-        padding: .5rem;
+        padding: 0 2rem 0 1rem;
+        border-radius: 0 5px 0 0;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
@@ -232,7 +240,7 @@
       }
 
       &-status {
-        margin: 0 -1.7rem;
+        margin: 0 -.7rem;
         padding: .7rem 5rem;
         width: calc(100% + 5.35rem);
       }

@@ -9,13 +9,15 @@ $turquoise : rgba(14,179,207,1);
 $purple : #6942e4;
 $blue : #3A7BDA;
 $red: rgb(185, 36, 73);
+$darkgrey: #272D34;
 
 /* GRADIENTS */
-$mainGradient: linear-gradient(143deg, rgba(14,179,207,1) 0%, rgba(37,93,173,1) 54%, rgba(93,58,201,1) 100%);
+$mainGradient: linear-gradient(143deg, rgba(14,179,207,1) 10%, rgba(37,93,173,1) 40%, rgba(93,58,201,1) 100%);
 $mainGradientOpacity: linear-gradient(143deg, rgba(14,179,207,.5) 0%, rgba(37,93,173,.5) 54%, rgba(93,58,201,.5) 100%);
 $lightGradient: linear-gradient(0deg, rgba(224,224,224,1) 5%, rgba(255,255,255,1) 54%, rgb(226, 226, 226) 100%);
 $turquoiseGradient: radial-gradient(circle, rgba(9,185,193,1) 0%, rgba(37,194,219,1) 49%, rgba(16,159,199,1) 100%);
 $blueGradient: radial-gradient(circle, rgb(48, 149, 207) 0%, rgba(36,96,174,1) 70%, rgb(40, 107, 146) 100%);
+$mainGradientExt : linear-gradient(143deg, rgba(14,179,207,1) 0%, rgb(246, 250, 253) 20%, rgb(246, 250, 253) 80%, rgba(93,58,201,1) 100%);
 
 
 /* PADDING & MARGIN */
@@ -27,6 +29,11 @@ $paddingButton: .7rem 1rem .5rem;
 $fontSizeTitle : 2.3rem;
 $fontSizeSubTitle : 1.5rem;
 $fontFamilyTitle : 'hero';
+
+/* BORDER - BOX*/
+$radius : 5px;
+$border : 2px solid rgba(255, 255, 255, 0.8);
+$boxShadow : 2px 1px 5px rgba(0,0,0,.5);
 
 /** User | START **/
 

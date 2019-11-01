@@ -22,20 +22,24 @@ class Home extends React.Component {
   }
 
   toLeft = () => {
-    //const numberOfElement = this.props.data.length;
-    const newLeft = this.state.left + 250;
-    this.setState({
-      left: newLeft,
-    });
+    const { left } = this.state;
+    const numberOfElement = this.props.data.length - 1;
+    if ((numberOfElement * 250) !== left && left !== 0){
+      this.setState({
+        left: left + 250,
+      });
+    } 
   };
 
   toRight = () => {
-    const newLeft = this.state.left - 250;
-    this.setState({
-      left: newLeft,
-    });
+    const { left } = this.state;
+    const numberOfElement = this.props.data.length - 1;
+    if ((numberOfElement * -250) !== left) {
+      this.setState({
+        left: left - 250,
+      });
+    }
   };
-
 
   render() {
     const { data } = this.props;
@@ -44,7 +48,6 @@ class Home extends React.Component {
     return (
       <>
         <header>
-          <canvas className="header_background" />
           <div className="header-content">
             <p className="header-content-text">
               Accroche à définir qui sera trop mega cool (ou pas)
@@ -54,6 +57,13 @@ class Home extends React.Component {
         </header>
 
         <main>
+          <h2 className="events-title">
+            En ce moment
+          </h2>
+          <div>
+            ici on présente l'événement le plus populaire en cours
+          </div>
+
           <h2 className="events-title">
             Prochains événements
           </h2>
@@ -73,8 +83,13 @@ class Home extends React.Component {
             </button>
           </div>
 
-
           <Contact />
+
+          <h2 className="events-title">
+            Où nous trouver ?
+          </h2>
+          <p>Ici la map</p>
+
         </main>
       </>
     );
