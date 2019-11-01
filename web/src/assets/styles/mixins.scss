@@ -1,26 +1,20 @@
-@mixin headerGradient {
-  background: $mainGradient;
-  width: 100%;
-  height: 40vh;
-  position: relative;
-  margin-bottom: -6rem;
-}
-
 @mixin contentLayer {
   position: relative;
   z-index: 0;
-  top: -2rem;
-  margin:0 2rem -4rem;
+  margin: 5rem 1rem 3rem;
   padding: $sectionPaddingMobile;
-  color: $colorLightTheme;
-  background-color: $backgroundLight;
-  box-shadow: 0 0 20px rgba(0,0,0,.7);
-  animation: fade .4s ease .2s;
+  color: $colorDarkTheme;
+  background-color: rgba(0, 0, 0, 0.3);
+  //border: $border;
+  border-radius: $radius;
+  //box-shadow: $boxShadow;
+  animation: fade .4s ease .3s;
   animation-fill-mode: backwards;
 
   @media (min-width: 768px) {
     max-width: 800px;
-    margin:0 auto -4rem;
+    margin: 10rem auto;
+    //padding: 4rem 3rem;
   }
 
   @media (min-width: 1024px) {
@@ -70,12 +64,11 @@
   padding: $paddingButton;
   margin: 1rem 0;
   width: 100%;
-  border-radius: 5px;
+  border-radius: $radius;
   border: none;
   border-left: 2px solid $turquoise;
   border-bottom: 1px solid $turquoise;
   background-color: #FFFFFF;
-  transition: .4s ease;
 
   &::placeholder {
     font-size: 1rem;
@@ -88,17 +81,25 @@
 }
 
 @mixin form-submit {
-  background-color: $turquoise;
-  background: $turquoiseGradient;
-  text-transform: uppercase;
-  box-shadow: 2px 1px 5px rgba(0,0,0,.5);
+  color: $colorDarkTheme;
   font-weight: 900;
-  color: white;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: $radius;
   border: none;
-  transition: .4s ease;
+  display: block;
+  padding: $paddingButton;
+  width: 100%;
+  background-color: $blue;
+  background-image: $mainGradient;
+  background-repeat: no-repeat;
+  background-size: 700px 50px;
+  background-position: 0 100%;
+  transition: background-position .3s ease-out;
   
   &:hover {
-    background: $blueGradient;
+    background-position: 100% 100%;
   }
 }
 

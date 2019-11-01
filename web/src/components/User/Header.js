@@ -9,7 +9,6 @@ import avatarImg from 'src/assets/images/defaultAvatar.png';
 // composant
 const Header = ({ pseudo, urlAvatar }) => (
   <header className="header">
-    <canvas className="header_background" />
     <div className="header-pseudo">
       {pseudo}
     </div>
