@@ -131,44 +131,75 @@ class User {
    * @param {callback} callbackDeleteAccount
    */
   static delete(id, callbackDeleteAccount) {
-    const sqlQueryDeleteRelation = 'DELETE FROM possesses WHERE user_id = ?';
+    const sqlQueryDeleteRelationPossesses = 'DELETE FROM possesses WHERE user_id = ?';
 
     DBConnect.query(
-      sqlQueryDeleteRelation,
+      sqlQueryDeleteRelationPossesses,
       id,
-      (errorDeleteRelation, resultDeleteRelation) => {
-        if (errorDeleteRelation) {
+      (errorDeleteRelationPossesses, resultDeleteRelationPossesses) => {
+        if (errorDeleteRelationPossesses) {
           callbackDeleteAccount({
             error: true,
-            errorMessage: errorDeleteRelation,
+            errorMessage: errorDeleteRelationPossesses,
           });
         } else {
         
-          const sqlQueryDeleteUser = 'DELETE FROM user WHERE id = ?';
+          const sqlQueryDeleteRelationWatches = 'DELETE FROM watches WHERE user_id = ?';
 
           DBConnect.query(
-            sqlQueryDeleteUser,
+            sqlQueryDeleteRelationWatches,
             id,
-            (errorDeleteUser, resultDeleteUser) => {
-              if (errorDeleteUser) {
+            (errorDeleteRelationWatches, resultDeleteRelationWatches) => {
+              if (errorDeleteRelationWatches) {
                 callbackDeleteAccount({
                   error: true,
-                  errorMessage: errorDeleteUser,
+                  errorMessage: errorDeleteRelationWatches,
                 });
               } else {
-              
-                callbackDeleteAccount({
-                  error: false,
-                  errorMessage: null,
-                  rowMatch: resultDeleteUser.affectedRows > 0,
-                });
+
+                const sqlQueryDeleteRelationLikes = 'DELETE FROM likes WHERE user_id = ?';
+
+                DBConnect.query(
+                  sqlQueryDeleteRelationLikes,
+                  id,
+                  (errorDeleteRelationLikes, resultDeleteRelationLikes) => {
+                    if (errorDeleteRelationWatches) {
+                      callbackDeleteAccount({
+                        error: true,
+                        errorMessage: errorDeleteRelationLikes,
+                      });
+                    } else {
+
+                      const sqlQueryDeleteUser = 'DELETE FROM user WHERE id = ?';
+
+                      DBConnect.query(
+                        sqlQueryDeleteUser,
+                        id,
+                        (errorDeleteUser, resultDeleteUser) => {
+                          if (errorDeleteUser) {
+                            callbackDeleteAccount({
+                              error: true,
+                              errorMessage: errorDeleteUser,
+                            });
+                          } else {
+                          
+                            callbackDeleteAccount({
+                              error: false,
+                              errorMessage: null,
+                              rowMatch: resultDeleteUser.affectedRows > 0,
+                            });
+                          }
+                        }
+                      );
+                    }
+                  }
+                );
               }
             }
           );
         }
       }
-    )
-
+    );
   }
 
   /**
