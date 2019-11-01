@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { GET_EVENT_DETAILS } from '../actions/types';
-import { fetchEventDetails, fetchPosition } from '../actions/creators';
+import { fetchEventDetails } from '../actions/creators';
 
-const eventDetailsMiddleware = (store) => (next) => (action) => {
+ const eventDetailsMiddleware = (store) => (next) => (action) => {
   console.log('Je suis le middleware, et j\'ignore cette action: ', action);
 
   switch (action.type) {

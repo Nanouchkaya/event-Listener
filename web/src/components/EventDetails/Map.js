@@ -39,11 +39,11 @@ class Test extends React.Component {
         </LeafletMap>
       )}
  
-  
+ {console.log(data)}
       {data.length > 0 && (
         <LeafletMap
           center={[48.8566969, 2.3514616]}
-          zoom={13}
+          zoom={11}
           maxZoom={18}
           attributionControl={true}
           zoomControl={true}
@@ -58,13 +58,18 @@ class Test extends React.Component {
             id='mapbox.streets'
             accessToken={accessToken}
           />
-          <Marker position={[48.8566969, 2.3514616]}>
-            <Popup>
-              Google France
-              8 rue de Londres
-              75009 Paris
-            </Popup>
-          </Marker>
+          {data.map((event) => {
+            return (
+            <Marker position={[event.latitude, event.longitude]}>
+              <Popup>
+                Google France
+                8 rue de Londres
+                75009 Paris
+              </Popup>
+            </Marker> 
+            )
+          })}
+          
         </LeafletMap>
       )}
      </> 
