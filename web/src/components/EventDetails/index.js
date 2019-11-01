@@ -9,8 +9,9 @@ import CheckButtons from 'src/components/EventDetails/CheckButtons';
 import Datetime from 'src/redux/containers/EventDetails/Datetime';
 import Address from 'src/redux/containers/EventDetails/Address';
 import Description from 'src/redux/containers/EventDetails/Description';
+import Test from 'src/redux/containers/EventDetails/Test';
 import Tags from './Tags';
-import Test from './Map';
+
 
 // import local
 import './eventdetails.scss';
@@ -23,7 +24,7 @@ class EventDetails extends React.Component {
   }
 
   render() {
-    const { banner } = this.props;
+    const { banner, latitude, longitude } = this.props;
     return (
       <>
         <div
@@ -44,7 +45,8 @@ class EventDetails extends React.Component {
               <div className="event-flyer-description description">
                 <Description />
                 <Tags />
-                <Test />
+                { latitude && longitude !== undefined && <Test /> }
+                
               </div>
             </article>
           </section>

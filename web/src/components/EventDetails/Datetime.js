@@ -9,7 +9,6 @@ class Datetime extends React.Component {
   render() {
     const { dateStart, dateEnd, getEventDate } = this.props;
     const date = getEventDate(dateStart, dateEnd);
-    console.log(date);
 
     return (
       <div className="datetime">

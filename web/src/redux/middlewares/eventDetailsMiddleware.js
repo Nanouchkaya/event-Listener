@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { GET_EVENT_DETAILS } from '../actions/types';
-import { fetchEventDetails } from '../actions/creators';
+import { fetchEventDetails, fetchPosition } from '../actions/creators';
 
 const eventDetailsMiddleware = (store) => (next) => (action) => {
   console.log('Je suis le middleware, et j\'ignore cette action: ', action);
@@ -9,10 +9,11 @@ const eventDetailsMiddleware = (store) => (next) => (action) => {
     case GET_EVENT_DETAILS: {
       axios.get(`http://localhost:3000/events/${action.id}`)
         .then((response) => {
+          console.log('requête avant fetch')
           store.dispatch(fetchEventDetails(response.data.result.data));
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
         });
       break;
     }

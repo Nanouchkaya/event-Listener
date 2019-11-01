@@ -100,6 +100,7 @@ module.exports = (server, router) => {
     EventController.getEventByFilter(request, response);
   });
 
+
   // User //
 
   /**
