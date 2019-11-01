@@ -362,7 +362,8 @@ class UserController {
         process.env.APP_KEY,
         { expiresIn: '2d' },
 
-        (error) => {
+        (error, decode) => {
+
           if (error) {
             response.status(401).json({
               error: true,
@@ -370,18 +371,27 @@ class UserController {
             });
           } else {
 
-            User.update(
-              data,
-              userId,
-              editPassword,
-              (result) => {
-                
-                response.status(200);
-                response.json({
-                  error: false,
-                  successMessage: 'Vos informations ont bien été modifié',
+            if (decode.userId === Number(userId)) {
+
+              User.update(
+                data,
+                userId,
+                editPassword,
+                (result) => {
+                  
+                  response.status(200);
+                  response.json({
+                    error: false,
+                    successMessage: 'Vos informations ont bien été modifié',
+                  });
                 });
-              })
+            } else {
+              
+              response.status(401).json({
+                error: true,
+                errorMessage: 'Vous n\'ête pas autorisé à effectuer cette action',
+              });
+            }
           }
 
         }
