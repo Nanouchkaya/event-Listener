@@ -242,7 +242,7 @@ class User {
             errorMessage: errorCheckAlreadyExist,
           })
         } else {
-          
+
           if (resultCheckAlreadyExist.length < 1) {
 
             const sqlQueryInsertRelation = 'INSERT INTO likes(user_id, event_id) VALUES(?, ?)';
@@ -269,6 +269,59 @@ class User {
             callbackToAddLikeToEvent({
               error: true,
               errorMessage: 'Already likes',
+            });
+          }
+        }
+      });
+  }
+
+  /**
+   * User adds his participate to the event
+   * @param {integer} userId 
+   * @param {integer} eventId 
+   * @param {callback} callbackToAddParticipateToEvent
+   */
+  static addParticipateToEvent(userId, eventId, callbackToAddParticipateToEvent) {
+    const sqlQueryCheckAlreadyExist = 'SELECT * FROM watches WHERE user_id = ? AND event_id = ?';
+
+    DBConnect.query(
+      sqlQueryCheckAlreadyExist,
+      [userId, eventId],
+      (errorCheckAlreadyExist, resultCheckAlreadyExist) => {
+
+        if (errorCheckAlreadyExist) {
+          callbackToAddParticipateToEvent({
+            error: true,
+            errorMessage: errorCheckAlreadyExist,
+          })
+        } else {
+          
+          if (resultCheckAlreadyExist.length < 1) {
+
+            const sqlQueryInsertRelation = 'INSERT INTO watches(user_id, event_id) VALUES(?, ?)';
+
+            DBConnect.query(
+              sqlQueryInsertRelation,
+              [userId, eventId],
+              (errorInsertRelation, resultInsertRelation) => {
+
+                if (errorInsertRelation) {
+                  callbackToAddParticipateToEvent({
+                    error: true,
+                    errorMessage: errorInsertRelation,
+                  });
+                } else {
+                  callbackToAddParticipateToEvent({
+                    error: false,
+                    successMessage: 'Action effectué',
+                  });
+                }
+              });
+          } else {
+
+            callbackToAddParticipateToEvent({
+              error: true,
+              errorMessage: 'Already participate',
             });
           }
         }
