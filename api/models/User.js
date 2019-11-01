@@ -149,7 +149,7 @@ class User {
                           data: {
                             ...resultUserWithRole[0],
                             events_likes: resultLikeEvents,
-                            events_watches: resultWatcheEvents,
+                            events_interest: resultWatcheEvents,
                           },
                         });
                       }
@@ -354,12 +354,12 @@ class User {
   }
 
   /**
-   * User adds his participate to the event
+   * User adds his interest for the event
    * @param {integer} userId 
    * @param {integer} eventId 
-   * @param {callback} callbackToAddParticipateToEvent
+   * @param {callback} callbackToAddInterestToEvent
    */
-  static addParticipateToEvent(userId, eventId, callbackToAddParticipateToEvent) {
+  static addInterestToEvent(userId, eventId, callbackToAddInterestToEvent) {
     const sqlQueryCheckAlreadyExist = 'SELECT * FROM watches WHERE user_id = ? AND event_id = ?';
 
     DBConnect.query(
@@ -368,7 +368,7 @@ class User {
       (errorCheckAlreadyExist, resultCheckAlreadyExist) => {
 
         if (errorCheckAlreadyExist) {
-          callbackToAddParticipateToEvent({
+          callbackToAddInterestToEvent({
             error: true,
             errorMessage: errorCheckAlreadyExist,
           })
@@ -384,12 +384,12 @@ class User {
               (errorInsertRelation, resultInsertRelation) => {
 
                 if (errorInsertRelation) {
-                  callbackToAddParticipateToEvent({
+                  callbackToAddInterestToEvent({
                     error: true,
                     errorMessage: errorInsertRelation,
                   });
                 } else {
-                  callbackToAddParticipateToEvent({
+                  callbackToAddInterestToEvent({
                     error: false,
                     successMessage: 'Action effectué',
                   });
@@ -397,9 +397,9 @@ class User {
               });
           } else {
 
-            callbackToAddParticipateToEvent({
+            callbackToAddInterestToEvent({
               error: true,
-              errorMessage: 'Already participate',
+              errorMessage: 'Already interesed',
             });
           }
         }

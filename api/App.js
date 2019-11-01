@@ -159,9 +159,9 @@ module.exports = (server, router) => {
   });
 
   /**
-   * User adds his participation to the event
+   * User adds his interest for the event
    */
-  router.post('/users/:userId/participate/add/:eventId', (request, response) => {
-    UserController.addParticipateToEvent(request, response);
+  router.post('/users/:userId/interest/add/:eventId', (request, response) => {
+    UserController.addInterestToEvent(request, response);
   });
 };
