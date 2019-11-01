@@ -16,6 +16,8 @@ const initialState = {
   dataFilter: [],
   addressValue: '',
   filterList: [],
+  latitude: 48.8566969,
+  longitude: 2.3514616,
 };
 
 

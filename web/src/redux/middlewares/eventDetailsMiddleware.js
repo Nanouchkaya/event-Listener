@@ -9,7 +9,6 @@ const eventDetailsMiddleware = (store) => (next) => (action) => {
     case GET_EVENT_DETAILS: {
       axios.get(`http://localhost:3000/events/${action.id}`)
         .then((response) => {
-          console.log('requête avant fetch')
           store.dispatch(fetchEventDetails(response.data.result.data));
         })
         .catch((error) => {
