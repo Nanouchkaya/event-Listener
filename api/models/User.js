@@ -221,6 +221,59 @@ class User {
       }
     );
   }
+
+  /**
+   * User adds a like to the event
+   * @param {integer} userId 
+   * @param {integer} eventId 
+   * @param {callback} callbackToAddLikeToEvent
+   */
+  static addLikeToEvent(userId, eventId, callbackToAddLikeToEvent) {
+    const sqlQueryCheckAlreadyExist = 'SELECT * FROM likes WHERE user_id = ? AND event_id = ?';
+
+    DBConnect.query(
+      sqlQueryCheckAlreadyExist,
+      [userId, eventId],
+      (errorCheckAlreadyExist, resultCheckAlreadyExist) => {
+
+        if (errorCheckAlreadyExist) {
+          callbackToAddLikeToEvent({
+            error: true,
+            errorMessage: errorCheckAlreadyExist,
+          })
+        } else {
+          
+          if (resultCheckAlreadyExist.length < 1) {
+
+            const sqlQueryInsertRelation = 'INSERT INTO likes(user_id, event_id) VALUES(?, ?)';
+
+            DBConnect.query(
+              sqlQueryInsertRelation,
+              [userId, eventId],
+              (errorInsertRelation, resultInsertRelation) => {
+
+                if (errorInsertRelation) {
+                  callbackToAddLikeToEvent({
+                    error: true,
+                    errorMessage: errorInsertRelation,
+                  });
+                } else {
+                  callbackToAddLikeToEvent({
+                    error: false,
+                    successMessage: 'Action effectué',
+                  });
+                }
+              });
+          } else {
+
+            callbackToAddLikeToEvent({
+              error: true,
+              errorMessage: 'Already likes',
+            });
+          }
+        }
+      });
+  }
 };
 
 module.exports = User;
