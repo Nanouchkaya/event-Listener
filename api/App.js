@@ -157,4 +157,11 @@ module.exports = (server, router) => {
   router.post('/users/:userId/like/add/:eventId', (request, response) => {
     UserController.addLikeToEvent(request, response);
   });
+
+  /**
+   * User adds his participation to the event
+   */
+  router.post('/users/:userId/participate/add/:eventId', (request, response) => {
+    UserController.addParticipateToEvent(request, response);
+  });
 };
