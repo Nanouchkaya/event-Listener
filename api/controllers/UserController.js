@@ -232,6 +232,7 @@ class UserController {
 
             response.json({
               status: "User not found",
+              result,
             });
           }
         });
