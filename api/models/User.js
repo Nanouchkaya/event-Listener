@@ -462,6 +462,59 @@ class User {
         }
       });
   }
+
+  /**
+   * User adds his participation to the event
+   * @param {integer} userId 
+   * @param {integer} eventId 
+   * @param {callback} callbackToAddParticipationToEvent
+   */
+  static addParticipationToEvent(userId, eventId, callbackToAddParticipationToEvent) {
+    const sqlQueryCheckAlreadyExist = 'SELECT * FROM participates WHERE user_id = ? AND event_id = ?';
+
+    DBConnect.query(
+      sqlQueryCheckAlreadyExist,
+      [userId, eventId],
+      (errorCheckAlreadyExist, resultCheckAlreadyExist) => {
+
+        if (errorCheckAlreadyExist) {
+          callbackToAddParticipationToEvent({
+            error: true,
+            errorMessage: errorCheckAlreadyExist,
+          })
+        } else {
+          
+          if (resultCheckAlreadyExist.length < 1) {
+
+            const sqlQueryInsertRelation = 'INSERT INTO participates(user_id, event_id) VALUES(?, ?)';
+
+            DBConnect.query(
+              sqlQueryInsertRelation,
+              [userId, eventId],
+              (errorInsertRelation, resultInsertRelation) => {
+
+                if (errorInsertRelation) {
+                  callbackToAddParticipationToEvent({
+                    error: true,
+                    errorMessage: errorInsertRelation,
+                  });
+                } else {
+                  callbackToAddParticipationToEvent({
+                    error: false,
+                    successMessage: 'Action effectué',
+                  });
+                }
+              });
+          } else {
+
+            callbackToAddParticipationToEvent({
+              error: true,
+              errorMessage: 'Already participate',
+            });
+          }
+        }
+      });
+  }
 };
 
 module.exports = User;
