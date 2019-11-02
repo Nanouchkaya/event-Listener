@@ -186,4 +186,11 @@ module.exports = (server, router) => {
   router.post('/users/:userId/participation/add/:eventId', (request, response) => {
     UserController.addParticipationToEvent(request, response);
   });
+
+  /**
+   * User delete his participation to the event
+   */
+  router.post('/users/:userId/participation/delete/:eventId', (request, response) => {
+    UserController.deleteParticipationToEvent(request, response);
+  });
 };

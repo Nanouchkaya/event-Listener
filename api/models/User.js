@@ -515,6 +515,34 @@ class User {
         }
       });
   }
+
+  /**
+   * User delete his participation to the event
+   * @param {integer} userId 
+   * @param {integer} eventId 
+   * @param {callback} callbackToDeleteInterestToEvent
+   */
+  static deleteParticipationToEvent(userId, eventId, callbackToDeleteParticipationToEvent) {
+    const sqlQueryDeleteRelation = 'DELETE FROM participates WHERE user_id = ? AND event_id = ?';
+
+    DBConnect.query(
+      sqlQueryDeleteRelation,
+      [userId, eventId],
+      (errorDeleteRelation, resultDeleteRelation) => {
+
+        if (errorDeleteRelation) {
+          callbackToDeleteParticipationToEvent({
+            error: true,
+            errorMessage: errorDeleteRelation,
+          });
+        } else {
+          callbackToDeleteParticipationToEvent({
+            error: false,
+            successMessage: 'Action effectué',
+          });
+        }
+      });
+  }
 };
 
 module.exports = User;
