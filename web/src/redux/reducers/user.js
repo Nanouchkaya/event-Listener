@@ -17,6 +17,10 @@ const initialState = {
   confirmPassword: '',
   notifNewEvent: false,
   notifNewUpdate: true,
+  eventsLikes: [],
+  eventsInterest: [],
+  eventsParticipates: [],
+  messages: [], 
   editorModeDisabled: true,
   modalStatus: false,
 };
@@ -53,6 +57,9 @@ export const user = (state = initialState, action = {}) => {
         lastname,
         notif_new_event: notifNewEvent,
         notif_new_update: notifNewUpdate,
+        events_likes: eventsLikes,
+        events_interest: eventsInterest,
+        events_participates: eventsParticipates,
       } = action.user;
       return {
         ...state,
@@ -64,6 +71,9 @@ export const user = (state = initialState, action = {}) => {
         lastname: (lastname !== null) ? lastname : '',
         notifNewEvent: !!notifNewEvent, // convert to bool
         notifNewUpdate: !!notifNewUpdate, // convert to bool
+        eventsLikes,
+        eventsInterest,
+        eventsParticipates,
       };
     }
     default:
