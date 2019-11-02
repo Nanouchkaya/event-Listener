@@ -150,4 +150,18 @@ module.exports = (server, router) => {
   router.post('/users/:userId/update', (request, response) => {
     UserController.updateAccount(request, response);
   });
+
+  /**
+   * User adds a like to the event
+   */
+  router.post('/users/:userId/like/add/:eventId', (request, response) => {
+    UserController.addLikeToEvent(request, response);
+  });
+
+  /**
+   * User adds his interest for the event
+   */
+  router.post('/users/:userId/interest/add/:eventId', (request, response) => {
+    UserController.addInterestToEvent(request, response);
+  });
 };

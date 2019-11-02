@@ -101,25 +101,72 @@ class User {
    * @param {callback} callbackGetUser
    */
   static find(id, callbackGetUser) {
-    const sqlQuery = 'SELECT * FROM user WHERE id = ?';
+    const sqlQueryUserWithRole = 'SELECT user.id, user.pseudo, user.email, user.lastname, user.firstname, user.url_avatar, user.notif_new_event, user.notif_new_update, user.created_at, role.name AS role FROM user LEFT JOIN possesses ON possesses.user_id = user.id LEFT JOIN role ON role.id = possesses.role_id WHERE user.id = ?';
 
     DBConnect.query(
-      sqlQuery,
+      sqlQueryUserWithRole,
       id,
-      (error, result) => {
-        if (error) {
+      (errorUserWithRole, resultUserWithRole) => {
+        if (errorUserWithRole) {
           callbackGetUser({
             error: true,
-            errorMessage: error,
+            errorMessage: errorUserWithRole,
           });
         } else {
-          
-          callbackGetUser({
-            error: false,
-            errorMessage: null,
-            rowMatch: result.length > 0,
-            data: result[0],
-          });
+
+          if (resultUserWithRole.length > 0) {
+            const sqlQueryWatcheEvents = 'SELECT event.* FROM event LEFT JOIN watches ON watches.event_id = event.id WHERE watches.user_id = ?';
+
+            DBConnect.query(
+              sqlQueryWatcheEvents,
+              id,
+              (errorWatcheEvents, resultWatcheEvents) => {
+                if (errorWatcheEvents) {
+                  callbackGetUser({
+                    error: true,
+                    errorMessage: errorWatcheEvents,
+                  });
+                } else {
+
+                  const sqlQueryLikeEvents = 'SELECT event.* FROM event LEFT JOIN likes ON likes.event_id = event.id WHERE likes.user_id = ?';
+
+                  DBConnect.query(
+                    sqlQueryLikeEvents,
+                    id,
+                    (errorLikeEvents, resultLikeEvents) => {
+
+                      if (errorLikeEvents) {
+                        callbackGetUser({
+                          error: true,
+                          errorMessage: errorLikeEvents,
+                        });
+                      } else {
+
+                        callbackGetUser({
+                          error: false,
+                          errorMessage: null,
+                          rowMatch: resultUserWithRole.length > 0,
+                          data: {
+                            ...resultUserWithRole[0],
+                            events_likes: resultLikeEvents,
+                            events_interest: resultWatcheEvents,
+                          },
+                        });
+                      }
+                    }
+                  );
+                }
+              }
+            );
+
+          } else {
+            callbackGetUser({
+              error: false,
+              errorMessage: null,
+              rowMatch: result.length > 0,
+              data: result[0],
+            });
+          }
         }
       }
     );
@@ -131,25 +178,72 @@ class User {
    * @param {callback} callbackDeleteAccount
    */
   static delete(id, callbackDeleteAccount) {
-    const sqlQuery = 'DELETE FROM user WHERE id = ?';
+    const sqlQueryDeleteRelationPossesses = 'DELETE FROM possesses WHERE user_id = ?';
 
     DBConnect.query(
-      sqlQuery,
+      sqlQueryDeleteRelationPossesses,
       id,
-      (error, result) => {
-        if (error) {
+      (errorDeleteRelationPossesses, resultDeleteRelationPossesses) => {
+        if (errorDeleteRelationPossesses) {
           callbackDeleteAccount({
             error: true,
-            errorMessage: error,
+            errorMessage: errorDeleteRelationPossesses,
           });
         } else {
         
-          callbackDeleteAccount({
-            error: false,
-            errorMessage: null,
-            rowMatch: result.affectedRows > 0,
-            data: result,
-          });
+          const sqlQueryDeleteRelationWatches = 'DELETE FROM watches WHERE user_id = ?';
+
+          DBConnect.query(
+            sqlQueryDeleteRelationWatches,
+            id,
+            (errorDeleteRelationWatches, resultDeleteRelationWatches) => {
+              if (errorDeleteRelationWatches) {
+                callbackDeleteAccount({
+                  error: true,
+                  errorMessage: errorDeleteRelationWatches,
+                });
+              } else {
+
+                const sqlQueryDeleteRelationLikes = 'DELETE FROM likes WHERE user_id = ?';
+
+                DBConnect.query(
+                  sqlQueryDeleteRelationLikes,
+                  id,
+                  (errorDeleteRelationLikes, resultDeleteRelationLikes) => {
+                    if (errorDeleteRelationWatches) {
+                      callbackDeleteAccount({
+                        error: true,
+                        errorMessage: errorDeleteRelationLikes,
+                      });
+                    } else {
+
+                      const sqlQueryDeleteUser = 'DELETE FROM user WHERE id = ?';
+
+                      DBConnect.query(
+                        sqlQueryDeleteUser,
+                        id,
+                        (errorDeleteUser, resultDeleteUser) => {
+                          if (errorDeleteUser) {
+                            callbackDeleteAccount({
+                              error: true,
+                              errorMessage: errorDeleteUser,
+                            });
+                          } else {
+                          
+                            callbackDeleteAccount({
+                              error: false,
+                              errorMessage: null,
+                              rowMatch: resultDeleteUser.affectedRows > 0,
+                            });
+                          }
+                        }
+                      );
+                    }
+                  }
+                );
+              }
+            }
+          );
         }
       }
     );
@@ -204,6 +298,112 @@ class User {
         }
       }
     );
+  }
+
+  /**
+   * User adds a like to the event
+   * @param {integer} userId 
+   * @param {integer} eventId 
+   * @param {callback} callbackToAddLikeToEvent
+   */
+  static addLikeToEvent(userId, eventId, callbackToAddLikeToEvent) {
+    const sqlQueryCheckAlreadyExist = 'SELECT * FROM likes WHERE user_id = ? AND event_id = ?';
+
+    DBConnect.query(
+      sqlQueryCheckAlreadyExist,
+      [userId, eventId],
+      (errorCheckAlreadyExist, resultCheckAlreadyExist) => {
+
+        if (errorCheckAlreadyExist) {
+          callbackToAddLikeToEvent({
+            error: true,
+            errorMessage: errorCheckAlreadyExist,
+          })
+        } else {
+
+          if (resultCheckAlreadyExist.length < 1) {
+
+            const sqlQueryInsertRelation = 'INSERT INTO likes(user_id, event_id) VALUES(?, ?)';
+
+            DBConnect.query(
+              sqlQueryInsertRelation,
+              [userId, eventId],
+              (errorInsertRelation, resultInsertRelation) => {
+
+                if (errorInsertRelation) {
+                  callbackToAddLikeToEvent({
+                    error: true,
+                    errorMessage: errorInsertRelation,
+                  });
+                } else {
+                  callbackToAddLikeToEvent({
+                    error: false,
+                    successMessage: 'Action effectué',
+                  });
+                }
+              });
+          } else {
+
+            callbackToAddLikeToEvent({
+              error: true,
+              errorMessage: 'Already likes',
+            });
+          }
+        }
+      });
+  }
+
+  /**
+   * User adds his interest for the event
+   * @param {integer} userId 
+   * @param {integer} eventId 
+   * @param {callback} callbackToAddInterestToEvent
+   */
+  static addInterestToEvent(userId, eventId, callbackToAddInterestToEvent) {
+    const sqlQueryCheckAlreadyExist = 'SELECT * FROM watches WHERE user_id = ? AND event_id = ?';
+
+    DBConnect.query(
+      sqlQueryCheckAlreadyExist,
+      [userId, eventId],
+      (errorCheckAlreadyExist, resultCheckAlreadyExist) => {
+
+        if (errorCheckAlreadyExist) {
+          callbackToAddInterestToEvent({
+            error: true,
+            errorMessage: errorCheckAlreadyExist,
+          })
+        } else {
+          
+          if (resultCheckAlreadyExist.length < 1) {
+
+            const sqlQueryInsertRelation = 'INSERT INTO watches(user_id, event_id) VALUES(?, ?)';
+
+            DBConnect.query(
+              sqlQueryInsertRelation,
+              [userId, eventId],
+              (errorInsertRelation, resultInsertRelation) => {
+
+                if (errorInsertRelation) {
+                  callbackToAddInterestToEvent({
+                    error: true,
+                    errorMessage: errorInsertRelation,
+                  });
+                } else {
+                  callbackToAddInterestToEvent({
+                    error: false,
+                    successMessage: 'Action effectué',
+                  });
+                }
+              });
+          } else {
+
+            callbackToAddInterestToEvent({
+              error: true,
+              errorMessage: 'Already interesed',
+            });
+          }
+        }
+      });
   }
 };
 
