@@ -19,7 +19,7 @@ server.use((request, response, next) => {
 server.use(router);
 
 App(server, router);
-contact(router, nodemailer);
+//contact(router, nodemailer);
 
 // Defined a port for the server, if this constant is undefined, the server take the port 3000 
 server.listen(process.env.PORT || 3000);

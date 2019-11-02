@@ -20,7 +20,6 @@
   justify-content: flex-end;
   position: sticky;
   z-index: 1;
-  //margin-bottom: -112px;
   animation: fromTop 400ms ease; 
 
   &--left {
@@ -128,7 +127,7 @@ section {
 /* CSS POUR FOOTER */ 
 footer { 
   a {
-    color : $colorDarkTheme;
+    color : rgba($colorDarkTheme, .6);
   }
   .footer {
     background-color: rgba(0, 0, 0, 0.3);
@@ -141,9 +140,11 @@ footer {
 
     &-subtitle {
       @include subtitleType1;
+      width:100%;
+      text-align: right;
     }
     & ul li {
-      padding: 0 1rem .2rem;
+      padding: 0 0 .2rem;
     }
     &-social {
       text-align: center;

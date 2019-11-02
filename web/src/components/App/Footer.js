@@ -16,6 +16,7 @@ const Footer = ({ fetchEvents }) => {
     'Nantes',
     'Strasbourg',
     'Bordeaux',
+    'Marseille',
   ];
   return (
     <section className="footer">

@@ -36,11 +36,12 @@
 @mixin subtitleType1 {
   font-family: $fontFamilyTitle;
   font-size: 1.5rem;
-  color: $blue;
-  background: $blueGradient;
+  color: $colorDarkTheme;
+  background: $lightGradient;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: block;
+  width: fit-content;
   margin: .2rem 0 1rem;
   padding-bottom: .3rem;
 }
