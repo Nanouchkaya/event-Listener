@@ -287,7 +287,7 @@ class UserController {
                     if (result.rowMatch) {
                       response.status(200).json({
                         error: false,
-                        successMessage: 'Votre compte a bien été supprimer du site',
+                        successMessage: 'Votre compte a bien été supprimé du site',
                       });
                     } else {
                       
@@ -302,7 +302,7 @@ class UserController {
 
                 response.status(401).json({
                   error: true,
-                  errorMessage: 'Vous n\'ête pas autorisé à effectuer cette action',
+                  errorMessage: 'Vous n\'êtes pas autorisé à effectuer cette action',
                 });
               }
             }
@@ -333,10 +333,9 @@ class UserController {
     } else {
 
       if (!(checkEmail(data.email))) {
-        errors.push('L\'adresse email n\'est pas correct');
+        errors.push('L\'adresse email n\'est pas correcte');
       }
     }
-
     let editPassword = false;
     
     if ((data.password && data.password.trim().length > 6)) {
@@ -362,13 +361,12 @@ class UserController {
         token,
         process.env.APP_KEY,
         { expiresIn: '2d' },
-
         (error, decode) => {
 
           if (error) {
             response.status(401).json({
               error: true,
-              errorMessage: 'Vous n\'ête pas autorisé à effectuer cette action',
+              errorMessage: 'Vous n\'êtes pas autorisé à effectuer cette action',
             });
           } else {
 
@@ -383,14 +381,14 @@ class UserController {
                   response.status(200);
                   response.json({
                     error: false,
-                    successMessage: 'Vos informations ont bien été modifié',
+                    successMessage: 'Vos informations ont bien été modifiées',
                   });
                 });
             } else {
 
               response.status(401).json({
                 error: true,
-                errorMessage: 'Vous n\'ête pas autorisé à effectuer cette action',
+                errorMessage: 'Vous n\'êtes pas autorisé à effectuer cette action',
               });
             }
           }
@@ -414,7 +412,6 @@ class UserController {
     const { userId, eventId } = request.params;
     
     let errors = [];
-
     let token;
     if (request.body.headers && request.body.headers.Authorization) {
       token = request.body.headers.Authorization.split(' ')[1];

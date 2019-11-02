@@ -160,13 +160,6 @@ module.exports = (server, router) => {
   });
 
   /**
-   * User delete a like to the event
-   */
-  router.post('/users/:userId/like/delete/:eventId', (request, response) => {
-    UserController.deleteLikeToEvent(request, response);
-  });
-
-  /**
    * User adds his interest for the event
    */
   router.post('/users/:userId/interest/add/:eventId', (request, response) => {
