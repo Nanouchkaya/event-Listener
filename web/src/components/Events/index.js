@@ -8,7 +8,7 @@ import './events.scss';
 import HeaderGradient from 'src/components/App/HeaderGradient';
 import Form from 'src/redux/containers/Events/Form';
 import Event from 'src/redux/containers/Events/Event';
-import Test from 'src/redux/containers/EventDetails/Test';
+import Test from 'src/redux/containers/Events/Map';
 
 
 // == Composant Events

@@ -15,8 +15,8 @@ class Test extends React.Component {
     return (
       <>
         <LeafletMap
-          center={[48.8566969, 2.3514616]}
-          zoom={6}
+          center={[46.603354, 1.8883335]}
+          zoom={5}
           maxZoom={18}
           attributionControl={true}
           zoomControl={true}

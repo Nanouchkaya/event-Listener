@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Test from 'src/components/EventDetails/Map';
+import Test from 'src/components/Events/Map';
 
 
 // action creators
@@ -7,8 +7,6 @@ import {} from '../../actions/creators';
 
 const mapStateToProps = (state) => ({
   data: state.form.data,
-  latitude: state.eventDetails.data.latitude,
-  longitude: state.eventDetails.data.longitude,
 });
 
 const mapDispatchToProps = (dispatch) => ({});
