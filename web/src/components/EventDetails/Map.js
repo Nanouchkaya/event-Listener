@@ -1,5 +1,4 @@
 import React from 'react'
-import { Route } from 'react-router-dom';
 import { Map as LeafletMap, TileLayer, Marker, Popup } from 'react-leaflet';
 
 class Test extends React.Component {
