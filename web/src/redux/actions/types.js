@@ -77,4 +77,7 @@ export const FETCH_EVENT_DETAILS = 'FETCH_EVENT_DETAILS';
 // User : Update
 export const CHANGE_UPDATE_USER = 'CHANGE_UPDATE_USER';
 
+// Slider : events
+export const CHANGE_LEFT_FOR_SLIDER = 'CHANGE_LEFT_FOR_SLIDER';
+
 

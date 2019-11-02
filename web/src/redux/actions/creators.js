@@ -43,6 +43,7 @@ import {
   CHANGE_SEARCH_FORM_VALUE,
   EMPTY_SEARCH_FORM_VALUE,
   HANDLE_SEARCH_FORM_CHANGE,
+  CHANGE_LEFT_FOR_SLIDER,
 } from './types';
 
 
@@ -234,3 +235,10 @@ export const handleSearchFormChange = (value) => ({
   type: HANDLE_SEARCH_FORM_CHANGE,
   value,
 });
+
+
+// Slider : Events
+export const changeLeftForSlider = (value) => ({
+  type: CHANGE_LEFT_FOR_SLIDER,
+  value,
+})
