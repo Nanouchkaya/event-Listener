@@ -434,6 +434,34 @@ class User {
         }
       });
   }
+
+  /**
+   * User delete a like to the event
+   * @param {integer} userId 
+   * @param {integer} eventId 
+   * @param {callback} callbackToDeleteInterestToEvent
+   */
+  static deleteInterestToEvent(userId, eventId, callbackToDeleteInterestToEvent) {
+    const sqlQueryDeleteRelation = 'DELETE FROM watches WHERE user_id = ? AND event_id = ?';
+
+    DBConnect.query(
+      sqlQueryDeleteRelation,
+      [userId, eventId],
+      (errorDeleteRelation, resultDeleteRelation) => {
+
+        if (errorDeleteRelation) {
+          callbackToDeleteInterestToEvent({
+            error: true,
+            errorMessage: errorDeleteRelation,
+          });
+        } else {
+          callbackToDeleteInterestToEvent({
+            error: false,
+            successMessage: 'Action effectué',
+          });
+        }
+      });
+  }
 };
 
 module.exports = User;
