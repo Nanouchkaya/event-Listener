@@ -12,13 +12,14 @@
   z-index: 3;
   padding: .5rem;
   animation: fade .4s ease;
-
+  
   &.display-block {
     display: block;
   }
   
   &.display-none {
     display: none;
+    
   }
 
   &-main {
