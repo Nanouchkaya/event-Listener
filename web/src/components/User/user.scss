@@ -2,32 +2,34 @@
 @import 'src/assets/styles/mixins';
 
 .header {
-  
   &-pseudo {
+    position: absolute;
+    left: auto;
+    top: calc(#{$headerAvatarSize} / -1);
+    width: 100%;
     font-family: 'Hero', sans-serif;
-    text-align: center;
-    padding-top: 15rem;
     font-size: 2.8em;
-    position: relative;
-    top: -9rem;
+    text-align: center;
     text-transform: uppercase;
     text-shadow: 8px 5px 5px rgba(0,0,0,.2);
   }
   
   &-avatar {
     position: absolute;
-    z-index: 1;
     width: $headerAvatarSize;
-    bottom: calc(#{$headerAvatarSize} / -2 + 2rem);
+    top: calc(#{$headerAvatarSize} / -2);
     left: calc(50% - (#{$headerAvatarSize} / 2));
     border-radius: 50%;
-    z-index:1;
+    border: 3px solid white;
+    border-block-end: unset;
+    border-inline-end: unset;
   }
 }
   
 .user {
   @include contentLayer;
   padding-top: 5rem;
+  margin: 20rem 1rem 10rem;
 
   .preferences {
     &-title {
@@ -54,6 +56,7 @@
           
           /* disabled input */
           &-input-field[disabled] {
+            color: rgba($colorDarkTheme, 0.7);
             background: none;
             border: none;
             margin-bottom: 0.9rem;
@@ -95,7 +98,7 @@
               position: absolute;
               content: "";
               left: 4px;
-              @include checked-disable(rgba($colorLightTheme, .2), 15px, 3px);
+              @include checked-disable(rgba($colorDarkTheme, .3), 15px, 3px);
             }
   
             /* disabled input */
@@ -203,14 +206,14 @@
 
   .preferences-events {
     &-title {
-      @include title($blue);
+      @include title($purple);
     }
 
     &-content {
       padding: 1rem 0;
 
       &-subtitle {
-        @include subtitleType1
+        @include subtitleType1;
       }
       
     }
@@ -219,14 +222,14 @@
 
 // adjust for other devices
 @media (min-width: 768px) {
+  .user {
+    margin: 20rem auto 10rem;
+  }
 }
 
 // for desktop
 @media (min-width: 1024px) {
 
-  .header-pseudo {
-    padding-top: 20rem;
-  }
   .user {
     .preferences {
       &-title {

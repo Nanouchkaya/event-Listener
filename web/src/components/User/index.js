@@ -10,13 +10,13 @@ import UserEvents from 'src/components/User/UserEvents';
 
 // composant
 const User = () => (
-  <>
+  <div className="user">
     <Header />
-    <section className="user">
+    <section>
       <Preferences />
       <UserEvents />
     </section>
-  </>
+  </div>
 );
 
 // export

@@ -261,7 +261,7 @@ class UserController {
       if (request.body.headers && request.body.headers.Authorization) {
         token = request.body.headers.Authorization.split(' ')[1];
       } else {
-        errors.push('Vous n\'ête pas autorisé à effectuer cette action');
+        errors.push('Vous n\'êtes pas autorisé à effectuer cette action');
       }
 
       if (errors < 1) {
@@ -275,7 +275,7 @@ class UserController {
             if (error) {
               response.status(401).json({
                 error: true,
-                errorMessage: 'Un erreur interne c\'est produit',
+                errorMessage: 'Une erreur interne s\'est produite',
               });
             } else {
               if (decode.userId === Number(userId)) {
@@ -352,7 +352,7 @@ class UserController {
     if (request.body.headers && request.body.headers.Authorization) {
       token = request.body.headers.Authorization.split(' ')[1];
     } else {
-      errors.push('Vous n\'ête pas autorisé à effectuer cette action');
+      errors.push('Vous n\'êtes pas autorisé à effectuer cette action');
     }
 
     if (errors.length < 1) {
