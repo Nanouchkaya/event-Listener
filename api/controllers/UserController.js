@@ -157,13 +157,18 @@ class UserController {
               { userId: result.data.id }, 
               process.env.APP_KEY,
               { expiresIn: '2d' });
-  
-            response.status(200).json({
-              error: false,
-              result,
-              token,
-            });
-            
+              
+              User.find(
+                result.data.id,
+                (result) => {
+
+                  response.status(200).json({
+                    error: false,
+                    result,
+                    token,
+                  });
+                }
+              );
           } else {
   
             response.status(401).json({
@@ -639,6 +644,249 @@ class UserController {
         });
     } else {
       response.status(401).json({
+        error: true,
+        errorMessage: errors,
+      })
+    }
+  }
+
+  /**
+   * User delete is interest for the event
+   * @param {object} request
+   * @param {object} response
+   */
+  static deleteInterestToEvent(request,response) {
+    const { userId, eventId } = request.params;
+    
+    let errors = [];
+
+    let token;
+    if (request.body.headers && request.body.headers.Authorization) {
+      token = request.body.headers.Authorization.split(' ')[1];
+    } else {
+      errors.push('Vous n\'ête pas autorisé à effectuer cette action');
+    }
+
+    if (errors.length < 1) {
+
+      Event.find(
+        eventId,
+        (result) => {
+          if (result.rowMatch) {
+
+            jwToken.verify(
+              token,
+              process.env.APP_KEY,
+              { expiresIn: '2d' },
+      
+              (error, decode) => {
+
+                if (error) {
+                  response.status(401).json({
+                    error: true,
+                    errorMessage: 'Vous n\'ête pas autorisé à effectuer cette action',
+                  });
+                } else {
+                  if (decode.userId === Number(userId)) {
+
+                    User.deleteInterestToEvent(
+                      userId,
+                      eventId,
+                      (result) => {
+                        
+                        if (!result.error) {
+
+                          response.status(200).json({
+                            error: false,
+                            successMessage: 'Action effectué',
+                          });
+                        } else {
+                          response.status(404).json({
+                            error: true,
+                            errorMessage: 'Un problème interne c\'est produit',
+                          });
+                        }
+                      });
+                  } else {
+                    response.status(401).json({
+                      error: true,
+                      errorMessage: 'Vous n\'ête pas autorisé à effectuer cette action',
+                    });
+                  }
+                }
+      
+              });
+          } else {
+            response.status(404).json({
+              error: true,
+              errorMessage: 'L\'événement n\'existe pas ou plus',
+            })
+          }
+        });
+    } else {
+      response.status(200).json({
+        error: true,
+        errorMessage: errors,
+      })
+    }
+  }
+
+  /**
+   * User adds his participation to the event
+   * @param {object} request
+   * @param {object} response
+   */
+  static addParticipationToEvent(request,response) {
+    const { userId, eventId } = request.params;
+    
+    let errors = [];
+
+    let token;
+    if (request.body.headers && request.body.headers.Authorization) {
+      token = request.body.headers.Authorization.split(' ')[1];
+    } else {
+      errors.push('Vous n\'ête pas autorisé à effectuer cette action');
+    }
+
+    if (errors.length < 1) {
+
+      Event.find(
+        eventId,
+        (result) => {
+          if (result.rowMatch) {
+
+            jwToken.verify(
+              token,
+              process.env.APP_KEY,
+              { expiresIn: '2d' },
+      
+              (error, decode) => {
+
+                if (error) {
+                  response.status(401).json({
+                    error: true,
+                    errorMessage: 'Vous n\'ête pas autorisé à effectuer cette action',
+                  });
+                } else {
+                  if (decode.userId === Number(userId)) {
+
+                    User.addParticipationToEvent(
+                      userId,
+                      eventId,
+                      (result) => {
+                        
+                        if (!result.error) {
+
+                          response.status(200).json({
+                            error: false,
+                            successMessage: 'Action effectué',
+                          });
+                        } else {
+                          response.status(404).json({
+                            error: true,
+                            errorMessage: 'Un problème interne c\'est produit',
+                          });
+                        }
+                      });
+                  } else {
+                    response.status(401).json({
+                      error: true,
+                      errorMessage: 'Vous n\'ête pas autorisé à effectuer cette action',
+                    });
+                  }
+                }
+      
+              });
+          } else {
+            response.status(404).json({
+              error: true,
+              errorMessage: 'L\'événement n\'existe pas ou plus',
+            })
+          }
+        });
+    } else {
+      response.status(401).json({
+        error: true,
+        errorMessage: errors,
+      })
+    }
+  }
+
+  /**
+   * User delete is participation to the event
+   * @param {object} request
+   * @param {object} response
+   */
+  static deleteParticipationToEvent(request,response) {
+    const { userId, eventId } = request.params;
+    
+    let errors = [];
+
+    let token;
+    if (request.body.headers && request.body.headers.Authorization) {
+      token = request.body.headers.Authorization.split(' ')[1];
+    } else {
+      errors.push('Vous n\'ête pas autorisé à effectuer cette action');
+    }
+
+    if (errors.length < 1) {
+
+      Event.find(
+        eventId,
+        (result) => {
+          if (result.rowMatch) {
+
+            jwToken.verify(
+              token,
+              process.env.APP_KEY,
+              { expiresIn: '2d' },
+      
+              (error, decode) => {
+
+                if (error) {
+                  response.status(401).json({
+                    error: true,
+                    errorMessage: 'Vous n\'ête pas autorisé à effectuer cette action',
+                  });
+                } else {
+                  if (decode.userId === Number(userId)) {
+
+                    User.deleteParticipationToEvent(
+                      userId,
+                      eventId,
+                      (result) => {
+                        
+                        if (!result.error) {
+
+                          response.status(200).json({
+                            error: false,
+                            successMessage: 'Action effectué',
+                          });
+                        } else {
+                          response.status(404).json({
+                            error: true,
+                            errorMessage: 'Un problème interne c\'est produit',
+                          });
+                        }
+                      });
+                  } else {
+                    response.status(401).json({
+                      error: true,
+                      errorMessage: 'Vous n\'ête pas autorisé à effectuer cette action',
+                    });
+                  }
+                }
+      
+              });
+          } else {
+            response.status(404).json({
+              error: true,
+              errorMessage: 'L\'événement n\'existe pas ou plus',
+            })
+          }
+        });
+    } else {
+      response.status(200).json({
         error: true,
         errorMessage: errors,
       })
