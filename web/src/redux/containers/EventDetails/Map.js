@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Test from 'src/components/EventDetails/Map';
+import EventDetailsMap from 'src/components/EventDetails/Map';
 
 
 // action creators
@@ -13,4 +13,4 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Test);
+export default connect(mapStateToProps, mapDispatchToProps)(EventDetailsMap);

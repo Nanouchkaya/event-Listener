@@ -1,7 +1,7 @@
 import React from 'react'
 import { Map as LeafletMap, TileLayer, Marker, Popup } from 'react-leaflet';
 
-class Test extends React.Component {
+class EventDetailsMap extends React.Component {
 
   render() {
     const accessToken = 'pk.eyJ1IjoiZGFlbmVyeXM5NSIsImEiOiJjazJmYjNlN2QwZ3luM2xwYnlqZnE5Z3JmIn0.0eaxPyVL6cJ0QxnXXP_fHg';
@@ -20,6 +20,7 @@ class Test extends React.Component {
           dragging={true}
           animate={true}
           easeLinearity={0.35}
+          id="map"
         >
           <TileLayer
             url={url}
@@ -39,4 +40,4 @@ class Test extends React.Component {
   }
 }
 
-export default Test;
+export default EventDetailsMap;

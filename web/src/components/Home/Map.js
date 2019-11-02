@@ -1,7 +1,7 @@
 import React from 'react'
 import { Map as LeafletMap, TileLayer, Marker, Popup } from 'react-leaflet';
 
-class Test extends React.Component {
+class HomeMap extends React.Component {
 
   render() {
     const accessToken = 'pk.eyJ1IjoiZGFlbmVyeXM5NSIsImEiOiJjazJmYjNlN2QwZ3luM2xwYnlqZnE5Z3JmIn0.0eaxPyVL6cJ0QxnXXP_fHg';
@@ -33,7 +33,7 @@ class Test extends React.Component {
           />
           { creators.map ((creator) => {
             return (
-              <Marker position={[creator.latitude, creator.longitude]}>
+              <Marker key={creator.id} position={[creator.latitude, creator.longitude]}>
                 <Popup>
                   {creator.name } <br />
                   <a href={creator.link}>Linkedin</a> <br />
@@ -49,4 +49,4 @@ class Test extends React.Component {
   }
 }
 
-export default Test;
+export default HomeMap;

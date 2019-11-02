@@ -1,7 +1,7 @@
 import React from 'react'
 import { Map as LeafletMap, TileLayer, Marker, Popup } from 'react-leaflet';
 
-class Test extends React.Component {
+class EventsMap extends React.Component {
 
   render() {
     const accessToken = 'pk.eyJ1IjoiZGFlbmVyeXM5NSIsImEiOiJjazJmYjNlN2QwZ3luM2xwYnlqZnE5Z3JmIn0.0eaxPyVL6cJ0QxnXXP_fHg';
@@ -58,7 +58,7 @@ class Test extends React.Component {
           />
           {data.map((event) => {
             return (
-            <Marker position={[event.latitude, event.longitude]}>
+            <Marker key={event.id} position={[event.latitude, event.longitude]}>
               <Popup>
                 Google France
                 8 rue de Londres
@@ -75,4 +75,4 @@ class Test extends React.Component {
   }
 }
 
-export default Test;
+export default EventsMap;

@@ -8,7 +8,7 @@ import './events.scss';
 import HeaderGradient from 'src/components/App/HeaderGradient';
 import Form from 'src/redux/containers/Events/Form';
 import Event from 'src/redux/containers/Events/Event';
-import Test from 'src/redux/containers/Events/Map';
+import EventsMap from 'src/redux/containers/Events/Map';
 
 
 // == Composant Events
@@ -43,7 +43,7 @@ class Events extends React.Component {
           <Switch>
             <Route exact path="/tous-les-evenements">
               { data.map((event) => <Event key={event.id} {...event} />)}
-              <Test />
+              <EventsMap />
             </Route>
             <Route exact path={this.props.location.pathname}>
               { locationSearchData.length === 0
