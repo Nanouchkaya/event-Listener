@@ -6,6 +6,7 @@ import iconArrowLeft from 'src/assets/images/icons/icons8-undefined-50-9.png';
 import iconArrowRight from 'src/assets/images/icons/icons8-undefined-50-7.png';
 import SearchForm from 'src/redux/containers/Home/SearchForm';
 import Contact from './Contact';
+import HomeMap from './Map';
 import './home.scss';
 import 'src/components/Events/events.scss';
 
@@ -86,10 +87,9 @@ class Home extends React.Component {
           <Contact />
 
           <h2 className="events-title">
-            Où nous trouver ?
+            Où nous trouver
           </h2>
-          <p>Ici la map</p>
-
+          <HomeMap />
         </main>
       </>
     );

@@ -144,7 +144,7 @@ class EventController {
   }
 
   /**
-   * Find and get Event by localisation
+   * Find and get Event by tags
    * @param {object} request
    * @param {object} response
    */
@@ -313,6 +313,8 @@ class EventController {
       response.json(result)
     })
   }
+
 };
+
 
 module.exports = EventController;

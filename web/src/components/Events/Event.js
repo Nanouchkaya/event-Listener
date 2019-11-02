@@ -7,10 +7,6 @@ import DOMPurify from 'dompurify';
 import moment from 'moment';
 
 
-// == Import : local
-import iconPlus from 'src/assets/images/icons/icons8-plus-50.png';
-
-
 // == Composant Event
 const Event = ({
   id,
