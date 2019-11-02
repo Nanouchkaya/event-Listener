@@ -1,6 +1,7 @@
 // import npm
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 
 // import sous-composants
 import Header from 'src/redux/containers/EventDetails/Header';
@@ -8,7 +9,9 @@ import CheckButtons from 'src/components/EventDetails/CheckButtons';
 import Datetime from 'src/redux/containers/EventDetails/Datetime';
 import Address from 'src/redux/containers/EventDetails/Address';
 import Description from 'src/redux/containers/EventDetails/Description';
+import EventDetailsMap from 'src/redux/containers/EventDetails/Map';
 import Tags from './Tags';
+
 
 // import local
 import './eventdetails.scss';
@@ -21,7 +24,7 @@ class EventDetails extends React.Component {
   }
 
   render() {
-    const { banner } = this.props;
+    const { banner, latitude, longitude } = this.props;
     return (
       <>
         <div
@@ -42,9 +45,10 @@ class EventDetails extends React.Component {
               <div className="event-flyer-description description">
                 <Description />
                 <Tags />
+                { latitude && longitude !== undefined && <EventDetailsMap /> }
+                
               </div>
             </article>
-
           </section>
 
         </div>

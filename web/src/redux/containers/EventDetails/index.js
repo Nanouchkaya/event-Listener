@@ -10,6 +10,8 @@ import {
 
 const mapStateToProps = (state) => ({
   banner: state.eventDetails.data.url_image,
+  latitude: state.eventDetails.data.latitude,
+  longitude: state.eventDetails.data.longitude,
 });
 
 const mapDispatchToProps = (dispatch) => ({

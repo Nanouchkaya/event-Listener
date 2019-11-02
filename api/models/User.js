@@ -354,6 +354,35 @@ class User {
   }
 
   /**
+   * User delete a like to the event
+   * @param {integer} userId 
+   * @param {integer} eventId 
+   * @param {callback} callbackToDeleteLikeToEvent
+   */
+  static deleteLikeToEvent(userId, eventId, callbackToDeleteLikeToEvent) {
+    const sqlQueryDeleteRelation = 'DELETE FROM likes WHERE user_id = ? AND event_id = ?';
+
+    DBConnect.query(
+      sqlQueryDeleteRelation,
+      [userId, eventId],
+      (errorDeleteRelation, resultDeleteRelation) => {
+
+        if (errorDeleteRelation) {
+          callbackToDeleteLikeToEvent({
+            error: true,
+            errorMessage: errorDeleteRelation,
+          });
+        } else {
+          callbackToDeleteLikeToEvent({
+            error: false,
+            successMessage: 'Action effectué',
+          });
+        }
+      });
+          
+  }
+
+  /**
    * User adds his interest for the event
    * @param {integer} userId 
    * @param {integer} eventId 

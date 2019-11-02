@@ -40,6 +40,7 @@ export const eventIcons = (state = initialState, action = {}) => {
 const detailsState = {
   data: {},
   eventStatut: 'A venir55',
+  position: {},
 };
 export const eventDetails = (state = detailsState, action = {}) => {
   switch (action.type) {
