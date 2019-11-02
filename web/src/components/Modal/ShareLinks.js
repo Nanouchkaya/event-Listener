@@ -49,6 +49,7 @@ return (
       <EmailShareButton
         subject={"Check out this event on eventlistener.eu"}
         body={`${shareText}: ${shareUrl}`}
+        url={shareUrl}
       >
         <button>
           <img alt="mail-icon" src={mailIcon} />
