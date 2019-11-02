@@ -180,33 +180,33 @@ const Preferences = ({
                 Recevoir un email à la modification d'un événement
               </label>
             </div>
+            <div className="preferences-infos-buttons">
+              { editorModeDisabled && (
+                <button
+                  className="button button--mode-editor"
+                  type="button"
+                  onClick={handleChangEditorModeDisabled}
+                >
+                  Modifier mes informations
+                </button>
+              ) }
+              { !editorModeDisabled && (
+                <button
+                  className="button button--validate-preferences"
+                  type="submit"
+                >
+                  Valider mes modifications
+                </button>
+              ) }
+              <button
+                className="button button--delete-account"
+                type="button"
+                onClick={handleChangeModalStatus}
+              >
+                Supprimer mon compte
+              </button>
+            </div>
           </div>
-        </div>
-        <div className="preferences-infos-buttons">
-          { editorModeDisabled && (
-            <button
-              className="button button--mode-editor"
-              type="button"
-              onClick={handleChangEditorModeDisabled}
-            >
-              Modifier mes informations
-            </button>
-          ) }
-          { !editorModeDisabled && (
-            <button
-              className="button button--validate-preferences"
-              type="submit"
-            >
-              Valider mes modifications
-            </button>
-          ) }
-          <button
-            className="button button--delete-account"
-            type="button"
-            onClick={handleChangeModalStatus}
-          >
-            Supprimer mon compte
-          </button>
         </div>
       </form>
       { modalStatus && (

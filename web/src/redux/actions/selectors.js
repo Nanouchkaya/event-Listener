@@ -27,3 +27,26 @@ export const getEventDate = (dateStart, dateEnd) => {
   }
   return moment(dateStart, "DD MMM YYYY").format('ddd DD MMM YYYY');
 };
+
+
+/**
+ * @param {number} totalElt nombre total d'éléments dans le slider
+ * @param {number} slide valeur css left du bloc contenant les éléments
+ * @param {number} width largeur d'un élément
+ * @param {function} action à dispatcher 
+ * @param {string} dir direction
+ */
+export const slider = (totalElt, slide, width, action, dir) => {
+     
+  // pour slide vers la droite
+  if(dir === 'right' && (totalElt * -width) !== slide) {
+    slide -= width;
+    action(slide);
+  }
+    
+  // pour slide vers la gauche
+  if (dir === 'left' && slide !== 0) {
+    slide += width;
+    action(slide);
+  }
+};

@@ -6,6 +6,7 @@ import {
   FILL_FILTER_LIST,
   HANDLE_SEARCH_SUBMIT,
   FETCH_NEXT_EVENTS,
+  CHANGE_LEFT_FOR_SLIDER,
 } from '../actions/types';
 
 const initialState = {
@@ -15,6 +16,7 @@ const initialState = {
   filterList: [],
   dataFilter: [],
   data: [],
+  slide: 0,
 };
 
 export const home = (state = initialState, action = {}) => {
@@ -55,6 +57,11 @@ export const home = (state = initialState, action = {}) => {
       return {
         ...state,
         data: action.data,
+      };
+    case CHANGE_LEFT_FOR_SLIDER:
+      return {
+        ...state,
+        slide: action.value,
       };
     default:
       return state;

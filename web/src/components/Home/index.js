@@ -13,38 +13,20 @@ import 'src/components/Events/events.scss';
 
 // == Composant
 class Home extends React.Component {
-  state = {
-    left: 0,
-  }
 
   componentDidMount() {
     const { showNextEvents } = this.props;
     showNextEvents();
   }
 
-  toLeft = () => {
-    const { left } = this.state;
-    const numberOfElement = this.props.data.length - 1;
-    if ((numberOfElement * 250) !== left && left !== 0){
-      this.setState({
-        left: left + 250,
-      });
-    } 
-  };
-
-  toRight = () => {
-    const { left } = this.state;
-    const numberOfElement = this.props.data.length - 1;
-    if ((numberOfElement * -250) !== left) {
-      this.setState({
-        left: left - 250,
-      });
-    }
-  };
-
   render() {
-    const { data } = this.props;
-    const { left } = this.state;
+    const {
+      data,
+      slide,
+      slider,
+      changeLeftForSlider, 
+    } = this.props;
+    const numberOfElement = data.length - 1;
 
     return (
       <>
@@ -70,16 +52,17 @@ class Home extends React.Component {
           </h2>
 
           <div className="events-view-card">
-            <div className="events-container" style={{ left: `${left}px` }}>
+            <div className="events-container" style={{ left: `${slide}px` }}>
               {data.map((event) => <Event key={event.id} {...event} />)}
             </div>
           </div>
 
           <div className="arrow">
-            <button type="button" className="arrow-left" onClick={this.toLeft}>
+            <button type="button" className="arrow-left" onClick={() => slider(numberOfElement, slide, 236, changeLeftForSlider, 'left')}>
               <img src={iconArrowLeft} alt="prev" className="icon" />
             </button>
-            <button type="button" className="arrow-right" onClick={this.toRight}>
+
+            <button type="button" className="arrow-right" onClick={() => slider(numberOfElement, slide, 236, changeLeftForSlider, 'right')}>
               <img src={iconArrowRight} alt="next" className="icon" />
             </button>
           </div>
