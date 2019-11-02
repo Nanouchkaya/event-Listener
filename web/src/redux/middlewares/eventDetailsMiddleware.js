@@ -2,7 +2,7 @@ import axios from 'axios';
 import { GET_EVENT_DETAILS } from '../actions/types';
 import { fetchEventDetails } from '../actions/creators';
 
-const eventDetailsMiddleware = (store) => (next) => (action) => {
+ const eventDetailsMiddleware = (store) => (next) => (action) => {
   console.log('Je suis le middleware, et j\'ignore cette action: ', action);
 
   switch (action.type) {
@@ -12,7 +12,7 @@ const eventDetailsMiddleware = (store) => (next) => (action) => {
           store.dispatch(fetchEventDetails(response.data.result.data));
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
         });
       break;
     }

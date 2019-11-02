@@ -1,11 +1,9 @@
 import React from 'react';
 
-import HeaderGradient from 'src/components/App/HeaderGradient';
 import './privatepolicy.scss';
 
 const PrivatePolicy = () => (
   <>
-    <HeaderGradient />
     <section className="private-policy">
       <h2 className="private-policy-title">Politique de confidentialité.</h2>
       <p className="private-policy-paragraph">

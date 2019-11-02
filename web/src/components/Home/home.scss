@@ -5,25 +5,22 @@
 body {
     background-color: $backgroundDark;
     color: $colorDarkTheme;
+    background: $mainGradient;
 }
 
-header {
-  background: $mainGradient;
+.header-content {
+  
   width: 100%;
   position: relative;
   top: 0;
-  padding-top: 112px;
-  padding-bottom: 1rem;
-    
-    .header_background {
-      position: absolute;
-      display: block;
-      top: 0;
-      left: 0;
-      z-index: 0;
-    }
+  padding-bottom: 2rem;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 
-    .header-content-text {
+    &-text {
       max-width: 450px;
       text-align: center;
       text-transform: uppercase;
@@ -34,7 +31,7 @@ header {
       margin: 2rem auto;
       padding: 1rem;
       position: relative;
-      animation: fromLeft .4s ease .1s;
+      animation: textEffect .5s ease .3s;
       animation-fill-mode: backwards; 
     }
 
@@ -43,10 +40,12 @@ header {
       background: rgba(black, .3);
       padding: 3rem 3rem;
       z-index:0;
-      box-shadow: 2px 1px 5px rgba(0,0,0,.5);
-      margin: 1.8rem 1.5rem 2.5rem;
+      //border: $border;
+      border-radius: $radius;
+      //box-shadow: $boxShadow;
+      margin: 1.8rem 1rem 2.5rem;
       position: relative;
-      animation: fromRight .4s ease .3s;
+      animation: fromRight .5s cubic-bezier(0.215, 0.610, 0.355, 1) .8s;
       animation-fill-mode: backwards; 
 
         &-h2 {
@@ -69,10 +68,8 @@ header {
 
 main {
   @include contentLayer;
-  animation-delay: .5s;
 
     .contact {
-      //background: rgba(black, .3);
       padding: $sectionPaddingMobile;
 
         &-title {
@@ -86,6 +83,7 @@ main {
 
             &-element.button {
               @include form-submit;
+              background-size: 1400px;
             }
 
             &--note {
@@ -96,9 +94,14 @@ main {
     }
 }
 
+
 /* RULES FOR RESPONSIVE */
 @media all and (min-width: 768px) {
-  header {
+  .header-content {
+    max-width: 800px;
+    margin:auto;
+    flex-direction: row;
+
     .navigation-item--left {
       font-size: 3rem;
       display: flex;
@@ -109,12 +112,44 @@ main {
         margin: -0.7rem 3rem 0;
       }
     }
+
+    &-text {
+      max-width: 600px;
+      line-height: 3.5rem;
+    }
+
+    .header-searchform {
+      padding: 4rem;
+
+        &-h2 {
+          font-size: 1.5rem;
+        }
+
+        &-input {
+          @include form-element;
+          margin: 1.5rem auto;
+          padding: .8rem 1.3rem;
+        }
+
+        &-submit {
+          @include form-submit;
+          text-align: center;
+          margin: 1.5rem auto;
+          padding: .8rem 1.3rem;
+        }
+    }
+  }
+
+  main {
+    margin-top: -6rem;
   }
 }
 
 @media all and (min-width: 980px) {
     // rules for computer
-    header {
+    .header-content {
+      max-width: 1200px;
+      top: -50px;
       .header-content {
         display:flex;
         justify-content: space-around;
@@ -123,7 +158,7 @@ main {
 
         &-text {
           font-size: 2.5rem;
-          margin: 0;
+          margin: 0;;
         }
       }
     }

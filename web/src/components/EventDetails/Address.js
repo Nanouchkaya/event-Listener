@@ -17,7 +17,7 @@ const Address = ({ address }) => {
         {pureAddress}
       </address>
       <p>
-        <a href="#">Afficher la carte</a>
+        <a href="#map">Afficher la carte</a>
       </p>
     </div>
   );
