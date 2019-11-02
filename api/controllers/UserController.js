@@ -157,13 +157,18 @@ class UserController {
               { userId: result.data.id }, 
               process.env.APP_KEY,
               { expiresIn: '2d' });
-  
-            response.status(200).json({
-              error: false,
-              result,
-              token,
-            });
-            
+              
+              User.find(
+                result.data.id,
+                (result) => {
+
+                  response.status(200).json({
+                    error: false,
+                    result,
+                    token,
+                  });
+                }
+              );
           } else {
   
             response.status(401).json({
