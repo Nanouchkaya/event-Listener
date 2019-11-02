@@ -21,7 +21,6 @@ export const getEventStatus = (dateStart, dateEnd) => {
 export const getEventDate = (dateStart, dateEnd) => {
   dateStart = moment(dateStart, "YYYY-MM-DD").format('DD MMM YYYY');
   dateEnd = moment(dateEnd, "YYYY-MM-DD").format('DD MMM YYYY');
-  console.log(dateEnd)
 
   if (dateEnd !== dateStart) {
     return `Du ${dateStart} au ${dateEnd}`;
