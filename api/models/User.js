@@ -103,6 +103,7 @@ class User {
   static find(id, callbackGetUser) {
     const sqlQueryUserWithRole = 'SELECT user.id, user.pseudo, user.email, user.lastname, user.firstname, user.url_avatar, user.notif_new_event, user.notif_new_update, user.created_at, role.name AS role FROM user LEFT JOIN possesses ON possesses.user_id = user.id LEFT JOIN role ON role.id = possesses.role_id WHERE user.id = ?';
 
+    // Take user with his role
     DBConnect.query(
       sqlQueryUserWithRole,
       id,
@@ -114,9 +115,11 @@ class User {
           });
         } else {
 
+          // Check if the user exist
           if (resultUserWithRole.length > 0) {
             const sqlQueryWatcheEvents = 'SELECT event.* FROM event LEFT JOIN watches ON watches.event_id = event.id WHERE watches.user_id = ?';
 
+            // Take events at which the user was interested
             DBConnect.query(
               sqlQueryWatcheEvents,
               id,
@@ -130,6 +133,7 @@ class User {
 
                   const sqlQueryLikeEvents = 'SELECT event.* FROM event LEFT JOIN likes ON likes.event_id = event.id WHERE likes.user_id = ?';
 
+                  // Take events that the user like
                   DBConnect.query(
                     sqlQueryLikeEvents,
                     id,
@@ -142,16 +146,33 @@ class User {
                         });
                       } else {
 
-                        callbackGetUser({
-                          error: false,
-                          errorMessage: null,
-                          rowMatch: resultUserWithRole.length > 0,
-                          data: {
-                            ...resultUserWithRole[0],
-                            events_likes: resultLikeEvents,
-                            events_interest: resultWatcheEvents,
-                          },
-                        });
+                        const sqlQueryParticipationEvents = 'SELECT event.* FROM event LEFT JOIN participates ON participates.event_id = event.id WHERE participates.user_id = ?';
+                        
+                        // Take events to which the user participates
+                        DBConnect.query(
+                          sqlQueryParticipationEvents,
+                          id,
+                          (errorParticipationEvents, resultParticipationEvents) => {
+                            if (errorParticipationEvents) {
+                              callbackGetUser({
+                                error: true,
+                                errorMessage: errorParticipationEvents,
+                              });
+                            } else {
+                              callbackGetUser({
+                                error: false,
+                                errorMessage: null,
+                                rowMatch: resultUserWithRole.length > 0,
+                                data: {
+                                  ...resultUserWithRole[0],
+                                  events_likes: resultLikeEvents,
+                                  events_interest: resultWatcheEvents,
+                                  events_participates: resultParticipationEvents,
+                                },
+                              });
+                            }
+                          }
+                        );
                       }
                     }
                   );
