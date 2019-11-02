@@ -172,4 +172,11 @@ module.exports = (server, router) => {
   router.post('/users/:userId/interest/add/:eventId', (request, response) => {
     UserController.addInterestToEvent(request, response);
   });
+
+  /**
+   * User delete his interest for the event
+   */
+  router.post('/users/:userId/interest/delete/:eventId', (request, response) => {
+    UserController.deleteInterestToEvent(request, response);
+  });
 };
