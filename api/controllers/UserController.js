@@ -123,7 +123,7 @@ class UserController {
       });
     } else {
   
-      response.status(401).json({
+      response.status(200).json({
         error: true,
         errorMessages: errors,
       });
