@@ -9,6 +9,7 @@ import {
   changeCheckInputValue,
   handleChangEditorModeDisabled,
   changeUpdateUser,
+  deleteShowMessage,
 } from '../../actions/creators';
 
 const mapStateToProps = (state) => ({
@@ -22,6 +23,10 @@ const mapStateToProps = (state) => ({
   confirmPassword: state.user.confirmPassword,
   notifNewEvent: state.user.notifNewEvent,
   notifNewUpdate: state.user.notifNewUpdate,
+  eventsLike: state.user.eventsLike,
+  eventsInterest: state.user.eventsInterest,
+  eventsParticipate: state.user.eventsParticipate,
+  message: state.user.message,
   editorModeDisabled: state.user.editorModeDisabled,
   modalStatus: state.user.modalStatus,
 });
@@ -32,6 +37,7 @@ const mapDispatchToProps = (dispatch) => ({
   changeCheckInputValue: (name) => dispatch(changeCheckInputValue(name)),
   handleChangEditorMode: () => dispatch(handleChangEditorModeDisabled()),
   updateValueUser: (user) => dispatch(changeUpdateUser(user)),
+  deleteShowMessage: () => dispatch(deleteShowMessage()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Preferences);
