@@ -4,9 +4,8 @@ import SearchForm from 'src/redux/containers/Home/SearchForm';
 import NextEvents from 'src/redux/containers/Home/NextEvents';
 import Contact from './Contact';
 import HomeMap from './Map';
-import './home.scss';
-import 'src/components/Events/events.scss';
 import Now from './Now';
+import './home.scss';
 
 
 // == Composant
@@ -16,7 +15,6 @@ class Home extends React.Component {
   componentDidMount() {
     window.addEventListener('scroll', function() {
       const scroll = window.scrollY;
-      console.log(scroll);
       if(scroll > 400) {
         document.querySelector('.home').classList.remove('hidden-section');
         document.querySelector('.home').classList.add('display-section');

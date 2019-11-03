@@ -24,7 +24,6 @@ class Nav extends React.Component {
   componentDidMount() {
     window.addEventListener('scroll', function() {
       const scroll = window.scrollY;
-      console.log(scroll);
       if(scroll > 50) {
       document.querySelector('nav').classList.add('minimalize');
       } else {

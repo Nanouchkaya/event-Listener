@@ -5,6 +5,8 @@ import Event from 'src/redux/containers/Events/Event';
 import iconArrowLeft from 'src/assets/images/icons/icons8-undefined-50-9.png';
 import iconArrowRight from 'src/assets/images/icons/icons8-undefined-50-7.png';
 
+import 'src/components/Events/events.scss';
+
 class NextEvents extends React.Component {
   componentDidMount() {
     const { showNextEvents } = this.props;
@@ -26,8 +28,8 @@ class NextEvents extends React.Component {
           Prochains événements
         </h2>
 
-        <div className="nextevents-view-card">
-          <div className="nextevents-container" style={{ left: `${slide}px` }}>
+        <div className="events-view-card">
+          <div className="events-container" style={{ left: `${slide}px` }}>
             {data.map((event) => <Event key={event.id} {...event} />)}
           </div>
         </div>
