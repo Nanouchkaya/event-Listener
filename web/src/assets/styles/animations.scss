@@ -9,6 +9,17 @@
   }
 }
 
+@keyframes dropSection {
+  0% { 
+    opacity: 0;
+    transform: translateY(-5%); 
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes fromLeft {
   0% { 
     opacity: 0;

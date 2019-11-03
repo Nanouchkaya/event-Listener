@@ -17,7 +17,9 @@ $mainGradientOpacity: linear-gradient(143deg, rgba(14,179,207,.5) 0%, rgba(37,93
 $lightGradient: linear-gradient(0deg, rgba(224,224,224,1) 5%, rgba(255,255,255,1) 54%, rgb(226, 226, 226) 100%);
 $turquoiseGradient: radial-gradient(circle, rgba(9,185,193,1) 0%, rgba(37,194,219,1) 49%, rgba(16,159,199,1) 100%);
 $blueGradient: radial-gradient(circle, rgb(48, 149, 207) 0%, rgba(36,96,174,1) 70%, rgb(40, 107, 146) 100%);
-$mainGradientExt : linear-gradient(143deg, rgba(14,179,207,1) 0%, rgb(246, 250, 253) 20%, rgb(246, 250, 253) 80%, rgba(93,58,201,1) 100%);
+$mainGradientExt : linear-gradient(143deg, rgba(14,179,207,1) 10%, rgba(246, 250, 253, 1) 30%, rgba(246, 250, 253, 1) 70%, rgba(93,58,201,1) 100%);
+$mainGradientExtDark : linear-gradient(143deg, rgba(14,179,207,.8) 10%, rgba(9, 36, 75, 0.3) 30%, rgba(12, 34, 65, 0.3) 70%, rgba(93,58,201,.8) 100%);
+
 
 
 /* PADDING & MARGIN */

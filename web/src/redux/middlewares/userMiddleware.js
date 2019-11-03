@@ -85,6 +85,7 @@ const userMiddleware = (store) => (next) => (action) => {
         .then((response) => {
           if (!response.data.error) {
             window.localStorage.setItem('token', response.data.token);
+            store.dispatch(fetchUserInfos(response.data.result.data));
             store.dispatch(connect(response.data.token));
             store.dispatch(openNavModal('login'));
           } else {

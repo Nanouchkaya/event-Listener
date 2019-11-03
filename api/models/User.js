@@ -103,6 +103,7 @@ class User {
   static find(id, callbackGetUser) {
     const sqlQueryUserWithRole = 'SELECT user.id, user.pseudo, user.email, user.lastname, user.firstname, user.url_avatar, user.notif_new_event, user.notif_new_update, user.created_at, role.name AS role FROM user LEFT JOIN possesses ON possesses.user_id = user.id LEFT JOIN role ON role.id = possesses.role_id WHERE user.id = ?';
 
+    // Take user with his role
     DBConnect.query(
       sqlQueryUserWithRole,
       id,
@@ -114,9 +115,11 @@ class User {
           });
         } else {
 
+          // Check if the user exist
           if (resultUserWithRole.length > 0) {
             const sqlQueryWatcheEvents = 'SELECT event.* FROM event LEFT JOIN watches ON watches.event_id = event.id WHERE watches.user_id = ?';
 
+            // Take events at which the user was interested
             DBConnect.query(
               sqlQueryWatcheEvents,
               id,
@@ -130,6 +133,7 @@ class User {
 
                   const sqlQueryLikeEvents = 'SELECT event.* FROM event LEFT JOIN likes ON likes.event_id = event.id WHERE likes.user_id = ?';
 
+                  // Take events that the user like
                   DBConnect.query(
                     sqlQueryLikeEvents,
                     id,
@@ -142,16 +146,33 @@ class User {
                         });
                       } else {
 
-                        callbackGetUser({
-                          error: false,
-                          errorMessage: null,
-                          rowMatch: resultUserWithRole.length > 0,
-                          data: {
-                            ...resultUserWithRole[0],
-                            events_likes: resultLikeEvents,
-                            events_interest: resultWatcheEvents,
-                          },
-                        });
+                        const sqlQueryParticipationEvents = 'SELECT event.* FROM event LEFT JOIN participates ON participates.event_id = event.id WHERE participates.user_id = ?';
+                        
+                        // Take events to which the user participates
+                        DBConnect.query(
+                          sqlQueryParticipationEvents,
+                          id,
+                          (errorParticipationEvents, resultParticipationEvents) => {
+                            if (errorParticipationEvents) {
+                              callbackGetUser({
+                                error: true,
+                                errorMessage: errorParticipationEvents,
+                              });
+                            } else {
+                              callbackGetUser({
+                                error: false,
+                                errorMessage: null,
+                                rowMatch: resultUserWithRole.length > 0,
+                                data: {
+                                  ...resultUserWithRole[0],
+                                  events_likes: resultLikeEvents,
+                                  events_interest: resultWatcheEvents,
+                                  events_participates: resultParticipationEvents,
+                                },
+                              });
+                            }
+                          }
+                        );
                       }
                     }
                   );
@@ -431,6 +452,115 @@ class User {
               errorMessage: 'Already interesed',
             });
           }
+        }
+      });
+  }
+
+  /**
+   * User delete a like to the event
+   * @param {integer} userId 
+   * @param {integer} eventId 
+   * @param {callback} callbackToDeleteInterestToEvent
+   */
+  static deleteInterestToEvent(userId, eventId, callbackToDeleteInterestToEvent) {
+    const sqlQueryDeleteRelation = 'DELETE FROM watches WHERE user_id = ? AND event_id = ?';
+
+    DBConnect.query(
+      sqlQueryDeleteRelation,
+      [userId, eventId],
+      (errorDeleteRelation, resultDeleteRelation) => {
+
+        if (errorDeleteRelation) {
+          callbackToDeleteInterestToEvent({
+            error: true,
+            errorMessage: errorDeleteRelation,
+          });
+        } else {
+          callbackToDeleteInterestToEvent({
+            error: false,
+            successMessage: 'Action effectué',
+          });
+        }
+      });
+  }
+
+  /**
+   * User adds his participation to the event
+   * @param {integer} userId 
+   * @param {integer} eventId 
+   * @param {callback} callbackToAddParticipationToEvent
+   */
+  static addParticipationToEvent(userId, eventId, callbackToAddParticipationToEvent) {
+    const sqlQueryCheckAlreadyExist = 'SELECT * FROM participates WHERE user_id = ? AND event_id = ?';
+
+    DBConnect.query(
+      sqlQueryCheckAlreadyExist,
+      [userId, eventId],
+      (errorCheckAlreadyExist, resultCheckAlreadyExist) => {
+
+        if (errorCheckAlreadyExist) {
+          callbackToAddParticipationToEvent({
+            error: true,
+            errorMessage: errorCheckAlreadyExist,
+          })
+        } else {
+          
+          if (resultCheckAlreadyExist.length < 1) {
+
+            const sqlQueryInsertRelation = 'INSERT INTO participates(user_id, event_id) VALUES(?, ?)';
+
+            DBConnect.query(
+              sqlQueryInsertRelation,
+              [userId, eventId],
+              (errorInsertRelation, resultInsertRelation) => {
+
+                if (errorInsertRelation) {
+                  callbackToAddParticipationToEvent({
+                    error: true,
+                    errorMessage: errorInsertRelation,
+                  });
+                } else {
+                  callbackToAddParticipationToEvent({
+                    error: false,
+                    successMessage: 'Action effectué',
+                  });
+                }
+              });
+          } else {
+
+            callbackToAddParticipationToEvent({
+              error: true,
+              errorMessage: 'Already participate',
+            });
+          }
+        }
+      });
+  }
+
+  /**
+   * User delete his participation to the event
+   * @param {integer} userId 
+   * @param {integer} eventId 
+   * @param {callback} callbackToDeleteInterestToEvent
+   */
+  static deleteParticipationToEvent(userId, eventId, callbackToDeleteParticipationToEvent) {
+    const sqlQueryDeleteRelation = 'DELETE FROM participates WHERE user_id = ? AND event_id = ?';
+
+    DBConnect.query(
+      sqlQueryDeleteRelation,
+      [userId, eventId],
+      (errorDeleteRelation, resultDeleteRelation) => {
+
+        if (errorDeleteRelation) {
+          callbackToDeleteParticipationToEvent({
+            error: true,
+            errorMessage: errorDeleteRelation,
+          });
+        } else {
+          callbackToDeleteParticipationToEvent({
+            error: false,
+            successMessage: 'Action effectué',
+          });
         }
       });
   }
