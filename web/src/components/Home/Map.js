@@ -13,7 +13,11 @@ class HomeMap extends React.Component {
       {id: 4, name:'Guillaume E', link: 'https://www.linkedin.com/in/guillaume-ersent-15419a17b/', latitude: 50.6305089, longitude: 3.0706414, mobilite: 'Lille' },
     ];
     return (
-      <>
+      <section className="homemap">
+        <h2 className="homemap-title">
+          Où nous trouver
+        </h2>
+
         <LeafletMap
           center={[46.603354, 1.8883335]}
           zoom={5}
@@ -44,7 +48,7 @@ class HomeMap extends React.Component {
           })}
           
         </LeafletMap>
-     </> 
+     </section> 
     );
   }
 }

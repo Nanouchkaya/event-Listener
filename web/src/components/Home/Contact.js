@@ -48,9 +48,9 @@ class Contact extends React.Component {
   } = this.state;
     return (
       <section className="contact">
-        <h1 className="contact-title">
+        <h2 className="contact-title">
           Nous contacter
-        </h1>
+        </h2>
         <form onSubmit={this.handleSubmit} className="contact-form" autoComplete="off" method="POST">
           <input
             type="text"

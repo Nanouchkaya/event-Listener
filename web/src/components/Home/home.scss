@@ -66,32 +66,48 @@ body {
     }
 }
 
-main {
+.home {
   @include contentLayer;
+  margin-top: 0rem;
+  transition: 0.3s;
 
-    .contact {
-      padding: $sectionPaddingMobile;
+  &.hidden-section {
+    opacity: 0;
+    animation: fade .5s ease reverse;
+  }
 
-        &-title {
-         @include title($blue);
-        }
+  &.display-section {
+    animation: fade .5s ease;
+  }
 
-        &-form {
-            &-element {
-              @include form-element;
-            }
+  .now-title,
+  .nextevents-title,
+  .contact-title,
+  .homemap-title {
+    @include titleFlag($colorDarkTheme, $mainGradientExtDark, $turquoise, $purple);
+  }
 
-            &-element.button {
-              @include form-submit;
-              background-size: 1400px;
-            }
+  .nextevents, .contact, .homemap {
+    margin: 5rem 0;
+  }
+  
+  .contact {
+    &-form {
+      &-element {
+        @include form-element;
+      }
 
-            &--note {
-              font-style: italic;
-              font-size: .8rem;
-            }
-        }       
-    }
+      &-element.button {
+        @include form-submit;
+        background-size: 1400px;
+      }
+
+      &--note {
+        font-style: italic;
+        font-size: .8rem;
+      }
+    }       
+  }
 }
 
 
@@ -140,8 +156,12 @@ main {
     }
   }
 
-  main {
-    margin-top: -6rem;
+  .home {
+    margin-top: -10rem;
+
+    &.display-section {
+      animation: dropSection .5s ease-out;
+    }
   }
 }
 
