@@ -15,6 +15,7 @@ import {
   fetchUserInfos,
   openNavModal,
   handleChangEditorModeDisabled,
+  showMessageUpdateUser,
 } from '../actions/creators';
 
 const server = 'localhost';
@@ -130,7 +131,12 @@ const userMiddleware = (store) => (next) => (action) => {
         data: { ...user },
       })
         .then((response) => {
-          store.dispatch(handleChangEditorModeDisabled());
+          if (!response.data.error) {
+            store.dispatch(handleChangEditorModeDisabled());
+            store.dispatch(showMessageUpdateUser('success', response.data.successMessage));
+          } else {
+            store.dispatch(showMessageUpdateUser('error', response.data.errorMessage));
+          }
         })
         .catch((error) => console.log('from middleware:', error));
       break;

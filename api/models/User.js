@@ -165,9 +165,9 @@ class User {
                                 rowMatch: resultUserWithRole.length > 0,
                                 data: {
                                   ...resultUserWithRole[0],
-                                  events_likes: resultLikeEvents,
+                                  events_like: resultLikeEvents,
                                   events_interest: resultWatcheEvents,
-                                  events_participates: resultParticipationEvents,
+                                  events_participate: resultParticipationEvents,
                                 },
                               });
                             }

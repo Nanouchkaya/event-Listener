@@ -4,6 +4,8 @@ import {
   CHANGE_CHECK_INPUT_VALUE,
   CHANGE_EDITOR_MODE,
   FETCH_USER_INFOS,
+  SHOW_MESSAGE_UPDATE_USER,
+  DELETE_SHOW_MESSAGE,
 } from '../actions/types';
 
 const initialState = {
@@ -17,7 +19,14 @@ const initialState = {
   confirmPassword: '',
   notifNewEvent: false,
   notifNewUpdate: true,
+  eventsLike: [],
+  eventsInterest: [],
+  eventsParticipate: [],
   editorModeDisabled: true,
+  message: {
+    type: '',
+    content: '',
+  },
   modalStatus: false,
 };
 
@@ -43,6 +52,22 @@ export const user = (state = initialState, action = {}) => {
         ...state,
         editorModeDisabled: !state.editorModeDisabled,
       };
+    case SHOW_MESSAGE_UPDATE_USER:
+      return {
+        ...state,
+        message: {
+          type: action.messageType,
+          content: action.messageContent,
+        }
+      };
+    case DELETE_SHOW_MESSAGE:
+      return {
+        ...state,
+        message: {
+          type: '',
+          content: '',
+        }
+      };
     case FETCH_USER_INFOS: {
       const {
         id,
@@ -53,6 +78,9 @@ export const user = (state = initialState, action = {}) => {
         lastname,
         notif_new_event: notifNewEvent,
         notif_new_update: notifNewUpdate,
+        events_like: eventsLike,
+        events_interest: eventsInterest,
+        events_participate: eventsParticipate,
       } = action.user;
       return {
         ...state,
@@ -64,6 +92,9 @@ export const user = (state = initialState, action = {}) => {
         lastname: (lastname !== null) ? lastname : '',
         notifNewEvent: !!notifNewEvent, // convert to bool
         notifNewUpdate: !!notifNewUpdate, // convert to bool
+        eventsLike,
+        eventsInterest,
+        eventsParticipate,
       };
     }
     default:
