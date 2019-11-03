@@ -109,13 +109,13 @@ class UserController {
             data,
             (result) => {
   
-            response.status(200).json(result);
+            response.status(201).json(result);
           });
         } else {
   
           errors.push('L\'email est déjà utilisé');
         
-          response.status(401).json({
+          response.status(200).json({
             error: true,
             errorMessages: errors,
           });
@@ -171,7 +171,7 @@ class UserController {
               );
           } else {
   
-            response.status(401).json({
+            response.status(200).json({
               error: true,
               errorMessage: "Le mot de passe ou l'email est incorrect",
             });
@@ -453,7 +453,7 @@ class UserController {
                         
                         if (!result.error) {
 
-                          response.status(200).json({
+                          response.status(201).json({
                             error: false,
                             successMessage: 'Action effectué',
                           });
@@ -615,7 +615,7 @@ class UserController {
                         
                         if (!result.error) {
 
-                          response.status(200).json({
+                          response.status(201).json({
                             error: false,
                             successMessage: 'Action effectué',
                           });
@@ -777,7 +777,7 @@ class UserController {
                         
                         if (!result.error) {
 
-                          response.status(200).json({
+                          response.status(201).json({
                             error: false,
                             successMessage: 'Action effectué',
                           });
