@@ -81,7 +81,7 @@ class UserController {
     } else {
 
       if (!(checkEmail(data.email))) {
-        errors.push('L\'adresse email n\'est pas correct');
+        errors.push('L\'adresse email n\'est pas correcte');
       }
 
       if (data.pseudo.trim().length < 4) {
@@ -113,7 +113,7 @@ class UserController {
           });
         } else {
   
-          errors.push('L\'email est déjà utilisé');
+          errors.push('Cet email est déjà utilisé');
         
           response.status(200).json({
             error: true,
@@ -139,7 +139,7 @@ class UserController {
 
     let errors = [];
     if (!(data.email && (data.email.length > 0) && data.password && (data.password.length > 0))) {
-      errors.push('Tous les champs ne sont pas rempli')
+      errors.push('Tous les champs ne sont pas remplis')
     }
 
     if (errors < 1) {
@@ -202,7 +202,7 @@ class UserController {
 
     response.status(200).json({
       error: false,
-      successMessage: 'Déconnecter avec success',
+      successMessage: 'Déconnexion réussie',
     })
   }
 
@@ -427,7 +427,7 @@ class UserController {
     if (request.body.headers && request.body.headers.Authorization) {
       token = request.body.headers.Authorization.split(' ')[1];
     } else {
-      errors.push('Vous n\'ête pas autorisé à effectuer cette action');
+      errors.push('Vous n\'êtes pas autorisé à effectuer cette action');
     }
 
     if (errors.length < 1) {
@@ -447,7 +447,7 @@ class UserController {
                 if (error) {
                   response.status(401).json({
                     error: true,
-                    errorMessage: 'Vous n\'ête pas autorisé à effectuer cette action',
+                    errorMessage: 'Vous n\'êtes pas autorisé à effectuer cette action',
                   });
                 } else {
                   if (decode.userId === Number(userId)) {
@@ -461,19 +461,19 @@ class UserController {
 
                           response.status(201).json({
                             error: false,
-                            successMessage: 'Action effectué',
+                            successMessage: 'Action effectuée',
                           });
                         } else {
                           response.status(404).json({
                             error: true,
-                            errorMessage: 'Un problème interne c\'est produit',
+                            errorMessage: 'Un problème interne s\'est produit',
                           });
                         }
                       });
                   } else {
                     response.status(401).json({
                       error: true,
-                      errorMessage: 'Vous n\'ête pas autorisé à effectuer cette action',
+                      errorMessage: 'Vous n\'êtes pas autorisé à effectuer cette action',
                     });
                   }
                 }
@@ -508,7 +508,7 @@ class UserController {
     if (request.body.headers && request.body.headers.Authorization) {
       token = request.body.headers.Authorization.split(' ')[1];
     } else {
-      errors.push('Vous n\'ête pas autorisé à effectuer cette action');
+      errors.push('Vous n\'êtes pas autorisé à effectuer cette action');
     }
 
     if (errors.length < 1) {
@@ -528,7 +528,7 @@ class UserController {
                 if (error) {
                   response.status(401).json({
                     error: true,
-                    errorMessage: 'Vous n\'ête pas autorisé à effectuer cette action',
+                    errorMessage: 'Vous n\'êtes pas autorisé à effectuer cette action',
                   });
                 } else {
                   if (decode.userId === Number(userId)) {
@@ -542,19 +542,19 @@ class UserController {
 
                           response.status(200).json({
                             error: false,
-                            successMessage: 'Action effectué',
+                            successMessage: 'Action effectuée',
                           });
                         } else {
                           response.status(404).json({
                             error: true,
-                            errorMessage: 'Un problème interne c\'est produit',
+                            errorMessage: 'Un problème interne s\'est produit',
                           });
                         }
                       });
                   } else {
                     response.status(401).json({
                       error: true,
-                      errorMessage: 'Vous n\'ête pas autorisé à effectuer cette action',
+                      errorMessage: 'Vous n\'êtes pas autorisé à effectuer cette action',
                     });
                   }
                 }
@@ -589,7 +589,7 @@ class UserController {
     if (request.body.headers && request.body.headers.Authorization) {
       token = request.body.headers.Authorization.split(' ')[1];
     } else {
-      errors.push('Vous n\'ête pas autorisé à effectuer cette action');
+      errors.push('Vous n\'êtes pas autorisé à effectuer cette action');
     }
 
     if (errors.length < 1) {
@@ -609,7 +609,7 @@ class UserController {
                 if (error) {
                   response.status(401).json({
                     error: true,
-                    errorMessage: 'Vous n\'ête pas autorisé à effectuer cette action',
+                    errorMessage: 'Vous n\'êtes pas autorisé à effectuer cette action',
                   });
                 } else {
                   if (decode.userId === Number(userId)) {
@@ -623,19 +623,19 @@ class UserController {
 
                           response.status(201).json({
                             error: false,
-                            successMessage: 'Action effectué',
+                            successMessage: 'Action effectuée',
                           });
                         } else {
                           response.status(404).json({
                             error: true,
-                            errorMessage: 'Un problème interne c\'est produit',
+                            errorMessage: 'Un problème interne s\'est produit',
                           });
                         }
                       });
                   } else {
                     response.status(401).json({
                       error: true,
-                      errorMessage: 'Vous n\'ête pas autorisé à effectuer cette action',
+                      errorMessage: 'Vous n\'êtes pas autorisé à effectuer cette action',
                     });
                   }
                 }
@@ -670,7 +670,7 @@ class UserController {
     if (request.body.headers && request.body.headers.Authorization) {
       token = request.body.headers.Authorization.split(' ')[1];
     } else {
-      errors.push('Vous n\'ête pas autorisé à effectuer cette action');
+      errors.push('Vous n\'êtes pas autorisé à effectuer cette action');
     }
 
     if (errors.length < 1) {
@@ -690,7 +690,7 @@ class UserController {
                 if (error) {
                   response.status(401).json({
                     error: true,
-                    errorMessage: 'Vous n\'ête pas autorisé à effectuer cette action',
+                    errorMessage: 'Vous n\'êtes pas autorisé à effectuer cette action',
                   });
                 } else {
                   if (decode.userId === Number(userId)) {
@@ -704,19 +704,19 @@ class UserController {
 
                           response.status(200).json({
                             error: false,
-                            successMessage: 'Action effectué',
+                            successMessage: 'Action effectuée',
                           });
                         } else {
                           response.status(404).json({
                             error: true,
-                            errorMessage: 'Un problème interne c\'est produit',
+                            errorMessage: 'Un problème interne s\'est produit',
                           });
                         }
                       });
                   } else {
                     response.status(401).json({
                       error: true,
-                      errorMessage: 'Vous n\'ête pas autorisé à effectuer cette action',
+                      errorMessage: 'Vous n\'êtes pas autorisé à effectuer cette action',
                     });
                   }
                 }
@@ -751,7 +751,7 @@ class UserController {
     if (request.body.headers && request.body.headers.Authorization) {
       token = request.body.headers.Authorization.split(' ')[1];
     } else {
-      errors.push('Vous n\'ête pas autorisé à effectuer cette action');
+      errors.push('Vous n\'êtes pas autorisé à effectuer cette action');
     }
 
     if (errors.length < 1) {
@@ -771,7 +771,7 @@ class UserController {
                 if (error) {
                   response.status(401).json({
                     error: true,
-                    errorMessage: 'Vous n\'ête pas autorisé à effectuer cette action',
+                    errorMessage: 'Vous n\'êtes pas autorisé à effectuer cette action',
                   });
                 } else {
                   if (decode.userId === Number(userId)) {
@@ -785,19 +785,19 @@ class UserController {
 
                           response.status(201).json({
                             error: false,
-                            successMessage: 'Action effectué',
+                            successMessage: 'Action effectuée',
                           });
                         } else {
                           response.status(404).json({
                             error: true,
-                            errorMessage: 'Un problème interne c\'est produit',
+                            errorMessage: 'Un problème interne s\'est produit',
                           });
                         }
                       });
                   } else {
                     response.status(401).json({
                       error: true,
-                      errorMessage: 'Vous n\'ête pas autorisé à effectuer cette action',
+                      errorMessage: 'Vous n\'êtes pas autorisé à effectuer cette action',
                     });
                   }
                 }
@@ -832,7 +832,7 @@ class UserController {
     if (request.body.headers && request.body.headers.Authorization) {
       token = request.body.headers.Authorization.split(' ')[1];
     } else {
-      errors.push('Vous n\'ête pas autorisé à effectuer cette action');
+      errors.push('Vous n\'êtes pas autorisé à effectuer cette action');
     }
 
     if (errors.length < 1) {
@@ -852,7 +852,7 @@ class UserController {
                 if (error) {
                   response.status(401).json({
                     error: true,
-                    errorMessage: 'Vous n\'ête pas autorisé à effectuer cette action',
+                    errorMessage: 'Vous n\'êtes pas autorisé à effectuer cette action',
                   });
                 } else {
                   if (decode.userId === Number(userId)) {
@@ -866,19 +866,19 @@ class UserController {
 
                           response.status(200).json({
                             error: false,
-                            successMessage: 'Action effectué',
+                            successMessage: 'Action effectuée',
                           });
                         } else {
                           response.status(404).json({
                             error: true,
-                            errorMessage: 'Un problème interne c\'est produit',
+                            errorMessage: 'Un problème interne s\'est produit',
                           });
                         }
                       });
                   } else {
                     response.status(401).json({
                       error: true,
-                      errorMessage: 'Vous n\'ête pas autorisé à effectuer cette action',
+                      errorMessage: 'Vous n\'êtes pas autorisé à effectuer cette action',
                     });
                   }
                 }
