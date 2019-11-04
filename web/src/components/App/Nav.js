@@ -39,7 +39,6 @@ class Nav extends React.Component {
 
   handleClickLogo = () => {
     window.location.pathname = "";
-
   }
 
   render() {

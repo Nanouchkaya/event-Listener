@@ -42,6 +42,7 @@ console.log(undefinedData)
             <div className="events-container">
           <Switch>
             <Route exact path="/tous-les-evenements">
+            {console.log('events-data', data)}
               { data.map((event) => <Event key={event.id} {...event} />)}
               { data.length > 0 && <EventsMap />} 
               { data.length !== 0 && <p>{undefinedData}</p>}
@@ -52,11 +53,21 @@ console.log(undefinedData)
                   if (locationSearchData.length === 0) {
                     return(<p>Aucuns événements trouvés</p>) 
                   } else if (data.length > 0) {
-                    return data.map((event) => <Event key={event.id} {...event} />)    
+                    return ( 
+                      <>
+                      {data.map((event) => <Event key={event.id} {...event} />)}
+                      <EventsMap />
+                      </>
+                    )   
                   } else if (data.length === 0) {
                     return (<p>Aucun événement ne correspond à votre recherche</p>)
                   } else {
-                    return locationSearchData.map((event) => <Event key={event.id} {...event} />)
+                    return (
+                      <>
+                      {locationSearchData.map((event) => <Event key={event.id} {...event} />)}
+                      <EventsMap />
+                      </>
+                    )
                   }
                 })()
               }
