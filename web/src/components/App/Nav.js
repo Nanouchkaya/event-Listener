@@ -32,6 +32,15 @@ class Nav extends React.Component {
     })
   }
 
+  /* Changes the pathname so that the rendering changes */
+  handleClick = () => {
+    window.location.pathname = "tous-les-evenements";
+  }
+
+  handleClickLogo = () => {
+    window.location.pathname = "";
+  }
+
   render() {
     const {
       menuBurger,
@@ -60,6 +69,7 @@ class Nav extends React.Component {
           <NavLink
             to="/"
             exact
+            onClick={this.handleClickLogo}
           >
           eventListener
           </NavLink>
@@ -79,6 +89,7 @@ class Nav extends React.Component {
         <div className={menuBurgerClass}>
           <div className="menu-main">
             <NavLink
+              onClick={this.handleClick}
               to="/tous-les-evenements"
               exact
               activeClassName="navigation-item--active"

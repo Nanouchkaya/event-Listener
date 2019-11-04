@@ -13,7 +13,7 @@ import {
 
 // == Import :  Action Creators
 import {
-  fetchNameRequestData,
+  fetchRequestedData,
   sendLocationSearchData,
   fetchNextEvents,
 } from '../actions/creators';
@@ -29,7 +29,7 @@ const eventsMiddleware = (store) => (next) => (action) => {
       axios.get(`http://${config.url}:3000/events/title/${value}`)
         .then((response) => {
           const { data } = response.data.result;
-          store.dispatch(fetchNameRequestData(data));
+          store.dispatch(fetchRequestedData(data));
         })
         .catch((error) => {
           console.error('from middleware:', error);
@@ -40,13 +40,16 @@ const eventsMiddleware = (store) => (next) => (action) => {
       axios.get(`http://${config.url}:3000/events`)
         .then((response) => {
           const { data } = response.data;
-          store.dispatch(fetchNameRequestData(data));
+          store.dispatch(fetchRequestedData(data));
         })
         .catch((error) => console.error('from middelware:', error));
       break;
     }
     case FETCH_EVENTS_BY_LOCATION: {
-      axios.get(`http://${config.url}:3000/events/localisation/${action.location}`)
+      // empties the array of data before each request
+      const empyData = [];
+      store.dispatch(sendLocationSearchData(empyData));
+      axios.get(`http://localhost:3000/events/localisation/${action.location}`)
         .then((response) => {
           const { data } = response.data.result;
           store.dispatch(sendLocationSearchData(data));
@@ -58,9 +61,8 @@ const eventsMiddleware = (store) => (next) => (action) => {
       const { dataFilter } = store.getState().form;
       axios.post(`http://${config.url}:3000/events/filter`, dataFilter)
         .then((response) => {
-          console.log(response);
           const { data } = response.data;
-          store.dispatch(fetchNameRequestData(data));
+          store.dispatch(fetchRequestedData(data));
         })
         .catch((error) => console.error(error));
       break;
