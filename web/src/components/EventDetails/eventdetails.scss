@@ -69,6 +69,7 @@
         text-transform: uppercase;
         margin: 0 -.7rem;
         position: relative;
+        border-radius: 5px 5px 0 0;
 
         &::before {
           @include triangle($turquoise);

@@ -9,22 +9,28 @@ import DeleteAccount from 'src/components/User/DeleteAccount';
 
 // == Composant Preferences
 const Preferences = ({
-  user,
-  firstname,
-  lastname,
-  email,
-  password,
-  confirmPassword,
-  notifNewEvent,
-  notifNewUpdate,
-  changeCheckInputValue,
-  changeValue,
-  modalStatus,
-  changeModalStatus,
-  editorModeDisabled,
-  handleChangEditorMode,
-  updateValueUser,
-}) => {
+    user,
+    firstname,
+    lastname,
+    email,
+    password,
+    confirmPassword,
+    notifNewEvent,
+    notifNewUpdate,
+    eventsLike,
+    eventsInterest,
+    eventsParticipate,
+    message,
+    changeCheckInputValue,
+    changeValue,
+    modalStatus,
+    changeModalStatus,
+    editorModeDisabled,
+    handleChangEditorMode,
+    updateValueUser,
+    deleteShowMessage,
+  }) => {
+
   /* Passade de true/false pour affichage des modals */
   const handleChangeModalStatus = () => {
     changeModalStatus();
@@ -46,11 +52,16 @@ const Preferences = ({
     const { name } = event.target;
     changeCheckInputValue(name);
   };
+  
   /* Update User*/
   const handleUpdateUser = (event) => {
     event.preventDefault();
     updateValueUser(user);
   };
+
+  const handleDeleteMessage = () => {
+    deleteShowMessage();
+  }
 
   return (
     <section className="preferences">
@@ -180,33 +191,39 @@ const Preferences = ({
                 Recevoir un email à la modification d'un événement
               </label>
             </div>
+            <div className="preferences-infos-buttons">
+              { editorModeDisabled && (
+                <button
+                  className="button button--mode-editor"
+                  type="button"
+                  onClick={handleChangEditorModeDisabled}
+                >
+                  Modifier mes informations
+                </button>
+              ) }
+              { !editorModeDisabled && (
+                <button
+                  className="button button--validate-preferences"
+                  type="submit"
+                >
+                  Valider mes modifications
+                </button>
+              ) }
+              <button
+                className="button button--delete-account"
+                type="button"
+                onClick={handleChangeModalStatus}
+              >
+                Supprimer mon compte
+              </button>
+            </div>
+            { message.content && (
+              (<div className={`content-message content-message--${message.type}`} onClick={handleDeleteMessage}>
+                {message.content}
+              </div>)
+              )
+            }
           </div>
-        </div>
-        <div className="preferences-infos-buttons">
-          { editorModeDisabled && (
-            <button
-              className="button button--mode-editor"
-              type="button"
-              onClick={handleChangEditorModeDisabled}
-            >
-              Modifier mes informations
-            </button>
-          ) }
-          { !editorModeDisabled && (
-            <button
-              className="button button--validate-preferences"
-              type="submit"
-            >
-              Valider mes modifications
-            </button>
-          ) }
-          <button
-            className="button button--delete-account"
-            type="button"
-            onClick={handleChangeModalStatus}
-          >
-            Supprimer mon compte
-          </button>
         </div>
       </form>
       { modalStatus && (
@@ -226,6 +243,10 @@ Preferences.propTypes = {
   confirmPassword: PropTypes.string,
   notifNewEvent: PropTypes.bool.isRequired,
   notifNewUpdate: PropTypes.bool.isRequired,
+  eventsLike: PropTypes.array.isRequired,
+  eventsInterest: PropTypes.array.isRequired,
+  eventsParticipate: PropTypes.array.isRequired,
+  message: PropTypes.object.isRequired,
   changeValue: PropTypes.func.isRequired,
   changeCheckInputValue: PropTypes.func.isRequired,
   modalStatus: PropTypes.bool.isRequired,
@@ -234,6 +255,7 @@ Preferences.propTypes = {
   handleChangEditorMode: PropTypes.func.isRequired,
   updateValueUser: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
+  deleteShowMessage: PropTypes.func.isRequired,
 };
 
 Preferences.defaultProps = {

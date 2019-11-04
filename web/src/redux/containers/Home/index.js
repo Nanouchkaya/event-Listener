@@ -8,17 +8,17 @@ import Home from 'src/components/Home';
 
 // == Import : Action Creators
 import {
-  nextEvents,
 } from '../../actions/creators';
+
+import {
+} from '../../actions/selectors';
 
 
 const mapStateToProps = (state) => ({
-  data: state.home.data,
 });
 
 
 const mapDispatchToProps = (dispatch) => ({
-  showNextEvents: () => dispatch(nextEvents()),
 });
 
 

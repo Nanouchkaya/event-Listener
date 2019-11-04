@@ -1,51 +1,30 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-import Event from 'src/redux/containers/Events/Event';
-import iconArrowLeft from 'src/assets/images/icons/icons8-undefined-50-9.png';
-import iconArrowRight from 'src/assets/images/icons/icons8-undefined-50-7.png';
 import SearchForm from 'src/redux/containers/Home/SearchForm';
+import NextEvents from 'src/redux/containers/Home/NextEvents';
 import Contact from './Contact';
 import HomeMap from './Map';
+import Now from './Now';
 import './home.scss';
-import 'src/components/Events/events.scss';
 
 
 // == Composant
 class Home extends React.Component {
-  state = {
-    left: 0,
-  }
+  state = {}
 
   componentDidMount() {
-    const { showNextEvents } = this.props;
-    showNextEvents();
+    window.addEventListener('scroll', function() {
+      const scroll = window.scrollY;
+      if(scroll > 400) {
+        document.querySelector('.home').classList.remove('hidden-section');
+        document.querySelector('.home').classList.add('display-section');
+      } else {
+        document.querySelector('.home').classList.remove('display-section');
+        document.querySelector('.home').classList.add('hidden-section');
+      }
+    })
   }
-
-  toLeft = () => {
-    const { left } = this.state;
-    const numberOfElement = this.props.data.length - 1;
-    if ((numberOfElement * 250) !== left && left !== 0){
-      this.setState({
-        left: left + 250,
-      });
-    } 
-  };
-
-  toRight = () => {
-    const { left } = this.state;
-    const numberOfElement = this.props.data.length - 1;
-    if ((numberOfElement * -250) !== left) {
-      this.setState({
-        left: left - 250,
-      });
-    }
-  };
-
   render() {
-    const { data } = this.props;
-    const { left } = this.state;
-
     return (
       <>
         <header>
@@ -57,49 +36,16 @@ class Home extends React.Component {
           </div>
         </header>
 
-        <main>
-          <h2 className="events-title">
-            En ce moment
-          </h2>
-          <div>
-            ici on présente l'événement le plus populaire en cours
-          </div>
-
-          <h2 className="events-title">
-            Prochains événements
-          </h2>
-
-          <div className="events-view-card">
-            <div className="events-container" style={{ left: `${left}px` }}>
-              {data.map((event) => <Event key={event.id} {...event} />)}
-            </div>
-          </div>
-
-          <div className="arrow">
-            <button type="button" className="arrow-left" onClick={this.toLeft}>
-              <img src={iconArrowLeft} alt="prev" className="icon" />
-            </button>
-            <button type="button" className="arrow-right" onClick={this.toRight}>
-              <img src={iconArrowRight} alt="next" className="icon" />
-            </button>
-          </div>
-
+        <main className="home hidden-section">
+          <Now />
+          <NextEvents />    
           <Contact />
-
-          <h2 className="events-title">
-            Où nous trouver
-          </h2>
           <HomeMap />
         </main>
       </>
     );
   }
 }
-
-Home.propTypes = {
-  showNextEvents: PropTypes.func.isRequired,
-  data: PropTypes.array.isRequired,
-};
 
 // == Export
 export default Home;

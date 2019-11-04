@@ -109,13 +109,13 @@ class UserController {
             data,
             (result) => {
   
-            response.status(200).json(result);
+            response.status(201).json(result);
           });
         } else {
   
           errors.push('L\'email est déjà utilisé');
         
-          response.status(401).json({
+          response.status(200).json({
             error: true,
             errorMessages: errors,
           });
@@ -171,7 +171,7 @@ class UserController {
               );
           } else {
   
-            response.status(401).json({
+            response.status(200).json({
               error: true,
               errorMessage: "Le mot de passe ou l'email est incorrect",
             });
@@ -325,7 +325,7 @@ class UserController {
     const data = request.body.data;
     const { userId } = request.params;
 
-    let errors = [];
+    let error;
 
     // check if all fields are correct
     if (!(data.fistname && data.fistname.trim().length < 1) &&
@@ -334,22 +334,28 @@ class UserController {
         !(typeof data.notifNewEvent === 'boolean') &&
         !(typeof data.notifNewUpdate === 'boolean')) {
 
-      errors.push('Tous les champs ne sont pas remplis');
+      error = 'Tous les champs ne sont pas remplis';
     } else {
 
       if (!(checkEmail(data.email))) {
-        errors.push('L\'adresse email n\'est pas correcte');
+        error = 'L\'adresse email n\'est pas correcte';
       }
     }
+
     let editPassword = false;
     
-    if ((data.password && data.password.trim().length > 6)) {
-      if ((data.confirmPassword && (data.password === data.confirmPassword))) {
-        // Hash the password (use dep bcrypt)
-        data.password = bcrypt.hashSync(data.password, 10);
-        editPassword = true;
+    if ((data.password)) {
+      if (data.password.trim().length > 5) {
+        
+        if ((data.confirmPassword && (data.password === data.confirmPassword))) {
+          // Hash the password (use dep bcrypt)
+          data.password = bcrypt.hashSync(data.password, 10);
+          editPassword = true;
+        } else {
+          error = 'Les mots de passe ne correspondent pas';
+        }
       } else {
-        errors.push('Les mots de passe ne correspondent pas');
+        error = 'Le mot de passe doit contenir au moins 6 caractères';
       }
     }
 
@@ -357,10 +363,10 @@ class UserController {
     if (request.body.headers && request.body.headers.Authorization) {
       token = request.body.headers.Authorization.split(' ')[1];
     } else {
-      errors.push('Vous n\'êtes pas autorisé à effectuer cette action');
+      error = 'Vous n\'êtes pas autorisé à effectuer cette action';
     }
 
-    if (errors.length < 1) {
+    if (!error) {
 
       jwToken.verify(
         token,
@@ -401,9 +407,9 @@ class UserController {
         }
       )
     } else {
-      response.status(401).json({
+      response.status(200).json({
         error: true,
-        errorMessage: errors,
+        errorMessage: error,
       })
     }
   }
@@ -453,7 +459,7 @@ class UserController {
                         
                         if (!result.error) {
 
-                          response.status(200).json({
+                          response.status(201).json({
                             error: false,
                             successMessage: 'Action effectué',
                           });
@@ -615,7 +621,7 @@ class UserController {
                         
                         if (!result.error) {
 
-                          response.status(200).json({
+                          response.status(201).json({
                             error: false,
                             successMessage: 'Action effectué',
                           });
@@ -777,7 +783,7 @@ class UserController {
                         
                         if (!result.error) {
 
-                          response.status(200).json({
+                          response.status(201).json({
                             error: false,
                             successMessage: 'Action effectué',
                           });

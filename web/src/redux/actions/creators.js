@@ -43,6 +43,10 @@ import {
   CHANGE_SEARCH_FORM_VALUE,
   EMPTY_SEARCH_FORM_VALUE,
   HANDLE_SEARCH_FORM_CHANGE,
+  CHANGE_LEFT_FOR_SLIDER,
+  SEND_UPDATE_INFO,
+  SHOW_MESSAGE_UPDATE_USER,
+  DELETE_SHOW_MESSAGE,
 } from './types';
 
 
@@ -78,7 +82,17 @@ export const changeCheckInputValue = (name) => ({
 export const handleChangEditorModeDisabled = () => ({
   type: CHANGE_EDITOR_MODE,
 });
-
+export const sendUpdateInfos = () => ({
+  type: SEND_UPDATE_INFO,
+});
+export const showMessageUpdateUser = (messageType, messageContent) => ({
+  type: SHOW_MESSAGE_UPDATE_USER,
+  messageType,
+  messageContent,
+});
+export const deleteShowMessage = () => ({
+  type: DELETE_SHOW_MESSAGE,
+})
 
 // App : Nav.js
 export const openNavModal = (name) => ({
@@ -234,3 +248,10 @@ export const handleSearchFormChange = (value) => ({
   type: HANDLE_SEARCH_FORM_CHANGE,
   value,
 });
+
+
+// Slider : Events
+export const changeLeftForSlider = (value) => ({
+  type: CHANGE_LEFT_FOR_SLIDER,
+  value,
+})

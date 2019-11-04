@@ -19,8 +19,11 @@
   display: flex;
   justify-content: flex-end;
   position: sticky;
+  top: 0;
   z-index: 1;
-  animation: fromTop 400ms ease; 
+  font-size: 1rem;
+  animation: fromTop 400ms ease;
+  transition: 0.3s;
 
   &--left {
     font-family: $fontFamilyTitle;
@@ -52,6 +55,16 @@
         color: white;
       }
     }
+  }
+}
+
+.minimalize {
+  padding: 1rem;
+  background: rgba(black, .5);
+  transition: 0.3s;
+
+  .navigation-item--left {
+    font-size: 2rem;
   }
 }
 

@@ -107,6 +107,16 @@
             }
           }
 
+          &-message {
+            padding: 1rem;
+
+            &--success {
+              background-color: rgba(95, 175, 135, 0.6);
+            }
+            &--error {
+              background-color: rgba(175, 95, 95, 0.6);
+            }
+          }
         }
       }
 
@@ -239,14 +249,18 @@
       &-infos {
         &-container {
           display: flex;
-          flex-direction: row;
           flex-wrap: wrap;
+          flex-direction: row;
           justify-content: space-between;
 
           .content {
             flex-direction: column;
             width: max-content;
             align-self: center;
+            
+            &-message {
+              cursor: pointer;
+            }
           }
         }
 
