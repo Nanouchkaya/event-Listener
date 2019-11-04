@@ -13,7 +13,7 @@ class Home extends React.Component {
   state = {}
 
   componentDidMount() {
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', scroll = () => {
       const scroll = window.scrollY;
       if(scroll > 400) {
         document.querySelector('.home').classList.remove('hidden-section');
@@ -23,7 +23,13 @@ class Home extends React.Component {
         document.querySelector('.home').classList.add('hidden-section');
       }
     })
+
   }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', scroll);
+  }
+
   render() {
     return (
       <>
