@@ -41,17 +41,20 @@
 
   &-form {
     &-message {
-      padding: 1rem;
+      padding: .8rem 1rem;
       border-radius: 5px;
+      letter-spacing: 1px;
       
       &--success {
-        background: #59a858;
+        border-radius: 5px;
+        position: absolute;
+        left: 15%;
+        width: 70%;
+        text-align: center;
+        line-height: 2rem;
       }
       &--error {
-        background: #c05d5d;
-      }
-      & p {
-        text-align: left;
+        color: $red;
       }
     }
     

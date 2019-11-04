@@ -94,19 +94,6 @@ h4.events-subtitle {
   }
 }
 
-.arrow {
-  display: flex;
-  justify-content: center;
-
-  &-left, &-right {
-  background: none;
-  }
-
-  .icon {
-    transform: scale(.7);
-  }
-}
-
 /* CSS CARD VIEW */
 .events-view-card {
   overflow: hidden;
@@ -170,6 +157,19 @@ h4.events-subtitle {
       text-shadow: 0 0 3px rgba(199, 189, 189, .6);
       
     }
+  }
+}
+
+.arrow {
+  display: flex;
+  justify-content: center;
+
+  &-left, &-right {
+  background: none;
+  }
+
+  .icon {
+    transform: scale(.7);
   }
 }
 
@@ -310,8 +310,9 @@ h4.events-subtitle {
     .events-view-card {
       overflow: initial;
 
-      .events-container {
+      & .events-container {
         width: 100%;
+        flex-wrap: wrap;
 
         .event {
           width: calc(100% / 5 - 1rem);

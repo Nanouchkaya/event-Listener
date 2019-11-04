@@ -30,7 +30,7 @@ class NextEvents extends React.Component {
 
         <div className="events-view-card">
           <div className="events-container" style={{ left: `${slide}px` }}>
-            {data.map((event) => <Event key={event.id} {...event} />)}
+            {data.map((event) => <Event key={event.id} {...event} jsxFor="card" />)}
           </div>
         </div>
 
