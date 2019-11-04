@@ -6,6 +6,7 @@ import {
   FETCH_USER_INFOS,
   SHOW_MESSAGE_UPDATE_USER,
   DELETE_SHOW_MESSAGE,
+  DECONNECT,
 } from '../actions/types';
 
 const initialState = {
@@ -22,6 +23,7 @@ const initialState = {
   eventsLike: [],
   eventsInterest: [],
   eventsParticipate: [],
+  messages: [], 
   editorModeDisabled: true,
   message: {
     type: '',
@@ -51,6 +53,8 @@ export const user = (state = initialState, action = {}) => {
       return {
         ...state,
         editorModeDisabled: !state.editorModeDisabled,
+        password: '',
+        confirmPassword: '',
       };
     case SHOW_MESSAGE_UPDATE_USER:
       return {
@@ -95,6 +99,11 @@ export const user = (state = initialState, action = {}) => {
         eventsLike,
         eventsInterest,
         eventsParticipate,
+      };
+    }
+    case DECONNECT: {
+      return {
+        ...initialState
       };
     }
     default:
