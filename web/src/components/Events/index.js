@@ -16,7 +16,9 @@ class Events extends React.Component {
     const { value, showEvents, fetchEvents } = this.props;
     const param = this.props.location.pathname.split('/');
     if (value.trim().length === 0) {
-      //showEvents();
+      // fetch all events when no search by filter
+      showEvents();
+      // fetch all events by city
       fetchEvents(param[2]);
     }
   }
@@ -27,7 +29,6 @@ class Events extends React.Component {
       data,
       locationSearchData,
     } = this.props;
-    console.log(locationSearchData)
 
     return (
       <>
@@ -44,9 +45,19 @@ class Events extends React.Component {
               <EventsMap />
             </Route>
             <Route exact path={this.props.location.pathname}>
-              { locationSearchData.length === 0
-                ? <p>Aucuns événements trouvés</p>
-                : locationSearchData.map((event) => <Event key={event.id} {...event} />) }
+             {
+                (() => {
+                  if (locationSearchData.length === 0) {
+                    return(<p>Aucuns événements trouvés</p>) 
+                  } else if (data.length > 0) {
+                    return data.map((event) => <Event key={event.id} {...event} />)    
+                  } else if (data.length === 0) {
+                    return (<p>Aucuns événements ne correspond à votre recherche</p>)
+                  } else {
+                    return locationSearchData.map((event) => <Event key={event.id} {...event} />)
+                  }
+                })()
+              }
             </Route>
           </Switch>
           </div>

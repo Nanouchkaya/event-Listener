@@ -6,7 +6,7 @@ import Events from 'src/redux/containers/Events';
 
 // == Composant
 const Footer = ({ fetchEvents }) => {
-  // Pas nécessaire afficher la page de tous les événements
+  // Fetch the events based on the location when clicking on the footer links
   const handleClick = (event) => {
     fetchEvents(event.target.dataset.city);
   };
