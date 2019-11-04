@@ -2,12 +2,6 @@
 @import 'src/assets/styles/mixins';
 @import 'src/assets/styles/animations';
 
-body {
-    background-color: $backgroundDark;
-    color: $colorDarkTheme;
-    background: $mainGradient;
-}
-
 .header-content {
   
   width: 100%;
@@ -55,11 +49,12 @@ body {
           margin: -0.5rem 0 1.5rem -1.5rem;
         }
 
-        &-input, &-submit {
+        &-input {
           @include form-element;
         }
 
         &-submit {
+          @include form-element;
           @include form-submit;
           text-align: center;
         }
@@ -80,6 +75,14 @@ body {
     animation: fade .5s ease;
   }
 
+  .now, .nextevents, .contact, .homemap {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
   .now-title,
   .nextevents-title,
   .contact-title,
@@ -87,12 +90,24 @@ body {
     @include titleFlag($colorDarkTheme, $mainGradientExtDark, $turquoise, $purple);
   }
 
-  .nextevents, .contact, .homemap {
-    margin: 5rem 0;
+  .contact-form,
+  .nextevents .events-view-card, 
+  .now-content,
+  .homemap-content {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
   }
+
+  .nextevents .events-view-card, .nextevents .arrow {
+    width: 100%;
+  }
+
   
   .contact {
     &-form {
+      flex-direction: column;
+      justify-content: center;
       &-element {
         @include form-element;
       }
@@ -184,7 +199,7 @@ body {
     }
   
     .contact-form {
-      max-width: 800px;
-      margin: auto;
+      width: 800px;
+      margin:auto;
     }
 }
