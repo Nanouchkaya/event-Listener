@@ -20,9 +20,33 @@ const initialState = {
   confirmPassword: '',
   notifNewEvent: false,
   notifNewUpdate: true,
-  eventsLike: [],
-  eventsInterest: [],
-  eventsParticipate: [],
+  eventsLike: [
+    {
+      id: 0,
+      title: "Aucun événement",
+      url_image: "",
+      address: "",
+      date_start: "00/00/0000",
+    }
+  ],
+  eventsInterest: [
+    {
+      id: 0,
+      title: "Aucun événement",
+      url_image: "",
+      address: "",
+      date_start: "00/00/0000",
+    }
+  ],
+  eventsParticipate: [
+    {
+      id: 0,
+      title: "Aucun événement",
+      url_image: "",
+      address: "",
+      date_start: "00/00/0000",
+    }
+  ],
   messages: [], 
   editorModeDisabled: true,
   message: {
