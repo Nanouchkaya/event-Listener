@@ -118,7 +118,7 @@ const userMiddleware = (store) => (next) => (action) => {
             }
           })
           .catch((error) => {
-            console.log(error);
+            // console.log(error);
           });
       }
       break;
@@ -141,7 +141,9 @@ const userMiddleware = (store) => (next) => (action) => {
             store.dispatch(showMessageUpdateUser('error', response.data.errorMessage));
           }
         })
-        .catch((error) => console.log('from middleware:', error));
+        .catch((error) => {
+          console.log(error);
+        });
       break;
     }
 
