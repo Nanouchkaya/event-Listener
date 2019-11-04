@@ -40,7 +40,6 @@ export const form = (state = initialState, action = {}) => {
         value: '',
       };
     case FETCH_REQUESTED_DATA: {
-      console.log('reducer', action.data)
       if (action.data === undefined ) {
         return {
           ...state,

@@ -30,7 +30,7 @@ class Events extends React.Component {
       locationSearchData,
       undefinedData,
     } = this.props;
-console.log(undefinedData)
+    
     return (
       <>
         <section className="events">
@@ -42,7 +42,6 @@ console.log(undefinedData)
             <div className="events-container">
           <Switch>
             <Route exact path="/tous-les-evenements">
-            {console.log('events-data', data)}
               { data.map((event) => <Event key={event.id} {...event} />)}
               { data.length > 0 && <EventsMap />} 
               { data.length !== 0 && <p>{undefinedData}</p>}

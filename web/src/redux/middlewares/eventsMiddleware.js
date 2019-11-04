@@ -61,7 +61,6 @@ const eventsMiddleware = (store) => (next) => (action) => {
       const { dataFilter } = store.getState().form;
       axios.post(`http://${config.url}:3000/events/filter`, dataFilter)
         .then((response) => {
-          console.log(response);
           const { data } = response.data;
           store.dispatch(fetchRequestedData(data));
         })
