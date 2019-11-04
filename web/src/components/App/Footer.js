@@ -7,9 +7,9 @@ import Events from 'src/redux/containers/Events';
 // == Composant
 const Footer = ({ fetchEvents }) => {
   // Pas nécessaire afficher la page de tous les événements
-  // const handleClick = (event) => {
-  //   fetchEvents(event.target.dataset.city);
-  // };
+  const handleClick = (event) => {
+    fetchEvents(event.target.dataset.city);
+  };
   const cities = [
     'Paris',
     'Lyon',
@@ -24,7 +24,7 @@ const Footer = ({ fetchEvents }) => {
       <div>
         <div className="footer-events">
           <h2 className="footer-subtitle">Tous les événements</h2>
-          {cities.map((city) => (<Link key={city} to={`/tous-les-evenements/${city}`} data-city={city}> - {city}<br /> </Link>))}
+          {cities.map((city) => (<Link onClick={handleClick} key={city} to={`/tous-les-evenements/${city}`} data-city={city}> - {city}<br /> </Link>))}
         </div>
 
         <div className="footer-social">

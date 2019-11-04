@@ -16,7 +16,7 @@ class Events extends React.Component {
     const { value, showEvents, fetchEvents } = this.props;
     const param = this.props.location.pathname.split('/');
     if (value.trim().length === 0) {
-      showEvents();
+      //showEvents();
       fetchEvents(param[2]);
     }
   }
@@ -27,7 +27,7 @@ class Events extends React.Component {
       data,
       locationSearchData,
     } = this.props;
-
+    console.log(locationSearchData)
 
     return (
       <>

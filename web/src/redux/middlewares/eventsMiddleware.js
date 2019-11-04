@@ -43,6 +43,8 @@ const eventsMiddleware = (store) => (next) => (action) => {
       break;
     }
     case FETCH_EVENTS_BY_LOCATION: {
+      let emptyDate = [];
+      store.dispatch(sendLocationSearchData(emptyDate));
       axios.get(`http://localhost:3000/events/localisation/${action.location}`)
         .then((response) => {
           const { data } = response.data.result;
