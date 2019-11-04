@@ -20,33 +20,24 @@ const initialState = {
   confirmPassword: '',
   notifNewEvent: false,
   notifNewUpdate: true,
-  eventsLike: [
-    {
-      id: 0,
-      title: "Aucun événement",
-      url_image: "",
-      address: "",
-      date_start: "00/00/0000",
-    }
-  ],
+  eventsLike: [],
   eventsInterest: [
     {
       id: 0,
       title: "Aucun événement",
       url_image: "",
       address: "",
-      date_start: "00/00/0000",
-    }
-  ],
-  eventsParticipate: [
+      date_start: "2019-01-01",
+    },
     {
-      id: 0,
+      id: 1,
       title: "Aucun événement",
       url_image: "",
       address: "",
-      date_start: "00/00/0000",
+      date_start: "2019-01-01",
     }
   ],
+  eventsParticipate: [],
   messages: [], 
   editorModeDisabled: true,
   message: {
@@ -121,7 +112,7 @@ export const user = (state = initialState, action = {}) => {
         notifNewEvent: !!notifNewEvent, // convert to bool
         notifNewUpdate: !!notifNewUpdate, // convert to bool
         eventsLike,
-        eventsInterest,
+        //eventsInterest,
         eventsParticipate,
       };
     }

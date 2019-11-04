@@ -5,7 +5,7 @@ import React from 'react';
 import './user.scss';
 import Header from 'src/redux/containers/User/Header';
 import Preferences from 'src/redux/containers/User/Preferences';
-import UserEvents from 'src/components/User/UserEvents';
+import UserEvents from 'src/redux/containers/User/UserEvents';
 
 
 // composant
