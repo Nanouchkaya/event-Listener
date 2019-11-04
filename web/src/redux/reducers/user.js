@@ -22,6 +22,7 @@ const initialState = {
   eventsLike: [],
   eventsInterest: [],
   eventsParticipate: [],
+  messages: [], 
   editorModeDisabled: true,
   message: {
     type: '',
