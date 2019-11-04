@@ -24,7 +24,12 @@ class EventDetails extends React.Component {
   }
 
   render() {
-    const { banner, latitude, longitude } = this.props;
+    const {
+      banner,
+      latitude,
+      longitude,
+      isConnected,
+    } = this.props;
     return (
       <>
         <div
@@ -40,7 +45,9 @@ class EventDetails extends React.Component {
               <aside className="event-flyer-infos">
                 <Datetime />
                 <Address />
-                <CheckButtons />
+                { isConnected && (
+                  <CheckButtons />
+                )}
               </aside>
               <div className="event-flyer-description description">
                 <Description />
@@ -65,6 +72,7 @@ EventDetails.propTypes = {
     }).isRequired,
   }).isRequired,
   banner: PropTypes.string,
+  isConnected: PropTypes.bool.isRequired,
 };
 
 EventDetails.defaultProps = {

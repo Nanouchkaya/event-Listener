@@ -20,6 +20,7 @@ const mapStateToProps = (state) => ({
   dateEnd: state.eventDetails.data.date_end,
   isOnline: state.eventDetails.data.is_online,
   urlLive: state.eventDetails.data.url_live,
+  isConnected: state.app.isConnected,
   getEventStatus,
 });
 
