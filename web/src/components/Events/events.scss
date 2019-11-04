@@ -5,93 +5,108 @@
   @include contentLayer;
 
   &-title {
-    @include title($turquoise);
+    @include titleFlag($colorDarkTheme, $mainGradientExtDark, $turquoise, $purple);
   }
 }
 
-.advanced-filter div {
-  margin: 2rem;
-}
-
-h3 {
-  @include subtitleType2;
-  margin-top: 2rem;
-}
-
-h4.events-subtitle {
-  @include subtitleType2;
-}
-
-.advanced-filter-name {
-  @include subtitleType1;
-}
-
+/* CSS FORM & FILTERS */
 .form {
-  display: flex;
-  flex-wrap: wrap;
-
-  &-input {
-    @include form-element;
-    border-color: $purple;
+  &-simple {
+    display: flex;
+    &-input {
+      @include form-element;
+      border-color: $purple;
+    }
+  
+    &-button {
+      background: none;
+      color: $colorDarkTheme;
+      border-bottom: 2px solid $purple;
+      margin: 1rem;
+      text-transform: uppercase;
+      &:hover {
+        border-bottom: 2px solid $turquoise;
+      }
+    }
   }
 
-  &-button {
-    @include form-element;
-    width: fit-content;
-    background: white;
-    border: 1px solid $turquoise;
+  &-submit {
+    @include form-submit;
+    margin: 1rem 0 2rem;
+  }
+
+  .advanced-filter {
+    display: flex;
+    flex-wrap: wrap;
+
+    &-group {
+      width: 100%;
+      padding: 1rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &.price, &.online, &.date, &.location {
+        input {
+          border-radius: $radius;
+          border: none;
+          padding: .3rem .5rem;
+          color: $colorLightTheme;
+          font-family: 'univers', sans-serif;
+          width: 100%;
+        }
+      }
+    }
+
+    &-name {
+      font-weight: 900;
+      text-transform: uppercase;
+      width: 100%;
+    }
   }
 }
-.advanced-filter {
-  flex: 1 100%;
-  display: flex;
-}
+
 
 /* CSS LIST VIEW */
 .events-view-list {
-  & .event {
-    width: 100%;
-    height: 300px;
-    background-size: auto 20vmax;
-    background-position: top center;
-    position: relative;
-    padding: 0;
-    border: 1px solid $turquoise;
-    margin: 1rem 0;
-    font-size: .9rem;
+  display: flex;
+  flex-direction: column-reverse;
+  margin-top: 2rem;
 
-    &-link {
-      display: block;
-    }
-    
-    &-gradient {
-    position: absolute;
-    top: 20vmax;
-    left: 0;
+  .events-left {
     width: 100%;
-    height: calc(300px - 20vmax);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 1rem;
+  }
+
+  .events-right {
+    flex-grow: 1;
+  }
+
+  & .event-resume {
+    width: 90%;
+    margin:auto;
+    padding: 1rem .3rem;
+    border-bottom: 1px solid rgba($colorDarkTheme, .5);
+
+    &-image {
+      width: 100%;
     }
 
     &-title {
-      flex: 1 100%;
-      text-align: center;
+      padding:.5rem 0;
       font-weight: 900;
-      padding: 0 1rem;
     }
-    &-address {
-      padding-top: .8rem;
+    &-infos {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: .8rem;
     }
-    &-date {
-      flex: 1 100%;
-      color: $purple;
-      align-self: flex-end;
-      text-align: right;
+
+    &:last-of-type {
+      border: none;
     }
   }
+
 }
 
 /* CSS CARD VIEW */
@@ -106,7 +121,7 @@ h4.events-subtitle {
     transition: all .2s ease;
   }
 
-  & .event {
+  & .event-resume {
     height: 300px;
     width: 250px;
     background-size: cover;
@@ -173,138 +188,35 @@ h4.events-subtitle {
   }
 }
 
-/* CSS OLD SLIDER */
-.horizontal-menu {
-  margin: 0 -1rem 2rem;
-
-  .menu-item-wrapper {
-    width: calc(100% / 50);
-    height: 380px;
-  }
-
-  .menu-item.card {
-    width: 200px;
-  }
-  
-  .menu-item {
-    margin: .5rem;
-    //user-select: none;
-
-    &-top {
-      font-size: 0;
-      height: 170px;
-    }
-
-    &-middle {
-      white-space: normal;
-      background-color: white;
-      position: relative;
-      
-      &-title {
-        margin: 0.5rem 0;
-        text-transform: uppercase;
-        border-bottom: 2px solid $blue;
-        border-image-source: $mainGradient;
-        border-image-slice: 1;
-        text-align: center;
-        font-weight: 900;
-      }
-      
-      &-content {
-        padding: .5rem .5rem 2.7rem;
-        font-size: .9rem;
-      }
-
-      & .icon {
-        position: absolute;
-        right: .2rem;
-        bottom: 0;
-      }
-    }
-
-    &-bot {
-      display: flex;
-      justify-content: space-between;
-      background: $blueGradient;
-      color: white;
-      padding: .3rem .5rem
-    }
-  }
-
-  .scroll-menu-arrow {
-    color: $colorLightTheme;
-    cursor: pointer;
-  }
-}
- 
-
-
 /* RESPONSIVE RULES */
   
   @media all and (min-width: 768px) {
-    .horizontal-menu {
-      margin: 0 1rem 2rem;
-    }
-
-    .menu-item-top {
-      height: 190px;
-    }
-    .menu-item-wrapper {
-      width: calc(100% / 42);
-      padding: 0 .5rem;
-    }
-
     .events-view-list {
-      & .event {
-        width: 100%;
-        height: 150px;
-        background-size: 20vmax;
-        background-position: left center;
+      flex-direction: row;
+
+      .events-left {
         position: relative;
-        padding: 0;
-        border: 1px solid $turquoise;
-        margin: 1rem 0;
-        font-size: .9rem;
-    
-        &-link {
-          display: block;
-        }
-        
-        &-gradient {
-        position: absolute;
         top: 0;
-        left: 20vmax;
-        width: calc(100% - 20vmax);
-        height: 150px;
+        padding: 0 2rem;
+      }
+      & .event-resume {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem;
-        }
     
-        &-title {
-          flex: 2;
-          text-transform: uppercase;
-          font-weight: inherit;
+        &-image {
+          width: 40%
         }
-        &-address {
-          flex: 1;
-        }
-        &-date {
-          flex: 1;
-          padding-left: 1rem;
-          color: inherit;
-          align-self: inherit;
-          text-align: inherit;
+
+        &--right {
+         padding: .5rem 1rem;
+         flex-basis: 70%;
         }
       }
     }
   }
   
   @media all and (min-width: 1024px) {
-    .menu-item-wrapper {
-      width: calc(100% / 38);
+    .events-title {
+      margin: 0rem -1.7rem;
     }
 
     .events-view-card {
@@ -312,9 +224,8 @@ h4.events-subtitle {
 
       & .events-container {
         width: 100%;
-        flex-wrap: wrap;
 
-        .event {
+        .event-resume {
           width: calc(100% / 5 - 1rem);
 
           &-link:hover {

@@ -50,3 +50,15 @@ export const slider = (totalElt, slide, width, action, dir) => {
     action(slide);
   }
 };
+
+/**
+ * 
+ * @param {string} address 
+ * @var addressArray retourne un tableau de chaque ligne de l'adresse
+ * @var lastIndex permet de récupérer le nombre d'elt du tableau - 1, soit le dernier index
+ */
+export const getCity = (address) => {
+  const addressArray = address.split('<br />');
+  const lastIndex = addressArray.length - 1;
+  return addressArray[lastIndex];
+}
