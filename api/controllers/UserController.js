@@ -178,7 +178,7 @@ class UserController {
           }
         } else {
   
-          response.status(401).json({
+          response.status(200).json({
             error: true,
             errorMessage: "Le mot de passe ou l'email est incorrect",
           });
@@ -186,7 +186,7 @@ class UserController {
       });
     } else {
 
-      response.status(401).json({
+      response.status(200).json({
         error: true,
         errorMessage: errors,
       });

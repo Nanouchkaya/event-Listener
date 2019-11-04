@@ -6,6 +6,7 @@ import {
   FETCH_USER_INFOS,
   SHOW_MESSAGE_UPDATE_USER,
   DELETE_SHOW_MESSAGE,
+  DECONNECT,
 } from '../actions/types';
 
 const initialState = {
@@ -96,6 +97,11 @@ export const user = (state = initialState, action = {}) => {
         eventsLike,
         eventsInterest,
         eventsParticipate,
+      };
+    }
+    case DECONNECT: {
+      return {
+        ...initialState
       };
     }
     default:
