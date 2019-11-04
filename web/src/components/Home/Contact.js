@@ -69,13 +69,6 @@ class Contact extends React.Component {
             value={emailInput}
             onChange={this.handleChange}
           />
-          {/* <select className="contact-form-element topic">
-            <option disabled value="default">Sujet du message</option>
-            <option value="sujet 1">Sujet 1</option>
-            <option value="sujet 2">Sujet 2</option>
-            <option value="sujet 3">Sujet 3</option>
-            <option value="sujet 4">Sujet 4</option>
-          </select> */}
           <input
             type="text"
             className="contact-form-element input"
