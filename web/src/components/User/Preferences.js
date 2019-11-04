@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 // == Import : local
 import './user.scss';
-import DeleteAccount from 'src/components/User/DeleteAccount';
+import DeleteAccount from 'src/redux/containers/User/DeleteAccount';
 
 // == Composant Preferences
 const Preferences = ({

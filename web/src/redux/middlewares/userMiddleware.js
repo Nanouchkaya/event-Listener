@@ -5,6 +5,7 @@ import {
   SUBMIT_LOGIN,
   CHECK_CONNECT,
   CHANGE_UPDATE_USER,
+  DELETE_USER,
 } from '../actions/types';
 
 import {
@@ -16,6 +17,7 @@ import {
   openNavModal,
   handleChangEditorModeDisabled,
   showMessageUpdateUser,
+  deconnect,
 } from '../actions/creators';
 
 const server = 'localhost';
@@ -139,6 +141,24 @@ const userMiddleware = (store) => (next) => (action) => {
           }
         })
         .catch((error) => console.log('from middleware:', error));
+      break;
+    }
+
+    case DELETE_USER: {
+      const token = window.localStorage.getItem('token');
+      const { user } = store.getState();
+      axios.post(`http://${server}:3000/users/${user.id}/delete`, {
+        headers: {
+          Authorization: `token ${token}`,
+        },
+      })
+        .then((response) => {
+          store.dispatch(deconnect());
+          window.location = '/';
+        })
+        .catch((error) => {
+          console.log(error);
+        });
       break;
     }
     default:
