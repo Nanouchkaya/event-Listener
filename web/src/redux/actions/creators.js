@@ -29,7 +29,7 @@ import {
   GET_EVENT_DETAILS,
   SHOW_ADVANCED_FORM,
   TRIGGER_MIDDLEWARE,
-  FETCH_NAME_REQUEST_DATA,
+  FETCH_REQUESTED_DATA,
   ALL_EVENTS,
   NEXT_EVENTS,
   FETCH_NEXT_EVENTS,
@@ -215,8 +215,8 @@ export const nextEvents = () => ({
   type: NEXT_EVENTS,
 });
 
-export const fetchNameRequestData = (data) => ({
-  type: FETCH_NAME_REQUEST_DATA,
+export const fetchRequestedData = (data) => ({
+  type: FETCH_REQUESTED_DATA,
   data,
 });
 export const allEvents = () => ({

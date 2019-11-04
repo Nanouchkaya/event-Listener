@@ -28,8 +28,9 @@ class Events extends React.Component {
     const {
       data,
       locationSearchData,
+      undefinedData,
     } = this.props;
-
+console.log(undefinedData)
     return (
       <>
         <section className="events">
@@ -42,7 +43,8 @@ class Events extends React.Component {
           <Switch>
             <Route exact path="/tous-les-evenements">
               { data.map((event) => <Event key={event.id} {...event} />)}
-              <EventsMap />
+              { data.length > 0 && <EventsMap />} 
+              { data.length !== 0 && <p>{undefinedData}</p>}
             </Route>
             <Route exact path={this.props.location.pathname}>
              {
@@ -52,7 +54,7 @@ class Events extends React.Component {
                   } else if (data.length > 0) {
                     return data.map((event) => <Event key={event.id} {...event} />)    
                   } else if (data.length === 0) {
-                    return (<p>Aucuns événements ne correspond à votre recherche</p>)
+                    return (<p>Aucun événement ne correspond à votre recherche</p>)
                   } else {
                     return locationSearchData.map((event) => <Event key={event.id} {...event} />)
                   }

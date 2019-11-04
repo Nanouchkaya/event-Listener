@@ -17,6 +17,7 @@ const mapStateToProps = (state) => ({
   data: state.form.data,
   value: state.form.value,
   locationSearchData: state.app.data,
+  undefinedData: state.form.caseNoData,
 });
 
 

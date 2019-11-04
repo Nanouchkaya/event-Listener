@@ -13,7 +13,7 @@ import {
 
 // == Import :  Action Creators
 import {
-  fetchNameRequestData,
+  fetchRequestedData,
   sendLocationSearchData,
   fetchNextEvents,
 } from '../actions/creators';
@@ -26,7 +26,7 @@ const eventsMiddleware = (store) => (next) => (action) => {
       axios.get(`http://localhost:3000/events/title/${value}`)
         .then((response) => {
           const { data } = response.data.result;
-          store.dispatch(fetchNameRequestData(data));
+          store.dispatch(fetchRequestedData(data));
         })
         .catch((error) => {
           console.error('from middleware:', error);
@@ -37,7 +37,7 @@ const eventsMiddleware = (store) => (next) => (action) => {
       axios.get('http://localhost:3000/events')
         .then((response) => {
           const { data } = response.data;
-          store.dispatch(fetchNameRequestData(data));
+          store.dispatch(fetchRequestedData(data));
         })
         .catch((error) => console.error('from middelware:', error));
       break;
@@ -60,7 +60,7 @@ const eventsMiddleware = (store) => (next) => (action) => {
         .then((response) => {
           console.log(response);
           const { data } = response.data;
-          store.dispatch(fetchNameRequestData(data));
+          store.dispatch(fetchRequestedData(data));
         })
         .catch((error) => console.error(error));
       break;

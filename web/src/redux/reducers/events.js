@@ -2,7 +2,7 @@ import {
   HANDLE_FORM_CHANGE,
   HANDLE_SUBMIT,
   SHOW_ADVANCED_FORM,
-  FETCH_NAME_REQUEST_DATA,
+  FETCH_REQUESTED_DATA,
   ADD_FILTERS,
   ADD_ADDRESS_VALUE,
   EMPTY_FORM_VALUE,
@@ -18,6 +18,7 @@ const initialState = {
   filterList: [],
   latitude: 48.8566969,
   longitude: 2.3514616,
+  caseNoData: '',
 };
 
 
@@ -38,11 +39,21 @@ export const form = (state = initialState, action = {}) => {
         ...state,
         value: '',
       };
-    case FETCH_NAME_REQUEST_DATA:
+    case FETCH_REQUESTED_DATA: {
+      console.log('reducer', action.data)
+      if (action.data === undefined ) {
+        return {
+          ...state,
+          caseNoData: 'Aucun filtre sélectionné',
+          data: [],
+        }
+      }
       return {
         ...state,
         data: action.data,
       };
+    }
+      
     case ADD_FILTERS:
       return {
         ...state,
