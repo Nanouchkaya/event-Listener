@@ -40,39 +40,39 @@ class Events extends React.Component {
           <Form />
           <div className="events-view-list">
             <div className="events-container">
-          <Switch>
-            <Route exact path="/tous-les-evenements">
-              { data.map((event) => <Event key={event.id} {...event} />)}
-              { data.length > 0 && <EventsMap />} 
-              { data.length !== 0 && <p>{undefinedData}</p>}
-            </Route>
-            <Route exact path={this.props.location.pathname}>
-             {
-                (() => {
-                  if (locationSearchData.length === 0) {
-                    return(<p>Aucuns événements trouvés</p>) 
-                  } else if (data.length > 0) {
-                    return ( 
-                      <>
-                      {data.map((event) => <Event key={event.id} {...event} />)}
-                      <EventsMap />
-                      </>
-                    )   
-                  } else if (data.length === 0) {
-                    return (<p>Aucun événement ne correspond à votre recherche</p>)
-                  } else {
-                    return (
-                      <>
-                      {locationSearchData.map((event) => <Event key={event.id} {...event} />)}
-                      <EventsMap />
-                      </>
-                    )
+              <Switch>
+                <Route exact path="/tous-les-evenements">
+                  { data.map((event) => <Event key={event.id} {...event} jsxFor="list" />)}
+                  { data.length > 0 && <EventsMap />} 
+                  { data.length !== 0 && <p>{undefinedData}</p>}
+                </Route>
+                <Route exact path={this.props.location.pathname}>
+                 {
+                    (() => {
+                      if (locationSearchData.length === 0) {
+                        return(<p>Aucuns événements trouvés</p>) 
+                      } else if (data.length > 0) {
+                        return ( 
+                          <>
+                          {data.map((event) => <Event key={event.id} {...event} jsxFor="list" />)}
+                          <EventsMap />
+                          </>
+                        )   
+                      } else if (data.length === 0) {
+                        return (<p>Aucun événement ne correspond à votre recherche</p>)
+                      } else {
+                        return (
+                          <>
+                          {locationSearchData.map((event) => <Event key={event.id} {...event} jsxFor="list" />)}
+                          <EventsMap />
+                          </>
+                        )
+                      }
+                    })()
                   }
-                })()
-              }
-            </Route>
-          </Switch>
-          </div>
+                </Route>
+              </Switch>
+            </div>
           </div>
         </section>
       </>

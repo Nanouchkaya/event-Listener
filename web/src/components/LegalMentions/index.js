@@ -36,10 +36,18 @@ const LegalMentions = () => (
     Le présent site <strong>eventListener</strong> a été développé dans le cadre d'un projet de fin de formation <a target="_blank" href="https://oclock.io/">O'Clock</a> par :
   </p>
   <ul className="legal-mentions-list text">
-    <li className="legal-mentions-list-item">Guillaume Terrien</li>
-    <li className="legal-mentions-list-item">Claudine Brun</li>
-    <li className="legal-mentions-list-item">Inès Mouandjo Lobé</li>
-    <li className="legal-mentions-list-item">Guillaume Ersent</li>
+    <li className="legal-mentions-list-item">
+      Guillaume Terrien <a href="">www</a>
+    </li>
+    <li className="legal-mentions-list-item">
+      Claudine Brun <a href="">www</a>
+    </li>
+    <li className="legal-mentions-list-item">
+      Inès Mouandjo Lobé <a href="">www</a>
+    </li>
+    <li className="legal-mentions-list-item">
+      Guillaume Ersent <a href="">www</a>
+    </li>
   </ul>
 </section>
   </>

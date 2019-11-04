@@ -60,6 +60,10 @@
             background: none;
             border: none;
             margin-bottom: 0.9rem;
+
+            &::placeholder {
+              color: rgba($colorDarkTheme, 0.7);
+            }
           }
   
           &-input-checkbox {
@@ -108,13 +112,14 @@
           }
 
           &-message {
-            padding: 1rem;
+            padding: .8rem 1rem;
 
             &--success {
-              background-color: rgba(95, 175, 135, 0.6);
+              background-color: rgba(0,0,0, 0.3);
             }
             &--error {
-              background-color: rgba(175, 95, 95, 0.6);
+              background-color: rgba(0,0,0, 0.3);
+              color: red;
             }
           }
         }
