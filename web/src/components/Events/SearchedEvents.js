@@ -1,7 +1,6 @@
 // == Import : npm
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Route, Switch } from 'react-router-dom';
 import Event from 'src/components/Events/Event';
 import EventsMap from 'src/components/Events/Map';
 
@@ -33,6 +32,8 @@ class SearchedEvents extends React.Component  {
                       {/* <EventsMap /> */}
                     </>
                   )
+                } else {
+                  return <p>Aucun événement ne correspond à votre recherche</p>
                 }
               })()
             }

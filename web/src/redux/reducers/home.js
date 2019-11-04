@@ -28,11 +28,11 @@ export const home = (state = initialState, action = {}) => {
         ...state,
         value: '',
       };
-    case CHANGE_SEARCH_FORM_VALUE:
-      return {
+    case CHANGE_SEARCH_FORM_VALUE: 
+     return {
         ...state,
-        [action.name]: [action.value],
-      };
+        [action.name]: action.value,
+      };  
   case HANDLE_SEARCH_CHANGE:
       return {
         ...state,

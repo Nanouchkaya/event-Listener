@@ -2,6 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Link } from 'react-router-dom';
+import { addFilters } from '../../redux/actions/creators';
 
 
 // == Composant SearchForm
@@ -13,14 +14,21 @@ const SearchForm = ({
   changeSearchFormValue,
 }) => {
   const _onSubmit = (event) => {
+    console.log('ok')
     event.preventDefault();
+    const filter = [
+      {address: locationValue},
+      {title: keywordValue,}
+    ]
+    
+    addFilters(filter);
     handleSubmit();
   };
   const _onChange = (event) => {
     const { value, name } = event.target;
     changeSearchFormValue(value, name);
   };
-
+  console.log(locationValue, keywordValue)
   return (
     <div className="header-searchform">
       <h2 className="header-searchform-h2">
@@ -36,12 +44,7 @@ const SearchForm = ({
           onChange={_onChange}
 
         />
-        {/* <select className="header-searchform-input select">
-          <option selected disabled value="All">Toutes les catégories</option>
-          <option defaultValue="Catégorie 1">Catégorie 1</option>
-          <option defaultValue="Catégorie 2">Catégorie 2</option>
-          <option defaultValue="Catégorie 3">Catégorie 3</option>
-        </select> */}
+
         <input
           className="header-searchform-input"
           placeholder="Mots clés"
@@ -49,10 +52,9 @@ const SearchForm = ({
           value={keywordValue}
           onChange={_onChange}
         />
-        <Link to="/tous-les-evenements/paris/data" className="header-searchform-submit" type="submit">
-          Rechercher
-        </Link>
-        { dataFilter.length > 0 && <Route exact path="/tous-les-evenements" />}
+        <button className="header-searchform-submit" type="submit">Rechercher</button>
+
+        {/* { dataFilter.length > 0 && <Route path="evenements/:address/:title" />} */}
       </form>
     </div>
   );

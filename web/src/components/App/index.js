@@ -40,7 +40,7 @@ class App extends React.Component {
               <User />
             </Route>
           ) }
-          <Route exact path="/evenements/:search" component={SearchedEvents} />
+          <Route path="/evenements/:search" component={SearchedEvents} />
           <Route exact path="/mentions-legales">
             <LegalMentions />
           </Route>
