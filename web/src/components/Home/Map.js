@@ -18,36 +18,38 @@ class HomeMap extends React.Component {
           Où nous trouver
         </h2>
 
-        <LeafletMap
-          center={[46.603354, 1.8883335]}
-          zoom={5}
-          maxZoom={18}
-          attributionControl={true}
-          zoomControl={true}
-          doubleClickZoom={true}
-          scrollWheelZoom={true}
-          dragging={true}
-          animate={true}
-          easeLinearity={0.35}
-        >
-          <TileLayer
-            url={url}
-            id='mapbox.streets'
-            accessToken={accessToken}
-          />
-          { creators.map ((creator) => {
-            return (
-              <Marker key={creator.id} position={[creator.latitude, creator.longitude]}>
-                <Popup>
-                  {creator.name } <br />
-                  <a href={creator.link}>Linkedin</a> <br />
-                  ({creator.mobilite})
-                </Popup>
-              </Marker>  
-            )
-          })}
-          
-        </LeafletMap>
+        <div className="homemap-content">
+          <LeafletMap
+            center={[46.603354, 1.8883335]}
+            zoom={5}
+            maxZoom={18}
+            attributionControl={true}
+            zoomControl={true}
+            doubleClickZoom={true}
+            scrollWheelZoom={true}
+            dragging={true}
+            animate={true}
+            easeLinearity={0.35}
+          >
+            <TileLayer
+              url={url}
+              id='mapbox.streets'
+              accessToken={accessToken}
+            />
+            { creators.map ((creator) => {
+              return (
+                <Marker key={creator.id} position={[creator.latitude, creator.longitude]}>
+                  <Popup>
+                    {creator.name } <br />
+                    <a href={creator.link}>Linkedin</a> <br />
+                    ({creator.mobilite})
+                  </Popup>
+                </Marker>  
+              )
+            })}
+            
+          </LeafletMap>
+        </div>
      </section> 
     );
   }

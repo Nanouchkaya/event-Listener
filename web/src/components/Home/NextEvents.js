@@ -43,6 +43,7 @@ class NextEvents extends React.Component {
             <img src={iconArrowRight} alt="next" className="icon" />
           </button>
         </div>
+
       </section>
     );
   }

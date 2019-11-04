@@ -18,12 +18,15 @@ import {
   fetchNextEvents,
 } from '../actions/creators';
 
+// import config
+import config from 'src/config';
+
 // == Middleware : eventsMiddleware
 const eventsMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case TRIGGER_MIDDLEWARE: {
       const { value } = store.getState().form;
-      axios.get(`http://localhost:3000/events/title/${value}`)
+      axios.get(`http://${config.url}:3000/events/title/${value}`)
         .then((response) => {
           const { data } = response.data.result;
           store.dispatch(fetchRequestedData(data));
@@ -34,7 +37,7 @@ const eventsMiddleware = (store) => (next) => (action) => {
       break;
     }
     case ALL_EVENTS: {
-      axios.get('http://localhost:3000/events')
+      axios.get(`http://${config.url}:3000/events`)
         .then((response) => {
           const { data } = response.data;
           store.dispatch(fetchRequestedData(data));
@@ -56,7 +59,7 @@ const eventsMiddleware = (store) => (next) => (action) => {
     }
     case HANDLE_SUBMIT: {
       const { dataFilter } = store.getState().form;
-      axios.post('http://localhost:3000/events/filter', dataFilter)
+      axios.post(`http://${config.url}:3000/events/filter`, dataFilter)
         .then((response) => {
           console.log(response);
           const { data } = response.data;
@@ -70,7 +73,7 @@ const eventsMiddleware = (store) => (next) => (action) => {
       * next-events/:number => nombre d'evt à afficher
       */
      case NEXT_EVENTS: {
-      axios.post('http://localhost:3000/events/next-events/5')
+      axios.post(`http://${config.url}:3000/events/next-events/5`)
         .then((response) => {
           store.dispatch(fetchNextEvents(response.data.result.data));
         })

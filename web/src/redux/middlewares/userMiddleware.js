@@ -5,6 +5,7 @@ import {
   SUBMIT_LOGIN,
   CHECK_CONNECT,
   CHANGE_UPDATE_USER,
+  DELETE_USER,
 } from '../actions/types';
 
 import {
@@ -16,9 +17,11 @@ import {
   openNavModal,
   handleChangEditorModeDisabled,
   showMessageUpdateUser,
+  deconnect,
 } from '../actions/creators';
 
-const server = 'localhost';
+// import config
+import config from 'src/config';
 
 const userMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -38,7 +41,7 @@ const userMiddleware = (store) => (next) => (action) => {
         },
       } = state;
 
-      axios.post(`http://${server}:3000/users/add`,
+      axios.post(`http://${config.url}:3000/users/add`,
         {
           data: {
             pseudo,
@@ -76,7 +79,7 @@ const userMiddleware = (store) => (next) => (action) => {
         },
       } = state;
 
-      axios.post(`http://${server}:3000/connect`,
+      axios.post(`http://${config.url}:3000/connect`,
         {
           data: {
             email,
@@ -103,7 +106,7 @@ const userMiddleware = (store) => (next) => (action) => {
       const token = window.localStorage.getItem('token');
 
       if (token) {
-        axios.get(`http://${server}:3000/check-auth`, {
+        axios.get(`http://${config.url}:3000/check-auth`, {
           headers: {
             Authorization: `token ${token}`,
           },
@@ -124,7 +127,7 @@ const userMiddleware = (store) => (next) => (action) => {
     case CHANGE_UPDATE_USER: {
       const token = window.localStorage.getItem('token');
       const { user } = store.getState();
-      axios.post(`http://${server}:3000/users/${user.id}/update`, {
+      axios.post(`http://${config.url}:3000/users/${user.id}/update`, {
         headers: {
           Authorization: `token ${token}`,
         },
@@ -139,6 +142,24 @@ const userMiddleware = (store) => (next) => (action) => {
           }
         })
         .catch((error) => console.log('from middleware:', error));
+      break;
+    }
+
+    case DELETE_USER: {
+      const token = window.localStorage.getItem('token');
+      const { user } = store.getState();
+      axios.post(`http://${config.url}:3000/users/${user.id}/delete`, {
+        headers: {
+          Authorization: `token ${token}`,
+        },
+      })
+        .then((response) => {
+          store.dispatch(deconnect());
+          window.location = '/';
+        })
+        .catch((error) => {
+          console.log(error);
+        });
       break;
     }
     default:

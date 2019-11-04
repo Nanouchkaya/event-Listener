@@ -47,6 +47,7 @@ import {
   SEND_UPDATE_INFO,
   SHOW_MESSAGE_UPDATE_USER,
   DELETE_SHOW_MESSAGE,
+  DELETE_USER,
 } from './types';
 
 
@@ -92,6 +93,9 @@ export const showMessageUpdateUser = (messageType, messageContent) => ({
 });
 export const deleteShowMessage = () => ({
   type: DELETE_SHOW_MESSAGE,
+})
+export const deleteUser = () => ({
+  type: DELETE_USER,
 })
 
 // App : Nav.js

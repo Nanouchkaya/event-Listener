@@ -23,7 +23,11 @@
 
 body {
   font-family: 'univers', sans-serif;
+  background-color: $backgroundDark;
+  color: $colorDarkTheme;
+  background: $mainGradient;
 }
+
 
 .text, p {
   line-height: 1.3rem;

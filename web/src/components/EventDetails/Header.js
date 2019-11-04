@@ -22,6 +22,7 @@ const Header = ({
   getEventStatus,
   urlLive,
   isOnline,
+  isConnected,
 }) => {
   /* Si la props likeIcon vaut "true" je change d'icon */
   const iconHeart = likeIcon ? heartCheckedIcon : heartIcon;
@@ -50,12 +51,14 @@ const Header = ({
           <div className="event-header-bottom-icons">
 
             {/* Passage de true/false au click sur l'icon */}
-            <button
-              type="button"
-              onClick={changeHeartIcon}
-            >
-              <img alt="like" src={iconHeart} />
-            </button>
+            { isConnected && (
+              <button
+                type="button"
+                onClick={changeHeartIcon}
+              >
+                <img alt="like" src={iconHeart} />
+              </button>
+            ) }
 
             {/* Passage de false/true au click sur l'icon de partage */}
             <button
@@ -96,6 +99,7 @@ Header.propTypes = {
   dateEnd: PropTypes.string,
   urlLive: PropTypes.string,
   isOnline: PropTypes.number,
+  isConnected: PropTypes.bool.isRequired,
 };
 Header.defaultProps = {
   price: 0,
