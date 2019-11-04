@@ -8,6 +8,7 @@ import {
   FETCH_EVENTS_BY_LOCATION,
   HANDLE_SUBMIT,
   NEXT_EVENTS,
+  HANDLE_QUICK_SEARCH,
 } from '../actions/types';
 
 
@@ -16,6 +17,7 @@ import {
   fetchRequestedData,
   sendLocationSearchData,
   fetchNextEvents,
+  handleQuickSearchData,
 } from '../actions/creators';
 
 // import config
@@ -49,7 +51,7 @@ const eventsMiddleware = (store) => (next) => (action) => {
       // empties the array of data before each request
       const empyData = [];
       store.dispatch(sendLocationSearchData(empyData));
-      axios.get(`http://localhost:3000/events/localisation/${action.location}`)
+      axios.get(`http://${config.url}:3000/events/localisation/${action.location}`)
         .then((response) => {
           const { data } = response.data.result;
           store.dispatch(sendLocationSearchData(data));
@@ -66,6 +68,18 @@ const eventsMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => console.error(error));
       break;
+    }
+    case HANDLE_QUICK_SEARCH: {
+      axios.get(`http://${config.url}:3000/events/title/${action.value}`)
+        .then((response) => {
+          const { data } = response.data.result;
+          store.dispatch(handleQuickSearchData(data));
+          console.log(data)
+        })
+        .catch((error) => {
+          console.error('from middleware:', error);
+        });
+      break; 
     }
     /**
       * requête pour récupérer les prochains événements à afficher sur l'accueil

@@ -3,12 +3,11 @@ import { connect } from 'react-redux';
 
 
 // == Import : local
-import Events from 'src/components/Events';
+import SearchedEvents from 'src/components/Events/SearchedEvents';
 
 
 // == Import : Action Creators
 import {
-  allEvents,
   fetchEventsByLocation,
   handleQuickSearch,
 } from '../../actions/creators';
@@ -32,4 +31,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 
 // == Export
-export default connect(mapStateToProps, mapDispatchToProps)(Events);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchedEvents);

@@ -1,12 +1,13 @@
 import {
   CHANGE_SEARCH_FORM_VALUE,
-  HANDLE_SEARCH_FORM_CHANGE,
+  HANDLE_SEARCH_CHANGE,
   ADD_FILTERS,
   EMPTY_SEARCH_FORM_VALUE,
   FILL_FILTER_LIST,
   HANDLE_SEARCH_SUBMIT,
   FETCH_NEXT_EVENTS,
   CHANGE_LEFT_FOR_SLIDER,
+  HANDLE_QUICK_SEARCH_DATA,
 } from '../actions/types';
 
 const initialState = {
@@ -17,6 +18,7 @@ const initialState = {
   dataFilter: [],
   data: [],
   slide: 0,
+  quickSearchData: [],
 };
 
 export const home = (state = initialState, action = {}) => {
@@ -31,7 +33,7 @@ export const home = (state = initialState, action = {}) => {
         ...state,
         [action.name]: [action.value],
       };
-    case HANDLE_SEARCH_FORM_CHANGE:
+  case HANDLE_SEARCH_CHANGE:
       return {
         ...state,
         value: action.value,
@@ -63,6 +65,11 @@ export const home = (state = initialState, action = {}) => {
         ...state,
         slide: action.value,
       };
+    case HANDLE_QUICK_SEARCH_DATA:
+      return {
+        ...state,
+        quickSearchData: action.data,
+      }
     default:
       return state;
   }

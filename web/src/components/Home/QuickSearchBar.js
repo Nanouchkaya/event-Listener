@@ -1,19 +1,26 @@
 // == Import : npm
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import { Route } from 'react-router-dom';
 
 // == Composant QuickSearchBar
 const QuickSearchBar = ({
   value,
   handleSearchChange,
   handleSearchSubmit,
+  handleQuickSearch,
 }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
-    handleSearchSubmit();
+    handleQuickSearch();
+    //handleSearchSubmit();
+    window.location.pathname = `/evenements/${value}`
   };
+  const handleChange = (event) => {
+    handleSearchChange(event.target.value)
+  }
   return (
+    <>
     <form onSubmit={handleSubmit} className="searchbar-visible">
       <input
         type="search"
@@ -21,9 +28,10 @@ const QuickSearchBar = ({
         placeholder="Recherche..."
         value={value}
         /* Récupération de la valeur entrée dans l'input */
-        onChange={(event) => handleSearchChange(event.target.value)}
+        onChange={handleChange}
       />
     </form>
+    </>
   );
 };
 

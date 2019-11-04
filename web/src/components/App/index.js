@@ -10,6 +10,7 @@ import Events from 'src/redux/containers/Events';
 import EventDetails from 'src/redux/containers/EventDetails';
 import Nav from 'src/redux/containers/App/Nav';
 import Footer from 'src/redux/containers/App/Footer';
+import SearchedEvents from 'src/redux/containers/Events/SearchedEvents';
 import User from 'src/components/User';
 import LegalMentions from 'src/components/LegalMentions';
 import PrivatePolicy from 'src/components/PrivatePolicy';
@@ -39,6 +40,7 @@ class App extends React.Component {
               <User />
             </Route>
           ) }
+          <Route exact path="/evenements/:search" component={SearchedEvents} />
           <Route exact path="/mentions-legales">
             <LegalMentions />
           </Route>
