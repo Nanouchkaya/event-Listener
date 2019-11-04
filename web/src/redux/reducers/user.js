@@ -53,6 +53,8 @@ export const user = (state = initialState, action = {}) => {
       return {
         ...state,
         editorModeDisabled: !state.editorModeDisabled,
+        password: '',
+        confirmPassword: '',
       };
     case SHOW_MESSAGE_UPDATE_USER:
       return {
