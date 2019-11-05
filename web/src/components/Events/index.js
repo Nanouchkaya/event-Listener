@@ -47,8 +47,8 @@ class Events extends React.Component {
     }
     // pour fixer les filtres au scroll
     if (window.innerWidth >= 768) {
-      const formTopY = document.querySelector('.events-left').getBoundingClientRect().y;
-      const formHeight = document.querySelector('.events-left').clientHeight;
+      const formTopY = document.querySelector('.events-right').getBoundingClientRect().y;
+      const formHeight = document.querySelector('.events-right').clientHeight;
       const pos = formTopY - formHeight;
       window.addEventListener('scroll', () => this.stickyForm(pos));
     }
@@ -90,7 +90,7 @@ class Events extends React.Component {
         <div className="events-view-list">
           <Switch>
             <Route exact path="/tous-les-evenements">
-              <div className="events-right">
+              <div className="events-left">
                 { data.map((event) => <Event key={event.id} {...event} jsxFor="list" />)}
               </div>
               { data.length === 0 && (
@@ -105,7 +105,7 @@ class Events extends React.Component {
                 </div>
               )}
               <div id="fake-div" style={styleFakeDiv} />
-              <div className="events-left" style={styleForm}>
+              <div className="events-right" style={styleForm}>
                 <Form />
                 { data.length > 0 && <EventsMap />}
               </div>
@@ -121,11 +121,11 @@ class Events extends React.Component {
                   } if (data.length > 0) {
                     return (
                       <>
-                        <div className="events-left" style={styleForm}>
+                        <div className="events-right" style={styleForm}>
                           <EventsMap />
                         </div>
 
-                        <div className="events-right">
+                        <div className="events-left">
                           { data.map((event) => <Event key={event.id} {...event} jsxFor="list" />)}
                         </div>
                       </>
@@ -137,11 +137,11 @@ class Events extends React.Component {
                   }
                   return (
                     <>
-                      <div className="events-left" style={{ styleForm }}>
+                      <div className="events-right" style={{ styleForm }}>
                         <EventsMap />
                       </div>
                       <div id="fake-div" style={styleFakeDiv} />
-                      <div className="events-right">
+                      <div className="events-left">
                         { locationSearchData.map((event) => <Event key={event.id} {...event} jsxFor="list" />)}
                       </div>
                     </>
