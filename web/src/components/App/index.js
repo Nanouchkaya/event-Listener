@@ -18,14 +18,11 @@ import LegalMentions from 'src/components/LegalMentions';
 import PrivatePolicy from 'src/components/PrivatePolicy';
 import Errors from 'src/components/Errors';
 
-
-
 const override = css`
   display: block;
   margin: 20rem auto;
   border-color: #6942e4;
 `;
-
 
 // == Composant
 class App extends React.Component {
@@ -43,8 +40,6 @@ class App extends React.Component {
   render() {
     const { isConnected } = this.props;
     return (
-      <>
-      
       <div id="wrapper">
         <canvas className="header_background" />
         <Nav />
@@ -59,7 +54,6 @@ class App extends React.Component {
           />
         </div>
       )}
-      
         <Switch>
           <Route exact path="/">
             <Home />
@@ -86,7 +80,6 @@ class App extends React.Component {
           <Footer />
         </footer>
       </div>
-      </>
     );
   }
 }

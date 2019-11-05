@@ -1,8 +1,6 @@
 // == import : npm
 import React from 'react';
 
-
-
 // == import : local
 import SearchForm from 'src/redux/containers/Home/SearchForm';
 import NextEvents from 'src/redux/containers/Home/NextEvents';
@@ -48,7 +46,7 @@ class Home extends React.Component {
 
         <main className="home hidden-section">
           <Now />
-          <NextEvents />    
+          <NextEvents />
           <Contact />
           <HomeMap />
         </main>

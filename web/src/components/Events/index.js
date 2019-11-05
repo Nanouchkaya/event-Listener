@@ -29,8 +29,13 @@ class Events extends React.Component {
 
   componentDidMount() {
     // props
-    const { value, showEvents, fetchEvents, handleQuickSearch } = this.props;
-    // allows to only get the desired parameters 
+    const {
+      value,
+      showEvents,
+      fetchEvents,
+      handleQuickSearch,
+    } = this.props;
+    // allows to only get the desired parameters
     const param = this.props.location.pathname.split('/');
     if (value.trim().length === 0) {
       // fetch all events when no search by filter
@@ -86,20 +91,19 @@ class Events extends React.Component {
           <Switch>
             <Route exact path="/tous-les-evenements">
               <div className="events-right">
-                { data.length === 0 && (
-                  <div className='sweet-loading'>
-                    <ClipLoader
-                      css={override}
-                      sizeUnit={"px"}
-                      size={150}
-                      color={'#123abc'}
-                      loading={true}
-                    />
-                  </div>      
-                )}
                 { data.map((event) => <Event key={event.id} {...event} jsxFor="list" />)}
               </div>
-
+              { data.length === 0 && (
+                <div className="sweet-loading">
+                  <ClipLoader
+                    css={override}
+                    sizeUnit="px"
+                    size={150}
+                    color="#123abc"
+                    loading
+                  />
+                </div>
+              )}
               <div id="fake-div" style={styleFakeDiv} />
               <div className="events-left" style={styleForm}>
                 <Form />
@@ -136,9 +140,9 @@ class Events extends React.Component {
                       <div className="events-left" style={{ styleForm }}>
                         <EventsMap />
                       </div>
-
+                      <div id="fake-div" style={styleFakeDiv} />
                       <div className="events-right">
-                        { data.map((event) => <Event key={event.id} {...event} jsxFor="list" />)}
+                        { locationSearchData.map((event) => <Event key={event.id} {...event} jsxFor="list" />)}
                       </div>
                     </>
                   );
@@ -162,6 +166,7 @@ Events.propTypes = {
   showEvents: PropTypes.func.isRequired,
   fetchEvents: PropTypes.func.isRequired,
   locationSearchData: PropTypes.array.isRequired,
+  handleQuickSearch: PropTypes.func.isRequired,
   undefinedData: PropTypes.string,
 };
 Events.defaultProps = {

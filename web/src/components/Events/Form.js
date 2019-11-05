@@ -22,7 +22,7 @@ const Form = ({
 }) => {
   const _onSubmit = (event) => {
     event.preventDefault();
-    //event.target.reset();
+    event.target.reset();
     emptyFormValue();
     addFilters(filterList);
     handleSubmit();
