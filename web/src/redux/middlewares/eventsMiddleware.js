@@ -8,6 +8,7 @@ import {
   FETCH_EVENTS_BY_LOCATION,
   HANDLE_SUBMIT,
   NEXT_EVENTS,
+  HANDLE_QUICK_SEARCH,
 } from '../actions/types';
 
 
@@ -16,6 +17,7 @@ import {
   fetchRequestedData,
   sendLocationSearchData,
   fetchNextEvents,
+  handleQuickSearchData,
 } from '../actions/creators';
 
 // import config
@@ -24,6 +26,7 @@ import config from 'src/config';
 // == Middleware : eventsMiddleware
 const eventsMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
+    // Handles search by title of an event
     case TRIGGER_MIDDLEWARE: {
       const { value } = store.getState().form;
       axios.get(`http://${config.url}:3000/events/title/${value}`)
@@ -36,6 +39,7 @@ const eventsMiddleware = (store) => (next) => (action) => {
         });
       break;
     }
+    // Gets all events (for the "tous-les-evenements" page)
     case ALL_EVENTS: {
       axios.get(`http://${config.url}:3000/events`)
         .then((response) => {
@@ -47,10 +51,8 @@ const eventsMiddleware = (store) => (next) => (action) => {
         });
       break;
     }
+    // handles search by localisation
     case FETCH_EVENTS_BY_LOCATION: {
-      // empties the array of data before each request
-      const empyData = [];
-      store.dispatch(sendLocationSearchData(empyData));
       axios.get(`http://${config.url}:3000/events/localisation/${action.location}`)
         .then((response) => {
           if (response.data.result) {
@@ -63,6 +65,7 @@ const eventsMiddleware = (store) => (next) => (action) => {
         });
       break;
     }
+    // handles search by multiple parameters
     case HANDLE_SUBMIT: {
       const { dataFilter } = store.getState().form;
       axios.post(`http://${config.url}:3000/events/filter`, dataFilter)
@@ -75,6 +78,18 @@ const eventsMiddleware = (store) => (next) => (action) => {
         });
       break;
     }
+    // handles search by title of the event, this time for the QuickSearchBar
+    case HANDLE_QUICK_SEARCH: {
+      axios.get(`http://${config.url}:3000/events/title/${action.value}`)
+        .then((response) => {
+          const { data } = response.data.result;
+          store.dispatch(handleQuickSearchData(data));
+        })
+        .catch((error) => {
+          console.error('from middleware:', error);
+        });
+      break; 
+    }
     /**
       * requête pour récupérer les prochains événements à afficher sur l'accueil
       * next-events/:number => nombre d'evt à afficher
@@ -84,9 +99,7 @@ const eventsMiddleware = (store) => (next) => (action) => {
         .then((response) => {
           store.dispatch(fetchNextEvents(response.data.result.data));
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch((error) => console.error('from middelware:', error));
       break;
     }
     default:

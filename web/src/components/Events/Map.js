@@ -6,7 +6,7 @@ class EventsMap extends React.Component {
   render() {
     const accessToken = 'pk.eyJ1IjoiZGFlbmVyeXM5NSIsImEiOiJjazJmYjNlN2QwZ3luM2xwYnlqZnE5Z3JmIn0.0eaxPyVL6cJ0QxnXXP_fHg';
     const url = `https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}`;
-    const { data } = this.props;
+    const { data, quickSearchData } = this.props;
     return (
       <>
    
@@ -70,6 +70,7 @@ class EventsMap extends React.Component {
           
         </LeafletMap>
       )}
+      
      </> 
     );
   }

@@ -48,6 +48,8 @@ import {
   SHOW_MESSAGE_UPDATE_USER,
   DELETE_SHOW_MESSAGE,
   DELETE_USER,
+  HANDLE_QUICK_SEARCH,
+  HANDLE_QUICK_SEARCH_DATA,
   CHANGE_INTEREST_TO_THE_EVENT,
   CHANGE_PARTICIPATION_TO_THE_EVENT,
   CHANGE_USER_PREFERENCES_TO_THE_EVENT,
@@ -159,6 +161,14 @@ export const handleSearchChange = (value) => ({
 });
 export const handleSearchSubmit = () => ({
   type: HANDLE_SEARCH_SUBMIT,
+});
+export const handleQuickSearch = (value) => ({
+  type: HANDLE_QUICK_SEARCH,
+  value,
+});
+export const handleQuickSearchData = (data) => ({
+  type: HANDLE_QUICK_SEARCH_DATA,
+  data,
 });
 
 // Events : Form.js
