@@ -78,7 +78,6 @@ const eventsMiddleware = (store) => (next) => (action) => {
         .then((response) => {
           const { data } = response.data.result;
           store.dispatch(handleQuickSearchData(data));
-          console.log(data)
         })
         .catch((error) => {
           console.error('from middleware:', error);
@@ -94,7 +93,7 @@ const eventsMiddleware = (store) => (next) => (action) => {
         .then((response) => {
           store.dispatch(fetchNextEvents(response.data.result.data));
         })
-        .catch((error) => console.log('from middelware:', error));
+        .catch((error) => console.error('from middelware:', error));
       break;
     }
     default:
