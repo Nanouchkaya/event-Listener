@@ -7,7 +7,9 @@ import iconInfo from 'src/assets/images/icons/icons8-info-50.png';
 
 const Description = ({ description }) => {
   /* pour limiter le risque XSS */
-  const pureDescription = <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(description) }} />;
+  const pureDescription = (
+    <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(description) }} />
+  );
 
   return (
     <div>

@@ -1,5 +1,10 @@
 import axios from 'axios';
 
+
+// import config
+import config from 'src/config';
+
+
 import {
   SUBMIT_REGISTER,
   SUBMIT_LOGIN,
@@ -19,9 +24,6 @@ import {
   showMessageUpdateUser,
   deconnect,
 } from '../actions/creators';
-
-// import config
-import config from 'src/config';
 
 const userMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -118,7 +120,7 @@ const userMiddleware = (store) => (next) => (action) => {
             }
           })
           .catch((error) => {
-            console.log(error);
+            // console.log(error);
           });
       }
       break;
@@ -141,7 +143,9 @@ const userMiddleware = (store) => (next) => (action) => {
             store.dispatch(showMessageUpdateUser('error', response.data.errorMessage));
           }
         })
-        .catch((error) => console.log('from middleware:', error));
+        .catch((error) => {
+          console.log(error);
+        });
       break;
     }
 

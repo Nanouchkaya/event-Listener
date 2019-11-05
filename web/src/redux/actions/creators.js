@@ -48,6 +48,10 @@ import {
   SHOW_MESSAGE_UPDATE_USER,
   DELETE_SHOW_MESSAGE,
   DELETE_USER,
+  CHANGE_INTEREST_TO_THE_EVENT,
+  CHANGE_PARTICIPATION_TO_THE_EVENT,
+  CHANGE_USER_PREFERENCES_TO_THE_EVENT,
+  FETCH_USER_PREFERENCES_TO_THE_EVENT,
 } from './types';
 
 
@@ -93,10 +97,10 @@ export const showMessageUpdateUser = (messageType, messageContent) => ({
 });
 export const deleteShowMessage = () => ({
   type: DELETE_SHOW_MESSAGE,
-})
+});
 export const deleteUser = () => ({
   type: DELETE_USER,
-})
+});
 
 // App : Nav.js
 export const openNavModal = (name) => ({
@@ -147,7 +151,6 @@ export const deconnect = () => ({
 });
 
 
-
 // Home : QuickSearchBar.js
 export const handleSearchChange = (value) => ({
   type: HANDLE_SEARCH_CHANGE,
@@ -193,6 +196,25 @@ export const fetchEventDetails = (data) => ({
   type: FETCH_EVENT_DETAILS,
   data,
 });
+export const fetchUserPreferencesToTheEvent = (liked, interested, participation) => ({
+  type: FETCH_USER_PREFERENCES_TO_THE_EVENT,
+  liked,
+  interested,
+  participation,
+});
+export const changeInterestToTheEvent = (isInterested) => ({
+  type: CHANGE_INTEREST_TO_THE_EVENT,
+  isInterested,
+});
+export const changeParticipationToTheEvent = (participate) => ({
+  type: CHANGE_PARTICIPATION_TO_THE_EVENT,
+  participate,
+});
+export const changeUserPreferencesToTheEvent = (preferenceName) => ({
+  type: CHANGE_USER_PREFERENCES_TO_THE_EVENT,
+  preferenceName,
+});
+
 
 // User : Update
 export const changeUpdateUser = (user) => ({
@@ -258,4 +280,4 @@ export const handleSearchFormChange = (value) => ({
 export const changeLeftForSlider = (value) => ({
   type: CHANGE_LEFT_FOR_SLIDER,
   value,
-})
+});

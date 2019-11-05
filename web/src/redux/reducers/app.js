@@ -140,12 +140,6 @@ export const app = (state = initialState, action = {}) => {
         isConnected: false,
       };
 
-    case SEND_LOCATION_SEARCH_DATA:
-      return {
-        ...state,
-        data: action.data,
-      };
-
     default:
       return state;
   }
