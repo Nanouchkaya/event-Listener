@@ -11,7 +11,7 @@ const Tags = ({ tags }) => (
     </h3>
     <p>
       { tags.map((currentTag) => (
-        <span>{currentTag.name}</span>
+        <span key={currentTag.id}>{currentTag.name}</span>
       )) }
     </p>
   </div>

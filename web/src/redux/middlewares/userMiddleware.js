@@ -78,6 +78,7 @@ const userMiddleware = (store) => (next) => (action) => {
           loginContent: {
             email,
             password,
+            stayLoggedIn,
           },
         },
       } = state;
@@ -87,6 +88,7 @@ const userMiddleware = (store) => (next) => (action) => {
           data: {
             email,
             password,
+            stayLoggedIn,
           },
         })
         .then((response) => {
