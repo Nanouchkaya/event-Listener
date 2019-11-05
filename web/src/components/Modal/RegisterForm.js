@@ -37,9 +37,9 @@ const RegisterForm = ({
   return (
     <div className="modal display-block">
       <section className="modal-main">
-      { !message.success && (
-        <div>
-          <h2 className="modal-title">Inscription</h2>
+        { !message.success && (
+          <div>
+            <h2 className="modal-title">Inscription</h2>
             <form className="modal-form" onSubmit={handleSubmit}>
               <input
                 className="modal-form-element"

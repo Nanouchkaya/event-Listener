@@ -9,6 +9,15 @@
   }
 }
 
+@keyframes fromBottom {
+  0% { 
+    top: 0;
+  }
+  100% {
+    top: -60px;
+  }
+}
+
 @keyframes dropSection {
   0% { 
     opacity: 0;

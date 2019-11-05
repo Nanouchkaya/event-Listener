@@ -40,19 +40,19 @@ export const form = (state = initialState, action = {}) => {
         value: '',
       };
     case FETCH_REQUESTED_DATA: {
-      if (action.data === undefined ) {
+      if (action.data === undefined) {
         return {
           ...state,
           caseNoData: 'Aucun filtre sélectionné',
           data: [],
-        }
+        };
       }
       return {
         ...state,
         data: action.data,
       };
     }
-      
+
     case ADD_FILTERS:
       return {
         ...state,

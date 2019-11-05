@@ -1,8 +1,5 @@
 // == Import : Action Types
 import {
-  CHANGE_HEART_ICON,
-  OPEN_SHARE_LINKS_MODAL,
-  CLOSE_SHARE_LINKS_MODAL,
   CHANGE_INPUT_VALUE,
   CHANGE_MODAL_STATUS,
   CHANGE_CHECK_INPUT_VALUE,
@@ -54,20 +51,15 @@ import {
   CHANGE_PARTICIPATION_TO_THE_EVENT,
   CHANGE_USER_PREFERENCES_TO_THE_EVENT,
   FETCH_USER_PREFERENCES_TO_THE_EVENT,
+  CHANGE_LIKE_TO_THE_EVENT,
+  CHANGE_SHARE_LINKS_MODAL,
 } from './types';
 
 
 // EventDetails : Header.js
-export const changeHeartIcon = () => ({
-  type: CHANGE_HEART_ICON,
+export const changeShareLinksModal = () => ({
+  type: CHANGE_SHARE_LINKS_MODAL,
 });
-export const openShareLinksModal = () => ({
-  type: OPEN_SHARE_LINKS_MODAL,
-});
-export const closeShareLinksModal = () => ({
-  type: CLOSE_SHARE_LINKS_MODAL,
-});
-
 
 // User : Preferences.js
 export const fetchUserInfos = (user) => ({
@@ -99,10 +91,10 @@ export const showMessageUpdateUser = (messageType, messageContent) => ({
 });
 export const deleteShowMessage = () => ({
   type: DELETE_SHOW_MESSAGE,
-})
+});
 export const deleteUser = () => ({
   type: DELETE_USER,
-})
+});
 
 // App : Nav.js
 export const openNavModal = (name) => ({
@@ -151,7 +143,6 @@ export const changeCheckValueInModal = (modalName, checkName) => ({
 export const deconnect = () => ({
   type: DECONNECT,
 });
-
 
 
 // Home : QuickSearchBar.js
@@ -213,6 +204,10 @@ export const fetchUserPreferencesToTheEvent = (liked, interested, participation)
   interested,
   participation,
 });
+export const changeLikeToTheEvent = (isLiked) => ({
+  type: CHANGE_LIKE_TO_THE_EVENT,
+  isLiked,
+});
 export const changeInterestToTheEvent = (isInterested) => ({
   type: CHANGE_INTEREST_TO_THE_EVENT,
   isInterested,
@@ -224,7 +219,7 @@ export const changeParticipationToTheEvent = (participate) => ({
 export const changeUserPreferencesToTheEvent = (preferenceName) => ({
   type: CHANGE_USER_PREFERENCES_TO_THE_EVENT,
   preferenceName,
-})
+});
 
 
 // User : Update
@@ -291,4 +286,4 @@ export const handleSearchFormChange = (value) => ({
 export const changeLeftForSlider = (value) => ({
   type: CHANGE_LEFT_FOR_SLIDER,
   value,
-})
+});

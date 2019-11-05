@@ -1,7 +1,7 @@
 // == Import : npm
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames'
+import classNames from 'classnames';
 
 
 // == Composant CheckButtons
@@ -12,10 +12,10 @@ const CheckButtons = ({
   changeParticipationToTheEvent,
 }) => {
   const handleChangeInterestToTheEvent = () => {
-    changeInterestToTheEvent(interested)
+    changeInterestToTheEvent(interested);
   };
   const handleChangeParticipationToTheEvent = () => {
-    changeParticipationToTheEvent(participation)
+    changeParticipationToTheEvent(participation);
   };
 
   const interest = (interested) ? 'Je ne suis plus intéressé·e' : 'Je suis intéressé·e';
@@ -25,14 +25,14 @@ const CheckButtons = ({
       <div className="check-buttons">
         <button
           type="button"
-          className={classNames("button", { 'button--negative': interested })}
+          className={classNames('button', { 'button--negative': interested })}
           onClick={handleChangeInterestToTheEvent}
         >
           {interest}
         </button>
         <button
           type="button"
-          className={classNames("button", { 'button--negative': participation })}
+          className={classNames('button', { 'button--negative': participation })}
           onClick={handleChangeParticipationToTheEvent}
         >
           {participate}

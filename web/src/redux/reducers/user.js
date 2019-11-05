@@ -24,21 +24,21 @@ const initialState = {
   eventsInterest: [
     {
       id: 0,
-      title: "Aucun événement",
-      url_image: "",
-      address: "",
-      date_start: "2019-01-01",
+      title: 'Aucun événement',
+      url_image: '',
+      address: '',
+      date_start: '2019-01-01',
     },
     {
       id: 1,
-      title: "Aucun événement",
-      url_image: "",
-      address: "",
-      date_start: "2019-01-01",
+      title: 'Aucun événement',
+      url_image: '',
+      address: '',
+      date_start: '2019-01-01',
     }
   ],
   eventsParticipate: [],
-  messages: [], 
+  messages: [],
   editorModeDisabled: true,
   message: {
     type: '',
@@ -77,7 +77,7 @@ export const user = (state = initialState, action = {}) => {
         message: {
           type: action.messageType,
           content: action.messageContent,
-        }
+        },
       };
     case DELETE_SHOW_MESSAGE:
       return {
@@ -112,13 +112,13 @@ export const user = (state = initialState, action = {}) => {
         notifNewEvent: !!notifNewEvent, // convert to bool
         notifNewUpdate: !!notifNewUpdate, // convert to bool
         eventsLike,
-        //eventsInterest,
+        eventsInterest,
         eventsParticipate,
       };
     }
     case DECONNECT: {
       return {
-        ...initialState
+        ...initialState,
       };
     }
     default:

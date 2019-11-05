@@ -2,7 +2,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 // import sous-composants
 import Header from 'src/redux/containers/EventDetails/Header';
 import CheckButtons from 'src/redux/containers/EventDetails/CheckButtons';
@@ -10,7 +9,7 @@ import Datetime from 'src/redux/containers/EventDetails/Datetime';
 import Address from 'src/redux/containers/EventDetails/Address';
 import Description from 'src/redux/containers/EventDetails/Description';
 import EventDetailsMap from 'src/redux/containers/EventDetails/Map';
-import Tags from './Tags';
+import Tags from 'src/redux/containers/EventDetails/Tags';
 
 
 // import local
@@ -23,12 +22,11 @@ class EventDetails extends React.Component {
       match: {
         params,
       },
-      isConnected,
       getEventDetails,
     } = this.props;
     getEventDetails(params.eventId);
   }
-  
+
   componentDidUpdate() {
     const {
       fetchUserPreferencesToTheEvent,
@@ -36,24 +34,27 @@ class EventDetails extends React.Component {
       eventsInterest,
       eventsParticipate,
       event,
+      isConnected,
     } = this.props;
 
-    const alreadyExistPreferences = (objectsArray, object) => {
-      let alreadyExist = false;
-  
-      objectsArray.forEach((currentObject) => {
-        if (currentObject.id === object.id) {
-          alreadyExist = true;
-        }
-      });
-  
-      return alreadyExist;
+    if (isConnected) {
+      const alreadyExistPreferences = (objectsArray, object) => {
+        let alreadyExist = false;
+
+        objectsArray.forEach((currentObject) => {
+          if (currentObject.id === object.id) {
+            alreadyExist = true;
+          }
+        });
+
+        return alreadyExist;
+      };
+      fetchUserPreferencesToTheEvent(
+        alreadyExistPreferences(eventsLike, event),
+        alreadyExistPreferences(eventsInterest, event),
+        alreadyExistPreferences(eventsParticipate, event),
+      );
     }
-    fetchUserPreferencesToTheEvent(
-      alreadyExistPreferences(eventsLike,event),
-      alreadyExistPreferences(eventsInterest,event),
-      alreadyExistPreferences(eventsParticipate,event),
-    );
   }
 
   render() {
@@ -86,7 +87,7 @@ class EventDetails extends React.Component {
                 <Description />
                 <Tags />
                 { latitude && longitude !== undefined && <EventDetailsMap /> }
-                
+
               </div>
             </article>
           </section>
@@ -111,10 +112,14 @@ EventDetails.propTypes = {
   eventsInterest: PropTypes.array.isRequired,
   eventsParticipate: PropTypes.array.isRequired,
   event: PropTypes.object.isRequired,
+  latitude: PropTypes.number,
+  longitude: PropTypes.number,
 };
 
 EventDetails.defaultProps = {
   banner: '',
+  latitude: null,
+  longitude: null,
 };
 
 

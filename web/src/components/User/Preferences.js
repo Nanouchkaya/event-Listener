@@ -9,25 +9,24 @@ import DeleteAccount from 'src/redux/containers/User/DeleteAccount';
 
 // == Composant Preferences
 const Preferences = ({
-    user,
-    firstname,
-    lastname,
-    email,
-    password,
-    confirmPassword,
-    notifNewEvent,
-    notifNewUpdate,
-    message,
-    changeCheckInputValue,
-    changeValue,
-    modalStatus,
-    changeModalStatus,
-    editorModeDisabled,
-    handleChangEditorMode,
-    updateValueUser,
-    deleteShowMessage,
-  }) => {
-
+  user,
+  firstname,
+  lastname,
+  email,
+  password,
+  confirmPassword,
+  notifNewEvent,
+  notifNewUpdate,
+  message,
+  changeCheckInputValue,
+  changeValue,
+  modalStatus,
+  changeModalStatus,
+  editorModeDisabled,
+  handleChangEditorMode,
+  updateValueUser,
+  deleteShowMessage,
+}) => {
   /* Passade de true/false pour affichage des modals */
   const handleChangeModalStatus = () => {
     changeModalStatus();
@@ -49,7 +48,7 @@ const Preferences = ({
     const { name } = event.target;
     changeCheckInputValue(name);
   };
-  
+
   /* Update User*/
   const handleUpdateUser = (event) => {
     event.preventDefault();
@@ -58,7 +57,7 @@ const Preferences = ({
 
   const handleDeleteMessage = () => {
     deleteShowMessage();
-  }
+  };
 
   return (
     <section className="preferences">
@@ -215,11 +214,12 @@ const Preferences = ({
               </button>
             </div>
             { message.content && (
-              (<div className={`content-message content-message--${message.type}`} onClick={handleDeleteMessage}>
-                {message.content}
-              </div>)
+              (
+                <div className={`content-message content-message--${message.type}`} onClick={handleDeleteMessage}>
+                  {message.content}
+                </div>
               )
-            }
+            ) }
           </div>
         </div>
       </form>

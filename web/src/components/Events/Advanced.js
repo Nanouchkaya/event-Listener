@@ -68,8 +68,11 @@ const Advanced = ({
           {tagsValues.map((tagValue) => <Inputs name="tag" status={tagValue.status} key={tagValue.title}>{tagValue.title}</Inputs>)}
         </div> */}
 
-        <div className="advanced-filter-price">
-          <h4 className="advanced-filter-name">Prix</h4>
+        <div className="advanced-filter-group price">
+          <h4 className="advanced-filter-name">
+            Prix
+          </h4>
+
           {priceValues.map((priceValue) => (
             <Inputs
               name="price"
@@ -81,8 +84,11 @@ const Advanced = ({
           ))}
         </div>
 
-        <div className="advanced-filter-online">
-          <h4 className="advanced-filter-name">Diffusion en ligne</h4>
+        <div className="advanced-filter-group online">
+          <h4 className="advanced-filter-name">
+            Diffusion en ligne
+          </h4>
+
           {liveValues.map((liveValue) => (
             <Inputs
               name="is_online"
@@ -95,23 +101,42 @@ const Advanced = ({
         </div>
 
 
-        <div className="advanced-filter-date">
-          {timeValues.map((timeValue) => (
-            <React.Fragment key={timeValue.title}><h4 className="advanced-filter-name">{timeValue.title}</h4>
-              <input onChange={handleChange} type="date" name={timeValue.status} min="2019-10-01" max="2020-02-29" />
+        {timeValues.map((timeValue) => (
+          <React.Fragment key={timeValue.title}>
+            <div className="advanced-filter-group date">
+                <h4 className="advanced-filter-name">
+                  {timeValue.title}
+                </h4>
+
+                <input
+                  onChange={handleChange}
+                  type="date"
+                  name={timeValue.status}
+                  min="2019-10-01"
+                  max="2030-02-28"
+                />
+              </div>
             </React.Fragment>
           ))}
-        </div>
 
-        <div className="advanced-filter-location">
-          <h4 className="advanced-filter-name">Localisation</h4>
-          <input onChange={_onChange} onBlur={_onBlur} list="villes" id="advanced-filter-input" name="address" value={addressValue} />
+        <div className="advanced-filter-group location">
+          <h4 className="advanced-filter-name">
+            Localisation
+          </h4>
+
+          <input
+            onChange={_onChange}
+            onBlur={_onBlur}
+            list="villes"
+            id="advanced-filter-input"
+            name="address"
+            value={addressValue}
+          />
         </div>
       </div>
-
       <input
         type="submit"
-        className="form-button"
+        className="form-submit"
         value="Rechercher"
       />
     </>

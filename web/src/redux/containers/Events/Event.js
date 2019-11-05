@@ -11,8 +11,13 @@ import {
   getEventDetails,
 } from '../../actions/creators';
 
+import {
+  getCity,
+} from '../../actions/selectors';
+
 
 const mapStateToProps = (state) => ({
+  getCity,
 });
 
 

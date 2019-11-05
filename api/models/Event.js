@@ -38,7 +38,7 @@ class Event {
   * @param {callback} callbackGetEvent
   */
   static find(id, callbackGetEvent) {
-    const sqlQuery = 'SELECT * FROM event where id = ?';
+    const sqlQuery = 'SELECT * FROM event WHERE id = ?';
 
     DBConnect.query(
       sqlQuery,
@@ -53,12 +53,31 @@ class Event {
           });
         } else {
           
-          callbackGetEvent({
-            error: false,
-            errorMessage: null,
-            rowMatch: result.length > 0,
-            data: result[0],
-          });
+          const sqlQueryTags = 'SELECT tag.* FROM `tag` LEFT JOIN has ON has.tag_id = tag.id WHERE has.event_id = ?'
+
+          DBConnect.query(
+            sqlQueryTags,
+            id,
+            (errorTags, resultTags) => {
+              if (errorTags) {
+                callbackGetEvent({
+                  error: true,
+                  errorMessage: errorTags,
+                })
+              } else {
+
+                callbackGetEvent({
+                  error: false,
+                  errorMessage: null,
+                  rowMatch: result.length > 0,
+                  data: {
+                    ...result[0],
+                    tags: resultTags,
+                  },
+                });
+              }
+            }
+          );
         }
       }
     );
