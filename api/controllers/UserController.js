@@ -24,7 +24,6 @@ class UserController {
       jwToken.verify(
         token,
         process.env.APP_KEY,
-        { expiresIn: '2d' },
         (error, decode) => {
           if (error) {
 
@@ -153,10 +152,14 @@ class UserController {
           const checkPassword = bcrypt.compareSync(data.password, hashedPassword);
           
           if (checkPassword) {
+            let expire = '12h';
+            if (data.stayLoggedIn) {
+              expire = '7d';
+            }
             const token = jwToken.sign(
               { userId: result.data.id }, 
               process.env.APP_KEY,
-              { expiresIn: '2d' });
+              { expiresIn: expire });
               
               User.find(
                 result.data.id,
@@ -274,7 +277,6 @@ class UserController {
         jwToken.verify(
           token,
           process.env.APP_KEY,
-          { expiresIn: '2d' },
   
           (error, decode) => {
             if (error) {
@@ -371,7 +373,6 @@ class UserController {
       jwToken.verify(
         token,
         process.env.APP_KEY,
-        { expiresIn: '2d' },
         (error, decode) => {
 
           if (error) {
@@ -440,7 +441,6 @@ class UserController {
             jwToken.verify(
               token,
               process.env.APP_KEY,
-              { expiresIn: '2d' },
       
               (error, decode) => {
 
@@ -521,7 +521,6 @@ class UserController {
             jwToken.verify(
               token,
               process.env.APP_KEY,
-              { expiresIn: '2d' },
       
               (error, decode) => {
 
@@ -602,7 +601,6 @@ class UserController {
             jwToken.verify(
               token,
               process.env.APP_KEY,
-              { expiresIn: '2d' },
       
               (error, decode) => {
 
@@ -683,7 +681,6 @@ class UserController {
             jwToken.verify(
               token,
               process.env.APP_KEY,
-              { expiresIn: '2d' },
       
               (error, decode) => {
 
@@ -764,7 +761,6 @@ class UserController {
             jwToken.verify(
               token,
               process.env.APP_KEY,
-              { expiresIn: '2d' },
       
               (error, decode) => {
 
@@ -845,7 +841,6 @@ class UserController {
             jwToken.verify(
               token,
               process.env.APP_KEY,
-              { expiresIn: '2d' },
       
               (error, decode) => {
 

@@ -35,7 +35,7 @@ const initialState = {
       url_image: '',
       address: '',
       date_start: '2019-01-01',
-    }
+    },
   ],
   eventsParticipate: [],
   messages: [],
@@ -85,7 +85,7 @@ export const user = (state = initialState, action = {}) => {
         message: {
           type: '',
           content: '',
-        }
+        },
       };
     case FETCH_USER_INFOS: {
       const {

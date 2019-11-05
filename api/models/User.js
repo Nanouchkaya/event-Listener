@@ -231,31 +231,47 @@ class User {
                   sqlQueryDeleteRelationLikes,
                   id,
                   (errorDeleteRelationLikes, resultDeleteRelationLikes) => {
-                    if (errorDeleteRelationWatches) {
+                    if (errorDeleteRelationLikes) {
                       callbackDeleteAccount({
                         error: true,
                         errorMessage: errorDeleteRelationLikes,
                       });
                     } else {
 
-                      const sqlQueryDeleteUser = 'DELETE FROM user WHERE id = ?';
+                      const sqlQueryDeleteRelationParticipates = 'DELETE FROM participates WHERE user_id = ?';
 
                       DBConnect.query(
-                        sqlQueryDeleteUser,
+                        sqlQueryDeleteRelationParticipates,
                         id,
-                        (errorDeleteUser, resultDeleteUser) => {
-                          if (errorDeleteUser) {
+                        (errorDeleteRelationParticipates, resultDeleteRelationParticipates) => {
+                          if (errorDeleteRelationParticipates) {
                             callbackDeleteAccount({
                               error: true,
-                              errorMessage: errorDeleteUser,
+                              errorMessage: errorDeleteRelationParticipates,
                             });
                           } else {
-                          
-                            callbackDeleteAccount({
-                              error: false,
-                              errorMessage: null,
-                              rowMatch: resultDeleteUser.affectedRows > 0,
-                            });
+
+                            const sqlQueryDeleteUser = 'DELETE FROM user WHERE id = ?';
+
+                            DBConnect.query(
+                              sqlQueryDeleteUser,
+                              id,
+                              (errorDeleteUser, resultDeleteUser) => {
+                                if (errorDeleteUser) {
+                                  callbackDeleteAccount({
+                                    error: true,
+                                    errorMessage: errorDeleteUser,
+                                  });
+                                } else {
+                                
+                                  callbackDeleteAccount({
+                                    error: false,
+                                    errorMessage: null,
+                                    rowMatch: resultDeleteUser.affectedRows > 0,
+                                  });
+                                }
+                              }
+                            );
                           }
                         }
                       );
