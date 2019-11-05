@@ -2,12 +2,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch } from 'react-router-dom';
+import { css } from '@emotion/core';
+import ClipLoader from 'react-spinners/ClipLoader';
+
 
 // == Import : local
 import './events.scss';
 import Form from 'src/redux/containers/Events/Form';
 import Event from 'src/redux/containers/Events/Event';
 import EventsMap from 'src/redux/containers/Events/Map';
+
+
+const override = css`
+  display: block;
+  margin: 20rem auto;
+  border-color: #6942e4;
+`;
 
 
 // == Composant Events
@@ -45,6 +55,17 @@ class Events extends React.Component {
             <div className="events-container">
           <Switch>
             <Route exact path="/tous-les-evenements">
+            { data.length === 0 && (
+              <div className='sweet-loading'>
+                <ClipLoader
+                  css={override}
+                  sizeUnit={"px"}
+                  size={150}
+                  color={'#123abc'}
+                  loading={true}
+                />
+              </div>      
+            )}
               { data.map((event) => <Event key={event.id} {...event} />)}
               { data.length > 0 && <EventsMap />} 
               { data.length !== 0 && <p>{undefinedData}</p>}

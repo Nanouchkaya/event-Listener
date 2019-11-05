@@ -2,6 +2,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { css } from '@emotion/core';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 // == Import : local
 import './app.scss';
@@ -17,18 +19,47 @@ import PrivatePolicy from 'src/components/PrivatePolicy';
 import Errors from 'src/components/Errors';
 
 
+
+const override = css`
+  display: block;
+  margin: 20rem auto;
+  border-color: #6942e4;
+`;
+
+
 // == Composant
 class App extends React.Component {
+  state = {
+    loading: true,
+  }
+
   componentDidMount() {
     this.props.checkConnect();
+    this.setState({
+      loading: false,
+    });
   }
 
   render() {
     const { isConnected } = this.props;
     return (
+      <>
+      
       <div id="wrapper">
         <canvas className="header_background" />
         <Nav />
+        { this.state.loading && (
+        <div className='sweet-loading'>
+          <ClipLoader
+            css={override}
+            sizeUnit={"px"}
+            size={150}
+            color={'#123abc'}
+            loading={true}
+          />
+        </div>
+      )}
+      
         <Switch>
           <Route exact path="/">
             <Home />
@@ -55,6 +86,7 @@ class App extends React.Component {
           <Footer />
         </footer>
       </div>
+      </>
     );
   }
 }

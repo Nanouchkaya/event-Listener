@@ -1,7 +1,7 @@
 // import npm
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
+
 
 // import sous-composants
 import Header from 'src/redux/containers/EventDetails/Header';
