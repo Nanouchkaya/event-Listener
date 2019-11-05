@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // import local
-import Event from 'src/components/Events/Event';
+import Event from 'src/redux/containers/Events/Event';
 import './user.scss';
 
 // composant
@@ -22,7 +22,7 @@ const UserEvents = ({
 
       <div className="events-view-card">
         <div className="events-container">
-          {eventsParticipate.map((event) => <Event key={event.id} {...event} view="list" />)}
+          {eventsParticipate.map((event) => <Event key={event.id} {...event} jsxFor="list" />)}
         </div>
       </div>
 
@@ -32,7 +32,7 @@ const UserEvents = ({
 
       <div className="events-view-card">
         <div className="events-container">
-          {eventsInterest.map((event) => <Event key={event.id} {...event} view="list" />)}
+          {eventsInterest.map((event) => <Event key={event.id} {...event} jsxFor="list" />)}
         </div>
       </div>
 

@@ -22,8 +22,19 @@ class Inputs extends React.Component {
     } = this.props;
     return (
       <>
-        <input onChange={this.handleChange} type="checkbox" id={children} className="advanced-filter-input" name={name} value={status} />
-        <label htmlFor={children}>{children}</label>
+        <label
+          htmlFor={children}
+          className="advanced-filter-label">
+          {children}
+        </label>
+        <input
+          onChange={this.handleChange}
+          type="checkbox"
+          id={children}
+          className="advanced-filter-input"
+          name={name}
+          value={status}
+        />
       </>
     );
   }

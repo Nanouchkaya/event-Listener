@@ -40,24 +40,28 @@ const Form = ({
     fillFilterList(filter);
   };
   return (
-    <>
-      <h3>Formulaire</h3>
-      <form onSubmit={_onSubmit} className="form" method="POST">
+    <form onSubmit={_onSubmit} className="form" method="POST">
+      <div className="form-simple">
         <input
           type="text"
-          className="form-input"
+          className="form-simple-input"
           placeholder="Que recherchez-vous ?"
           value={formValue}
           name="title"
           onChange={_onChange}
           onBlur={_onBlur}
         />
-        <button type="button" onClick={showAdvancedForm} className="form-button">
-          Voir plus de filtres
+        <button type="button" onClick={showAdvancedForm} className="form-simple-button">
+          Filtrer
         </button>
-        { advanced && <Advanced /> }
-      </form>
-    </>
+      </div>
+      { advanced && <Advanced /> }
+      <input
+        type="submit"
+        className="form-submit"
+        value="Rechercher"
+      />
+    </form>
   );
 };
 
