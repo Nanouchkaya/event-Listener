@@ -13,7 +13,9 @@ import EventsMap from 'src/redux/containers/Events/Map';
 // == Composant Events
 class Events extends React.Component {
   componentDidMount() {
+    // props
     const { value, showEvents, fetchEvents, handleQuickSearch } = this.props;
+    // allows to only get the desired parameters 
     const param = this.props.location.pathname.split('/');
     if (value.trim().length === 0) {
       // fetch all events when no search by filter
@@ -31,9 +33,7 @@ class Events extends React.Component {
       data,
       locationSearchData,
       undefinedData,
-      quickSearchData,
     } = this.props;
-console.log(quickSearchData)
     return (
       <>
         <section className="events">
@@ -52,14 +52,7 @@ console.log(quickSearchData)
             <Route  path={this.props.location.pathname}>   
               {          
                 (() => {
-                  if (quickSearchData.length > 0) {
-                    return (
-                      <>
-                      {quickSearchData.map((event) => <Event key={event.id} {...event} />)}
-                      <EventsMap />
-                      </>
-                    )
-                  } else if (locationSearchData.length === 0) {
+                  if (locationSearchData.length === 0) {
                     return(<p>Aucuns événements trouvés</p>) 
                   } else if (data.length > 0) {
                     return ( 
@@ -97,10 +90,12 @@ Events.propTypes = {
   showEvents: PropTypes.func.isRequired,
   fetchEvents: PropTypes.func.isRequired,
   locationSearchData: PropTypes.array.isRequired,
+  undefinedData: PropTypes.string,
 };
 Events.defaultProps = {
   value: '',
   data: undefined,
+  undefinedData: '',
 };
 
 

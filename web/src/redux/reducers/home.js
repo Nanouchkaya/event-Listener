@@ -3,7 +3,6 @@ import {
   HANDLE_SEARCH_CHANGE,
   ADD_FILTERS,
   EMPTY_SEARCH_FORM_VALUE,
-  FILL_FILTER_LIST,
   HANDLE_SEARCH_SUBMIT,
   FETCH_NEXT_EVENTS,
   CHANGE_LEFT_FOR_SLIDER,
@@ -41,7 +40,7 @@ export const home = (state = initialState, action = {}) => {
     case ADD_FILTERS:
       return {
         ...state,
-        dataFilter: action.filters,
+        dataFilter: action.filter,
       };
     case EMPTY_SEARCH_FORM_VALUE:
       return {
@@ -50,11 +49,6 @@ export const home = (state = initialState, action = {}) => {
         address: '',
         filterList: [],
       };
-    // case FILL_FILTER_LIST:
-    //   return {
-    //     ...state,
-    //     filterList: action.filterList,
-    //   };
     case FETCH_NEXT_EVENTS:
       return {
         ...state,
@@ -68,7 +62,7 @@ export const home = (state = initialState, action = {}) => {
     case HANDLE_QUICK_SEARCH_DATA:
       return {
         ...state,
-        quickSearchData: action.data,
+        quickSearchData: action.data,  
       }
     default:
       return state;

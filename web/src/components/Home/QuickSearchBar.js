@@ -6,15 +6,13 @@ import PropTypes from 'prop-types';
 const QuickSearchBar = ({
   value,
   handleSearchChange,
-  handleSearchSubmit,
-  handleQuickSearch,
 }) => {
+  // redirect the user to /evenements/whateverhetypes when submitting the form
   const handleSubmit = (event) => {
     event.preventDefault();
-    handleQuickSearch();
-    //handleSearchSubmit();
     window.location.pathname = `/evenements/${value}`
   };
+  // allows to change the input value
   const handleChange = (event) => {
     handleSearchChange(event.target.value)
   }
@@ -39,7 +37,6 @@ const QuickSearchBar = ({
 QuickSearchBar.propTypes = {
   value: PropTypes.string,
   handleSearchChange: PropTypes.func.isRequired,
-  handleSearchSubmit: PropTypes.func.isRequired,
 };
 QuickSearchBar.defaultProps = {
   value: '',

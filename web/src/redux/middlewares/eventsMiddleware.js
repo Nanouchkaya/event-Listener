@@ -26,6 +26,7 @@ import config from 'src/config';
 // == Middleware : eventsMiddleware
 const eventsMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
+    // Handles search by title of an event
     case TRIGGER_MIDDLEWARE: {
       const { value } = store.getState().form;
       axios.get(`http://${config.url}:3000/events/title/${value}`)
@@ -38,6 +39,7 @@ const eventsMiddleware = (store) => (next) => (action) => {
         });
       break;
     }
+    // Gets all events (for the "tous-les-evenements" page)
     case ALL_EVENTS: {
       axios.get(`http://${config.url}:3000/events`)
         .then((response) => {
@@ -47,10 +49,8 @@ const eventsMiddleware = (store) => (next) => (action) => {
         .catch((error) => console.error('from middelware:', error));
       break;
     }
+    // handles search by localisation
     case FETCH_EVENTS_BY_LOCATION: {
-      // empties the array of data before each request
-      const empyData = [];
-      store.dispatch(sendLocationSearchData(empyData));
       axios.get(`http://${config.url}:3000/events/localisation/${action.location}`)
         .then((response) => {
           const { data } = response.data.result;
@@ -59,20 +59,18 @@ const eventsMiddleware = (store) => (next) => (action) => {
         .catch((error) => console.error('from middleware:', error));
       break;
     }
+    // handles search by multiple parameters
     case HANDLE_SUBMIT: {
       const { dataFilter } = store.getState().form;
-      console.log('middleware ok')
-      console.log(dataFilter)
       axios.post(`http://${config.url}:3000/events/filter`, dataFilter)
         .then((response) => {
           const { data } = response.data;
-          console.log(data);
-          console.log(response)
           store.dispatch(fetchRequestedData(data));
         })
         .catch((error) => console.error(error));
       break;
     }
+    // handles search by title of the event, this time for the QuickSearchBar
     case HANDLE_QUICK_SEARCH: {
       axios.get(`http://${config.url}:3000/events/title/${action.value}`)
         .then((response) => {

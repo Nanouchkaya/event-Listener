@@ -10,25 +10,29 @@ const SearchForm = ({
   locationValue,
   keywordValue,
   handleSubmit,
-  dataFilter,
+  addFilters,
   changeSearchFormValue,
 }) => {
   const _onSubmit = (event) => {
-    console.log('ok')
     event.preventDefault();
+    // creates an array of filters with the values entered by the user
     const filter = [
-      {address: locationValue},
-      {title: keywordValue,}
+      {address: `'%${locationValue}%'`},
+      {title: `'%${keywordValue}%'`},
     ]
-    
+    // sends it to the store
     addFilters(filter);
+    // triggers the middleware -> sends a request to the back with the array of filters
     handleSubmit();
+    // redirects the user to /evenements/:whatwastyped/:whatwastyped
+    window.location.pathname = `/evenements/${locationValue} /${keywordValue} `
   };
+  // allows to change inputs values
   const _onChange = (event) => {
     const { value, name } = event.target;
     changeSearchFormValue(value, name);
   };
-  console.log(locationValue, keywordValue)
+
   return (
     <div className="header-searchform">
       <h2 className="header-searchform-h2">
@@ -53,8 +57,6 @@ const SearchForm = ({
           onChange={_onChange}
         />
         <button className="header-searchform-submit" type="submit">Rechercher</button>
-
-        {/* { dataFilter.length > 0 && <Route path="evenements/:address/:title" />} */}
       </form>
     </div>
   );
@@ -66,6 +68,8 @@ SearchForm.propTypes = {
   locationValue: PropTypes.string,
   keywordValue: PropTypes.string,
   changeSearchFormValue: PropTypes.func.isRequired,
+  addFilters: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 };
 SearchForm.defaultProps = {
   locationValue: '',
