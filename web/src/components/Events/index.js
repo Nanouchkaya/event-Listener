@@ -40,13 +40,13 @@ class Events extends React.Component {
       // fetch all events by pathname
       handleQuickSearch(param[2]);
     }
-    // pour fixer les filtres au scroll
-    if (window.innerWidth >= 768) {
-      const formTopY = document.querySelector('.events-left').getBoundingClientRect().y;
-      const formHeight = document.querySelector('.events-left').clientHeight;
-      const pos = formTopY - formHeight;
-      window.addEventListener('scroll', () => this.stickyForm(pos));
-    }
+    //pour fixer les filtres au scroll
+    // if (window.innerWidth >= 768) {
+    //   const formTopY = document.querySelector('.events-left').getBoundingClientRect().y;
+    //   const formHeight = document.querySelector('.events-left').clientHeight;
+    //   const pos = formTopY - formHeight;
+    //   window.addEventListener('scroll', () => this.stickyForm(pos));
+    // }
   }
 
   componentWillUnmount() {
@@ -74,7 +74,7 @@ class Events extends React.Component {
     } = this.props;
 
     const { styleForm, styleFakeDiv } = this.state;
-
+    console.log(locationSearchData)
     return (
       <section className="events">
 
@@ -138,7 +138,7 @@ class Events extends React.Component {
                       </div>
 
                       <div className="events-right">
-                        { data.map((event) => <Event key={event.id} {...event} jsxFor="list" />)}
+                        { locationSearchData.map((event) => <Event key={event.id} {...event} jsxFor="list" />) }
                       </div>
                     </>
                   );
@@ -163,6 +163,7 @@ Events.propTypes = {
   fetchEvents: PropTypes.func.isRequired,
   locationSearchData: PropTypes.array.isRequired,
   undefinedData: PropTypes.string,
+  handleQuickSearch: PropTypes.func.isRequired,
 };
 Events.defaultProps = {
   value: '',
