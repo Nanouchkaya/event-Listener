@@ -1,6 +1,10 @@
 import axios from 'axios';
 
 
+// import config
+import config from 'src/config';
+
+
 import {
   GET_EVENT_DETAILS,
   CHANGE_INTEREST_TO_THE_EVENT,
@@ -14,10 +18,7 @@ import {
 } from '../actions/creators';
 
 
-// import config
-import config from 'src/config';
-
- const eventDetailsMiddleware = (store) => (next) => (action) => {
+const eventDetailsMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case GET_EVENT_DETAILS: {
       axios.get(`http://${config.url}:3000/events/${action.id}`)
@@ -34,19 +35,18 @@ import config from 'src/config';
       const token = window.localStorage.getItem('token');
 
       if (token) {
-        
         const { user, eventDetails } = store.getState();
-        const requestAction = (action.isInterested) ?  `delete` : `add`;
+        const requestAction = (action.isInterested) ? 'delete' : 'add';
         axios.post(`http://${config.url}:3000/users/${user.id}/interest/${requestAction}/${eventDetails.data.id}`,
-        {
-          headers: {
-            Authorization: `token ${token}`,
-          }
-        })
+          {
+            headers: {
+              Authorization: `token ${token}`,
+            },
+          })
           .then((response) => {
             store.dispatch(changeUserPreferencesToTheEvent('interested'));
           })
-          .catch(() => {
+          .catch((error) => {
             console.log(error);
           });
       }
@@ -57,15 +57,14 @@ import config from 'src/config';
       const token = window.localStorage.getItem('token');
 
       if (token) {
-        
         const { user, eventDetails } = store.getState();
-        const requestAction = (action.participate) ?  `delete` : `add`;
+        const requestAction = (action.participate) ? 'delete' : 'add';
         axios.post(`http://${config.url}:3000/users/${user.id}/participation/${requestAction}/${eventDetails.data.id}`,
-        {
-          headers: {
-            Authorization: `token ${token}`,
-          }
-        })
+          {
+            headers: {
+              Authorization: `token ${token}`,
+            },
+          })
           .then((response) => {
             store.dispatch(changeUserPreferencesToTheEvent('participation'));
           })

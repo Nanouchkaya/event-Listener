@@ -64,7 +64,6 @@ export const eventDetails = (state = detailsState, action = {}) => {
     }
 
     case CHANGE_USER_PREFERENCES_TO_THE_EVENT: {
-      console.log(action);
       return {
         ...state,
         [action.preferenceName]: !state[action.preferenceName],

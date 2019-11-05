@@ -25,7 +25,7 @@ const UserEvents = ({
           {eventsParticipate.map((event) => <Event key={event.id} {...event} view="list" />)}
         </div>
       </div>
-      
+
       <h3 className="preferences-events-content-subtitle">
         Suivis
       </h3>
@@ -35,7 +35,7 @@ const UserEvents = ({
           {eventsInterest.map((event) => <Event key={event.id} {...event} view="list" />)}
         </div>
       </div>
-      
+
     </div>
   </section>
 );

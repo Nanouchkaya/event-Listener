@@ -1,6 +1,9 @@
 // == Import: npm
 import axios from 'axios';
 
+// import config
+import config from 'src/config';
+
 // == Import :  Action Types
 import {
   TRIGGER_MIDDLEWARE,
@@ -17,9 +20,6 @@ import {
   sendLocationSearchData,
   fetchNextEvents,
 } from '../actions/creators';
-
-// import config
-import config from 'src/config';
 
 // == Middleware : eventsMiddleware
 const eventsMiddleware = (store) => (next) => (action) => {
@@ -79,7 +79,7 @@ const eventsMiddleware = (store) => (next) => (action) => {
       * requête pour récupérer les prochains événements à afficher sur l'accueil
       * next-events/:number => nombre d'evt à afficher
       */
-     case NEXT_EVENTS: {
+    case NEXT_EVENTS: {
       axios.post(`http://${config.url}:3000/events/next-events/5`)
         .then((response) => {
           store.dispatch(fetchNextEvents(response.data.result.data));

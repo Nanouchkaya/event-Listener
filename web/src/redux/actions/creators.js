@@ -97,10 +97,10 @@ export const showMessageUpdateUser = (messageType, messageContent) => ({
 });
 export const deleteShowMessage = () => ({
   type: DELETE_SHOW_MESSAGE,
-})
+});
 export const deleteUser = () => ({
   type: DELETE_USER,
-})
+});
 
 // App : Nav.js
 export const openNavModal = (name) => ({
@@ -149,7 +149,6 @@ export const changeCheckValueInModal = (modalName, checkName) => ({
 export const deconnect = () => ({
   type: DECONNECT,
 });
-
 
 
 // Home : QuickSearchBar.js
@@ -214,7 +213,7 @@ export const changeParticipationToTheEvent = (participate) => ({
 export const changeUserPreferencesToTheEvent = (preferenceName) => ({
   type: CHANGE_USER_PREFERENCES_TO_THE_EVENT,
   preferenceName,
-})
+});
 
 
 // User : Update
@@ -281,4 +280,4 @@ export const handleSearchFormChange = (value) => ({
 export const changeLeftForSlider = (value) => ({
   type: CHANGE_LEFT_FOR_SLIDER,
   value,
-})
+});
