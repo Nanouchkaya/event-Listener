@@ -78,7 +78,11 @@ Event.propTypes = {
   address: PropTypes.string.isRequired,
   date_start: PropTypes.string.isRequired,
   jsxFor: PropTypes.string.isRequired,
-  getCity: PropTypes.func.isRequired,
+  getCity: PropTypes.func,
+};
+
+Event.defaultProps = {
+  getCity: () => {},
 };
 // == Export
 export default Event;

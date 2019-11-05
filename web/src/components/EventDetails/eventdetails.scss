@@ -121,10 +121,9 @@
 
           .share-links-modal {
             position: absolute;
-            background: #ffffff;
             display: flex;
             border-radius: 2px;
-            border: solid 1px #333;
+            box-shadow: $boxShadow;
             animation: fromBottom .3s ease;
             animation-fill-mode: forwards;
           }

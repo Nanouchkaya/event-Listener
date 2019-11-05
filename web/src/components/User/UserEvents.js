@@ -22,7 +22,7 @@ const UserEvents = ({
 
       <div className="events-view-card">
         <div className="events-container">
-          {eventsParticipate.map((event) => <Event key={event.id} {...event} jsxFor="list" />)}
+          {eventsParticipate.map((event) => <Event key={event.id} {...event} jsxFor="card" />)}
         </div>
       </div>
 
@@ -32,7 +32,7 @@ const UserEvents = ({
 
       <div className="events-view-card">
         <div className="events-container">
-          {eventsInterest.map((event) => <Event key={event.id} {...event} jsxFor="list" />)}
+          {eventsInterest.map((event) => <Event key={event.id} {...event} jsxFor="card" />)}
         </div>
       </div>
 

@@ -10,12 +10,12 @@ const QuickSearchBar = ({
   // redirect the user to /evenements/whateverhetypes when submitting the form
   const handleSubmit = (event) => {
     event.preventDefault();
-    window.location.pathname = `/evenements/${value}`
+    window.location.pathname = `/evenements/${value}`;
   };
   // allows to change the input value
   const handleChange = (event) => {
-    handleSearchChange(event.target.value)
-  }
+    handleSearchChange(event.target.value);
+  };
   return (
     <>
     <form onSubmit={handleSubmit} className="searchbar-visible">

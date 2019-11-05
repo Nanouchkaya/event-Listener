@@ -1,9 +1,6 @@
 // == Import : npm
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Route, Link } from 'react-router-dom';
-import { addFilters } from '../../redux/actions/creators';
-
 
 // == Composant SearchForm
 const SearchForm = ({
@@ -17,15 +14,15 @@ const SearchForm = ({
     event.preventDefault();
     // creates an array of filters with the values entered by the user
     const filter = [
-      {address: `'%${locationValue}%'`},
-      {title: `'%${keywordValue}%'`},
-    ]
+      { address: `'%${locationValue}%'` },
+      { title: `'%${keywordValue}%'` },
+    ];
     // sends it to the store
     addFilters(filter);
     // triggers the middleware -> sends a request to the back with the array of filters
     handleSubmit();
     // redirects the user to /evenements/:whatwastyped/:whatwastyped
-    window.location.pathname = `/evenements/${locationValue} /${keywordValue} `
+    window.location.pathname = `/evenements/${locationValue} /${keywordValue}`;
   };
   // allows to change inputs values
   const _onChange = (event) => {

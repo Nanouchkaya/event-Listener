@@ -87,15 +87,15 @@ class Events extends React.Component {
             <Route exact path="/tous-les-evenements">
               <div className="events-right">
                 { data.length === 0 && (
-                  <div className='sweet-loading'>
+                  <div className="sweet-loading">
                     <ClipLoader
                       css={override}
-                      sizeUnit={"px"}
+                      sizeUnit="px"
                       size={150}
-                      color={'#123abc'}
-                      loading={true}
+                      color="#123abc"
+                      loading
                     />
-                  </div>      
+                  </div>
                 )}
                 { data.map((event) => <Event key={event.id} {...event} jsxFor="list" />)}
               </div>
