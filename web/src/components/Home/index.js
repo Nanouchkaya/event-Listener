@@ -17,15 +17,15 @@ class Home extends React.Component {
   componentDidMount() {
     window.addEventListener('scroll', scroll = () => {
       const scroll = window.scrollY;
-      if(scroll > 400) {
+      if (scroll > 400) {
         document.querySelector('.home').classList.remove('hidden-section');
         document.querySelector('.home').classList.add('display-section');
-      } else {
+      }
+      else {
         document.querySelector('.home').classList.remove('display-section');
         document.querySelector('.home').classList.add('hidden-section');
       }
-    })
-
+    });
   }
 
   componentWillUnmount() {

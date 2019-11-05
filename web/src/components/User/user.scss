@@ -32,8 +32,10 @@
   margin: 20rem 1rem 10rem;
 
   .preferences {
+    min-height: 40vh;
     &-title {
-      @include title(turquoise);
+      @include titleFlag($colorDarkTheme, $mainGradientExtDark, $turquoise, $purple);
+      margin: 1rem -3.7rem 4rem;
     }
 
     &-infos {
@@ -137,6 +139,7 @@
           text-decoration: underline;
           margin: 0.2rem 0;
           padding: 0;
+          text-decoration: none;
 
           &--mode-editor, &--validate-preferences {
             color: $turquoise;
@@ -220,15 +223,23 @@
   }
 
   .preferences-events {
+    min-height: 60vh;
     &-title {
-      @include title($purple);
+      @include titleFlag($colorDarkTheme, $mainGradientExtDark, $turquoise, $purple);
+      margin: 1rem -3.7rem 4rem;
     }
 
     &-content {
       padding: 1rem 0;
 
       &-subtitle {
-        @include subtitleType1;
+        @include title(transparent);
+        text-align: left;
+        margin-top: 2rem;
+      }
+
+      &-text {
+        margin: 1rem .5rem 2rem;
       }
       
     }
@@ -240,6 +251,12 @@
   .user {
     margin: 20rem auto 10rem;
   }
+
+  .preferences-events {
+    &-content {
+      display: flex;
+    }
+  }
 }
 
 // for desktop
@@ -247,8 +264,9 @@
 
   .user {
     .preferences {
+      padding: 0 1rem;
       &-title {
-        margin-top: 4rem;
+        margin: 4rem -4.7rem;
       }
 
       &-infos {
@@ -276,7 +294,6 @@
 
           .button {
             margin: 0 1rem;
-            text-decoration: none;
 
             &:hover,
             &:focus {
@@ -300,6 +317,13 @@
 
           }
         }
+      }
+    }
+
+    .preferences-events {
+      padding: 0 1rem;
+      &-title {
+        margin: 4rem -4.7rem;
       }
     }
 

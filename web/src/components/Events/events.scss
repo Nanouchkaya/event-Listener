@@ -190,15 +190,15 @@
       #fake-div {
         display: none;
         width: calc(750px / 2);
-        height: 200px;
+        height: 800px;
         padding: 0 2rem;
       }
 
-      .events-left {
+      .events-right {
          width: calc(750px / 2);
       }
 
-      .events-right{
+      .events-left{
          width: calc(750px / 2);
          padding-right: 1rem;
       }
@@ -224,12 +224,12 @@
     }
 
     .events-view-list {
-      .events-left {
+      .events-right {
         width: calc(1200px / 2);
         left: calc(1200px / 2 - 16px);
       }
 
-      .events-right{
+      .events-left{
         width: calc(1200px / 2);
       }
 
@@ -256,7 +256,7 @@
             box-shadow: 0 0 15px rgba(36, 34, 34, .7);
             width: calc(100% / 3 - 1rem);
       
-            .event-address {
+            .event-resume-address {
               display: initial;
             }
           }
