@@ -1,12 +1,12 @@
 import {
   CHANGE_SEARCH_FORM_VALUE,
-  HANDLE_SEARCH_FORM_CHANGE,
+  HANDLE_SEARCH_CHANGE,
   ADD_FILTERS,
   EMPTY_SEARCH_FORM_VALUE,
-  FILL_FILTER_LIST,
   HANDLE_SEARCH_SUBMIT,
   FETCH_NEXT_EVENTS,
   CHANGE_LEFT_FOR_SLIDER,
+  HANDLE_QUICK_SEARCH_DATA,
 } from '../actions/types';
 
 const initialState = {
@@ -17,6 +17,7 @@ const initialState = {
   dataFilter: [],
   data: [],
   slide: 0,
+  quickSearchData: [],
 };
 
 export const home = (state = initialState, action = {}) => {
@@ -26,12 +27,12 @@ export const home = (state = initialState, action = {}) => {
         ...state,
         value: '',
       };
-    case CHANGE_SEARCH_FORM_VALUE:
-      return {
+    case CHANGE_SEARCH_FORM_VALUE: 
+     return {
         ...state,
-        [action.name]: [action.value],
-      };
-    case HANDLE_SEARCH_FORM_CHANGE:
+        [action.name]: action.value,
+      };  
+  case HANDLE_SEARCH_CHANGE:
       return {
         ...state,
         value: action.value,
@@ -39,7 +40,7 @@ export const home = (state = initialState, action = {}) => {
     case ADD_FILTERS:
       return {
         ...state,
-        dataFilter: action.filters,
+        dataFilter: action.filter,
       };
     case EMPTY_SEARCH_FORM_VALUE:
       return {
@@ -48,11 +49,6 @@ export const home = (state = initialState, action = {}) => {
         address: '',
         filterList: [],
       };
-    // case FILL_FILTER_LIST:
-    //   return {
-    //     ...state,
-    //     filterList: action.filterList,
-    //   };
     case FETCH_NEXT_EVENTS:
       return {
         ...state,
@@ -63,6 +59,11 @@ export const home = (state = initialState, action = {}) => {
         ...state,
         slide: action.value,
       };
+    case HANDLE_QUICK_SEARCH_DATA:
+      return {
+        ...state,
+        quickSearchData: action.data,  
+      }
     default:
       return state;
   }

@@ -37,16 +37,16 @@ const LegalMentions = () => (
     </p>
     <ul className="legal-mentions-list text">
       <li className="legal-mentions-list-item">
-        Guillaume Terrien <a href="">www</a>
+        <a href="https://www.linkedin.com/in/ines-mouandjo-lobe/">Inès Mouandjo Lobé</a> | Product Owner & Scrum Master
       </li>
       <li className="legal-mentions-list-item">
-        Claudine Brun <a href="">www</a>
+       <a href="https://www.linkedin.com/in/guillaume-terrien/">Guillaume Terrien</a> | Product Owner & Lead Dev Back
       </li>
       <li className="legal-mentions-list-item">
-        Inès Mouandjo Lobé <a href="">www</a>
+        <a href="https://www.linkedin.com/">Claudine Brun</a> | Lead Dev Front
       </li>
       <li className="legal-mentions-list-item">
-        Guillaume Ersent <a href="">www</a>
+       <a href="https://www.linkedin.com/in/guillaume-ersent-15419a17b/">Guillaume Ersent</a> | Référent Technique
       </li>
     </ul>
   </section>
