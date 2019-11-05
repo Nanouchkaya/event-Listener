@@ -65,7 +65,7 @@ const RegisterForm = ({
                 name="password"
                 value={password}
                 onChange={handleChangeValue}
-                placeholder="Mot de passe * (Minimum 7 caractères)"
+                placeholder="Mot de passe * (Minimum 6 caractères)"
                 type="password"
               />
               <input

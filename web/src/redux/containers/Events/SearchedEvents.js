@@ -3,14 +3,15 @@ import { connect } from 'react-redux';
 
 
 // == Import : local
-import Events from 'src/components/Events';
+import SearchedEvents from 'src/components/Events/SearchedEvents';
 
 
 // == Import : Action Creators
 import {
-  allEvents,
   fetchEventsByLocation,
   handleQuickSearch,
+  handleSubmit,
+  addFilters,
 } from '../../actions/creators';
 
 
@@ -21,6 +22,7 @@ const mapStateToProps = (state) => ({
   undefinedData: state.form.caseNoData,
   quickSearchValue: state.home.value,
   quickSearchData: state.home.quickSearchData,
+  homeFormData: state.form.data,
 });
 
 
@@ -28,8 +30,10 @@ const mapDispatchToProps = (dispatch) => ({
   showEvents: () => dispatch(allEvents()),
   fetchEvents: (location) => dispatch(fetchEventsByLocation(location)),
   handleQuickSearch: (value) => dispatch(handleQuickSearch(value)),
+  handleSubmit: () => dispatch(handleSubmit()),
+  addFilters: (filters) => dispatch(addFilters(filters)),
 });
 
 
 // == Export
-export default connect(mapStateToProps, mapDispatchToProps)(Events);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchedEvents);

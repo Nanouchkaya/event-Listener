@@ -24,7 +24,7 @@ const Footer = ({ fetchEvents }) => {
       <div>
         <div className="footer-events">
           <h2 className="footer-subtitle">Tous les événements</h2>
-          {cities.map((city) => (<Link onClick={handleClick} key={city} to={`/tous-les-evenements/${city}`} data-city={city}> - {city}<br /> </Link>))}
+          {cities.map((city) => (<Link onClick={handleClick} key={city} to={`/evenements/${city}`} data-city={city}> - {city}<br /> </Link>))}
         </div>
 
         <div className="footer-social">
@@ -36,9 +36,11 @@ const Footer = ({ fetchEvents }) => {
         <div className="footer-links">
           <h2 className="footer-subtitle">Liens utiles</h2>
           <ul>
-            <li><Link to="/tous-les-evenements">
-            Rechercher un événement
-          </Link></li>
+            <li>
+              <Link to="/tous-les-evenements">
+                Rechercher un événement
+              </Link>
+            </li>
             <li>
               <Link to="/politique-de-confidentialite">
                 Politique de confidentialité

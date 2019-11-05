@@ -6,6 +6,8 @@ import QuickSearchBar from 'src/components/Home/QuickSearchBar';
 import {
   handleSearchChange,
   handleSearchSubmit,
+  handleQuickSearch,
+
 } from '../../actions/creators';
 
 const mapStateToProps = (state) => ({
@@ -16,6 +18,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   handleSearchChange: (value) => dispatch(handleSearchChange(value)),
   handleSearchSubmit: () => dispatch(handleSearchSubmit()),
+  handleQuickSearch: () => dispatch(handleQuickSearch()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuickSearchBar);

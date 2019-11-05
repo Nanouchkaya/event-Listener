@@ -1,0 +1,12 @@
+@import 'src/assets/styles/vars';
+@import 'src/assets/styles/mixins';
+
+.error {
+  @include contentLayer;
+
+  div {
+    width: 100%;
+    text-align: center;
+    padding: 2rem 0;
+  }
+}

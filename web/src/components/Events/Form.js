@@ -56,11 +56,6 @@ const Form = ({
         </button>
       </div>
       { advanced && <Advanced /> }
-      <input
-        type="submit"
-        className="form-submit"
-        value="Rechercher"
-      />
     </form>
   );
 };

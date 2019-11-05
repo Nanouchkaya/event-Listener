@@ -24,7 +24,8 @@ class Inputs extends React.Component {
       <>
         <label
           htmlFor={children}
-          className="advanced-filter-label">
+          className="advanced-filter-label"
+        >
           {children}
         </label>
         <input

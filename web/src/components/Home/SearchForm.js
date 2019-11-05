@@ -1,21 +1,30 @@
 // == Import : npm
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Route, Link } from 'react-router-dom';
-
 
 // == Composant SearchForm
 const SearchForm = ({
   locationValue,
   keywordValue,
   handleSubmit,
-  dataFilter,
+  addFilters,
   changeSearchFormValue,
 }) => {
   const _onSubmit = (event) => {
     event.preventDefault();
+    // creates an array of filters with the values entered by the user
+    const filter = [
+      { address: `'%${locationValue}%'` },
+      { title: `'%${keywordValue}%'` },
+    ];
+    // sends it to the store
+    addFilters(filter);
+    // triggers the middleware -> sends a request to the back with the array of filters
     handleSubmit();
+    // redirects the user to /evenements/:whatwastyped/:whatwastyped
+    window.location.pathname = `/evenements/${locationValue} /${keywordValue}`;
   };
+  // allows to change inputs values
   const _onChange = (event) => {
     const { value, name } = event.target;
     changeSearchFormValue(value, name);
@@ -36,12 +45,7 @@ const SearchForm = ({
           onChange={_onChange}
 
         />
-        {/* <select className="header-searchform-input select">
-          <option selected disabled value="All">Toutes les catégories</option>
-          <option defaultValue="Catégorie 1">Catégorie 1</option>
-          <option defaultValue="Catégorie 2">Catégorie 2</option>
-          <option defaultValue="Catégorie 3">Catégorie 3</option>
-        </select> */}
+
         <input
           className="header-searchform-input"
           placeholder="Mots clés"
@@ -49,10 +53,7 @@ const SearchForm = ({
           value={keywordValue}
           onChange={_onChange}
         />
-        <Link to="/tous-les-evenements/paris/data" className="header-searchform-submit" type="submit">
-          Rechercher
-        </Link>
-        { dataFilter.length > 0 && <Route exact path="/tous-les-evenements" />}
+        <button className="header-searchform-submit" type="submit">Rechercher</button>
       </form>
     </div>
   );
@@ -64,6 +65,8 @@ SearchForm.propTypes = {
   locationValue: PropTypes.string,
   keywordValue: PropTypes.string,
   changeSearchFormValue: PropTypes.func.isRequired,
+  addFilters: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 };
 SearchForm.defaultProps = {
   locationValue: '',

@@ -2,18 +2,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 // == Composant QuickSearchBar
 const QuickSearchBar = ({
   value,
   handleSearchChange,
-  handleSearchSubmit,
 }) => {
+  // redirect the user to /evenements/whateverhetypes when submitting the form
   const handleSubmit = (event) => {
     event.preventDefault();
-    handleSearchSubmit();
+    window.location.pathname = `/evenements/${value}`;
+  };
+  // allows to change the input value
+  const handleChange = (event) => {
+    handleSearchChange(event.target.value);
   };
   return (
+    <>
     <form onSubmit={handleSubmit} className="searchbar-visible">
       <input
         type="search"
@@ -21,9 +25,10 @@ const QuickSearchBar = ({
         placeholder="Recherche..."
         value={value}
         /* Récupération de la valeur entrée dans l'input */
-        onChange={(event) => handleSearchChange(event.target.value)}
+        onChange={handleChange}
       />
     </form>
+    </>
   );
 };
 
@@ -32,7 +37,6 @@ const QuickSearchBar = ({
 QuickSearchBar.propTypes = {
   value: PropTypes.string,
   handleSearchChange: PropTypes.func.isRequired,
-  handleSearchSubmit: PropTypes.func.isRequired,
 };
 QuickSearchBar.defaultProps = {
   value: '',

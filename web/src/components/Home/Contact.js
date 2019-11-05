@@ -18,14 +18,15 @@ class Contact extends React.Component {
       [name]: value,
     });
   }
+
   handleSubmit = (event) => {
     const { nameInput, emailInput, objectInput, messageText } = this.state;
     event.preventDefault();
-    axios.post("http://localhost:3000/contact/send", {
-        name: nameInput,
-        email: emailInput,
-        object: objectInput,
-        message: messageText
+    axios.post('http://localhost:3000/contact/send', {
+      name: nameInput,
+      email: emailInput,
+      object: objectInput,
+      message: messageText,
     })
       .then((response) => {
         console.log(response);
@@ -44,7 +45,7 @@ class Contact extends React.Component {
       nameInput, 
       emailInput, 
       objectInput, 
-      messageText 
+      messageText,
   } = this.state;
     return (
       <section className="contact">

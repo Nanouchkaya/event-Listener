@@ -7,6 +7,7 @@ import {} from '../../actions/creators';
 
 const mapStateToProps = (state) => ({
   data: state.form.data,
+  quickSearchData: state.home.quickSearchData,
 });
 
 const mapDispatchToProps = (dispatch) => ({});
