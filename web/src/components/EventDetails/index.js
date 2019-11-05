@@ -15,7 +15,7 @@ import Datetime from 'src/redux/containers/EventDetails/Datetime';
 import Address from 'src/redux/containers/EventDetails/Address';
 import Description from 'src/redux/containers/EventDetails/Description';
 import EventDetailsMap from 'src/redux/containers/EventDetails/Map';
-import Tags from './Tags';
+import Tags from 'src/redux/containers/EventDetails/Tags';
 
 
 // import local
