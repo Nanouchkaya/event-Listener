@@ -2,18 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // == Import : local
-import ShareLinks from 'src/components/Modal/ShareLinks';
 import shareIcon from 'src/assets/images/icons/icons8-share-50.png';
 import heartIcon from 'src/assets/images/icons/icons8-heart-50.png';
 import heartCheckedIcon from 'src/assets/images/icons/icons8-heart-checked-50.png';
+import ShareLinks from './ShareLinks';
 
 // == Composant Header
 const Header = ({
   showModal,
-  likeIcon,
-  changeHeartIcon,
-  openShareModal,
-  closeShareModal,
   banner,
   title,
   price,
@@ -23,13 +19,23 @@ const Header = ({
   urlLive,
   isOnline,
   isConnected,
+  liked,
+  changeLikeToTheEvent,
+  changeShareLinksModal,
 }) => {
   /* Si la props likeIcon vaut "true" je change d'icon */
-  const iconHeart = likeIcon ? heartCheckedIcon : heartIcon;
+  const iconHeart = liked ? heartCheckedIcon : heartIcon;
   const payant = price ? 'Payant' : 'Gratuit';
   const eventStatut = getEventStatus(dateStart, dateEnd);
   const onlineClass = isOnline ? 'event-link-online' : 'event-link-offline';
 
+  const handleChangeLikeToTheEvent = () => {
+    changeLikeToTheEvent(liked);
+  };
+
+  const handleChangeShareLinksModal = () => {
+    changeShareLinksModal();
+  };
   return (
     <div className="event-header">
       <div
@@ -54,7 +60,7 @@ const Header = ({
             { isConnected && (
               <button
                 type="button"
-                onClick={changeHeartIcon}
+                onClick={handleChangeLikeToTheEvent}
               >
                 <img alt="like" src={iconHeart} />
               </button>
@@ -63,13 +69,13 @@ const Header = ({
             {/* Passage de false/true au click sur l'icon de partage */}
             <button
               type="button"
-              onClick={openShareModal}
+              onClick={handleChangeShareLinksModal}
             >
               <img alt="share" src={shareIcon} />
             </button>
 
             {/* Affichage de la modal que si showModal vaut "true" */}
-            { showModal && <ShareLinks closeModal={closeShareModal} /> }
+            { showModal && <ShareLinks /> }
           </div>
           <span className="event-header-bottom-price">{payant}</span>
         </div>
@@ -87,10 +93,7 @@ const Header = ({
 // == PropTypes
 Header.propTypes = {
   showModal: PropTypes.bool.isRequired,
-  likeIcon: PropTypes.bool.isRequired,
-  changeHeartIcon: PropTypes.func.isRequired,
-  openShareModal: PropTypes.func.isRequired,
-  closeShareModal: PropTypes.func.isRequired,
+  changeShareLinksModal: PropTypes.func.isRequired,
   getEventStatus: PropTypes.func.isRequired,
   price: PropTypes.number,
   banner: PropTypes.string,
@@ -100,6 +103,8 @@ Header.propTypes = {
   urlLive: PropTypes.string,
   isOnline: PropTypes.number,
   isConnected: PropTypes.bool.isRequired,
+  liked: PropTypes.bool.isRequired,
+  changeLikeToTheEvent: PropTypes.func.isRequired,
 };
 Header.defaultProps = {
   price: 0,

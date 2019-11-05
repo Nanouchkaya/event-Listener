@@ -2,44 +2,15 @@
 
 // Action Type
 import {
-  CHANGE_HEART_ICON,
-  OPEN_SHARE_LINKS_MODAL,
-  CLOSE_SHARE_LINKS_MODAL,
+  CHANGE_SHARE_LINKS_MODAL,
   FETCH_EVENT_DETAILS,
   CHANGE_USER_PREFERENCES_TO_THE_EVENT,
   FETCH_USER_PREFERENCES_TO_THE_EVENT,
 } from '../actions/types';
 
-const initialState = {
-  showModal: false,
-  likeIcon: false,
-};
-
-export const eventIcons = (state = initialState, action = {}) => {
-  switch (action.type) {
-    case CHANGE_HEART_ICON: {
-      return {
-        ...state,
-        likeIcon: !state.likeIcon,
-      };
-    }
-    case OPEN_SHARE_LINKS_MODAL:
-      return {
-        ...state,
-        showModal: true,
-      };
-    case CLOSE_SHARE_LINKS_MODAL:
-      return {
-        ...state,
-        showModal: false,
-      };
-    default:
-      return state;
-  }
-};
-
 
 const detailsState = {
+  showModal: false,
   data: {},
   position: {},
   liked: false,
@@ -48,6 +19,11 @@ const detailsState = {
 };
 export const eventDetails = (state = detailsState, action = {}) => {
   switch (action.type) {
+    case CHANGE_SHARE_LINKS_MODAL:
+      return {
+        ...state,
+        showModal: !state.showModal,
+      };
     case FETCH_EVENT_DETAILS:
       return {
         ...state,
@@ -60,14 +36,14 @@ export const eventDetails = (state = detailsState, action = {}) => {
         liked: action.liked,
         interested: action.interested,
         participation: action.participation,
-      }
+      };
     }
 
     case CHANGE_USER_PREFERENCES_TO_THE_EVENT: {
       return {
         ...state,
         [action.preferenceName]: !state[action.preferenceName],
-      }
+      };
     }
     default:
       return state;

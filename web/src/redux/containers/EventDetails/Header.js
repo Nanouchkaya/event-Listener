@@ -4,15 +4,13 @@ import Header from 'src/components/EventDetails/Header';
 
 // action creators
 import {
-  changeHeartIcon,
-  openShareLinksModal,
-  closeShareLinksModal,
+  changeShareLinksModal,
+  changeLikeToTheEvent,
 } from '../../actions/creators';
 import { getEventStatus } from '../../actions/selectors';
 
 const mapStateToProps = (state) => ({
-  showModal: state.eventIcons.showModal,
-  likeIcon: state.eventIcons.likeIcon,
+  showModal: state.eventDetails.showModal,
   price: state.eventDetails.data.price,
   banner: state.eventDetails.data.url_image,
   title: state.eventDetails.data.title,
@@ -21,13 +19,13 @@ const mapStateToProps = (state) => ({
   isOnline: state.eventDetails.data.is_online,
   urlLive: state.eventDetails.data.url_live,
   isConnected: state.app.isConnected,
+  liked: state.eventDetails.liked,
   getEventStatus,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  changeHeartIcon: () => dispatch(changeHeartIcon()),
-  openShareModal: () => dispatch(openShareLinksModal()),
-  closeShareModal: () => dispatch(closeShareLinksModal()),
+  changeShareLinksModal: () => dispatch(changeShareLinksModal()),
+  changeLikeToTheEvent: (liked) => dispatch(changeLikeToTheEvent(liked)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
