@@ -11,9 +11,9 @@ class SearchedEvents extends React.Component  {
 
     // allows to get only the desired param
     const param = this.props.location.pathname.split('/');
-    
+    console.log(param.length)
     // handles the quickSearchBar search
-    if (param.length < 3) {
+    if (param.length <= 3) {
      // fetch all events by city
     fetchEvents(param[2]);
     // fetch all events by pathname
@@ -34,6 +34,7 @@ class SearchedEvents extends React.Component  {
   }
   render() {
     const { quickSearchData, homeFormData } = this.props;
+    console.log(quickSearchData, homeFormData)
     return (
  <>
         <section className="events">
@@ -45,7 +46,7 @@ class SearchedEvents extends React.Component  {
               
               {
                 (() => {
-                  if (homeFormData.length < 0 ) {
+                  if (homeFormData.length === 0 ) {
                     return (
                       <>
                       { quickSearchData.length > 0 ? quickSearchData.map((event) => <Event key={event.id} {...event} />) : <p>Aucun événement ne correspond à votre recherche</p>}
