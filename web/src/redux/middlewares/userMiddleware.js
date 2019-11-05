@@ -11,6 +11,7 @@ import {
   CHECK_CONNECT,
   CHANGE_UPDATE_USER,
   DELETE_USER,
+  FETCH_NEW_USER_INFO,
 } from '../actions/types';
 
 import {
@@ -126,6 +127,27 @@ const userMiddleware = (store) => (next) => (action) => {
       break;
     }
 
+    case FETCH_NEW_USER_INFO: {
+      const token = window.localStorage.getItem('token');
+
+      if (token) {
+        axios.get(`http://${config.url}:3000/check-auth`, {
+          headers: {
+            Authorization: `token ${token}`,
+          },
+        })
+          .then((response) => {
+            if (!response.data.error) {
+              store.dispatch(fetchUserInfos(response.data.data));
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+      break;
+    }
+
     case CHANGE_UPDATE_USER: {
       const token = window.localStorage.getItem('token');
       const { user } = store.getState();
@@ -166,6 +188,7 @@ const userMiddleware = (store) => (next) => (action) => {
         });
       break;
     }
+
     default:
       next(action);
   }
