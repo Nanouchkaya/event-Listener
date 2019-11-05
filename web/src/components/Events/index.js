@@ -13,11 +13,10 @@ import EventsMap from 'src/redux/containers/Events/Map';
 // == Composant Events
 class Events extends React.Component {
   state = {
-    styleForm: {
-      position: 'relative',
-      top: '0',
-    },
+    styleForm: {},
+    styleFakeDiv: {},
   }
+
   componentDidMount() {
     const { value, showEvents, fetchEvents } = this.props;
     const param = this.props.location.pathname.split('/');
@@ -27,36 +26,41 @@ class Events extends React.Component {
       // fetch all events by city
       fetchEvents(param[2]);
     }
-
     // pour fixer les filtres au scroll
-    window.addEventListener('scroll', this.stickyForm)
+    if (window.innerWidth >= 768) {
+      const formTopY = document.querySelector('.events-left').getBoundingClientRect().y;
+      const formHeight = document.querySelector('.events-left').clientHeight;
+      const pos = formTopY - formHeight;
+      window.addEventListener('scroll', () => this.stickyForm(pos));
+    }
   }
 
-  stickyForm = () => {
-    const formTopY = document.querySelector('.events-left').getBoundingClientRect().y;
-    const formHeight = document.querySelector('.events-left').clientHeight;
-    if (window.scrollY > formTopY - formHeight) {
-      this.setState({
-        styleForm: {
-          position: 'fixed',
-          top: '100px',
-        },
-      })
-    }
-
+  componentWillUnmount() {
     window.removeEventListener('scroll', this.stickyForm);
   }
 
+  stickyForm = (pos) => {
+    this.setState({
+      styleForm: {
+        position: (window.scrollY >= pos) ? 'fixed' : 'static',
+        top: '70px',
+        left: '50%',
+        paddingRight: (window.scrollY >= pos) ? '1rem' : '0',
+      },
+      styleFakeDiv: {
+        display: (window.scrollY >= pos) ? 'block' : 'none',
+      },
+    });
+  }
 
   render() {
     const {
       data,
       locationSearchData,
-      undefinedData,
     } = this.props;
 
-    const { styleForm } = this.state;
-    
+    const { styleForm, styleFakeDiv } = this.state;
+
     return (
       <section className="events">
 
@@ -67,54 +71,52 @@ class Events extends React.Component {
         <div className="events-view-list">
           <Switch>
             <Route exact path="/tous-les-evenements">
-              <div className="events-right">          
-                { data.map((event) =>  <Event key={event.id} {...event} jsxFor="list" />)}
+              <div className="events-right">
+                { data.map((event) => <Event key={event.id} {...event} jsxFor="list" />)}
               </div>
 
-              <div className="events-left" style={{styleForm}}>
+              <div id="fake-div" style={styleFakeDiv} />
+              <div className="events-left" style={styleForm}>
                 <Form />
-                { data.length > 0 && <EventsMap />} 
+                { data.length > 0 && <EventsMap />}
               </div>
-               
-              { data.length !== 0 && <p>{undefinedData}</p>}                   
             </Route>
 
             <Route exact path={this.props.location.pathname}>
               {
                 (() => {
                   if (locationSearchData.length === 0) {
-                    return(
+                    return (
                       <p>Aucun événement trouvé</p>
-                    ) 
-                  } else if (data.length > 0) {
-                    return ( 
+                    );
+                  } if (data.length > 0) {
+                    return (
                       <>
-                        <div className="events-left" style={{styleForm}}>
+                        <div className="events-left" style={styleForm}>
                           <EventsMap />
                         </div>
-        
-                        <div className="events-right">          
-                          { data.map((event) =>  <Event key={event.id} {...event} jsxFor="list" />)}
+
+                        <div className="events-right">
+                          { data.map((event) => <Event key={event.id} {...event} jsxFor="list" />)}
                         </div>
                       </>
-                    )   
-                  } else if (data.length === 0) {
+                    );
+                  } if (data.length === 0) {
                     return (
                       <p>Aucun événement ne correspond à votre recherche</p>
-                    )
-                  } else {
-                    return (
-                      <>
-                        <div className="events-left" style={{styleForm}}>
-                          <EventsMap />
-                        </div>
-        
-                        <div className="events-right">          
-                          { data.map((event) =>  <Event key={event.id} {...event} jsxFor="list" />)}
-                        </div>
-                      </>
-                    )
+                    );
                   }
+                  return (
+                    <>
+                      <div className="events-left" style={{ styleForm }}>
+                        <EventsMap />
+                      </div>
+
+                      <div className="events-right">
+                        { data.map((event) => <Event key={event.id} {...event} jsxFor="list" />)}
+                      </div>
+                    </>
+                  );
                 })()
               }
             </Route>

@@ -112,7 +112,7 @@ export const user = (state = initialState, action = {}) => {
         notifNewEvent: !!notifNewEvent, // convert to bool
         notifNewUpdate: !!notifNewUpdate, // convert to bool
         eventsLike,
-        //eventsInterest,
+        eventsInterest,
         eventsParticipate,
       };
     }

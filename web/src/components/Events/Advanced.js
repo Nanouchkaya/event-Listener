@@ -134,6 +134,11 @@ const Advanced = ({
           />
         </div>
       </div>
+      <input
+        type="submit"
+        className="form-submit"
+        value="Rechercher"
+      />
     </>
   );
 };

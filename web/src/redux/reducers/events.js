@@ -45,7 +45,7 @@ export const form = (state = initialState, action = {}) => {
           ...state,
           caseNoData: 'Aucun filtre sélectionné',
           data: [],
-        }
+        };
       }
       return {
         ...state,

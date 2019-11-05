@@ -22,7 +22,7 @@ const Form = ({
 }) => {
   const _onSubmit = (event) => {
     event.preventDefault();
-    event.target.reset();
+    //event.target.reset();
     emptyFormValue();
     addFilters(filterList);
     handleSubmit();
@@ -56,11 +56,6 @@ const Form = ({
         </button>
       </div>
       { advanced && <Advanced /> }
-      <input
-        type="submit"
-        className="form-submit"
-        value="Rechercher"
-      />
     </form>
   );
 };

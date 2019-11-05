@@ -1,11 +1,12 @@
 import React from 'react';
 
-import errorPage from 'src/assets/images/404.png';
+import './errors.scss';
 
 const Errors = () => (
-  <>
-    <img src={errorPage} alt="404" />
-    <button type="button">Page d'accueil</button>
-  </>
+  <section className="error">
+    <div>
+      Erreur 404, la page n'existe pas
+    </div>
+  </section>
 );
 export default Errors;
