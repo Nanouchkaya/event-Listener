@@ -156,6 +156,7 @@
 
     & .check-buttons {
       text-align: center;
+      
         button {
         font-size: 1rem;
         color: $purple;
@@ -164,6 +165,12 @@
         border-radius: 5px;
         background-color: #FFFFFF;
         border: 2px solid $purple;
+
+        &.button--negative {
+          background-color: $purple;
+          color: #FFFFFF;
+          border-color: #FFFFFF;
+        }
 
         &:hover {
           border-color: $turquoise;

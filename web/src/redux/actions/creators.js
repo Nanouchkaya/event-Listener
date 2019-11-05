@@ -48,6 +48,10 @@ import {
   SHOW_MESSAGE_UPDATE_USER,
   DELETE_SHOW_MESSAGE,
   DELETE_USER,
+  CHANGE_INTEREST_TO_THE_EVENT,
+  CHANGE_PARTICIPATION_TO_THE_EVENT,
+  CHANGE_USER_PREFERENCES_TO_THE_EVENT,
+  FETCH_USER_PREFERENCES_TO_THE_EVENT,
 } from './types';
 
 
@@ -193,6 +197,25 @@ export const fetchEventDetails = (data) => ({
   type: FETCH_EVENT_DETAILS,
   data,
 });
+export const fetchUserPreferencesToTheEvent = (liked, interested, participation) => ({
+  type: FETCH_USER_PREFERENCES_TO_THE_EVENT,
+  liked,
+  interested,
+  participation,
+});
+export const changeInterestToTheEvent = (isInterested) => ({
+  type: CHANGE_INTEREST_TO_THE_EVENT,
+  isInterested,
+});
+export const changeParticipationToTheEvent = (participate) => ({
+  type: CHANGE_PARTICIPATION_TO_THE_EVENT,
+  participate,
+});
+export const changeUserPreferencesToTheEvent = (preferenceName) => ({
+  type: CHANGE_USER_PREFERENCES_TO_THE_EVENT,
+  preferenceName,
+})
+
 
 // User : Update
 export const changeUpdateUser = (user) => ({

@@ -32,7 +32,7 @@ const eventsMiddleware = (store) => (next) => (action) => {
           store.dispatch(fetchRequestedData(data));
         })
         .catch((error) => {
-          console.error('from middleware:', error);
+          console.error(error);
         });
       break;
     }
@@ -42,19 +42,25 @@ const eventsMiddleware = (store) => (next) => (action) => {
           const { data } = response.data;
           store.dispatch(fetchRequestedData(data));
         })
-        .catch((error) => console.error('from middelware:', error));
+        .catch((error) => {
+          console.error(error);
+        });
       break;
     }
     case FETCH_EVENTS_BY_LOCATION: {
       // empties the array of data before each request
       const empyData = [];
       store.dispatch(sendLocationSearchData(empyData));
-      axios.get(`http://localhost:3000/events/localisation/${action.location}`)
+      axios.get(`http://${config.url}:3000/events/localisation/${action.location}`)
         .then((response) => {
-          const { data } = response.data.result;
-          store.dispatch(sendLocationSearchData(data));
+          if (response.data.result) {
+            const { data } = response.data.result;
+            store.dispatch(sendLocationSearchData(data));
+          }
         })
-        .catch((error) => console.error('from middleware:', error));
+        .catch((error) => {
+          console.error(error);
+        });
       break;
     }
     case HANDLE_SUBMIT: {
@@ -64,7 +70,9 @@ const eventsMiddleware = (store) => (next) => (action) => {
           const { data } = response.data;
           store.dispatch(fetchRequestedData(data));
         })
-        .catch((error) => console.error(error));
+        .catch((error) => {
+          console.error(error);
+        });
       break;
     }
     /**
@@ -76,7 +84,9 @@ const eventsMiddleware = (store) => (next) => (action) => {
         .then((response) => {
           store.dispatch(fetchNextEvents(response.data.result.data));
         })
-        .catch((error) => console.log('from middelware:', error));
+        .catch((error) => {
+          console.log(error);
+        });
       break;
     }
     default:

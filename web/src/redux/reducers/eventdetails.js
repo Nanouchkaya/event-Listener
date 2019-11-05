@@ -6,6 +6,8 @@ import {
   OPEN_SHARE_LINKS_MODAL,
   CLOSE_SHARE_LINKS_MODAL,
   FETCH_EVENT_DETAILS,
+  CHANGE_USER_PREFERENCES_TO_THE_EVENT,
+  FETCH_USER_PREFERENCES_TO_THE_EVENT,
 } from '../actions/types';
 
 const initialState = {
@@ -39,8 +41,10 @@ export const eventIcons = (state = initialState, action = {}) => {
 
 const detailsState = {
   data: {},
-  eventStatut: 'A venir55',
   position: {},
+  liked: false,
+  interested: false,
+  participation: false,
 };
 export const eventDetails = (state = detailsState, action = {}) => {
   switch (action.type) {
@@ -49,6 +53,23 @@ export const eventDetails = (state = detailsState, action = {}) => {
         ...state,
         data: action.data,
       };
+
+    case FETCH_USER_PREFERENCES_TO_THE_EVENT: {
+      return {
+        ...state,
+        liked: action.liked,
+        interested: action.interested,
+        participation: action.participation,
+      }
+    }
+
+    case CHANGE_USER_PREFERENCES_TO_THE_EVENT: {
+      console.log(action);
+      return {
+        ...state,
+        [action.preferenceName]: !state[action.preferenceName],
+      }
+    }
     default:
       return state;
   }
