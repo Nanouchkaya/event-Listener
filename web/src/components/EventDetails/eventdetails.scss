@@ -1,5 +1,6 @@
 @import 'src/assets/styles/vars';
 @import 'src/assets/styles/mixins';
+@import 'src/assets/styles/animations';
 
 .blurred-banner {
   position: absolute;
@@ -115,9 +116,23 @@
         align-items: center;
         color: $turquoise;
 
-        &-icons button {
-          background-color: transparent;
-        }
+        &-icons {
+          position: relative;
+
+          .share-links-modal {
+            position: absolute;
+            background: #ffffff;
+            display: flex;
+            border-radius: 2px;
+            border: solid 1px #333;
+            animation: fromBottom .3s ease;
+            animation-fill-mode: forwards;
+          }
+
+          button {
+            background-color: transparent;
+          }
+        } 
       }
   }
 
@@ -137,11 +152,11 @@
 
     & .datetime, & .address {
       
-        margin: 0 2rem 1rem 3rem;
-        line-height: 1.3rem;
-  font-size: 1.1rem;
-  max-width: 750px;
-  text-align: justify;
+      margin: 0 2rem 1rem 3rem;
+      line-height: 1.3rem;
+      font-size: 1.1rem;
+      max-width: 750px;
+      text-align: justify;
       
     & .event-state {
       display: block;
@@ -158,13 +173,13 @@
       text-align: center;
       
         button {
-        font-size: 1rem;
-        color: $purple;
-        padding: $paddingButton;
-        margin: 1rem;
-        border-radius: 5px;
-        background-color: #FFFFFF;
-        border: 2px solid $purple;
+          font-size: 1rem;
+          color: $purple;
+          padding: $paddingButton;
+          margin: 1rem;
+          border-radius: 5px;
+          background-color: #FFFFFF;
+          border: 2px solid $purple;
 
         &.button--negative {
           background-color: $purple;

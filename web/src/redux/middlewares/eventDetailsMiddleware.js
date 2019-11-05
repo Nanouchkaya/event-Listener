@@ -7,6 +7,7 @@ import config from 'src/config';
 
 import {
   GET_EVENT_DETAILS,
+  CHANGE_LIKE_TO_THE_EVENT,
   CHANGE_INTEREST_TO_THE_EVENT,
   CHANGE_PARTICIPATION_TO_THE_EVENT,
 } from '../actions/types';
@@ -28,6 +29,29 @@ const eventDetailsMiddleware = (store) => (next) => (action) => {
         .catch((error) => {
           console.error(error);
         });
+      break;
+    }
+
+    case CHANGE_LIKE_TO_THE_EVENT: {
+      const token = window.localStorage.getItem('token');
+
+      if (token) {
+        const { user, eventDetails } = store.getState();
+        const requestAction = (action.isLiked) ? 'delete' : 'add';
+        axios.post(`http://${config.url}:3000/users/${user.id}/like/${requestAction}/${eventDetails.data.id}`,
+          {
+            headers: {
+              Authorization: `token ${token}`,
+            },
+          })
+          .then((response) => {
+            console.log(action);
+            store.dispatch(changeUserPreferencesToTheEvent('liked'));
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
       break;
     }
 
