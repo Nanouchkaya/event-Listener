@@ -40,8 +40,6 @@ class App extends React.Component {
   render() {
     const { isConnected } = this.props;
     return (
-      <>
-      
       <div id="wrapper">
         <canvas className="header_background" />
         <Nav />
@@ -56,7 +54,6 @@ class App extends React.Component {
           />
         </div>
       )}
-      
         <Switch>
           <Route exact path="/">
             <Home />
@@ -83,7 +80,6 @@ class App extends React.Component {
           <Footer />
         </footer>
       </div>
-      </>
     );
   }
 }
