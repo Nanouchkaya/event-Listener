@@ -22,23 +22,23 @@ class Nav extends React.Component {
   state = {}
 
   componentDidMount() {
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', () => {
       const scroll = window.scrollY;
-      if(scroll > 50) {
-      document.querySelector('nav').classList.add('minimalize');
+      if (scroll > 50) {
+        document.querySelector('nav').classList.add('minimalize');
       } else {
         document.querySelector('nav').classList.remove('minimalize');
       }
-    })
+    });
   }
 
   /* Changes the pathname so that the rendering changes */
-  // handleClick = () => {
-  //   window.location.pathname = "tous-les-evenements";
-  // }
+  handleClick = () => {
+    window.location.pathname = "tous-les-evenements";
+  }
 
   handleClickLogo = () => {
-    window.location.pathname = "";
+    window.location.pathname = '';
   }
 
   render() {
@@ -70,8 +70,9 @@ class Nav extends React.Component {
             to="/"
             exact
             onClick={this.handleClickLogo}
+            className="logo-text"
           >
-          eventListener
+            eventListener
           </NavLink>
           <Route path="/(evenements|profil|mentions-legales|politique-de-confidentialite)">
             <QuickSearchBar />

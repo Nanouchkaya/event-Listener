@@ -13,7 +13,7 @@ import EventDetails from 'src/redux/containers/EventDetails';
 import Nav from 'src/redux/containers/App/Nav';
 import Footer from 'src/redux/containers/App/Footer';
 import SearchedEvents from 'src/redux/containers/Events/SearchedEvents';
-import User from 'src/components/User';
+import User from 'src/redux/containers/User';
 import LegalMentions from 'src/components/LegalMentions';
 import PrivatePolicy from 'src/components/PrivatePolicy';
 import Errors from 'src/components/Errors';
@@ -40,8 +40,6 @@ class App extends React.Component {
   render() {
     const { isConnected } = this.props;
     return (
-      <>
-      
       <div id="wrapper">
         <canvas className="header_background" />
         <Nav />
@@ -56,7 +54,6 @@ class App extends React.Component {
           />
         </div>
       )}
-      
         <Switch>
           <Route exact path="/">
             <Home />
@@ -83,7 +80,6 @@ class App extends React.Component {
           <Footer />
         </footer>
       </div>
-      </>
     );
   }
 }

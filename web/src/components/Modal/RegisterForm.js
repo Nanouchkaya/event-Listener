@@ -65,7 +65,7 @@ const RegisterForm = ({
                 name="password"
                 value={password}
                 onChange={handleChangeValue}
-                placeholder="Mot de passe * (Minimum 7 caractères)"
+                placeholder="Mot de passe * (Minimum 6 caractères)"
                 type="password"
               />
               <input
@@ -145,11 +145,7 @@ RegisterForm.propTypes = {
   changeValue: Proptypes.func.isRequired,
   changeCheckInputValue: Proptypes.func.isRequired,
   submitRegister: Proptypes.func.isRequired,
-  message: Proptypes.shape({
-    error: Proptypes.bool,
-    success: Proptypes.bool,
-    content: Proptypes.array,
-  }),
+  message: Proptypes.object,
 };
 
 RegisterForm.defaultProps = {

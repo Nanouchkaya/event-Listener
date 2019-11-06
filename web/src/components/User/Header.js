@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 // import local
 import './user.scss';
-import avatarImg from 'src/assets/images/defaultAvatar.png';
+import avatarImg from 'src/assets/images/avatar_eventListener.png';
 
 // composant
 const Header = ({ pseudo, urlAvatar }) => (
@@ -12,7 +12,7 @@ const Header = ({ pseudo, urlAvatar }) => (
     <div className="header-pseudo">
       Hello {pseudo}!
     </div>
-    <img className="header-avatar" src={(urlAvatar) ? urlAvatar : avatarImg} alt="avatar" />
+    <img className="header-avatar" src={urlAvatar ? urlAvatar : avatarImg} alt="avatar" />
   </header>
 );
 

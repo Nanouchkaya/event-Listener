@@ -53,6 +53,7 @@ import {
   FETCH_USER_PREFERENCES_TO_THE_EVENT,
   CHANGE_LIKE_TO_THE_EVENT,
   CHANGE_SHARE_LINKS_MODAL,
+  FETCH_NEW_USER_INFO,
 } from './types';
 
 
@@ -94,6 +95,9 @@ export const deleteShowMessage = () => ({
 });
 export const deleteUser = () => ({
   type: DELETE_USER,
+});
+export const fetchNewUserInfos = () => ({
+  type: FETCH_NEW_USER_INFO,
 });
 
 // App : Nav.js

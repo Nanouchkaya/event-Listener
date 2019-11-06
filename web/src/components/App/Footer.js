@@ -9,6 +9,7 @@ const Footer = ({ fetchEvents }) => {
   // Fetch the events based on the location when clicking on the footer links
   const handleClick = (event) => {
     fetchEvents(event.target.dataset.city);
+    //window.location.pathname = `tous-les-evenements/${event.target.dataset.city}`
   };
   const cities = [
     'Paris',
@@ -36,9 +37,11 @@ const Footer = ({ fetchEvents }) => {
         <div className="footer-links">
           <h2 className="footer-subtitle">Liens utiles</h2>
           <ul>
-            <li><Link to="/tous-les-evenements">
-            Rechercher un événement
-          </Link></li>
+            <li>
+              <Link to="/tous-les-evenements">
+                Rechercher un événement
+              </Link>
+            </li>
             <li>
               <Link to="/politique-de-confidentialite">
                 Politique de confidentialité

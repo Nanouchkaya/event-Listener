@@ -1,3 +1,13 @@
+@keyframes bounce {
+  from {
+      transform: translate3d(0, -2px, 0);
+  }
+
+  to {
+      transform: translate3d(0, -5px, 0);
+  }
+}
+
 @keyframes fromTop {
   0% { 
     opacity: 0;
