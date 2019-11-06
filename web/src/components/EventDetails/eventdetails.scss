@@ -219,21 +219,16 @@
   justify-content: space-between;
   
     button {   
-      width:50%;
+      color: $colorDarkTheme;
+      font-weight: 900;
+      letter-spacing: 1px;
       padding: $paddingButton;
-      background-color: $colorDarkTheme;
-      border: 2px solid $purple;
-
-    &.button--negative {
-      background-color: $purple;
-      color: #FFFFFF;
-      border-color: #FFFFFF;
-    }
-
-    &:hover {
-      border-color: $turquoise;
-      color: $turquoise;
-    }
+      margin: 0;
+      width: 50%;
+      border-radius: $radius;
+      border: 2px solid $colorDarkTheme;
+      background: $mainGradient;
+      transition: background-position .3s ease-out;
   }
 }
 
@@ -301,30 +296,20 @@
     justify-content: flex-start;
     
     button {
-      color: $colorDarkTheme;
-      font-weight: 900;
-      letter-spacing: 1px;
-      padding: $paddingButton;
       margin: 0 .2rem;
       width: 17%;
-      border-radius: $radius;
-      border: 2px solid $colorDarkTheme;
       background: transparent;
       background: $mainGradient;
       background-size: 200px 60px;
       background-position: -200px 0;
       background-repeat: no-repeat;
-      transition: background-position .3s ease-out;
 
       &.button--negative {
-        background-color: transparent;
         background-position: 0%;
       }
 
       &:hover {
         background-position: 0%;
-        border-color: $colorDarkTheme;
-        color: $colorDarkTheme;
       }
     }
   }
