@@ -1,4 +1,4 @@
 module.exports = {
-  USER: '',
-  PASS: ''
+  USER: 'eventListener.oclock@gmail.com',
+  PASS: 'eventoclocklistener'
 }
