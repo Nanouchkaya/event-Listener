@@ -193,6 +193,10 @@
     .events-view-list {
       flex-direction: row;
 
+      &--single {
+        flex-direction: column !important;
+      }
+
       #fake-div {
         display: none;
         width: calc(750px / 2);
@@ -216,7 +220,6 @@
         &-image {
           height: 120px;
           width: 40%;
-          object-fit: cover;
         }
 
         &--right {

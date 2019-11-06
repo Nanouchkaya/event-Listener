@@ -63,7 +63,7 @@ class SearchedEvents extends React.Component {
           <h2 className="events-title">
             Résultat de recherche
           </h2>
-          <div className="events-view-list">
+          <div className="events-view-list events-view-list--single">
             <div className="events-container">
               {
                 (() => {
