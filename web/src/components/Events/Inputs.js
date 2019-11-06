@@ -8,6 +8,7 @@ class Inputs extends React.Component {
   handleChange = (event) => {
     const { fillFilterList } = this.props;
     const { name } = event.target;
+    console.log(event.target)
     const filter = {
       [name]: event.target.value,
     };
@@ -29,7 +30,7 @@ class Inputs extends React.Component {
           {children}
         </label>
         <input
-          onChange={this.handleChange}
+          onClick={this.handleChange}
           type="checkbox"
           id={children}
           className="advanced-filter-input"

@@ -55,7 +55,6 @@ const eventsMiddleware = (store) => (next) => (action) => {
     case FETCH_EVENTS_BY_LOCATION: {
       axios.get(`http://${config.url}:3000/events/localisation/${action.location}`)
         .then((response) => {
-          console.log(response)
           if (response.data.status === "Event doesn't exist") {
             const data = [];
             store.dispatch(sendLocationSearchData(data));
@@ -73,6 +72,7 @@ const eventsMiddleware = (store) => (next) => (action) => {
     // handles search by multiple parameters
     case HANDLE_SUBMIT: {
       const { dataFilter } = store.getState().form;
+      console.log(dataFilter)
       axios.post(`http://${config.url}:3000/events/filter`, dataFilter)
         .then((response) => {
           const { data } = response.data;
