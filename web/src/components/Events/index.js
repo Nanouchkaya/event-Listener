@@ -135,21 +135,20 @@ class Events extends React.Component {
                       <p>Aucun événement ne correspond à votre recherche</p>
                     );
                   }
-                  if(locationSearchData.length > 0) {
+                  if (locationSearchData.length > 0) {
                     return (
                       <>
-                       <div id="fake-div" style={styleFakeDiv} />
                         <div className="events-left">
                           { locationSearchData.map((event) => <Event key={event.id} {...event} jsxFor="list" />)}
                         </div>
-                        <div className="events-right" style={{ styleForm }}>
+                        <div id="fake-div" style={styleFakeDiv} />
+                        <div className="events-right" style={styleForm}>
                           <Form />
                           <EventsMap />
                         </div>
-                     </>
-                    );  
+                      </>
+                    );
                   }
-                  
                 })()
               }
             </Route>
@@ -172,7 +171,6 @@ Events.propTypes = {
   locationSearchData: PropTypes.array.isRequired,
   handleQuickSearch: PropTypes.func.isRequired,
   undefinedData: PropTypes.string,
-  handleQuickSearch: PropTypes.func.isRequired,
 };
 Events.defaultProps = {
   value: '',
