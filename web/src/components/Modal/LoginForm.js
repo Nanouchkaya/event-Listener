@@ -79,6 +79,7 @@ const LoginForm = ({
         <a
           className="modal--back"
           name="login"
+          href="#"
           onClick={handleclose}
         >
           Retour

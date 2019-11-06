@@ -2,6 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+
 // import sous-composants
 import Header from 'src/redux/containers/EventDetails/Header';
 import CheckButtons from 'src/redux/containers/EventDetails/CheckButtons';
@@ -14,6 +15,7 @@ import Tags from 'src/redux/containers/EventDetails/Tags';
 
 // import local
 import './eventdetails.scss';
+
 
 // Composant EventDetails
 class EventDetails extends React.Component {

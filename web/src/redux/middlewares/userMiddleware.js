@@ -24,6 +24,7 @@ import {
   handleChangEditorModeDisabled,
   showMessageUpdateUser,
   deconnect,
+  closeNavMenu,
 } from '../actions/creators';
 
 const userMiddleware = (store) => (next) => (action) => {
@@ -97,6 +98,7 @@ const userMiddleware = (store) => (next) => (action) => {
             store.dispatch(fetchUserInfos(response.data.result.data));
             store.dispatch(connect(response.data.token));
             store.dispatch(openNavModal('login'));
+            store.dispatch(closeNavMenu());
           } else {
             store.dispatch(showMessageLogin('error', response.data.errorMessage));
           }

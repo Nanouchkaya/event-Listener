@@ -90,9 +90,9 @@ const eventsMiddleware = (store) => (next) => (action) => {
           store.dispatch(handleQuickSearchData(data));
         })
         .catch((error) => {
-          console.error('from middleware:', error);
+          // console.error('from middleware:', error); // TODO : commented because it's always display
         });
-      break; 
+      break;
     }
     /**
       * requête pour récupérer les prochains événements à afficher sur l'accueil

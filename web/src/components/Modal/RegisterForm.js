@@ -124,6 +124,7 @@ const RegisterForm = ({
         <a
           className="modal--back"
           name="register"
+          href="#"
           onClick={handleclose}
         >
           Retour
