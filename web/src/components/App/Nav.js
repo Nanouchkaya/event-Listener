@@ -51,11 +51,17 @@ class Nav extends React.Component {
       isConnected,
       pseudo,
       deconnect,
+      closeNavMenu,
     } = this.props;
 
     /* Fonction qui gère l'ouverture des deux modals Connexion et Inscription */
     const handleNavModals = (event) => {
       openNavModal(event.target.name);
+    };
+
+    const handleDisconnect = () => {
+      closeNavMenu();
+      deconnect();
     };
 
     const menuburgerIcon = !menuBurger ? menuBurgerOpenIcon : menuBurgerCloseIcon;
@@ -121,7 +127,7 @@ class Nav extends React.Component {
                     to="/"
                     exact
                     className="navigation-item--right online"
-                    onClick={deconnect}
+                    onClick={handleDisconnect}
                   >
                     <span>Déconnexion</span>
                     <span>
@@ -181,6 +187,7 @@ Nav.propTypes = {
   isConnected: PropTypes.bool.isRequired,
   pseudo: PropTypes.string.isRequired,
   deconnect: PropTypes.func.isRequired,
+  closeNavMenu: PropTypes.func.isRequired,
 };
 
 

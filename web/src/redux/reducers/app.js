@@ -9,6 +9,7 @@ import {
   DO_CONNECT,
   DECONNECT,
   SEND_LOCATION_SEARCH_DATA,
+  CLOSE_NAV_MENU,
 } from '../actions/types';
 
 const initialState = {
@@ -62,6 +63,13 @@ export const app = (state = initialState, action = {}) => {
         menuBurger: !state.menuBurger,
         login: false,
         register: false,
+      };
+    }
+
+    case CLOSE_NAV_MENU: {
+      return {
+        ...state,
+        menuBurger: false,
       };
     }
 
