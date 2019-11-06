@@ -91,7 +91,7 @@ class Events extends React.Component {
             <Route exact path="/tous-les-evenements">
               <div className="events-left">
                 { data.map((event) => <Event key={event.id} {...event} jsxFor="list" />)}
-                { data.length !== 0 && <p>test: {undefinedData}</p>}
+                { data.length < 0 && <p>{undefinedData}</p>}
               </div>
               { data.length === 0 && (
                 <div className="sweet-loading">
