@@ -37,6 +37,37 @@
     font-family: $fontFamilyTitle;
     font-size: 2.5rem;
     margin-right: auto;
+
+    .logo-text {
+      position: relative;
+      background: $mainGradientExtDark;
+      background-size: 350px 50px;
+      background-position: 0px 0;
+      background-clip: text;
+      background-repeat: no-repeat;
+      -webkit-background-clip: text;
+      border-radius: 25%;
+      color: transparent;
+      transition: .3s ease;
+     
+
+      &::before {
+        content: 'eventListener';
+        color: rgba($colorDarkTheme, .9);
+        font-family: $fontFamilyTitle;
+        position: absolute;
+        left: -6px;
+        top: -4px;
+        transition: .3s ease;
+      }
+
+      &:hover {
+        &::before {
+          left: 17px;
+          top: 4px;
+        }
+      }
+    }
   }
 
   .searchbar {
@@ -120,7 +151,6 @@
     text-align: right;
     font-weight: 900;
     color: $colorDarkTheme;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     width: 100%;
     padding-bottom: 1rem;
 
@@ -221,6 +251,10 @@ footer {
   }
 
     .navigation-item {
+
+      &--left {
+        
+      }
 
       &--right {
         font-size: 1rem;

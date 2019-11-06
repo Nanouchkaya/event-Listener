@@ -19,13 +19,13 @@ const Event = ({
   jsxFor,
   getCity,
 }) => {
-  const eventDate = moment(dateStart, "YYYY-MM-DD").format('DD MMM YYYY');
+  const eventDate = moment(dateStart, 'YYYY-MM-DD').add(1, 'day').format('DD MMM YYYY');
   const pureAddress = <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(address) }} />;
   const city = getCity(address);
 
   return (
     <>
-      { jsxFor === "card" && (
+      { jsxFor === 'card' && (
         <div
           className="event-resume"
           style={{

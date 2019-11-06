@@ -47,10 +47,10 @@ class Events extends React.Component {
       window.addEventListener('scroll', () => this.stickyForm(pos));
     }
 
-    if (data.length === 0 ) {
+    if (data.length === 0) {
       this.setState({
         loading: false,
-      })
+      });
     }
   }
 

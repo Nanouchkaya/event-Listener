@@ -325,6 +325,10 @@
       &-title {
         margin: 4rem -4.7rem;
       }
+
+      &-content-left, &-content-right {
+        flex: 1 50%;
+      }
     }
 
     .delete-account {
