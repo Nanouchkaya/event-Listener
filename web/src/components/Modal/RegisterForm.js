@@ -145,11 +145,7 @@ RegisterForm.propTypes = {
   changeValue: Proptypes.func.isRequired,
   changeCheckInputValue: Proptypes.func.isRequired,
   submitRegister: Proptypes.func.isRequired,
-  message: Proptypes.shape({
-    error: Proptypes.bool,
-    success: Proptypes.bool,
-    content: Proptypes.array,
-  }),
+  message: Proptypes.object,
 };
 
 RegisterForm.defaultProps = {

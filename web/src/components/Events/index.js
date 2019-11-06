@@ -25,6 +25,7 @@ class Events extends React.Component {
   state = {
     styleForm: {},
     styleFakeDiv: {},
+    undefinedData: 'Aucun événement ne correspond à votre recherche',
   }
 
   componentDidMount() {
@@ -46,12 +47,12 @@ class Events extends React.Component {
       handleQuickSearch(param[2]);
     }
     // pour fixer les filtres au scroll
-    if (window.innerWidth >= 768) {
-      const formTopY = document.querySelector('.events-right').getBoundingClientRect().y;
-      const formHeight = document.querySelector('.events-right').clientHeight;
-      const pos = formTopY - formHeight;
-      window.addEventListener('scroll', () => this.stickyForm(pos));
-    }
+    // if (window.innerWidth >= 768) {
+    //   const formTopY = document.querySelector('.events-right').getBoundingClientRect().y;
+    //   const formHeight = document.querySelector('.events-right').clientHeight;
+    //   const pos = formTopY - formHeight;
+    //   window.addEventListener('scroll', () => this.stickyForm(pos));
+    // }
   }
 
   componentWillUnmount() {
@@ -77,9 +78,7 @@ class Events extends React.Component {
       data,
       locationSearchData,
     } = this.props;
-
-    const { styleForm, styleFakeDiv } = this.state;
-
+    const { styleForm, styleFakeDiv, undefinedData } = this.state;
     return (
       <section className="events">
 
@@ -92,6 +91,7 @@ class Events extends React.Component {
             <Route exact path="/tous-les-evenements">
               <div className="events-left">
                 { data.map((event) => <Event key={event.id} {...event} jsxFor="list" />)}
+                { data.length < 0 && <p>{undefinedData}</p>}
               </div>
               { data.length === 0 && (
                 <div className="sweet-loading">
@@ -118,7 +118,7 @@ class Events extends React.Component {
                     return (
                       <p>Aucun événement trouvé</p>
                     );
-                  } if (data.length > 0) {
+                  } if (data.length > 0 && locationSearchData.length === 0) {
                     return (
                       <>
                         <div className="events-right" style={styleForm}>
@@ -135,17 +135,20 @@ class Events extends React.Component {
                       <p>Aucun événement ne correspond à votre recherche</p>
                     );
                   }
-                  return (
-                    <>
-                      <div className="events-right" style={{ styleForm }}>
-                        <EventsMap />
-                      </div>
-                      <div id="fake-div" style={styleFakeDiv} />
-                      <div className="events-left">
-                        { locationSearchData.map((event) => <Event key={event.id} {...event} jsxFor="list" />)}
-                      </div>
-                    </>
-                  );
+                  if(locationSearchData.length > 0) {
+                    return (
+                      <>
+                        <div className="events-right" style={{ styleForm }}>
+                          <EventsMap />
+                        </div>
+                        <div id="fake-div" style={styleFakeDiv} />
+                        <div className="events-left">
+                          { locationSearchData.map((event) => <Event key={event.id} {...event} jsxFor="list" />)}
+                        </div>
+                      </>
+                    );  
+                  }
+                  
                 })()
               }
             </Route>
@@ -168,6 +171,7 @@ Events.propTypes = {
   locationSearchData: PropTypes.array.isRequired,
   handleQuickSearch: PropTypes.func.isRequired,
   undefinedData: PropTypes.string,
+  handleQuickSearch: PropTypes.func.isRequired,
 };
 Events.defaultProps = {
   value: '',

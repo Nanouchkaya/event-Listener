@@ -33,9 +33,9 @@ class Nav extends React.Component {
   }
 
   /* Changes the pathname so that the rendering changes */
-  // handleClick = () => {
-  //   window.location.pathname = "tous-les-evenements";
-  // }
+  handleClick = () => {
+    window.location.pathname = "tous-les-evenements";
+  }
 
   handleClickLogo = () => {
     window.location.pathname = '';
