@@ -47,7 +47,6 @@ class SearchedEvents extends React.Component {
 
   render() {
     const { quickSearchData, homeFormData, locationSearchData } = this.props;
-    console.log(quickSearchData, homeFormData, locationSearchData)
     return (
       <>
         <section className="events">
