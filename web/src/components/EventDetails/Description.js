@@ -12,7 +12,7 @@ const Description = ({ description }) => {
   );
 
   return (
-    <div>
+    <div className="text">
       <h3 className="subtitle">
         <img className="icon" src={iconInfo} alt="icon-info" />
         Description :

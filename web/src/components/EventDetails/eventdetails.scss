@@ -120,6 +120,7 @@
           position: relative;
 
           .share-links-modal {
+            background-color: $colorDarkTheme;
             position: absolute;
             display: flex;
             border-radius: 2px;
@@ -138,63 +139,10 @@
   &-flyer-description {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    padding: 1rem;
-
-    & > div {//correctif padding
-      padding: 0;
-    }
+    margin-top: 4rem;
 
     & .icon {
       transform: scale(.6);
-    }
-    
-    & .datetime, & .address {
-      
-      margin: 0 2rem 1rem 3rem;
-      line-height: 1.3rem;
-      font-size: 1.1rem;
-      max-width: 750px;
-      text-align: justify;
-      
-    & .event-state {
-      display: block;
-      text-transform: uppercase;
-      margin: 1rem 0 0;
-      color: $purple;
-    }
-      time {
-        display: block;
-        
-        &::first-letter {
-          text-transform: uppercase;
-        }
-      }
-    }
-
-    & .check-buttons {
-      text-align: center;
-      
-        button {
-          font-size: 1rem;
-          color: $purple;
-          padding: $paddingButton;
-          margin: 1rem;
-          border-radius: 5px;
-          background-color: #FFFFFF;
-          border: 2px solid $purple;
-
-        &.button--negative {
-          background-color: $purple;
-          color: #FFFFFF;
-          border-color: #FFFFFF;
-        }
-
-        &:hover {
-          border-color: $turquoise;
-          color: $turquoise;
-        }
-      }
     }
 
     & .description {
@@ -205,9 +153,14 @@
         font-size: 1.1rem;
       }
 
-      &-content {
-        padding: 1.5rem 0;
+      .text {
+        margin: 0 .5rem 2rem;
+      }
 
+      &-content {
+        & p, h4, ul {
+          margin: 1rem;
+        }
         & span {
           display: block;
           text-decoration: underline;
@@ -221,7 +174,7 @@
     }
 
     & .tags p {
-      text-align: center;
+      margin: 1rem 0 2rem 1rem;
       
       span {
         font-size: 0.8rem;
@@ -235,10 +188,57 @@
       }
     }
   }
+
+  &-flyer-infos {
+    & .datetime, & .address {     
+      line-height: 1.3rem;
+      font-size: 1.1rem;
+      margin: 0 .5rem 2rem;
+
+      time {
+        display: block;
+
+        &::first-letter {
+          text-transform: uppercase;
+        }
+      }
+    }
+    & #map {
+      margin: 0 0 3rem;
+      z-index: 0;
+    }
+  }
+}
+
+.check-buttons {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  
+    button {   
+      width:50%;
+      padding: $paddingButton;
+      background-color: $colorDarkTheme;
+      border: 2px solid $purple;
+
+    &.button--negative {
+      background-color: $purple;
+      color: #FFFFFF;
+      border-color: #FFFFFF;
+    }
+
+    &:hover {
+      border-color: $turquoise;
+      color: $turquoise;
+    }
+  }
 }
 
 .leaflet-container {
-  height: 400px;
+  height: 300px;
   width: 100%;
 }
 
@@ -248,7 +248,6 @@
     opacity: .6;
   }
   .event {
-    //padding-top: 4rem;
     &-header {
       flex-direction: row;
       flex-wrap: wrap;
@@ -278,29 +277,54 @@
     }
 
     &-flyer-infos {
-      margin-left: 1rem;
+      margin-left: 3rem;
+      min-width: 30%;
     }
 
     &-flyer-description {
       flex-direction: row-reverse;
-      padding: 2rem;
+      padding: 0 2rem 0 0;
 
       & .description {
         flex-direction: column;
         width: 70%;
-        padding-right:2rem;
         border-right: 1px solid rgb(204, 203, 203);
+        margin-top: 0;   
+      }
+    }
+  }
 
-        &-content {
-          & p, h4, ul {
-            margin: 1rem 2.5rem;
-          }
-        }
+  .check-buttons {
+    position: relative;
+    bottom: 0;
+    left: calc(30% - 200px);
+    justify-content: flex-start;
+    
+    button {
+      color: $colorDarkTheme;
+      font-weight: 900;
+      letter-spacing: 1px;
+      padding: $paddingButton;
+      margin: 0 .2rem;
+      width: 17%;
+      border-radius: $radius;
+      border: 2px solid $colorDarkTheme;
+      background: transparent;
+      background: $mainGradient;
+      background-size: 200px 60px;
+      background-position: -200px 0;
+      background-repeat: no-repeat;
+      transition: background-position .3s ease-out;
+
+      &.button--negative {
+        background-color: transparent;
+        background-position: 0%;
       }
 
-      & .check-buttons {
-        text-align: center;
-        justify-self: flex-end;
+      &:hover {
+        background-position: 0%;
+        border-color: $colorDarkTheme;
+        color: $colorDarkTheme;
       }
     }
   }

@@ -79,17 +79,16 @@ class EventDetails extends React.Component {
               <aside className="event-flyer-infos">
                 <Datetime />
                 <Address />
-                { isConnected && (
-                  <CheckButtons />
-                )}
+                { latitude && longitude !== undefined && <EventDetailsMap /> }
               </aside>
               <div className="event-flyer-description description">
                 <Description />
                 <Tags />
-                { latitude && longitude !== undefined && <EventDetailsMap /> }
-
               </div>
             </article>
+            { isConnected && (
+              <CheckButtons />
+            )}
           </section>
 
         </div>
