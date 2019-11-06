@@ -40,8 +40,8 @@ class SearchedEvents extends React.Component {
     }
 
     // handles the request from footer links
-    if (param.length === 5 ) {
-      fetchEvents(param[3])
+    if (param.length > 4 ) {
+      fetchEvents(param[4])
     }
   }
 
