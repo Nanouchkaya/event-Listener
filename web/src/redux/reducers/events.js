@@ -43,7 +43,7 @@ export const form = (state = initialState, action = {}) => {
       if (action.data === undefined) {
         return {
           ...state,
-          caseNoData: 'Aucun filtre sélectionné',
+          caseNoData: 'Aucun filtre n\'a été sélectionné',
           data: [],
         };
       }
