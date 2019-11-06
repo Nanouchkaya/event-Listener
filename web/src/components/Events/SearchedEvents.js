@@ -47,6 +47,7 @@ class SearchedEvents extends React.Component {
 
   render() {
     const { quickSearchData, homeFormData, locationSearchData } = this.props;
+    console.log(quickSearchData, homeFormData, locationSearchData)
     return (
       <>
         <section className="events">
@@ -67,6 +68,15 @@ class SearchedEvents extends React.Component {
                     )
                   }
                   if (homeFormData.length === 0 && quickSearchData.length === 0) {
+                    return (
+                      <>
+                        {
+                          locationSearchData.length > 0 ? locationSearchData.map((event) => <Event key={event.id} {...event} jsxFor="list" />) : <p>Aucun événement ne correspond à votre recherche</p>
+                        }
+                      </>
+                    )
+                  }
+                  if (locationSearchData.length > 0 && quickSearchData.length === 0) {
                     return (
                       <>
                         {
