@@ -38,6 +38,7 @@ export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
 export const SHOW_MESSAGE_LOGIN = 'SHOW_MESSAGE_LOGIN';
 export const DO_CONNECT = 'DO_CONNECT';
 export const CHECK_CONNECT = 'CHECK_CONNECT';
+export const CLOSE_NAV_MENU = 'CLOSE_NAV_MENU';
 
 
 // Home : QuickSearchBar.js

@@ -4,6 +4,7 @@ import App from '../../../components/App';
 
 import {
   checkConnect,
+  closeNavMenu,
 } from '../../actions/creators';
 
 const mapStateToProps = (state) => ({
@@ -12,6 +13,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   checkConnect: () => dispatch(checkConnect()),
+  closeNavMenu: () => dispatch(closeNavMenu()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

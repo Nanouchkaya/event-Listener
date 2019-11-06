@@ -54,6 +54,7 @@ import {
   CHANGE_LIKE_TO_THE_EVENT,
   CHANGE_SHARE_LINKS_MODAL,
   FETCH_NEW_USER_INFO,
+  CLOSE_NAV_MENU,
 } from './types';
 
 
@@ -147,7 +148,9 @@ export const changeCheckValueInModal = (modalName, checkName) => ({
 export const deconnect = () => ({
   type: DECONNECT,
 });
-
+export const closeNavMenu = () => ({
+  type: CLOSE_NAV_MENU,
+});
 
 // Home : QuickSearchBar.js
 export const handleSearchChange = (value) => ({

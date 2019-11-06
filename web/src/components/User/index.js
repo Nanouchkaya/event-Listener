@@ -14,7 +14,11 @@ class User extends React.Component {
   state = {}
 
   componentDidMount() {
-    const { fetchNewUserInfos } = this.props;
+    const {
+      fetchNewUserInfos,
+      closeNavMenu,
+    } = this.props;
+    closeNavMenu();
     fetchNewUserInfos();
   }
 
@@ -33,6 +37,7 @@ class User extends React.Component {
 
 User.propTypes = {
   fetchNewUserInfos: PropTypes.func.isRequired,
+  closeNavMenu: PropTypes.func.isRequired,
 };
 
 // export

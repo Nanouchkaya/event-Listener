@@ -6,6 +6,7 @@ import {
   openNavModal,
   activeNavMenu,
   deconnect,
+  closeNavMenu,
 } from '../../actions/creators';
 
 const mapStateToProps = (state) => ({
@@ -22,6 +23,7 @@ const mapDispatchToProps = (dispatch) => ({
   openNavModal: (name) => dispatch(openNavModal(name)),
   activeNavMenu: () => dispatch(activeNavMenu()),
   deconnect: () => dispatch(deconnect()),
+  closeNavMenu: () => dispatch(closeNavMenu()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Nav);
