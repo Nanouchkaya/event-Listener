@@ -25,7 +25,7 @@ class Events extends React.Component {
   state = {
     styleForm: {},
     styleFakeDiv: {},
-    undefinedData: 'Aucun événement ne correspond à votre recherche',
+    loading: true,
   }
 
   componentDidMount() {
@@ -33,6 +33,7 @@ class Events extends React.Component {
     const {
       value,
       showEvents,
+      data,
     } = this.props;
     if (value.trim().length === 0) {
       // fetch all events when no search by filter
@@ -44,6 +45,12 @@ class Events extends React.Component {
       const formHeight = document.querySelector('.events-right').clientHeight;
       const pos = formTopY - formHeight;
       window.addEventListener('scroll', () => this.stickyForm(pos));
+    }
+
+    if (data.length === 0 ) {
+      this.setState({
+        loading: false,
+      })
     }
   }
 
@@ -68,8 +75,9 @@ class Events extends React.Component {
   render() {
     const {
       data,
+      undefinedData,
     } = this.props;
-    const { styleForm, styleFakeDiv, undefinedData } = this.state;
+    const { styleForm, styleFakeDiv, loading } = this.state;
     return (
       <section className="events">
 
@@ -81,7 +89,7 @@ class Events extends React.Component {
             <Route exact path="/tous-les-evenements">
               <div className="events-left">
                 { data.map((event) => <Event key={event.id} {...event} jsxFor="list" />)}
-                { data.length < 0 && <p>{undefinedData}</p>}
+                { data.length === 0 && <p>{undefinedData}</p>}
               </div>
               { data.length === 0 && (
                 <div className="sweet-loading">
@@ -90,7 +98,7 @@ class Events extends React.Component {
                     sizeUnit="px"
                     size={150}
                     color="#123abc"
-                    loading
+                    loading={loading}
                   />
                 </div>
               )}

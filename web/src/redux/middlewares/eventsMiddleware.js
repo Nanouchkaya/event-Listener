@@ -72,7 +72,6 @@ const eventsMiddleware = (store) => (next) => (action) => {
     // handles search by multiple parameters
     case HANDLE_SUBMIT: {
       const { dataFilter } = store.getState().form;
-      console.log(dataFilter)
       axios.post(`http://${config.url}:3000/events/filter`, dataFilter)
         .then((response) => {
           const { data } = response.data;

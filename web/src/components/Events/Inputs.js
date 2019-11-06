@@ -8,7 +8,6 @@ class Inputs extends React.Component {
   handleChange = (event) => {
     const { fillFilterList } = this.props;
     const { name } = event.target;
-    console.log(event.target)
     const filter = {
       [name]: event.target.value,
     };
