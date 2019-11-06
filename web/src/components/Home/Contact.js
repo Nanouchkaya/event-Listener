@@ -52,19 +52,25 @@ class Contact extends React.Component {
   }
 
   render() {
-    const { 
-      nameInput, 
-      emailInput, 
-      objectInput, 
+    const {
+      nameInput,
+      emailInput,
+      objectInput,
       messageText,
-  } = this.state;
+    } = this.state;
     return (
       <section className="contact">
         <h2 className="contact-title">
           Nous contacter
         </h2>
-          {this.state.response && <p className="contact-form-sent-text">{this.state.isSent}</p> }
         <form onSubmit={this.handleSubmit} className="contact-form" autoComplete="off" method="POST">
+          {
+            this.state.response && (
+            <p className="contact-form-sent-text">
+              {this.state.isSent}
+            </p>
+            )
+          }
           <input
             type="text"
             className="contact-form-element input"
