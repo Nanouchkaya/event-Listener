@@ -205,9 +205,12 @@
 
       & .event-resume {
         display: flex;
+        flex: wrap;
     
         &-image {
-          width: 40%
+          height: 120px;
+          width: 40%;
+          object-fit: cover;
         }
 
         &--right {
