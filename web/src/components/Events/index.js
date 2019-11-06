@@ -25,6 +25,7 @@ class Events extends React.Component {
   state = {
     styleForm: {},
     styleFakeDiv: {},
+    undefinedData: 'Aucun événement ne correspond à votre recherche',
   }
 
   componentDidMount() {
@@ -78,8 +79,7 @@ class Events extends React.Component {
       locationSearchData,
     } = this.props;
 
-    const { styleForm, styleFakeDiv } = this.state;
-    console.log(locationSearchData, 'data', data)
+    const { styleForm, styleFakeDiv, undefinedData } = this.state;
     return (
       <section className="events">
 
@@ -92,6 +92,7 @@ class Events extends React.Component {
             <Route exact path="/tous-les-evenements">
               <div className="events-left">
                 { data.map((event) => <Event key={event.id} {...event} jsxFor="list" />)}
+                { data.length !== 0 && <p>test: {undefinedData}</p>}
               </div>
               { data.length === 0 && (
                 <div className="sweet-loading">
@@ -118,7 +119,7 @@ class Events extends React.Component {
                     return (
                       <p>Aucun événement trouvé</p>
                     );
-                  } if (data.length > 0) {
+                  } if (data.length > 0 && locationSearchData.length === 0) {
                     return (
                       <>
                         <div className="events-right" style={styleForm}>
@@ -135,17 +136,20 @@ class Events extends React.Component {
                       <p>Aucun événement ne correspond à votre recherche</p>
                     );
                   }
-                  return (
-                    <>
-                      <div className="events-right" style={{ styleForm }}>
-                        <EventsMap />
-                      </div>
-                      <div id="fake-div" style={styleFakeDiv} />
-                      <div className="events-left">
-                        { locationSearchData.map((event) => <Event key={event.id} {...event} jsxFor="list" />)}
-                      </div>
-                    </>
-                  );
+                  if(locationSearchData.length > 0) {
+                    return (
+                      <>
+                        <div className="events-right" style={{ styleForm }}>
+                          <EventsMap />
+                        </div>
+                        <div id="fake-div" style={styleFakeDiv} />
+                        <div className="events-left">
+                          { locationSearchData.map((event) => <Event key={event.id} {...event} jsxFor="list" />)}
+                        </div>
+                      </>
+                    );  
+                  }
+                  
                 })()
               }
             </Route>
