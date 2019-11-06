@@ -4,11 +4,64 @@
 .error {
   @include contentLayer;
 
-  div {
+  .message {
     width: 100%;
     text-align: center;
     padding: 2rem 0;
     margin: 2rem;
-    font-size: 3em;
+    font-size: 2em;
+
+    .link {
+      color: #3A7BDA;
+      display: block;
+      font-size: 1.5rem;
+      padding: 1rem;
+    }
+  }
+  .glitch{
+    color:white;
+    font-size: 10rem;
+    position:relative;
+    width:fit-content;
+    margin: auto;
+  }
+  @keyframes noise-anim{
+    $steps:20;
+    @for $i from 0 through $steps{
+      #{percentage($i*(1/$steps))}{
+        clip:rect(random(100)+px,9999px,random(100)+px,0);
+      }
+    }
+  }
+  .glitch:after{
+    content:attr(data-text);
+    position:absolute;
+    left:2px;
+    text-shadow:-1px 0 red;
+    top:0;
+    color:white;
+    overflow:hidden;
+    clip:rect(0,900px,0,0); 
+    animation:noise-anim 2s infinite linear alternate-reverse;
+  }
+  
+  @keyframes noise-anim-2{
+    $steps:20;
+    @for $i from 0 through $steps{
+      #{percentage($i*(1/$steps))}{
+        clip:rect(random(100)+px,9999px,random(100)+px,0);
+      }
+    }
+  }
+  .glitch:before{
+    content:attr(data-text);
+    position:absolute;
+    left:-2px;
+    text-shadow:1px 0 blue; 
+    top:0;
+    color:white;
+    overflow:hidden;
+    clip:rect(0,900px,0,0); 
+    animation:noise-anim-2 3s infinite linear alternate-reverse;
   }
 }
