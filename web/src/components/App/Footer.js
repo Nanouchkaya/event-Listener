@@ -9,6 +9,7 @@ const Footer = ({ fetchEvents }) => {
   // Fetch the events based on the location when clicking on the footer links
   const handleClick = (event) => {
     fetchEvents(event.target.dataset.city);
+    //window.location.pathname = `tous-les-evenements/${event.target.dataset.city}`
   };
   const cities = [
     'Paris',
@@ -24,7 +25,7 @@ const Footer = ({ fetchEvents }) => {
       <div>
         <div className="footer-events">
           <h2 className="footer-subtitle">Tous les événements</h2>
-          {cities.map((city) => (<Link onClick={handleClick} key={city} to={`/evenements/${city}`} data-city={city}> - {city}<br /> </Link>))}
+          {cities.map((city) => (<Link onClick={handleClick} key={city} to={`/tous-les-evenements/${city}`} data-city={city}> - {city}<br /> </Link>))}
         </div>
 
         <div className="footer-social">

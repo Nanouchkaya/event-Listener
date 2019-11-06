@@ -3,6 +3,9 @@ import React from 'react';
 import axios from 'axios';
 
 
+// == Import : local
+
+
 // == Composant Contact
 class Contact extends React.Component {
   state = {
@@ -10,6 +13,8 @@ class Contact extends React.Component {
     emailInput: '',
     objectInput: '',
     messageText: '',
+    isSent: '',
+    response: false,
   }
 
   handleChange = (event) => {
@@ -20,7 +25,12 @@ class Contact extends React.Component {
   }
 
   handleSubmit = (event) => {
-    const { nameInput, emailInput, objectInput, messageText } = this.state;
+    const { 
+      nameInput,
+      emailInput,
+      objectInput,
+      messageText,
+    } = this.state;
     event.preventDefault();
     axios.post('http://localhost:3000/contact/send', {
       name: nameInput,
@@ -29,12 +39,13 @@ class Contact extends React.Component {
       message: messageText,
     })
       .then((response) => {
-        console.log(response);
         this.setState({
           nameInput: '',
           emailInput: '',
           objectInput: '',
           messageText: '',
+          isSent: 'Votre message a bien été envoyé',
+          response: true,
         });
       })
       .catch((error) => console.error(error));
@@ -52,6 +63,7 @@ class Contact extends React.Component {
         <h2 className="contact-title">
           Nous contacter
         </h2>
+          {this.state.response && <p className="contact-form-sent-text">{this.state.isSent}</p> }
         <form onSubmit={this.handleSubmit} className="contact-form" autoComplete="off" method="POST">
           <input
             type="text"

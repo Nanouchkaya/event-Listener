@@ -55,6 +55,10 @@ const eventsMiddleware = (store) => (next) => (action) => {
     case FETCH_EVENTS_BY_LOCATION: {
       axios.get(`http://${config.url}:3000/events/localisation/${action.location}`)
         .then((response) => {
+          if (response.data.status === "Event doesn't exist") {
+            const data = [];
+            store.dispatch(sendLocationSearchData(data));
+          }
           if (response.data.result) {
             const { data } = response.data.result;
             store.dispatch(sendLocationSearchData(data));
