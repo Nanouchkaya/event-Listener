@@ -8,7 +8,7 @@ import Events from 'src/redux/containers/Events';
 const Footer = ({ fetchEvents }) => {
   // Fetch the events based on the location when clicking on the footer links
   const handleClick = (event) => {
-    fetchEvents(event.target.dataset.city);
+    //fetchEvents(event.target.dataset.city);
   };
   const cities = [
     'Paris',

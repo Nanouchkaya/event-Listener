@@ -46,12 +46,12 @@ class Events extends React.Component {
       handleQuickSearch(param[2]);
     }
     // pour fixer les filtres au scroll
-    if (window.innerWidth >= 768) {
-      const formTopY = document.querySelector('.events-right').getBoundingClientRect().y;
-      const formHeight = document.querySelector('.events-right').clientHeight;
-      const pos = formTopY - formHeight;
-      window.addEventListener('scroll', () => this.stickyForm(pos));
-    }
+    // if (window.innerWidth >= 768) {
+    //   const formTopY = document.querySelector('.events-right').getBoundingClientRect().y;
+    //   const formHeight = document.querySelector('.events-right').clientHeight;
+    //   const pos = formTopY - formHeight;
+    //   window.addEventListener('scroll', () => this.stickyForm(pos));
+    // }
   }
 
   componentWillUnmount() {
@@ -79,7 +79,7 @@ class Events extends React.Component {
     } = this.props;
 
     const { styleForm, styleFakeDiv } = this.state;
-
+    console.log(locationSearchData, 'data', data)
     return (
       <section className="events">
 
