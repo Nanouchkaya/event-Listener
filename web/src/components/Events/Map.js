@@ -6,7 +6,7 @@ class EventsMap extends React.Component {
   render() {
     const accessToken = 'pk.eyJ1IjoiZGFlbmVyeXM5NSIsImEiOiJjazJmYjNlN2QwZ3luM2xwYnlqZnE5Z3JmIn0.0eaxPyVL6cJ0QxnXXP_fHg';
     const url = `https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}`;
-    const { data, quickSearchData } = this.props;
+    const { data } = this.props;
     return (
       <>
    
@@ -60,9 +60,7 @@ class EventsMap extends React.Component {
             return (
             <Marker key={event.id} position={[event.latitude, event.longitude]}>
               <Popup>
-                Google France
-                8 rue de Londres
-                75009 Paris
+                {event.title}
               </Popup>
             </Marker> 
             )
