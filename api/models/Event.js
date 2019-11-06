@@ -175,6 +175,7 @@ class Event {
           errorMessage: null,
           rowMatch: result.length > 0,
           data: result,
+          query: sqlQuery,
         });
         }
       }
@@ -241,6 +242,7 @@ class Event {
           errorMessage: null,
           rowMatch: result.length > 0,
           data: result,
+          query: sqlQuery,
         });
         }
       }

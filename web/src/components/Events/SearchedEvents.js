@@ -16,15 +16,19 @@ class SearchedEvents extends React.Component {
 
     // allows to get only the desired param
     const param = this.props.location.pathname.split('/');
+
     // handles the quickSearchBar search
     if (param.length <= 3) {
       // fetch all events by city
-      fetchEvents(param[2]);
+      //fetchEvents(param[2]);
+
       // fetch all events by pathname
       handleQuickSearch(param[2]);
     }
+      
+    
     // handles the searchForm on homepage
-    if (param.length > 3) {
+    if (param.length === 4) {
       const filter = [
         { address: `'%${param[2].trim()}%'` },
         { title: `'%${param[3].trim()}%'` },
@@ -34,10 +38,15 @@ class SearchedEvents extends React.Component {
       // triggers the request by sending the filter array
       handleSubmit();
     }
+
+    // handles the request from footer links
+    if (param.length > 4 ) {
+      fetchEvents(param[4])
+    }
   }
 
   render() {
-    const { quickSearchData, homeFormData } = this.props;
+    const { quickSearchData, homeFormData, locationSearchData } = this.props;
     return (
       <>
         <section className="events">
@@ -48,14 +57,32 @@ class SearchedEvents extends React.Component {
             <div className="events-container">
               {
                 (() => {
-                  if (homeFormData.length === 0) {
+                  if (homeFormData.length === 0 && locationSearchData.length === 0) {
                     return (
                       <>
                         {
-                          quickSearchData.length > 0 ? quickSearchData.map((event) => <Event key={event.id} {...event} jsxFor="list" />) : <p>Aucun événement ne correspond à votre recherche</p>
+                          quickSearchData.length > 0 ? quickSearchData.map((event) => <Event key={event.id} {...event} jsxFor="list" />) : <p> Aucun événement ne correspond à votre recherche</p>
                         }
                       </>
-                    );
+                    )
+                  }
+                  if (homeFormData.length === 0 && quickSearchData.length === 0) {
+                    return (
+                      <>
+                        {
+                          locationSearchData.length > 0 ? locationSearchData.map((event) => <Event key={event.id} {...event} jsxFor="list" />) : <p>Aucun événement ne correspond à votre recherche</p>
+                        }
+                      </>
+                    )
+                  }
+                  if (locationSearchData.length > 0 && quickSearchData.length === 0) {
+                    return (
+                      <>
+                        {
+                          locationSearchData.length > 0 ? locationSearchData.map((event) => <Event key={event.id} {...event} jsxFor="list" />) : <p>Aucun événement ne correspond à votre recherche</p>
+                        }
+                      </>
+                    )
                   }
                   return (
                     <>

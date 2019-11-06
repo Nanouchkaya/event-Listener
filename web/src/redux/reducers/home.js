@@ -7,6 +7,7 @@ import {
   FETCH_NEXT_EVENTS,
   CHANGE_LEFT_FOR_SLIDER,
   HANDLE_QUICK_SEARCH_DATA,
+  SEND_LOCATION_SEARCH_DATA,
 } from '../actions/types';
 
 const initialState = {
@@ -64,6 +65,11 @@ export const home = (state = initialState, action = {}) => {
         ...state,
         quickSearchData: action.data,  
       }
+    // case SEND_LOCATION_SEARCH_DATA:
+    //   return {
+    //     state,
+    //     quickSearchData: action.data
+    //   }
     default:
       return state;
   }

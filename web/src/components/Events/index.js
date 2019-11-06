@@ -1,7 +1,7 @@
 // == Import : npm
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Route, Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { css } from '@emotion/core';
 import ClipLoader from 'react-spinners/ClipLoader';
 
@@ -25,7 +25,7 @@ class Events extends React.Component {
   state = {
     styleForm: {},
     styleFakeDiv: {},
-    undefinedData: 'Aucun événement ne correspond à votre recherche',
+    loading: true,
   }
 
   componentDidMount() {
@@ -33,26 +33,25 @@ class Events extends React.Component {
     const {
       value,
       showEvents,
-      fetchEvents,
-      handleQuickSearch,
+      data,
     } = this.props;
-    // allows to only get the desired parameters
-    const param = this.props.location.pathname.split('/');
     if (value.trim().length === 0) {
       // fetch all events when no search by filter
       showEvents();
-      // fetch all events by city
-      fetchEvents(param[2]);
-      // fetch all events by pathname
-      handleQuickSearch(param[2]);
     }
     // pour fixer les filtres au scroll
-    // if (window.innerWidth >= 768) {
-    //   const formTopY = document.querySelector('.events-right').getBoundingClientRect().y;
-    //   const formHeight = document.querySelector('.events-right').clientHeight;
-    //   const pos = formTopY - formHeight;
-    //   window.addEventListener('scroll', () => this.stickyForm(pos));
-    // }
+    if (window.innerWidth >= 768) {
+      const formTopY = document.querySelector('.events-right').getBoundingClientRect().y;
+      const formHeight = document.querySelector('.events-right').clientHeight;
+      const pos = formTopY - formHeight;
+      window.addEventListener('scroll', () => this.stickyForm(pos));
+    }
+
+    if (data.length === 0 ) {
+      this.setState({
+        loading: false,
+      })
+    }
   }
 
   componentWillUnmount() {
@@ -76,9 +75,9 @@ class Events extends React.Component {
   render() {
     const {
       data,
-      locationSearchData,
+      undefinedData,
     } = this.props;
-    const { styleForm, styleFakeDiv, undefinedData } = this.state;
+    const { styleForm, styleFakeDiv, loading } = this.state;
     return (
       <section className="events">
 
@@ -87,11 +86,10 @@ class Events extends React.Component {
         </h2>
 
         <div className="events-view-list">
-          <Switch>
             <Route exact path="/tous-les-evenements">
               <div className="events-left">
                 { data.map((event) => <Event key={event.id} {...event} jsxFor="list" />)}
-                { data.length < 0 && <p>{undefinedData}</p>}
+                { data.length === 0 && <p>{undefinedData}</p>}
               </div>
               { data.length === 0 && (
                 <div className="sweet-loading">
@@ -100,7 +98,7 @@ class Events extends React.Component {
                     sizeUnit="px"
                     size={150}
                     color="#123abc"
-                    loading
+                    loading={loading}
                   />
                 </div>
               )}
@@ -109,54 +107,8 @@ class Events extends React.Component {
                 <Form />
                 { data.length > 0 && <EventsMap />}
               </div>
-            </Route>
-
-            <Route exact path={this.props.location.pathname}>
-              {
-                (() => {
-                  if (locationSearchData.length === 0) {
-                    return (
-                      <p>Aucun événement trouvé</p>
-                    );
-                  } if (data.length > 0 && locationSearchData.length === 0) {
-                    return (
-                      <>
-                        <div className="events-right" style={styleForm}>
-                          <EventsMap />
-                        </div>
-
-                        <div className="events-left">
-                          { data.map((event) => <Event key={event.id} {...event} jsxFor="list" />)}
-                        </div>
-                      </>
-                    );
-                  } if (data.length === 0) {
-                    return (
-                      <p>Aucun événement ne correspond à votre recherche</p>
-                    );
-                  }
-                  if (locationSearchData.length > 0) {
-                    return (
-                      <>
-                        <div className="events-left">
-                          { locationSearchData.map((event) => <Event key={event.id} {...event} jsxFor="list" />)}
-                        </div>
-                        <div id="fake-div" style={styleFakeDiv} />
-                        <div className="events-right" style={styleForm}>
-                          <Form />
-                          <EventsMap />
-                        </div>
-                      </>
-                    );
-                  }
-                })()
-              }
-            </Route>
-
-          </Switch>
-
+            </Route> 
         </div>
-
       </section>
     );
   }
@@ -167,9 +119,6 @@ Events.propTypes = {
   data: PropTypes.array,
   value: PropTypes.string,
   showEvents: PropTypes.func.isRequired,
-  fetchEvents: PropTypes.func.isRequired,
-  locationSearchData: PropTypes.array.isRequired,
-  handleQuickSearch: PropTypes.func.isRequired,
   undefinedData: PropTypes.string,
 };
 Events.defaultProps = {

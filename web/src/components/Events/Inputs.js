@@ -29,7 +29,7 @@ class Inputs extends React.Component {
           {children}
         </label>
         <input
-          onChange={this.handleChange}
+          onClick={this.handleChange}
           type="checkbox"
           id={children}
           className="advanced-filter-input"
