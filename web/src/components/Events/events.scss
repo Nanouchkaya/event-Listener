@@ -57,6 +57,12 @@
           width: 100%;
         }
       }
+
+      &.price, &.online {
+        input {
+          width: fit-content;
+        }
+      }
     }
 
     &-name {
