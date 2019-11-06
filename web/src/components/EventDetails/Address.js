@@ -16,9 +16,6 @@ const Address = ({ address }) => {
       <address>
         {pureAddress}
       </address>
-      <p>
-        <a href="#map">Afficher la carte</a>
-      </p>
     </div>
   );
 };
