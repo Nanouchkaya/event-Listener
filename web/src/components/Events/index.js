@@ -138,14 +138,15 @@ class Events extends React.Component {
                   if(locationSearchData.length > 0) {
                     return (
                       <>
-                        <div className="events-right" style={{ styleForm }}>
-                          <EventsMap />
-                        </div>
-                        <div id="fake-div" style={styleFakeDiv} />
+                       <div id="fake-div" style={styleFakeDiv} />
                         <div className="events-left">
                           { locationSearchData.map((event) => <Event key={event.id} {...event} jsxFor="list" />)}
                         </div>
-                      </>
+                        <div className="events-right" style={{ styleForm }}>
+                          <Form />
+                          <EventsMap />
+                        </div>
+                     </>
                     );  
                   }
                   

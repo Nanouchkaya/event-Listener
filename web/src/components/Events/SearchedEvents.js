@@ -16,13 +16,17 @@ class SearchedEvents extends React.Component {
 
     // allows to get only the desired param
     const param = this.props.location.pathname.split('/');
+
     // handles the quickSearchBar search
     if (param.length <= 3) {
       // fetch all events by city
-      fetchEvents(param[2]);
+      //fetchEvents(param[2]);
+
       // fetch all events by pathname
       handleQuickSearch(param[2]);
     }
+      
+    
     // handles the searchForm on homepage
     if (param.length > 3) {
       const filter = [
