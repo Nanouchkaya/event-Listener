@@ -19,8 +19,8 @@ export const getEventStatus = (dateStart, dateEnd) => {
 
 // fonction pour afficher la date de fin d'un evt s'il dure plus d'un jour (dans eventDetails)
 export const getEventDate = (dateStart, dateEnd) => {
-  dateStart = moment(dateStart, 'YYYY-MM-DD').locale('fr').add(1, 'day').format('dddd DD/MM/YYYY');
-  dateEnd = moment(dateEnd, 'YYYY-MM-DD').locale('fr').add(1, 'day').format('dddd DD/MM/YYYY');
+  dateStart = moment(dateStart, 'YYYY-MM-DD').locale('fr').format('dddd DD/MM/YYYY');
+  dateEnd = moment(dateEnd, 'YYYY-MM-DD').locale('fr').format('dddd DD/MM/YYYY');
 
   if (dateEnd !== dateStart) {
     return `Du ${dateStart} au ${dateEnd}`;

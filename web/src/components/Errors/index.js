@@ -16,4 +16,3 @@ const Errors = () => (
   </section>
 );
 export default Errors;
-

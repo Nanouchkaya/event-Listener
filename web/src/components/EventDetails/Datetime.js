@@ -18,7 +18,6 @@ class Datetime extends React.Component {
         </h3>
         <p>
           <time>{date}</time>
-          <a href="#">Ajouter au calendrier</a>
         </p>
       </div>
     );

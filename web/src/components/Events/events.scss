@@ -215,16 +215,17 @@
 
       & .event-resume {
         display: flex;
-        flex: wrap;
     
         &-image {
           height: 120px;
-          width: 40%;
+          min-width: 40%;
+          flex: 1;
+          object-fit: cover;
         }
 
         &--right {
          padding: .5rem 1rem;
-         flex-basis: 100%;
+         flex: 2 100%;
         }
       }
     }
