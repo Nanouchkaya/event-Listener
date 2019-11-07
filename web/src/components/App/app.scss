@@ -153,6 +153,8 @@
     color: $colorDarkTheme;
     width: 100%;
     padding-bottom: 1rem;
+    display: flex;
+    justify-content: flex-end;
 
       &:hover {
         color: $turquoise;
@@ -251,11 +253,6 @@ footer {
   }
 
     .navigation-item {
-
-      &--left {
-        
-      }
-
       &--right {
         font-size: 1rem;
         margin: 0 2rem;
