@@ -1,5 +1,7 @@
-.vscode
-.env
-*.log
 node_modules
 dist
+
+.env
+*.log
+
+.vscode

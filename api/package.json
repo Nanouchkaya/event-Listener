@@ -7,8 +7,7 @@
   "author": "Guillaume T, Guillaume E, Claudine B, Ines ML",
   "scripts": {
     "start": "nodemon index.js",
-    "cln": "rm -rf ./node_modules",
-    "save-deps": "node updateDeps.js"
+    "cln": "rm -rf ./node_modules"
   },
   "devDependencies": {
     "nodemon": "^1.19.4"
