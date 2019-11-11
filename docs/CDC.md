@@ -1,11 +1,12 @@
-# Cahier des charges du blog
+# Cahier des charges
 
-## Contexte
 
 ### Présentation
 
-Le responsable d'une agende évènementielle a besoin d'une plateforme pour rassembler à un seul endroit, tous les événements (salon, conférence etc) liés à la Tech. Cette plateforme serait autant profitable aux particuliers qu'aux entreprises.
-Exemple d'utilisation : Un utilisateur se connecte à son compte, il consulte les événements à venir dans sa région (ou ailleurs), sauvegarde ce qui l'intéresse, il a la possibilité de voir quels autres membres de la plateforme sont intéressés par le même événement et donc de communiquer avec eux (indirectement, cela rassemble les développeurs, amoureux de la tech au même endroit);
+Le responsable d’une agence événementielle a besoin d’une plateforme pour rassembler à un seul endroit tous les événements (salon, conférence etc) liés à la tech numérique.
+Cette plateforme serait d’autant profitable aux particuliers qu'aux entreprises.
+Exemple d'utilisation : Un utilisateur se connecte à son compte, il consulte les événements à venir dans sa région (ou ailleurs), sauvegarde ce qui l'intéresse, il a la possibilité de voir quels autres membres de la plateforme sont intéressés par le même événement et donc de communiquer avec eux (indirectement, cela rassemble les développeurs, amoureux de la tech au même endroit).
+
 
 ### Objectif
 
@@ -13,116 +14,91 @@ Créer une plateforme qui rassemble tous les événements liés au domaine de la
 
 ### Définitions du MVP (Minimum Viable Product)
 
-- Page d'accueil
+- __Barre de navigation__ (Sur toutes les pages)
+    - Bouton Connexion-Déconnexion / Inscription
+    - Bouton tous les événements
 
-    - Header :
-        - Barre de navigation
-            - Bouton Connexion / Déconnexion
-        - accroche / intro (jumbotron ?)
-    
-    - Main :
-        - Prochains événements et/ou événements les plus consultés/sauvegardés
+- __Page d'accueil__ :
+    - Accroche / Intro (jumbotron)
+    - Prochains événements et/ou événements les plus consultés/sauvegardés
+    - Barre de recherche d'événement
+    - Formulaire de contact
 
-    - Footer 
+
         
-- Espace membre
-    - Connexion / Inscription
-    - Déconnexion
-    - Dashboard (espace utilisateur)
-    - Gestion de suivi d'autres utilisateurs
+- __Espace membre__ :
     - Gestion de suivi d'événements (page dans le profil qui liste les événements suivis)
     - Fonctionnalités de l'utilisateur : gestion des préférences mail, notif, suppression de compte
     
-- Page événement :
+- __Page événement__ :
     - Aimer / Suivre / Participer
-    - Fil d'actu de l'événements par les organisateurs
-    - Un sondage de retour sur l'événement terminé
-    - Statut de l'événement : à venir / en cours / terminé
-    - Préciser si événement en ligne ou sur place
+    - Statut de l'événement : à venir / en cours / terminé / annulé
     - Redirection vers la plateforme de diffusion du live
+    - Préciser si l’événement est en ligne et/ou sur place
+    - Tags dynamiques 
     - Infos sur l'événement : 
         - Prix
-        - Lien site / facebook
-    - Liste des entreprises / conférenciers présents
+        - Lieu, horaires
+        - Liens externes (site / réseaux sociaux / plateforme du live)
+        - Liste des entreprises / conférenciers présents
 
-- Page recherche :    
-    - Calendrier de tous les événements à venir
-    - Carte géographique
+- __Page recherche__ :    
+    - Barre de recherche  
+    - Filtrer les résultats de la recherche
+    - Grille des résultats de la recherche
 
-- Gestion des rôles utilisateurs : admin, organisateur et exposant, simple membre visiteur de l'événement
-- Contact par formulaire pour proposer un événement aux admins
-- Page contact générale
-
-
-
-Optionnel :
-    - Fil questions auxquel les organisateurs peuvent répondre (façon FAQ)
-    - Pop-up pour inciter à l'inscription au bout d'une durée donnée passée sur le site
-    - Un fil de commentaire pour les événements terminés
-    - Plan du site (où sont placés les exposants / les salles de conférences etc)
-    - Synchronisation à l'agenda Google
-    - Connexion / Inscription (compte externe facebook, gmail... possible)
+- __Pages annexes__ :
+    - Mentions légales
+    - Politique de confidentialité
+    - 404
 
 
-## Spécifications fonctionnelles
+### Fonctionnalités optionnelles V2
 
-> Rappel : qu'est-ce qui est attendu comme fonctionnement.
+- Pop-up pour inciter à l'inscription après un certains temps passés sur une page événement
+- Synchronisation à l'agenda Google
+- Une carte avec la localisation de l’événement sur la page d’un événement
+- Un sondage de retour sur l'événement terminé
+- Gestion de suivi d'autres utilisateurs
+- Panneau d’administration
+- Fonctionnalités liées au rôle organisateur :
+    - Fil d’actualité d’un événement
+    - Gestion du rôle organisateur
+    - Fil de questions auxquelles les organisateurs peuvent répondre (façon FAQ)
+    - Contact par formulaire pour proposer un événement aux admins
 
-### Apparence
+### Fonctionnalités optionnelles V3
 
-Ambiance graphique sur le thème de l'espace.
+- Ajout d’un rôle exposant dans la gestion utilisateur.
+- Plan du site (où sont placés les exposants / les salles de conférences etc)
+- Connexion avec un compte externe (facebook, gmail…) possible
+- Un fil de commentaire pour les événements terminés
+- Vue modifiable de la page des résultats de recherche : carte - intéractive et/ou calendrier
 
-### Navigation
+### Liste des technos utilisées
 
-- Menu de navigation
-- Barre de recherche
-
-### Templates de pages
-
-#### Gabarit global
-
-- Header
-    - Navigation
-    - Image d'en-tête
-    - Titre
-    - Slogan
-- Sidebar
-    - Champ de recherche
-    - Catégories
-    - Auteurs
-- Pied de page
-    - Liens vers les réseaux sociaux
-
-#### Pages
-
-- Liste d'articles
-- Détail article
-- Mentions légales
-- Contact
-- Plan du site
-
-## Spécifications techniques
-
-> Rappel : comment ça marche (quelles technos, architecture logicielle, etc.).
-
-### Les données
-
-- Articles
-- Catégories
-- Auteurs
-
-### Architecture logicielle choisie
-
-- HTML5
-- CSS3 (Bootstrap 4)
-- JS (jQuery)
+- React.js
+- Node.js
 - MySQL
 
-## Notre proposition
+### Le public visé (la cible)
+
+- Les professionnels du milieu
+- Les amateurs de nouvelles technologies
+- Les curieux
+- Les organisateurs d'événements
 
 
-### Délai
+### L'équipe
 
-10 jours à réception de la commande.
-Prochaine disponibilité le 21 octobre 2018.
-Livraison possible le 07 novembre 2019.
+__Inès__  
+Scrum Master
+
+__Claudine__  
+Lead Dev Front
+
+__Guillaume T.__  
+Lead Dev Back
+
+__Guillaume E.__  
+Référent technique
