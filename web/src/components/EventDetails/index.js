@@ -1,6 +1,7 @@
 // import npm
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 
 
 // import sous-composants
@@ -14,6 +15,7 @@ import Tags from 'src/redux/containers/EventDetails/Tags';
 
 
 // import local
+import config from 'src/config';
 import './eventdetails.scss';
 
 
@@ -26,7 +28,13 @@ class EventDetails extends React.Component {
       },
       getEventDetails,
     } = this.props;
-    getEventDetails(params.eventId);
+
+    if (isNaN(Number(params.eventId))) {
+      window.location = `${config.url}/not-found`;
+    }
+    else {
+      getEventDetails(params.eventId);
+    }
   }
 
   componentDidUpdate() {

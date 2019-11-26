@@ -29,7 +29,7 @@ import {
 const eventsMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case GET_EVENT_IN_PROGRESS: {
-      axios.get(`${config.url}/events/in-progress`)
+      axios.get(`${config.api}/events/in-progress`)
         .then((response) => {
           store.dispatch(fetchEventInProgress(response.data.data));
         })
@@ -41,7 +41,7 @@ const eventsMiddleware = (store) => (next) => (action) => {
     // Handles search by title of an event
     case TRIGGER_MIDDLEWARE: {
       const { value } = store.getState().form;
-      axios.get(`${config.url}/events/title/${value}`)
+      axios.get(`${config.api}/events/title/${value}`)
         .then((response) => {
           const { data } = response.data.result;
           store.dispatch(fetchRequestedData(data));
@@ -53,7 +53,7 @@ const eventsMiddleware = (store) => (next) => (action) => {
     }
     // Gets all events (for the "tous-les-evenements" page)
     case ALL_EVENTS: {
-      axios.get(`${config.url}/events`)
+      axios.get(`${config.api}/events`)
         .then((response) => {
           const { data } = response.data;
           store.dispatch(fetchRequestedData(data));
@@ -65,7 +65,7 @@ const eventsMiddleware = (store) => (next) => (action) => {
     }
     // handles search by localisation
     case FETCH_EVENTS_BY_LOCATION: {
-      axios.get(`${config.url}/events/localisation/${action.location}`)
+      axios.get(`${config.api}/events/localisation/${action.location}`)
         .then((response) => {
           if (response.data.status === "Event doesn't exist") {
             const data = [];
@@ -84,7 +84,7 @@ const eventsMiddleware = (store) => (next) => (action) => {
     // handles search by multiple parameters
     case HANDLE_SUBMIT: {
       const { dataFilter } = store.getState().form;
-      axios.post(`${config.url}/events/filter`, dataFilter)
+      axios.post(`${config.api}/events/filter`, dataFilter)
         .then((response) => {
           const { data } = response.data;
           store.dispatch(fetchRequestedData(data));
@@ -96,7 +96,7 @@ const eventsMiddleware = (store) => (next) => (action) => {
     }
     // handles search by title of the event, this time for the QuickSearchBar
     case HANDLE_QUICK_SEARCH: {
-      axios.get(`${config.url}/events/title/${action.value}`)
+      axios.get(`${config.api}/events/title/${action.value}`)
         .then((response) => {
           const { data } = response.data.result;
           store.dispatch(handleQuickSearchData(data));
@@ -111,7 +111,7 @@ const eventsMiddleware = (store) => (next) => (action) => {
       * next-events/:number => nombre d'evt à afficher
       */
     case NEXT_EVENTS: {
-      axios.get(`${config.url}/events/next-events/5`)
+      axios.get(`${config.api}/events/next-events/5`)
         .then((response) => {
           store.dispatch(fetchNextEvents(response.data.result.data));
         })
