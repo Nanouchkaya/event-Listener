@@ -8,9 +8,9 @@ import ClipLoader from 'react-spinners/ClipLoader';
 
 // == Import : local
 import './events.scss';
-import Form from 'src/redux/containers/Events/Form';
-import Event from 'src/redux/containers/Events/Event';
-import EventsMap from 'src/redux/containers/Events/Map';
+import Form from 'src/containers/Events/Form';
+import Event from 'src/containers/Events/Event';
+import EventsMap from 'src/containers/Events/Map';
 
 
 const override = css`
@@ -86,28 +86,28 @@ class Events extends React.Component {
         </h2>
 
         <div className="events-view-list">
-            <Route exact path="/tous-les-evenements">
-              <div className="events-left">
-                { data.map((event) => <Event key={event.id} {...event} jsxFor="list" />)}
-                { data.length === 0 && <p>{undefinedData}</p>}
+          <Route exact path="/tous-les-evenements">
+            <div className="events-left">
+              { data.map((event) => <Event key={event.id} {...event} jsxFor="list" />)}
+              { data.length === 0 && <p>{undefinedData}</p>}
+            </div>
+            { data.length === 0 && (
+              <div className="sweet-loading">
+                <ClipLoader
+                  css={override}
+                  sizeUnit="px"
+                  size={150}
+                  color="#123abc"
+                  loading={loading}
+                />
               </div>
-              { data.length === 0 && (
-                <div className="sweet-loading">
-                  <ClipLoader
-                    css={override}
-                    sizeUnit="px"
-                    size={150}
-                    color="#123abc"
-                    loading={loading}
-                  />
-                </div>
-              )}
-              <div id="fake-div" style={styleFakeDiv} />
-              <div className="events-right" style={styleForm}>
-                <Form />
-                { data.length > 0 && <EventsMap />}
-              </div>
-            </Route> 
+            )}
+            <div id="fake-div" style={styleFakeDiv} />
+            <div className="events-right" style={styleForm}>
+              <Form />
+              { data.length > 0 && <EventsMap />}
+            </div>
+          </Route>
         </div>
       </section>
     );

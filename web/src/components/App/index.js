@@ -2,17 +2,16 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import ClipLoader from 'react-spinners/ClipLoader';
 
 // == Import : local
 import './app.scss';
-import Home from 'src/redux/containers/Home';
-import Events from 'src/redux/containers/Events';
-import EventDetails from 'src/redux/containers/EventDetails';
-import Nav from 'src/redux/containers/App/Nav';
-import Footer from 'src/redux/containers/App/Footer';
-import SearchedEvents from 'src/redux/containers/Events/SearchedEvents';
-import User from 'src/redux/containers/User';
+import Home from 'src/components/Home';
+import Events from 'src/containers/Events';
+import EventDetails from 'src/containers/EventDetails';
+import Nav from 'src/containers/App/Nav';
+import Footer from 'src/containers/App/Footer';
+import SearchedEvents from 'src/containers/Events/SearchedEvents';
+import User from 'src/containers/User';
 import LegalMentions from 'src/components/LegalMentions';
 import PrivatePolicy from 'src/components/PrivatePolicy';
 import Errors from 'src/components/Errors';

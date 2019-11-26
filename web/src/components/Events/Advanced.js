@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 
 // == Import : local
-import Inputs from 'src/redux/containers/Events/Inputs';
+import Inputs from 'src/containers/Events/Inputs';
 
 
 // == Data

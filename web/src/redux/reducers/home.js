@@ -1,14 +1,20 @@
+// Actions import
+import {
+  CHANGE_LEFT_FOR_SLIDER,
+} from '../actions';
 import {
   CHANGE_SEARCH_FORM_VALUE,
   HANDLE_SEARCH_CHANGE,
   ADD_FILTERS,
   EMPTY_SEARCH_FORM_VALUE,
   HANDLE_SEARCH_SUBMIT,
-  FETCH_NEXT_EVENTS,
-  CHANGE_LEFT_FOR_SLIDER,
   HANDLE_QUICK_SEARCH_DATA,
+} from '../actions/temp';
+import {
+  FETCH_NEXT_EVENTS,
   FETCH_EVENT_IN_PROGRESS,
-} from '../actions/types';
+} from '../actions/event';
+
 
 const initialState = {
   value: '',
@@ -21,6 +27,7 @@ const initialState = {
   quickSearchData: [],
   eventInProgress: {},
 };
+
 
 export const home = (state = initialState, action = {}) => {
   switch (action.type) {

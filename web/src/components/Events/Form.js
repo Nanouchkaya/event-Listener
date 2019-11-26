@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 
 // == Import : local
-import Advanced from 'src/redux/containers/Events/Advanced';
+import Advanced from 'src/containers/Events/Advanced';
 
 
 // == Composant Form

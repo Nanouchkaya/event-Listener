@@ -1,12 +1,12 @@
-// Gestion des icons sur EventDetaiks > Header.js
-
-// Action Type
+// Actions import
 import {
   CHANGE_SHARE_LINKS_MODAL,
   FETCH_EVENT_DETAILS,
+} from '../actions/event';
+import {
   CHANGE_USER_PREFERENCES_TO_THE_EVENT,
   FETCH_USER_PREFERENCES_TO_THE_EVENT,
-} from '../actions/types';
+} from '../actions/user';
 
 
 const detailsState = {
@@ -17,6 +17,8 @@ const detailsState = {
   interested: false,
   participation: false,
 };
+
+
 export const eventDetails = (state = detailsState, action = {}) => {
   switch (action.type) {
     case CHANGE_SHARE_LINKS_MODAL:

@@ -12,9 +12,9 @@ import menuBurgerCloseIcon from 'src/assets/images/icons/icons8-cancel-50.png';
 import profileIcon from 'src/assets/images/icons/icons8-settings-50.png';
 import logoutIcon from 'src/assets/images/icons/icons8-exit-50.png';
 
-import QuickSearchBar from 'src/redux/containers/Home/QuickSearchBar';
-import RegisterForm from 'src/redux/containers/Modal/RegisterForm';
-import LoginForm from 'src/redux/containers/Modal/LoginForm';
+import QuickSearchBar from 'src/containers/Home/QuickSearchBar';
+import RegisterForm from 'src/containers/Modal/RegisterForm';
+import LoginForm from 'src/containers/Modal/LoginForm';
 
 
 // == Composant Nav

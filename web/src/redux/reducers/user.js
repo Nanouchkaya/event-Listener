@@ -1,3 +1,4 @@
+// Actions import
 import {
   CHANGE_INPUT_VALUE,
   CHANGE_MODAL_STATUS,
@@ -7,7 +8,8 @@ import {
   SHOW_MESSAGE_UPDATE_USER,
   DELETE_SHOW_MESSAGE,
   DECONNECT,
-} from '../actions/types';
+} from '../actions/user';
+
 
 const initialState = {
   id: 0,
@@ -46,6 +48,7 @@ const initialState = {
   },
   modalStatus: false,
 };
+
 
 export const user = (state = initialState, action = {}) => {
   switch (action.type) {
