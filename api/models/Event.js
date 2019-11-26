@@ -4,7 +4,7 @@ class Event {
 
   /**
    * Get all Events
-   * @param {callback} callbackGetAllEvents 
+   * @param {callback} callbackGetAllEvents
    */
   static getAll(callbackGetAllEvents) {
     const sqlQuery = 'SELECT * FROM event';
@@ -83,11 +83,11 @@ class Event {
     );
   }
 
-   /**
-   * Find Event by price (free/pricy)
-   * @param {integer} price
-   * @param {callback} callbackGetEventByPrice
-   */
+  /**
+  * Find Event by price (free/pricy)
+  * @param {integer} price
+  * @param {callback} callbackGetEventByPrice
+  */
 
   static findPrice(price, callbackGetEventByPrice) {
     const sqlQuery = 'SELECT * FROM event where price = ?';
@@ -215,7 +215,7 @@ class Event {
     )
   }
 
-    /**
+  /**
   * Find Event by title
   * @param {string} name
   * @param {callback} callbackGetEventByTitle
@@ -249,7 +249,7 @@ class Event {
     )
   }
 
- /**
+  /**
   * Find Event by starting date
   * @param {string} start
   * @param {callback} callbackGetEventByStartingDate
@@ -281,7 +281,7 @@ class Event {
     )
   }
 
- /**
+  /**
   * Find Event by ending date
   * @param {string} finish
   * @param {callback} callbackGetEventByEndingDate
@@ -313,10 +313,10 @@ class Event {
     )
   }
 
- /**
+  /**
   * Find Event by date
   * @param {string} start
-  * @param {string} finish 
+  * @param {string} finish
   * @param {callback} callbackGetEventByDate
   */
   static findDate(start, finish, callbackGetEventByDate) {
@@ -346,35 +346,32 @@ class Event {
     )
   }
 
- /**
+  /**
   * Sort events by start date
   * @param {number} number
   * @param {callback} callbackNextEvents
   */
   static sortByStartDate(number, callbackNextEvents) {
-   const sqlQuery = `SELECT * FROM event ORDER BY date_start LIMIT ${number}`;
+    const sqlQuery = `SELECT * FROM \`event\` WHERE date_start > NOW() ORDER BY date_start LIMIT ${number}`;
 
-   DBConnect.query(
-     sqlQuery,
-     (error, result) => {
-
-      if(error) {
-
-       callbackNextEvents({
-         error: true,
-         errorMessage: error,
-       });
-      } else {
-
-       callbackNextEvents({
-         error: false,
-         errorMessage: null,
-         rowMatch: result.length > 0,
-         data: result,
-       });
-      }
-     }
-   )
+    DBConnect.query(
+      sqlQuery,
+      (error, result) => {
+        if (error) {
+          callbackNextEvents({
+            error: true,
+            errorMessage: error,
+          });
+        } else {
+          callbackNextEvents({
+            error: false,
+            errorMessage: null,
+            rowMatch: result.length > 0,
+            data: result,
+          });
+        }
+      },
+    );
   }
 
   /**
@@ -386,17 +383,17 @@ class Event {
 
     filters.map((value, index) => {
       if (filters.length === (index + 1)) {
-        if ((Object.keys(value) == 'address' || Object.keys(value) == 'title')) {
-            query += `${Object.keys(value)} LIKE ${value[Object.keys(value)]};` 
+        if ((Object.keys(value) === 'address' || Object.keys(value) === 'title')) {
+          query += `${Object.keys(value)} LIKE ${value[Object.keys(value)]};`;
         } else {
-            query += `${Object.keys(value)} = ${value[Object.keys(value)]};`;  
+          query += `${Object.keys(value)} = ${value[Object.keys(value)]};`;
         }
       } else {
-          if ((Object.keys(value) == 'address' || Object.keys(value) == 'title')) {
-              query += `${Object.keys(value)} LIKE ${value[Object.keys(value)]} AND ` 
-          } else {
-              query += `${Object.keys(value)} = ${value[Object.keys(value)]} AND `;  
-          }
+        if ((Object.keys(value) == 'address' || Object.keys(value) == 'title')) {
+          query += `${Object.keys(value)} LIKE ${value[Object.keys(value)]} AND `;
+        } else {
+          query += `${Object.keys(value)} = ${value[Object.keys(value)]} AND `;
+        }
       }
     });
 
@@ -405,14 +402,12 @@ class Event {
     DBConnect.query(
       sqlQuery,
       (error, result) => {
-        if(error) {
-
+        if (error) {
           callbackGetEventByFilter({
             error: true,
             errorMessage: error,
           });
-         } else {
-  
+        } else {
           callbackGetEventByFilter({
             error: false,
             errorMessage: null,
@@ -420,11 +415,37 @@ class Event {
             data: result,
             query: sqlQuery,
           });
-         }
-    })
-
+        }
+      },
+    );
   }
 
-};
+  /**
+   * Get one event in progress
+   * @param {callback} callbackGetEventInProgress
+   */
+  static getEventInProgress(callbackGetEventInProgress) {
+    const sqlQuery = 'SELECT * FROM `event` WHERE (YEAR( NOW() ) >= YEAR( date_start ) AND MONTH( NOW() ) >= MONTH( date_start ) AND DAY( NOW() ) >= DAY( date_start )) AND (YEAR( NOW() ) <= YEAR( date_end ) AND MONTH( NOW() ) <= MONTH( date_end ) AND DAY( NOW() ) <= DAY( date_end )) LIMIT 1;';
+
+    DBConnect.query(
+      sqlQuery,
+      (error, result) => {
+        if (error) {
+          callbackGetEventInProgress({
+            error: true,
+            errorMessage: error,
+          });
+        } else {
+          callbackGetEventInProgress({
+            error: false,
+            errorMessage: null,
+            rowMatch: result.length > 0,
+            data: result[0],
+          });
+        }
+      },
+    );
+  }
+}
 
 module.exports = Event;

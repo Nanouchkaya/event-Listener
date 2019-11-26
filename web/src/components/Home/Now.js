@@ -1,33 +1,71 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import universeBanner from 'src/assets/images/Universe.jpg';
+class Now extends React.Component {
+  componentDidMount() {
+    const { getEventInProgress } = this.props;
+    getEventInProgress();
+  }
 
-const Now = () => (
-  <section className="now">
-    <h2 className="now-title">
-      En ce moment
-    </h2>
-    <img
-      src={universeBanner}
-      alt="Projets Universe, sur twitch le 7 et 8 novembre"
-      className="image"
-    />
-    <div className="now-content">
-      <Link
-        to="/evenement/11"
-        className="link"
-      >
-        Découvrir l'événement
-      </Link>
-      <a
-        href="https://www.twitch.tv/oclock_io"
-        className="link"
-      >
-        Suivre sur twitch
-      </a>
-    </div>
-  </section>
-);
+  render() {
+    const {
+      event: {
+        id,
+        title,
+        url_image: urlImage,
+        is_online: isOnline,
+        url_live: urlLive,
+      },
+      event,
+    } = this.props;
+    return (
+      <section className="now">
+        <h2 className="now-title">
+          En ce moment
+        </h2>
+        { (Object.keys(event).length > 0) && (
+          <>
+            <img
+              src={urlImage}
+              alt={title}
+              className="image"
+            />
+            <div className="now-content">
+              <Link
+                to={`/evenement/${id}`}
+                className="link"
+              >
+                Découvrir l'événement
+              </Link>
+              { !!isOnline && (
+                <a
+                  href={urlLive}
+                  className="link"
+                >
+                  Live
+                </a>
+              )}
+            </div>
+          </>
+        )}
+        { (Object.keys(event).length > 0) || (
+          <div className="now-content">
+            Aucun événement pour le moment.
+          </div>
+        )}
+      </section>
+    );
+  }
+}
+
+Now.propTypes = {
+  getEventInProgress: PropTypes.func.isRequired,
+  event: PropTypes.object,
+};
+
+Now.defaultProps = {
+  event: {},
+};
 
 export default Now;

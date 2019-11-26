@@ -22,12 +22,12 @@ import {
 const eventDetailsMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case GET_EVENT_DETAILS: {
-      axios.get(`http://${config.url}:3000/events/${action.id}`)
+      axios.get(`${config.url}/events/${action.id}`)
         .then((response) => {
           store.dispatch(fetchEventDetails(response.data.result.data));
         })
         .catch((error) => {
-          console.error(error);
+          // console.error(error);
         });
       break;
     }
@@ -38,18 +38,18 @@ const eventDetailsMiddleware = (store) => (next) => (action) => {
       if (token) {
         const { user, eventDetails } = store.getState();
         const requestAction = (action.isLiked) ? 'delete' : 'add';
-        axios.post(`http://${config.url}:3000/users/${user.id}/like/${requestAction}/${eventDetails.data.id}`,
+        axios.post(`${config.url}/users/${user.id}/like/${requestAction}/${eventDetails.data.id}`,
           {
             headers: {
               Authorization: `token ${token}`,
             },
           })
           .then((response) => {
-            console.log(action);
+            // console.log(action);
             store.dispatch(changeUserPreferencesToTheEvent('liked'));
           })
           .catch((error) => {
-            console.log(error);
+            // console.log(error);
           });
       }
       break;
@@ -61,7 +61,7 @@ const eventDetailsMiddleware = (store) => (next) => (action) => {
       if (token) {
         const { user, eventDetails } = store.getState();
         const requestAction = (action.isInterested) ? 'delete' : 'add';
-        axios.post(`http://${config.url}:3000/users/${user.id}/interest/${requestAction}/${eventDetails.data.id}`,
+        axios.post(`${config.url}/users/${user.id}/interest/${requestAction}/${eventDetails.data.id}`,
           {
             headers: {
               Authorization: `token ${token}`,
@@ -71,7 +71,7 @@ const eventDetailsMiddleware = (store) => (next) => (action) => {
             store.dispatch(changeUserPreferencesToTheEvent('interested'));
           })
           .catch((error) => {
-            console.log(error);
+            // console.log(error);
           });
       }
       break;
@@ -83,7 +83,7 @@ const eventDetailsMiddleware = (store) => (next) => (action) => {
       if (token) {
         const { user, eventDetails } = store.getState();
         const requestAction = (action.participate) ? 'delete' : 'add';
-        axios.post(`http://${config.url}:3000/users/${user.id}/participation/${requestAction}/${eventDetails.data.id}`,
+        axios.post(`${config.url}/users/${user.id}/participation/${requestAction}/${eventDetails.data.id}`,
           {
             headers: {
               Authorization: `token ${token}`,
@@ -93,7 +93,7 @@ const eventDetailsMiddleware = (store) => (next) => (action) => {
             store.dispatch(changeUserPreferencesToTheEvent('participation'));
           })
           .catch((error) => {
-            console.log(error);
+            // console.log(error);
           });
       }
       break;

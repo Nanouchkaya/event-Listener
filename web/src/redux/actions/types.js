@@ -1,5 +1,9 @@
 // == Types
 
+// Home
+export const GET_EVENT_IN_PROGRESS = 'GET_EVENT_IN_PROGRESS';
+export const FETCH_EVENT_IN_PROGRESS = 'FETCH_EVENT_IN_PROGRESS';
+
 // EventDetails : Header.js
 export const CHANGE_HEART_ICON = 'CHANGE_HEART_ICON';
 export const CHANGE_SHARE_LINKS_MODAL = 'CHANGE_SHARE_LINKS_MODAL';

@@ -24,6 +24,13 @@ module.exports = (server, router) => {
   });
 
   /**
+   * Get one event in progress
+   */
+  router.get('/events/in-progress', (request, response) => {
+    EventController.getEventInProgress(request, response);
+  });
+
+  /**
    * Get specific event
    */
   router.get('/events/:eventId', (request, response) => {
@@ -89,7 +96,7 @@ module.exports = (server, router) => {
   /**
    * Get next events (sort by start_date and reduce to :number first results)
    */
-   router.post('/events/next-events/:number', (request, response) => {
+  router.get('/events/next-events/:number', (request, response) => {
     EventController.getNextEvents(request, response);
   });
 

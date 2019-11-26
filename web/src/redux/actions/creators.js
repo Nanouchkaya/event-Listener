@@ -55,8 +55,18 @@ import {
   CHANGE_SHARE_LINKS_MODAL,
   FETCH_NEW_USER_INFO,
   CLOSE_NAV_MENU,
+  FETCH_EVENT_IN_PROGRESS,
+  GET_EVENT_IN_PROGRESS,
 } from './types';
 
+// Home
+export const fetchEventInProgress = (event) => ({
+  type: FETCH_EVENT_IN_PROGRESS,
+  event,
+});
+export const getEventInProgress = () => ({
+  type: GET_EVENT_IN_PROGRESS,
+});
 
 // EventDetails : Header.js
 export const changeShareLinksModal = () => ({

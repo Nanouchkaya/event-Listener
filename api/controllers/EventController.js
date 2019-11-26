@@ -8,7 +8,6 @@ class EventController {
    * @param {object} response
    */
   static getAll(request, response) {
-
     Event.getAll((result) => {
       response.json(result);
     });
@@ -23,21 +22,17 @@ class EventController {
     const { eventId } = request.params;
 
     if (isNaN(eventId)) {
-
       response.status(200);
       response.json({
-        status: "Bad data received"
+        status: 'Bad data received',
       });
-      
     } else {
-      
       Event.find(
         eventId,
         (result) => {
-
           if (result.rowMatch) {
             response.json({
-              status: "success",
+              status: 'success',
               result,
             });
           } else {
@@ -45,7 +40,8 @@ class EventController {
               status: "Event doesn't exist",
             });
           }
-        });
+        },
+      );
     }
   }
 
@@ -58,21 +54,17 @@ class EventController {
     const { price } = request.params;
 
     if (isNaN(price)) {
-
       response.status(200);
       response.json({
-        status: "Bad data received"
+        status: 'Bad data received',
       });
-      
     } else {
-      
       Event.findPrice(
         price,
         (result) => {
-
           if (result.rowMatch) {
             response.json({
-              status: "success",
+              status: 'success',
               result,
             });
           } else {
@@ -80,7 +72,8 @@ class EventController {
               status: "Event doesn't exist",
             });
           }
-        });
+        },
+      );
     }
   }
 
@@ -89,24 +82,21 @@ class EventController {
    * @param {object} request
    * @param {object} response
    */
-   static getEventByDiffusion(request, response) {
-     const { live } = request.params;
+  static getEventByDiffusion(request, response) {
+    const { live } = request.params;
 
-     if (isNaN(live)) {
-       response.status(200);
-       response.json({
-         status:"Bad data received"
-       });
-
-     } else {
-
-       Event.findLive(
-         live,
-         (result) => {
-
-          if(result.rowMatch) {
+    if (isNaN(live)) {
+      response.status(200);
+      response.json({
+        status: 'Bad data received',
+      });
+    } else {
+      Event.findLive(
+        live,
+        (result) => {
+          if (result.rowMatch) {
             response.json({
-              status: "success",
+              status: 'success',
               result,
             });
           } else {
@@ -114,11 +104,12 @@ class EventController {
               status: "Event doesn't exist",
             });
           }
-        });
-     }
-   }
+        },
+      );
+    }
+  }
 
-   /**
+  /**
    * Find and get Event by localisation
    * @param {object} request
    * @param {object} response
@@ -129,10 +120,9 @@ class EventController {
     Event.findLocalisation(
       loc,
       (result) => {
-
-        if(result.rowMatch) {
+        if (result.rowMatch) {
           response.json({
-            status: "success",
+            status: 'success',
             result,
           });
         } else {
@@ -140,7 +130,8 @@ class EventController {
             status: "Event doesn't exist",
           });
         }
-      });
+      },
+    );
   }
 
   /**
@@ -154,10 +145,9 @@ class EventController {
     Event.findTags(
       tag,
       (result) => {
-
-        if(result.rowMatch) {
+        if (result.rowMatch) {
           response.json({
-            status: "success",
+            status: 'success',
             result,
           });
         } else {
@@ -165,7 +155,8 @@ class EventController {
             status: "Event doesn't exist",
           });
         }
-      });
+      },
+    );
   }
 
   /**
@@ -179,10 +170,9 @@ class EventController {
     Event.findTitle(
       name,
       (result) => {
-
-        if(result.rowMatch) {
+        if (result.rowMatch) {
           response.json({
-            status: "success",
+            status: 'success',
             result,
           });
         } else {
@@ -190,7 +180,8 @@ class EventController {
             status: "Event doesn't exist",
           });
         }
-      });
+      },
+    );
   }
 
   /**
@@ -204,10 +195,9 @@ class EventController {
     Event.findStart(
       start,
       (result) => {
-
-        if(result.rowMatch) {
+        if (result.rowMatch) {
           response.json({
-            status: "success",
+            status: 'success',
             result,
           });
         } else {
@@ -215,7 +205,8 @@ class EventController {
             status: "Event doesn't exist",
           });
         }
-      });
+      },
+    );
   }
 
   /**
@@ -229,10 +220,9 @@ class EventController {
     Event.findFinish(
       finish,
       (result) => {
-
-        if(result.rowMatch) {
+        if (result.rowMatch) {
           response.json({
-            status: "success",
+            status: 'success',
             result,
           });
         } else {
@@ -240,7 +230,8 @@ class EventController {
             status: "Event doesn't exist",
           });
         }
-      });
+      },
+    );
   }
 
   /**
@@ -252,13 +243,12 @@ class EventController {
     const { start, finish } = request.params;
 
     Event.findDate(
-      start, 
+      start,
       finish,
       (result) => {
-
-        if(result.rowMatch) {
+        if (result.rowMatch) {
           response.json({
-            status: "success",
+            status: 'success',
             result,
           });
         } else {
@@ -266,7 +256,8 @@ class EventController {
             status: "Event doesn't exist",
           });
         }
-      });
+      },
+    );
   }
 
   /**
@@ -274,23 +265,21 @@ class EventController {
    * @param {object} request
    * @param {object} response
    */
-   static getNextEvents(request, response) {
+  static getNextEvents(request, response) {
     const { number } = request.params;
 
     if (isNaN(number)) {
       response.status(200);
       response.json({
-        status:"Not a number"
+        status: 'Not a number',
       });
-
     } else {
       Event.sortByStartDate(
         number,
-        (result) => { // = callbackNextEvents
-
-          if(result.rowMatch) {
+        (result) => {
+          if (result.rowMatch) {
             response.json({
-              status: "success",
+              status: 'success',
               result,
             });
           } else {
@@ -298,11 +287,12 @@ class EventController {
               status: "Event doesn't exist",
             });
           }
-        });
-    }    
+        },
+      );
+    }
   }
 
-   /**
+  /**
    * Get all events
    * @param {object} request
    * @param {object} response
@@ -310,11 +300,21 @@ class EventController {
   static getEventByFilter(request, response) {
     const filters = request.body;
     Event.findFilter(filters, (result) => {
-      response.json(result)
-    })
+      response.json(result);
+    });
   }
 
-};
+  /**
+  * Get one event in progress
+  * @param {object} request
+  * @param {object} response
+  */
+  static getEventInProgress(request, response) {
+    Event.getEventInProgress((result) => {
+      response.json(result);
+    });
+  }
+}
 
 
 module.exports = EventController;

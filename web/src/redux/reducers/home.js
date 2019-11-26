@@ -7,7 +7,7 @@ import {
   FETCH_NEXT_EVENTS,
   CHANGE_LEFT_FOR_SLIDER,
   HANDLE_QUICK_SEARCH_DATA,
-  SEND_LOCATION_SEARCH_DATA,
+  FETCH_EVENT_IN_PROGRESS,
 } from '../actions/types';
 
 const initialState = {
@@ -19,6 +19,7 @@ const initialState = {
   data: [],
   slide: 0,
   quickSearchData: [],
+  eventInProgress: {},
 };
 
 export const home = (state = initialState, action = {}) => {
@@ -28,12 +29,12 @@ export const home = (state = initialState, action = {}) => {
         ...state,
         value: '',
       };
-    case CHANGE_SEARCH_FORM_VALUE: 
-     return {
+    case CHANGE_SEARCH_FORM_VALUE:
+      return {
         ...state,
         [action.name]: action.value,
-      };  
-  case HANDLE_SEARCH_CHANGE:
+      };
+    case HANDLE_SEARCH_CHANGE:
       return {
         ...state,
         value: action.value,
@@ -63,13 +64,15 @@ export const home = (state = initialState, action = {}) => {
     case HANDLE_QUICK_SEARCH_DATA:
       return {
         ...state,
-        quickSearchData: action.data,  
-      }
-    // case SEND_LOCATION_SEARCH_DATA:
-    //   return {
-    //     state,
-    //     quickSearchData: action.data
-    //   }
+        quickSearchData: action.data,
+      };
+    case FETCH_EVENT_IN_PROGRESS:
+      return {
+        ...state,
+        eventInProgress: {
+          ...action.event,
+        },
+      };
     default:
       return state;
   }

@@ -12,6 +12,7 @@ import {
   HANDLE_SUBMIT,
   NEXT_EVENTS,
   HANDLE_QUICK_SEARCH,
+  GET_EVENT_IN_PROGRESS,
 } from '../actions/types';
 
 
@@ -21,39 +22,50 @@ import {
   sendLocationSearchData,
   fetchNextEvents,
   handleQuickSearchData,
+  fetchEventInProgress,
 } from '../actions/creators';
 
 // == Middleware : eventsMiddleware
 const eventsMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
+    case GET_EVENT_IN_PROGRESS: {
+      axios.get(`${config.url}/events/in-progress`)
+        .then((response) => {
+          store.dispatch(fetchEventInProgress(response.data.data));
+        })
+        .catch((error) => {
+          // console.error(error);
+        });
+      break;
+    }
     // Handles search by title of an event
     case TRIGGER_MIDDLEWARE: {
       const { value } = store.getState().form;
-      axios.get(`http://${config.url}:3000/events/title/${value}`)
+      axios.get(`${config.url}/events/title/${value}`)
         .then((response) => {
           const { data } = response.data.result;
           store.dispatch(fetchRequestedData(data));
         })
         .catch((error) => {
-          console.error(error);
+          // console.error(error);
         });
       break;
     }
     // Gets all events (for the "tous-les-evenements" page)
     case ALL_EVENTS: {
-      axios.get(`http://${config.url}:3000/events`)
+      axios.get(`${config.url}/events`)
         .then((response) => {
           const { data } = response.data;
           store.dispatch(fetchRequestedData(data));
         })
         .catch((error) => {
-          console.error(error);
+          // console.error(error);
         });
       break;
     }
     // handles search by localisation
     case FETCH_EVENTS_BY_LOCATION: {
-      axios.get(`http://${config.url}:3000/events/localisation/${action.location}`)
+      axios.get(`${config.url}/events/localisation/${action.location}`)
         .then((response) => {
           if (response.data.status === "Event doesn't exist") {
             const data = [];
@@ -65,32 +77,32 @@ const eventsMiddleware = (store) => (next) => (action) => {
           }
         })
         .catch((error) => {
-          console.error(error);
+          // console.error(error);
         });
       break;
     }
     // handles search by multiple parameters
     case HANDLE_SUBMIT: {
       const { dataFilter } = store.getState().form;
-      axios.post(`http://${config.url}:3000/events/filter`, dataFilter)
+      axios.post(`${config.url}/events/filter`, dataFilter)
         .then((response) => {
           const { data } = response.data;
           store.dispatch(fetchRequestedData(data));
         })
         .catch((error) => {
-          console.error(error);
+          // console.error(error);
         });
       break;
     }
     // handles search by title of the event, this time for the QuickSearchBar
     case HANDLE_QUICK_SEARCH: {
-      axios.get(`http://${config.url}:3000/events/title/${action.value}`)
+      axios.get(`${config.url}/events/title/${action.value}`)
         .then((response) => {
           const { data } = response.data.result;
           store.dispatch(handleQuickSearchData(data));
         })
         .catch((error) => {
-          // console.error('from middleware:', error); // TODO : commented because it's always display
+          // console.error('from middleware:', error);
         });
       break;
     }
@@ -99,11 +111,13 @@ const eventsMiddleware = (store) => (next) => (action) => {
       * next-events/:number => nombre d'evt à afficher
       */
     case NEXT_EVENTS: {
-      axios.post(`http://${config.url}:3000/events/next-events/5`)
+      axios.get(`${config.url}/events/next-events/5`)
         .then((response) => {
           store.dispatch(fetchNextEvents(response.data.result.data));
         })
-        .catch((error) => console.error('from middelware:', error));
+        .catch((error) => {
+          // console.error('from middelware:', error);
+        });
       break;
     }
     default:

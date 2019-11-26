@@ -45,7 +45,7 @@ const userMiddleware = (store) => (next) => (action) => {
         },
       } = state;
 
-      axios.post(`http://${config.url}:3000/users/add`,
+      axios.post(`${config.url}/users/add`,
         {
           data: {
             pseudo,
@@ -84,7 +84,7 @@ const userMiddleware = (store) => (next) => (action) => {
         },
       } = state;
 
-      axios.post(`http://${config.url}:3000/connect`,
+      axios.post(`${config.url}/connect`,
         {
           data: {
             email,
@@ -113,7 +113,7 @@ const userMiddleware = (store) => (next) => (action) => {
       const token = window.localStorage.getItem('token');
 
       if (token) {
-        axios.get(`http://${config.url}:3000/check-auth`, {
+        axios.get(`${config.url}/check-auth`, {
           headers: {
             Authorization: `token ${token}`,
           },
@@ -135,7 +135,7 @@ const userMiddleware = (store) => (next) => (action) => {
       const token = window.localStorage.getItem('token');
 
       if (token) {
-        axios.get(`http://${config.url}:3000/check-auth`, {
+        axios.get(`${config.url}/check-auth`, {
           headers: {
             Authorization: `token ${token}`,
           },
@@ -155,7 +155,7 @@ const userMiddleware = (store) => (next) => (action) => {
     case CHANGE_UPDATE_USER: {
       const token = window.localStorage.getItem('token');
       const { user } = store.getState();
-      axios.post(`http://${config.url}:3000/users/${user.id}/update`, {
+      axios.post(`${config.url}/users/${user.id}/update`, {
         headers: {
           Authorization: `token ${token}`,
         },
@@ -178,7 +178,7 @@ const userMiddleware = (store) => (next) => (action) => {
     case DELETE_USER: {
       const token = window.localStorage.getItem('token');
       const { user } = store.getState();
-      axios.post(`http://${config.url}:3000/users/${user.id}/delete`, {
+      axios.post(`${config.url}/users/${user.id}/delete`, {
         headers: {
           Authorization: `token ${token}`,
         },

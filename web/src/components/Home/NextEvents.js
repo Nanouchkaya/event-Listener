@@ -27,7 +27,7 @@ class NextEvents extends React.Component {
       data,
       slide,
       slider,
-      changeLeftForSlider, 
+      changeLeftForSlider,
     } = this.props;
     const numberOfElement = data.length - 1;
 
@@ -37,25 +37,23 @@ class NextEvents extends React.Component {
           Prochains événements
         </h2>
 
-      { data.length === 0 && (
-        <div className='sweet-loading'>
-          <ClipLoader
-            css={override}
-            sizeUnit={"px"}
-            size={150}
-            color={'#123abc'}
-            loading={true}
-          />
-        </div>      
-      )} 
+        { data.length === 0 && (
+          <div className="sweet-loading">
+            <ClipLoader
+              css={override}
+              sizeUnit="px"
+              size={150}
+              color="#123abc"
+              loading
+            />
+          </div>
+        )}
 
-      <div className="events-view-card">
-        <div className="events-container" style={{ left: `${slide}px` }}>
-          {data.map((event) => <Event key={event.id} {...event} jsxFor="card" />)}
+        <div className="events-view-card">
+          <div className="events-container" style={{ left: `${slide}px` }}>
+            {data.map((event) => <Event key={event.id} {...event} jsxFor="card" />)}
+          </div>
         </div>
-      </div>
-
- 
 
         <div className="arrow">
           <button type="button" className="arrow-left" onClick={() => slider(numberOfElement, slide, 236, changeLeftForSlider, 'left')}>

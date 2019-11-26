@@ -1,4 +1,5 @@
 const config = require('dotenv').config(); // Add config to env node.js
+
 if (config.error) throw config.error; // Check if there is no error
 
 const bodyParser = require('body-parser');
@@ -21,5 +22,5 @@ server.use(router);
 App(server, router);
 contact(router, nodemailer);
 
-// Defined a port for the server, if this constant is undefined, the server take the port 3000 
+// Defined a port for the server, if this constant is undefined, the server take the port 3000
 server.listen(process.env.PORT || 3000);
