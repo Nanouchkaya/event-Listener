@@ -1,8 +1,12 @@
 # Projet Event Listener
 
 ### Présentation
-Le responsable d’une agence événementielle a besoin d’une plateforme pour rassembler à un seul endroit tous les événements (salon, conférence etc) liés à la tech numérique. Cette plateforme serait d’autant profitable aux particuliers qu'aux entreprises.  
-Exemple d'utilisation : Un utilisateur se connecte à son compte, il consulte les événements à venir dans sa région (ou ailleurs), sauvegarde ce qui l'intéresse, il a la possibilité de voir quels autres membres de la plateforme sont intéressés par le même événement et donc de communiquer avec eux (indirectement, cela rassemble les développeurs, amoureux de la tech au même endroit).
+Il s’agit d’une application qui réunit les différents événement lié à la tech
+numérique (Développement, intelligence artificielle, blockchain).
+L’application propose une recherche simple et avancée, d’avoir un compte
+pour suivre les différent événements.
+Cette application serait d’autant profitable aux particuliers qu&#39;aux
+entreprises.
 
 - <a href="docs/CDC.md" target="_blank">Cahier des charges</a>
 - <a href="docs/User_Stories.md" target="_blank">User stories</a>
@@ -10,3 +14,6 @@ Exemple d'utilisation : Un utilisateur se connecte à son compte, il consulte le
 - <a href="docs/Arborescence.png" target="_blank">Arborescence</a>
 - <a href="docs/MLD-mvp.png" target="_blank">MLD (MVP)</a>
 - <a href="docs/MLD-done.png" target="_blank">MLD</a>
+
+___
+Projet réalisé avec __[Inès](https://github.com/Daenerys95)__, __[Claudine](https://github.com/Nanouchkaya)__ et __[Guillaume](https://github.com/JoK3R59)__.
