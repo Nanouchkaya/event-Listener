@@ -19,7 +19,8 @@ const Event = ({
   jsxFor,
   getCity,
 }) => {
-  const eventDate = moment(dateStart, 'YYYY-MM-DD').format('DD MMM YYYY');
+  let eventDate = new Date(dateStart);
+  eventDate = moment(eventDate, 'YYYY-MM-DD').format('DD MMM YYYY');
   const pureAddress = <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(address) }} />;
   const city = getCity(address);
 
