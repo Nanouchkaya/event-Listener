@@ -18,16 +18,16 @@ const QuickSearchBar = ({
   };
   return (
     <>
-    <form onSubmit={handleSubmit} className="searchbar-visible">
-      <input
-        type="search"
-        className="searchbar-input"
-        placeholder="Recherche..."
-        value={value}
-        /* Récupération de la valeur entrée dans l'input */
-        onChange={handleChange}
-      />
-    </form>
+      <form onSubmit={handleSubmit} className="searchbar-visible">
+        <input
+          type="search"
+          className="searchbar-input"
+          placeholder="Recherche..."
+          value={value}
+          /* Récupération de la valeur entrée dans l'input */
+          onChange={handleChange}
+        />
+      </form>
     </>
   );
 };

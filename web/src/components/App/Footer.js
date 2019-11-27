@@ -1,15 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link, Route } from 'react-router-dom';
-
-import Events from 'src/redux/containers/Events';
+import { Link } from 'react-router-dom';
 
 // == Composant
 const Footer = ({ fetchEvents }) => {
   // Fetch the events based on the location when clicking on the footer links
   const handleClick = (event) => {
     fetchEvents(event.target.dataset.city);
-    //window.location.pathname = `tous-les-evenements/${event.target.dataset.city}`
   };
   const cities = [
     'Paris',

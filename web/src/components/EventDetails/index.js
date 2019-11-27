@@ -5,13 +5,13 @@ import { Redirect } from 'react-router-dom';
 
 
 // import sous-composants
-import Header from 'src/redux/containers/EventDetails/Header';
-import CheckButtons from 'src/redux/containers/EventDetails/CheckButtons';
-import Datetime from 'src/redux/containers/EventDetails/Datetime';
-import Address from 'src/redux/containers/EventDetails/Address';
-import Description from 'src/redux/containers/EventDetails/Description';
-import EventDetailsMap from 'src/redux/containers/EventDetails/Map';
-import Tags from 'src/redux/containers/EventDetails/Tags';
+import Header from 'src/containers/EventDetails/Header';
+import CheckButtons from 'src/containers/EventDetails/CheckButtons';
+import Datetime from 'src/containers/EventDetails/Datetime';
+import Address from 'src/containers/EventDetails/Address';
+import Description from 'src/containers/EventDetails/Description';
+import EventDetailsMap from 'src/containers/EventDetails/Map';
+import Tags from 'src/containers/EventDetails/Tags';
 
 
 // import local

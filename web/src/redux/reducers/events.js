@@ -1,3 +1,4 @@
+// Actions import
 import {
   HANDLE_FORM_CHANGE,
   HANDLE_SUBMIT,
@@ -7,7 +8,8 @@ import {
   ADD_ADDRESS_VALUE,
   EMPTY_FORM_VALUE,
   FILL_FILTER_LIST,
-} from '../actions/types';
+} from '../actions/temp';
+
 
 const initialState = {
   value: '',

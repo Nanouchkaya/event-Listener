@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // import local
-import Event from 'src/redux/containers/Events/Event';
+import Event from 'src/containers/Events/Event';
 import './user.scss';
 
 // composant

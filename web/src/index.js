@@ -1,15 +1,15 @@
-// == Import : npm
+// Global import
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import ScrollToTop from 'react-router-scroll-top';
 
-// == Import : local
-import App from 'src/redux/containers/App';
+// Local import
+import App from 'src/containers/App';
 import store from 'src/redux/store';
 
-// == Render
+// Component
 const rootComponent = (
   <Provider store={store}>
     <Router>

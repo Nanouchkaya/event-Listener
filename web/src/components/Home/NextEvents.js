@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import ClipLoader from 'react-spinners/ClipLoader';
 
-import Event from 'src/redux/containers/Events/Event';
+import Event from 'src/containers/Events/Event';
 import iconArrowLeft from 'src/assets/images/icons/icons8-undefined-50-9.png';
 import iconArrowRight from 'src/assets/images/icons/icons8-undefined-50-7.png';
 

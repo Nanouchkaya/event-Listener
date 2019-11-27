@@ -2,9 +2,9 @@
 import React from 'react';
 
 // == import : local
-import SearchForm from 'src/redux/containers/Home/SearchForm';
-import NextEvents from 'src/redux/containers/Home/NextEvents';
-import Now from 'src/redux/containers/Home/Now';
+import SearchForm from 'src/containers/Home/SearchForm';
+import NextEvents from 'src/containers/Home/NextEvents';
+import Now from 'src/containers/Home/Now';
 import Contact from './Contact';
 import HomeMap from './Map';
 import './home.scss';

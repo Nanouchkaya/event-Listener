@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 
 // import local
 import './user.scss';
-import Header from 'src/redux/containers/User/Header';
-import Preferences from 'src/redux/containers/User/Preferences';
-import UserEvents from 'src/redux/containers/User/UserEvents';
+import Header from 'src/containers/User/Header';
+import Preferences from 'src/containers/User/Preferences';
+import UserEvents from 'src/containers/User/UserEvents';
 
 
 // composant

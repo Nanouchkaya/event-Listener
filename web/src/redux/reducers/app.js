@@ -1,6 +1,10 @@
+// Actions import
 import {
   OPEN_NAV_MODAL,
   ACTIVE_NAV_MENU,
+  CLOSE_NAV_MENU,
+} from '../actions';
+import {
   CHANGE_INPUT_VALUE_IN_MODAL,
   CHANGE_CHECK_VALUE_IN_MODAL,
   EMPTY_FIELDS_REGISTER,
@@ -8,9 +12,11 @@ import {
   SHOW_MESSAGE_LOGIN,
   DO_CONNECT,
   DECONNECT,
+} from '../actions/user';
+import {
   SEND_LOCATION_SEARCH_DATA,
-  CLOSE_NAV_MENU,
-} from '../actions/types';
+} from '../actions/temp';
+
 
 const initialState = {
   isConnected: false,
@@ -41,6 +47,7 @@ const initialState = {
   },
   data: [],
 };
+
 
 export const app = (state = initialState, action = {}) => {
   switch (action.type) {
