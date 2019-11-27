@@ -97,6 +97,16 @@
   }
 }
 
+.menu-burger {
+  display: block;
+  position: fixed;
+  right: .4rem;
+  top: 1.2rem;
+  font-size: 2rem;
+  color: $turquoise;
+  z-index:1;
+}
+
 .minimalize {
   padding: 1rem;
   background: rgba(black, .5);
@@ -105,17 +115,13 @@
   .navigation-item--left {
     font-size: 2rem;
   }
+  
+  .menu-burger {
+    top: .4rem;
+  }
 }
 
-.menu-burger {
-  display: block;
-  position: fixed;
-  right: .4rem;
-  top: .4rem;
-  font-size: 2rem;
-  color: $turquoise;
-  z-index:1;
-}
+
 
 .menu {
   display: none;

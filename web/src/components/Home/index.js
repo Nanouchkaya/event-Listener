@@ -38,7 +38,7 @@ class Home extends React.Component {
         <header>
           <div className="header-content">
             <p className="header-content-text">
-              Accroche à définir qui sera trop mega cool (ou pas)
+              Trouver les événements qui vous correspondent 
             </p>
             <SearchForm />
           </div>
