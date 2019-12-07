@@ -1,15 +1,13 @@
-// == Import : npm
+// Import global
 import React from 'react';
 import axios from 'axios';
 
+// Imoport local
+import config from 'src/config';
 
-// == Import : local
 
-
-// == Composant Contact
 class Contact extends React.Component {
   state = {
-    nameInput: '',
     emailInput: '',
     objectInput: '',
     messageText: '',
@@ -25,22 +23,20 @@ class Contact extends React.Component {
   }
 
   handleSubmit = (event) => {
-    const { 
-      nameInput,
+    const {
       emailInput,
       objectInput,
       messageText,
     } = this.state;
+
     event.preventDefault();
-    axios.post('http://localhost:3000/contact/send', {
-      name: nameInput,
+    axios.post(`${config.api}/contact/send`, {
       email: emailInput,
       object: objectInput,
       message: messageText,
     })
       .then((response) => {
         this.setState({
-          nameInput: '',
           emailInput: '',
           objectInput: '',
           messageText: '',
@@ -48,42 +44,38 @@ class Contact extends React.Component {
           response: true,
         });
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        // console.error(error);
+      });
+  }
+
+  hiddenSendMessage = () => {
+    this.setState({
+      isSent: '',
+      response: false,
+    });
   }
 
   render() {
     const {
-      nameInput,
       emailInput,
       objectInput,
       messageText,
+      response,
+      isSent,
     } = this.state;
+
     return (
       <section className="contact">
         <h2 className="contact-title">
           Nous contacter
         </h2>
         <form onSubmit={this.handleSubmit} className="contact-form" autoComplete="off" method="POST">
-          {
-            this.state.response && (
-            <p className="contact-form-sent-text">
-              {this.state.isSent}
-            </p>
-            )
-          }
-          <input
-            type="text"
-            className="contact-form-element input"
-            placeholder="Prénom Nom"
-            name="nameInput"
-            value={nameInput}
-            onChange={this.handleChange}
-          />
           <input
             type="mail"
             required
             className="contact-form-element input"
-            placeholder="E-mail*"
+            placeholder="E-mail *"
             name="emailInput"
             value={emailInput}
             onChange={this.handleChange}
@@ -101,23 +93,29 @@ class Contact extends React.Component {
             required
             rows="6"
             className="contact-form-element message"
-            placeholder="Votre message*"
+            placeholder="Votre message *"
             name="messageText"
             value={messageText}
             onChange={this.handleChange}
           />
-
-          <button type="submit" className="contact-form-element button">
-            Envoyer
-          </button>
+          { response && (
+            <button type="submit" className="contact-form-element button" onClick={this.hiddenSendMessage}>
+              {isSent}
+            </button>
+          ) }
+          { response || (
+            <button type="submit" className="contact-form-element button">
+              Envoyer
+            </button>
+          ) }
 
           <p className="contact-form--note">
-            Les champs marqués par un astérix sont obligatoires.
+            Les champs marqués par un * (astérix) sont obligatoires.
           </p>
         </form>
       </section>
-    ); 
-  }  
+    );
+  }
 }
 
 

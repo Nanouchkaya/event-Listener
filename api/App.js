@@ -1,8 +1,8 @@
 const EventController = require('./controllers/EventController');
 const UserController = require('./controllers/UserController');
+const serviceContact = require('./services/contact');
 
 module.exports = (server, router) => {
-
   // * //
 
   /**
@@ -13,6 +13,12 @@ module.exports = (server, router) => {
     response.send('API eventListener');
   });
 
+  /**
+   * Contact form
+   */
+  router.post('/contact/send', (request, response) => {
+    serviceContact(request, response);
+  });
 
   // Event //
 

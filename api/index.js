@@ -5,9 +5,7 @@ if (config.error) throw config.error; // Check if there is no error
 const bodyParser = require('body-parser');
 const router = require('express').Router();
 const server = require('express')();
-const nodemailer = require('nodemailer');
 const App = require('./App');
-const contact = require('./contact');
 
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
@@ -20,7 +18,6 @@ server.use((request, response, next) => {
 server.use(router);
 
 App(server, router);
-contact(router, nodemailer);
 
 // Defined a port for the server, if this constant is undefined, the server take the port 3000
 server.listen(process.env.PORT || 3000);
