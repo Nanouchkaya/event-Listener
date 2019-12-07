@@ -52,10 +52,6 @@
         width: 70%;
         text-align: center;
         line-height: 2rem;
-
-        & + a.modal--back {
-          display: none;
-        }
       }
       &--error {
         color: $red;
